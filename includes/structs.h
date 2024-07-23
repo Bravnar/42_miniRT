@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 10:58:40 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/22 11:12:59 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/23 12:33:18 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/23 12:35:48 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,13 @@ typedef struct	s_main
 	//mouse?
 	//kb?
 }	t_main;
+
+typedef struct s_tup
+{
+	double	x;
+	double	y;
+	double	z;
+	bool	is_p;
+}	t_tup;
 
 #endif

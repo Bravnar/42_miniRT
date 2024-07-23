@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 11:27:56 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/22 11:40:52 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/23 12:36:04 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/23 12:36:04 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ int		close_win(void *param);
 int		keyboard(int keycode, t_main *rt);
 void	handle_events(t_main *rt);
 
+/* TUPLE UTILS */
+
+t_tup	tuple_create(double x, double y, double z, double w);
 
 
 #endif
