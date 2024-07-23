@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 10:06:28 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/23 14:53:02 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/23 15:04:13 by smuravye          #+#    #+#             */
+/*   Updated: 2024/07/23 15:44:42 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef SPHERE_H
+# define SPHERE_H
 
-/* Builtin libraries*/
-# include <stdio.h>
-# include <math.h>
-# include <stdbool.h>
-
-/* Custom libraries */
-# include "colors.h"
-# include "defines.h"
-# include "structs.h"
-# include "functions.h"
-# include "../lib/includes/my_lib.h"
-# include "../minilibx-linux/mlx.h"
-
-/* Object libraries */
 # include "object.h"
-# include "sphere.h"
-# include "cube.h"
-# include "cyllinder.h"
 
+typedef struct s_sphere
+{
+	t_obj	shape;
+	double	diameter;
+}	t_sphere;
 
 #endif

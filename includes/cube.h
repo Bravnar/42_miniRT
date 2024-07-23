@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 10:06:28 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/23 14:53:02 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/23 15:02:58 by smuravye          #+#    #+#             */
+/*   Updated: 2024/07/23 15:53:20 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef CUBE_H
+# define CUBE_H
 
-/* Builtin libraries*/
-# include <stdio.h>
-# include <math.h>
-# include <stdbool.h>
-
-/* Custom libraries */
-# include "colors.h"
-# include "defines.h"
-# include "structs.h"
-# include "functions.h"
-# include "../lib/includes/my_lib.h"
-# include "../minilibx-linux/mlx.h"
-
-/* Object libraries */
 # include "object.h"
-# include "sphere.h"
-# include "cube.h"
-# include "cyllinder.h"
+
+typedef struct	s_cube
+{
+	t_obj	shape;
+	double	length;
+	double	height;
+	double	width;
+}	t_cube;
 
 
 #endif

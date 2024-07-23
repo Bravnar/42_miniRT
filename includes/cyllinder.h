@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   cyllinder.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 10:06:28 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/23 14:53:02 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/23 15:03:18 by smuravye          #+#    #+#             */
+/*   Updated: 2024/07/23 17:38:04 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef CYLLINDER_H
+# define CYLLINDER_H
 
-/* Builtin libraries*/
-# include <stdio.h>
-# include <math.h>
-# include <stdbool.h>
-
-/* Custom libraries */
-# include "colors.h"
-# include "defines.h"
-# include "structs.h"
-# include "functions.h"
-# include "../lib/includes/my_lib.h"
-# include "../minilibx-linux/mlx.h"
-
-/* Object libraries */
 # include "object.h"
-# include "sphere.h"
-# include "cube.h"
-# include "cyllinder.h"
 
+typedef struct	s_cyl
+{
+	t_obj	shape;
+	double	diameter;
+	double	height;
+}	t_cyl;
+
+t_cyl	cyl_create(double diameter, double height);
+void	cyl_destroy(t_obj	*shape);
 
 #endif

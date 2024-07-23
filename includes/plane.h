@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 10:06:28 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/23 14:53:02 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/23 15:03:47 by smuravye          #+#    #+#             */
+/*   Updated: 2024/07/23 15:51:57 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef PLANE_H
+# define PLANE_H
 
-/* Builtin libraries*/
-# include <stdio.h>
-# include <math.h>
-# include <stdbool.h>
+#include "object.h"
 
-/* Custom libraries */
-# include "colors.h"
-# include "defines.h"
-# include "structs.h"
-# include "functions.h"
-# include "../lib/includes/my_lib.h"
-# include "../minilibx-linux/mlx.h"
-
-/* Object libraries */
-# include "object.h"
-# include "sphere.h"
-# include "cube.h"
-# include "cyllinder.h"
-
+typedef struct	s_plane
+{
+	t_obj	shape;
+}	t_plane;
 
 #endif

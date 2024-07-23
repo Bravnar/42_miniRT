@@ -6,10 +6,9 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 10:41:43 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/22 10:41:45 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:00:33 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef COLORS_H
 # define COLORS_H
