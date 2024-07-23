@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/22 11:41:10 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/23 15:58:47 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,11 @@ SRCS= 	srcs/main.c \
 		srcs/init.c \
 		srcs/mlx_utils.c \
 		srcs/event_handler.c \
-			
+		srcs/tuples/tuple_create.c \
+		srcs/tuples/tuple_operations.c \
+		srcs/tuples/vector_info.c \
+		srcs/tuples/vector_operations.c \
+		srcs/floats/float_compare.c
 
 CC= cc
 
