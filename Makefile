@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/23 15:58:47 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/23 16:07:17 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ SRCS= 	srcs/main.c \
 		srcs/tuples/tuple_operations.c \
 		srcs/tuples/vector_info.c \
 		srcs/tuples/vector_operations.c \
+		srcs/tuples/environment.c \
+		srcs/tuples/projectile.c \
+		srcs/tuples/tick.c \
 		srcs/floats/float_compare.c
 
 CC= cc

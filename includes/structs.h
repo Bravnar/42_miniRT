@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 14:27:38 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/23 14:27:38 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/23 16:07:55 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/23 16:07:55 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,17 @@ typedef struct s_tup
 	double	z;
 	int		w;
 }	t_tup;
+
+typedef struct s_projectile
+{
+	t_tup	position;
+	t_tup	velocity;
+}	t_proj;
+
+typedef struct s_environment
+{
+	t_tup	gravity;
+	t_tup	wind;
+}	t_env;
 
 #endif

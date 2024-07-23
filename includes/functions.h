@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 16:00:05 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/23 16:00:40 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/23 16:19:49 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/23 16:19:58 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ t_tup	tuple(double x, double y, double z, int w);
 t_tup	point(double x, double y, double z);
 t_tup	vector(double x, double y, double z);
 
+/* TUPLE OPERATIONS */
+
+t_tup	tuple_sub(t_tup a, t_tup b);
+t_tup	tuple_add(t_tup a, t_tup b);
+t_tup	tuple_neg(t_tup a);
+
 /* VECTOR OPERATIONS */
 
 t_tup	vector_scalar_mult(t_tup a, double scalar);
@@ -54,6 +60,11 @@ t_tup	vector_cross(t_tup a, t_tup b);
 double	vector_mag(t_tup a);
 bool	is_unit_vector(t_tup a);
 double	vector_dot(t_tup a, t_tup b);
+
+/* PROJECTILES & ENVIRONMENTS */
+
+t_proj	proj_new(t_tup position, t_tup velocity);
+t_env	env_new(t_tup wind, t_tup gravity);
 
 /* ************************************************************************** */
 /*                                                                            */
