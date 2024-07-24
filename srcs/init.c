@@ -28,5 +28,6 @@ t_main   *init_main(void)
     if (!rt)
         return (NULL);
     init_rect(&rt->rect);
+    //read_file();
     return (rt);
 }

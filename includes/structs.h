@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:33:18 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/23 14:28:04 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:08:37 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct	s_light
 
 typedef struct	s_file
 {
-	char	*file_name;
+	int		fd;
 	bool	is_valid;
 }	t_file;
 
@@ -82,14 +82,15 @@ typedef struct	s_map
 	t_amb		amb;
 	t_cam		cam;
 	t_light		light;
+	t_obj		*obj_list;
 	
 }	t_map;
 
 typedef struct	s_main
 {
-	//t_parse	parse;
 	t_mlx	mlx;
 	t_rect	rect;
+	t_map	data;
 	//view?
 	//mouse?
 	//kb?

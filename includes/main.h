@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 10:06:28 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/23 14:53:02 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/07/24 10:32:05 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "sphere.h"
 # include "cube.h"
 # include "cyllinder.h"
+# include "plane.h"
 
 
 #endif

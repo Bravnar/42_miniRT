@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:02:58 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/23 15:53:20 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/07/24 10:20:42 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ typedef struct	s_cube
 	double	width;
 }	t_cube;
 
+t_cube	cube_create(double length, double height, double width);
+void	cube_destroy(t_obj *shape);
 
 #endif
