@@ -39,11 +39,45 @@ void	draw_projectile(t_main *rt)
 
 int main(void)
 {
-	t_main  *rt;
+	/* t_main  *rt;
 
 	rt = init_main();
 	if (!rt)
 		exit(1);
 	draw_projectile(rt);
-	free(rt);
+	free(rt); */
+
+	t_matrix A = {{
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 8, 7, 6},
+		{5, 4, 3, 2}
+	}};
+
+	t_matrix B = {{
+		{-2, 1, 2, 3},
+		{3, 2, 1, -1},
+		{4, 3, 6, 5},
+		{1, 2, 7, 8}
+	}};
+
+	t_matrix C = {{
+		{1, 2, 3, 4},
+		{2, 4, 4, 2},
+		{8, 6, 4, 1},
+		{0, 0, 0, 1}
+	}};
+
+	t_column b = {{1, 2, 3, 1}};
+
+	t_matrix result = matrice_mult(A, B);
+	t_column c = matrice_mult_col(C, b);
+	printf("Result matrix:\n");
+	print_matrix(result);
+	printf("Result column:\n");
+	print_column(c);
+	printf("Result transpose:\n");
+	C = transpose(A);
+	print_matrix(transpose(C));
+	return 0;
 }
