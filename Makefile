@@ -18,7 +18,16 @@ SRCS= 	srcs/main.c \
 		srcs/init.c \
 		srcs/mlx_utils.c \
 		srcs/event_handler.c \
-			
+		srcs/tuples/tuple_create.c \
+		srcs/tuples/tuple_operations.c \
+		srcs/tuples/vector_info.c \
+		srcs/tuples/vector_operations.c \
+		srcs/tuples/environment.c \
+		srcs/tuples/projectile.c \
+		srcs/tuples/tick.c \
+		srcs/floats/float_compare.c \
+		srcs/colors/colors_init.c \
+		srcs/colors/colors_operations.c
 
 CC= cc
 
