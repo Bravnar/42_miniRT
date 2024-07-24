@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 16:19:49 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/23 16:19:58 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/24 13:15:12 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/24 13:15:16 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ double	vector_dot(t_tup a, t_tup b);
 
 t_proj	proj_new(t_tup position, t_tup velocity);
 t_env	env_new(t_tup wind, t_tup gravity);
+t_proj	tick(t_env env, t_proj proj);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -73,5 +74,24 @@ t_env	env_new(t_tup wind, t_tup gravity);
 /* ************************************************************************** */
 
 bool	equal(double a, double b);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                COLORS                                      */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* COLOR INITIALISATION */
+
+t_color	color(int r, int g, int b);
+void	add_hex_color(t_color *c);
+
+/* COLOR OPERATIONS */
+
+t_color	color_add(t_color c1, t_color c2);
+t_color	color_sub(t_color c1, t_color c2);
+t_color	color_scalarmult(int scalar, t_color c2);
+t_color	color_product(t_color c1, t_color c2);
+t_color	color_blend(t_color c1, t_color c2);
 
 #endif

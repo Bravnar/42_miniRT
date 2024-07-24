@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 16:07:55 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/23 16:07:55 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/24 10:34:00 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/24 10:34:00 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,14 @@ typedef struct s_environment
 	t_tup	gravity;
 	t_tup	wind;
 }	t_env;
+
+typedef struct s_color
+{
+	int				r;
+	int				g;
+	int				b;
+	int				t;
+	unsigned int	hex;
+}	t_color;
 
 #endif
