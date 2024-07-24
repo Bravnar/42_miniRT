@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 10:34:00 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/24 10:34:00 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/07/24 15:33:02 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ typedef struct	s_mlx
 	int		win_x;
 	int		win_y;
 }	t_mlx;
+
+typedef struct s_tup
+{
+	double	x;
+	double	y;
+	double	z;
+	int		w;
+}	t_tup;
+
+# include "object.h"
 
 typedef struct	s_rect
 {
@@ -61,9 +71,17 @@ typedef struct	s_light
 	int		rgb[3];			// Bonus
 }	t_light;
 
+typedef struct s_parse
+{
+	char 			*line;
+	char 			**line_split;
+	struct s_parse	*next;
+}	t_parse;
+
 typedef struct	s_file
 {
 	int		fd;
+	t_parse	*parse;
 	bool	is_valid;
 }	t_file;
 
@@ -87,14 +105,6 @@ typedef struct	s_main
 	//mouse?
 	//kb?
 }	t_main;
-
-typedef struct s_tup
-{
-	double	x;
-	double	y;
-	double	z;
-	int		w;
-}	t_tup;
 
 typedef struct s_projectile
 {

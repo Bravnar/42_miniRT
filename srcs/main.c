@@ -2,7 +2,7 @@
 
 void	game_loop(t_main *rt)
 {
-	init_mlx(&rt->mlx);
+	//init_mlx(&rt->mlx);
 	draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
@@ -22,7 +22,7 @@ void	draw_projectile(t_main *rt)
 	environment = env_new(vector(0.0, -0.1, 0), vector(-0.01, 0, 0));
 	col = color(255, 0, 0);
 	add_hex_color(&col);
-	init_mlx(&rt->mlx);
+	//init_mlx(&rt->mlx);
 	while (projectile.position.x < 900)
 	{
 		my_pixel(&rt->mlx, projectile.position.x, 550 - projectile.position.y, col.hex);
@@ -41,9 +41,11 @@ int main(void)
 {
 	t_main  *rt;
 
-	rt = init_main();
+	rt = init_all();
+	read_file("test_rt/minimalist.rt", &rt->data);
 	if (!rt)
 		exit(1);
-	draw_projectile(rt);
+
+	//draw_projectile(rt);
 	free(rt);
 }

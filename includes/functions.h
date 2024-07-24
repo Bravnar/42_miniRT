@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:15:12 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/24 13:15:16 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/07/24 15:35:59 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ void	redraw(t_main *rt); //IMPORTANT TO ADAPT
 
 
 /* INIT */
-t_main	*init_main(void);
-void	init_mlx(t_mlx  *mlx);
-void	init_rect(t_rect *rect);
+t_main	*init_all(void);
+// t_main	*init_main(void);
+// void	init_mlx(t_mlx  *mlx);
+// void	init_rect(t_rect *rect);
+
+/* READ FILE */
+void	read_file(char *file_name, t_map *data);
 
 /* EVENT HANDLER */
 int		close_win(void *param);

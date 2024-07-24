@@ -1,12 +1,5 @@
 # include "main.h"
 
-typedef struct s_parse
-{
-	char 			*line;
-	char 			**line_split;
-	struct s_parse	*next;
-}	t_parse;
-
 t_parse	*new_parse_node(char *line)
 {
 	t_parse	*node;
@@ -15,9 +8,10 @@ t_parse	*new_parse_node(char *line)
 	if (!node)
 		return (NULL);
 	node->line = ft_strdup(line);
-	// if line is empty or \n ?
-	node->line_split = ft_megasplit(node->line, WHITESPACE);
+	if (line)
+		node->line_split = ft_megasplit(node->line, WHITESPACE);
 	node->next = NULL;
+	return (node);
 }
 
 void	add_node(t_parse **parsed, t_parse *new_node)
@@ -52,10 +46,39 @@ void	free_nodes(t_parse *list)
 	tmp = NULL;
 }
 
+void	print_nodes(t_parse **head)
+{
+	t_parse	*tmp;
+	int		i;
+
+	tmp = *head;
+	while(tmp)
+	{
+		printf("Current line: %s\n", tmp->line);
+		i = -1;
+		while (tmp->line_split[++i])
+			printf("[%s] ", tmp->line_split[i]);
+		printf("\n");
+		tmp = tmp->next;
+	}
+}
+
 void	read_file(char *file_name, t_map *data)
 {
-	t_list	*parse;
-	char	*read;
+	t_parse	*node;
+	char	*line;
 
-	read = ft_strdup("");
+	data->file.fd = open(file_name, O_RDONLY);
+	if (data->file.fd == -1)
+		exit(1);
+	line = get_next_line(data->file.fd);
+	while (line)
+	{
+		node = new_parse_node(line);
+		add_node(&data->file.parse, node);
+		free(line);
+		line = get_next_line(data->file.fd);
+	}
+	print_nodes(&data->file.parse);
+	free(line);
 }
