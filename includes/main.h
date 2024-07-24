@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 10:06:28 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/22 10:45:42 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/23 13:27:53 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/23 13:27:53 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* Builtin libraries*/
 # include <stdio.h>
 # include <math.h>
+# include <stdbool.h>
 
 /* Custom libraries */
 # include "colors.h"
