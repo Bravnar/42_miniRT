@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 10:34:00 by hmorand           #+#    #+#             */
 /*   Updated: 2024/07/24 10:34:00 by hmorand          ###   ########.ch       */
@@ -26,7 +26,7 @@ typedef struct	s_mlx
 	int		win_y;
 }	t_mlx;
 
-typedef struct s_rect
+typedef struct	s_rect
 {
 	int	x;
 	int	y;
@@ -35,11 +35,54 @@ typedef struct s_rect
 	int	color;
 }	t_rect;
 
+typedef struct	s_rwin
+{
+	int		x;
+	int		y;
+}	t_rwin;
+
+typedef struct	s_amb
+{
+	double	ratio;
+	int		rgb[3];
+}	t_amb;
+
+typedef struct	s_cam
+{
+	t_tup	point;
+	t_tup	vector;
+	int		fov;
+}	t_cam;
+
+typedef struct	s_light
+{
+	t_tup	point;
+	double	bright;
+	int		rgb[3];			// Bonus
+}	t_light;
+
+typedef struct	s_file
+{
+	int		fd;
+	bool	is_valid;
+}	t_file;
+
+typedef struct	s_map
+{
+	t_file		file;
+	t_rwin		win;
+	t_amb		amb;
+	t_cam		cam;
+	t_light		light;
+	t_obj		*obj_list;
+	
+}	t_map;
+
 typedef struct	s_main
 {
-	//t_parse	parse;
 	t_mlx	mlx;
 	t_rect	rect;
+	t_map	data;
 	//view?
 	//mouse?
 	//kb?

@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 13:51:23 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/23 13:51:23 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/23 15:02:58 by smuravye          #+#    #+#             */
+/*   Updated: 2024/07/24 10:20:42 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef CUBE_H
+# define CUBE_H
 
-# define EPSILON	0.000001
-# define ESC		65307
-# define PI			3.1416
-# define WHITESPACE " \t\n\r\f\v"
+# include "object.h"
+
+typedef struct	s_cube
+{
+	t_obj	shape;
+	double	length;
+	double	height;
+	double	width;
+}	t_cube;
+
+t_cube	cube_create(double length, double height, double width);
+void	cube_destroy(t_obj *shape);
 
 #endif

@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 13:51:23 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/23 13:51:23 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/23 15:04:13 by smuravye          #+#    #+#             */
+/*   Updated: 2024/07/24 10:19:57 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef SPHERE_H
+# define SPHERE_H
 
-# define EPSILON	0.000001
-# define ESC		65307
-# define PI			3.1416
-# define WHITESPACE " \t\n\r\f\v"
+# include "object.h"
+
+typedef struct s_sphere
+{
+	t_obj	shape;
+	double	diameter;
+}	t_sphere;
+
+t_sphere	sphere_create(double diameter);
+void		sphere_destroy(t_obj *shape);
 
 #endif

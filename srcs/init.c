@@ -23,8 +23,8 @@ void	init_mlx(t_mlx  *mlx)
 t_main   *init_main(void)
 {
 	t_main  *rt;
-
-	rt = malloc(sizeof(t_main));
+	
+  rt = malloc(sizeof(t_main));
 	if (!rt)
 		return (NULL);
 	init_rect(&rt->rect);
