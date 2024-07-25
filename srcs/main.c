@@ -97,8 +97,8 @@ int main(void)
 	}};
 	t_column b = {{1, 2, 3, 1}};
 
-	t_matrix result = matrice_mult(A, B);
-	t_column c = matrice_mult_col(C, b);
+	t_matrix result = matrix_mult(A, B);
+	t_column c = matrix_mult_col(C, b);
 	printf("Result matrix:\n");
 	print_matrix(result, 4);
 	printf("Result column:\n");
@@ -119,7 +119,7 @@ int main(void)
 	printf("Inverse of G:\n");
 	print_matrix(inverse(G, 4), 4);
 	printf("Multiplication by inverse:\n");
-	print_matrix(matrice_mult(inverse(G, 4), G), 4);
+	print_matrix(matrix_mult(inverse(G, 4), G), 4);
 	return 0;
 }
 
