@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 15:40:33 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 15:40:53 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/25 15:57:19 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/25 15:57:19 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ t_color		color_blend(t_color c1, t_color c2);
 
 /* MATRICES OPERATIONS */
 
-bool		matrice_compare(t_matrix A, t_matrix B);
-t_matrix	matrice_mult(t_matrix A, t_matrix B);
-t_column	matrice_mult_col(t_matrix A, t_column b);
+bool		matrix_compare(t_matrix A, t_matrix B);
+t_matrix	matrix_mult(t_matrix A, t_matrix B);
+t_column	matrix_mult_col(t_matrix A, t_column b);
 
 /* MATRICES DISPLAY */
 
