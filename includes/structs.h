@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 10:34:00 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/24 10:34:00 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/24 15:28:57 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/24 15:28:57 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+
 
 typedef struct	s_mlx
 {
@@ -34,6 +36,16 @@ typedef struct	s_rect
 	int	height;
 	int	color;
 }	t_rect;
+
+typedef struct s_tup
+{
+	double	x;
+	double	y;
+	double	z;
+	int		w;
+}	t_tup;
+
+# include "object.h"
 
 typedef struct	s_rwin
 {
@@ -75,7 +87,7 @@ typedef struct	s_map
 	t_cam		cam;
 	t_light		light;
 	t_obj		*obj_list;
-	
+
 }	t_map;
 
 typedef struct	s_main
@@ -87,14 +99,6 @@ typedef struct	s_main
 	//mouse?
 	//kb?
 }	t_main;
-
-typedef struct s_tup
-{
-	double	x;
-	double	y;
-	double	z;
-	int		w;
-}	t_tup;
 
 typedef struct s_projectile
 {
@@ -116,5 +120,15 @@ typedef struct s_color
 	int				t;
 	unsigned int	hex;
 }	t_color;
+
+typedef struct s_matrix
+{
+	double	M[4][4];
+}	t_matrix;
+
+typedef struct s_column
+{
+	double	m[4];
+}	t_column;
 
 #endif

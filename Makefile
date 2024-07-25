@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/25 10:03:23 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/24 15:58:00 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,11 @@ SRCS= 	srcs/main.c \
 		srcs/tuples/tick.c \
 		srcs/floats/float_compare.c \
 		srcs/colors/colors_init.c \
-		srcs/colors/colors_operations.c
+		srcs/colors/colors_operations.c \
+		srcs/matrices/matrices_display.c \
+		srcs/matrices/matrices_operations.c \
+		srcs/matrices/identity.c \
+		srcs/matrices/transpose.c \
 
 CC= cc
 

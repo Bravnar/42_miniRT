@@ -28,7 +28,6 @@
 #include "../minilibx_macos/mlx.h"
 
 /* Object libraries */
-# include "object.h"
 # include "sphere.h"
 # include "cube.h"
 # include "cyllinder.h"
