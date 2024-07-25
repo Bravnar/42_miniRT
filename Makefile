@@ -32,6 +32,7 @@ SRCS= 	srcs/main.c \
 		srcs/matrices/matrices_operations.c \
 		srcs/matrices/identity.c \
 		srcs/matrices/transpose.c \
+		srcs/matrices/determinant.c \
 
 CC= cc
 

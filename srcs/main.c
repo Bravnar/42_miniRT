@@ -68,16 +68,25 @@ int main(void)
 		{0, 0, 0, 1}
 	}};
 
+	t_matrix D = {{
+		{18, 8, 23, 14},
+		{28, 42, 4, 2},
+		{18, 6, 4, 1},
+		{0, 0, 0, 1}
+	}};
 	t_column b = {{1, 2, 3, 1}};
 
 	t_matrix result = matrice_mult(A, B);
 	t_column c = matrice_mult_col(C, b);
 	printf("Result matrix:\n");
-	print_matrix(result);
+	print_matrix(result, 4);
 	printf("Result column:\n");
 	print_column(c);
 	printf("Result transpose:\n");
-	C = transpose(A);
-	print_matrix(transpose(C));
+	//C = transpose(A);
+	print_matrix(transpose(C), 4);
+	printf("Matrix D:\n");
+	print_matrix(D, 4);
+	printf("Determinant D: %f\n", determinant(D, 4));
 	return 0;
 }

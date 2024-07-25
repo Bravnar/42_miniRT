@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 15:59:37 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/24 15:59:37 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/25 11:46:50 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/25 11:46:50 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_column	matrice_mult_col(t_matrix A, t_column b);
 
 /* MATRICES DISPLAY */
 
-void		print_matrix(t_matrix matrix);
+void		print_matrix(t_matrix matrix, int size);
 void		print_column(t_column column);
 
 /* IDENTITY */
@@ -118,5 +118,9 @@ t_matrix	identity(void);
 /* TRANSPOSE */
 
 t_matrix	transpose(t_matrix A);
+
+/* DETERMINANT */
+
+double		determinant(t_matrix A, int size);
 
 #endif
