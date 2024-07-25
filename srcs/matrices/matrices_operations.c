@@ -21,10 +21,9 @@ bool	matrice_compare(t_matrix A, t_matrix B)
 t_matrix	matrice_mult(t_matrix A, t_matrix B)
 {
 	t_matrix	result;
-
-	int	r;
-	int	c;
-	int	i;
+	int			r;
+	int			c;
+	int			i;
 
 	r = -1;
 	while (++r < 4)
@@ -40,12 +39,12 @@ t_matrix	matrice_mult(t_matrix A, t_matrix B)
 	}
 	return (result);
 }
+
 t_column	matrice_mult_col(t_matrix A, t_column b)
 {
 	t_column	result;
-
-	int	r;
-	int	i;
+	int			r;
+	int			i;
 
 	r = -1;
 	while (++r < 4)

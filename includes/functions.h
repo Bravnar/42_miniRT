@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 11:46:50 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 11:46:50 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/25 15:40:33 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/25 15:40:53 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,11 @@ t_matrix	transpose(t_matrix A);
 /* DETERMINANT */
 
 double		determinant(t_matrix A, int size);
+
+/* INVERSE */
+
+bool		is_invertible(t_matrix A);
+double		cofactor(t_matrix A, int r, int c, int size_M);
+t_matrix	inverse(t_matrix A, int size);
 
 #endif
