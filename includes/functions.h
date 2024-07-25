@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 16:37:28 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 16:37:39 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/25 17:50:55 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/25 17:54:38 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,20 @@ t_matrix	inverse(t_matrix A, int size);
 
 /* TRANSLATION */
 
-t_tup		translate_point(t_tup point, double x, double y, double z);
+t_tup		translate(t_tup point, double x, double y, double z);
+t_tup		inverse_translate(t_tup point, double x, double y, double z);
+
+/* SCALING */
+
+t_tup		scale(t_tup point, double x, double y, double z);
+t_tup		inverse_scale(t_tup point, double x, double y, double z);
+
+/* ROTATIONS */
+
+t_tup		rotate(t_tup point, double deg, char axis);
+t_tup		inverse_rotate(t_tup point, double deg, char axis);
+
+/* SHEARING */
+
 
 #endif

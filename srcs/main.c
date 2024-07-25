@@ -120,16 +120,28 @@ int main(void)
 	print_matrix(inverse(G, 4), 4);
 	printf("Multiplication by inverse:\n");
 	print_matrix(matrix_mult(inverse(G, 4), G), 4);
-	t_tup a = vector(1, 2, 3);
+	t_tup a = vector(2, 3, 4);
 	printf("Vector a:\n");
 	print_tuple(a);
-	printf("Vector a after transformation:\n");
-	print_tuple(translate_point(a, 5, 3, 5));
-	t_tup e = point(1, 2, 3);
+	printf("Vector a after translation:\n");
+	print_tuple(translate(a, 5, 3, 5));
+	t_tup e = point(2, 3, 4);
 	printf("Vector e:\n");
 	print_tuple(e);
-	printf("Vector e after transformation:\n");
-	print_tuple(translate_point(e, 5, 3, 5));
+	printf("Point e after translation:\n");
+	print_tuple(translate(e, 5, 3, 5));
+	printf("Vector a after scaling:\n");
+	print_tuple(scale(a, 5, 3, 5));
+	printf("Point e after scaling:\n");
+	print_tuple(scale(e, 2, 3, 4));
+	printf("Vector after reversing scaling:\n");
+	print_tuple(inverse_scale(vector(-4, 6, 8), 2, 3, 4));
+	t_tup f = vector(2, 3, 4);
+	printf("Vector f:\n");
+	print_tuple(f);
+	printf("Vector f after reflection:\n");
+	print_tuple(scale(e, -1, 1, 1));
+
 	return 0;
 }
 
