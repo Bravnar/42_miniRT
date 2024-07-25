@@ -51,7 +51,7 @@ t_tup	rotate(t_tup point, double deg, char axis)
 		transformation_matrix = rotation_x(deg);
 	else if (axis == 'y')
 		transformation_matrix = rotation_y(deg);
-	else if (axis == 'z')
+	else
 		transformation_matrix = rotation_z(deg);
 	transformed = matrix_mult_tup(transformation_matrix, point);
 	return (transformed);
@@ -66,7 +66,7 @@ t_tup	inverse_rotate(t_tup point, double deg, char axis)
 		transformation_matrix = inverse(rotation_x(deg), 4);
 	else if (axis == 'y')
 		transformation_matrix = inverse(rotation_y(deg), 4);
-	else if (axis == 'z')
+	else
 		transformation_matrix = inverse(rotation_z(deg), 4);
 	transformed = matrix_mult_tup(transformation_matrix, point);
 	return (transformed);

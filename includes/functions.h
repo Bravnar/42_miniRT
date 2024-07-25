@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 17:50:55 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 17:54:38 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/25 18:10:57 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/25 18:10:57 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,8 @@ t_tup		inverse_rotate(t_tup point, double deg, char axis);
 
 /* SHEARING */
 
+t_shear		shear(double numbers[6]);
+t_tup		shearing(t_tup point, t_shear sh);
+t_tup		inverse_shearing(t_tup point, t_shear sh);
 
 #endif
