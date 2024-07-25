@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/25 15:55:34 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/25 16:37:11 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS= 	srcs/main.c \
 		srcs/matrices/basics/identity.c \
 		srcs/matrices/basics/transpose.c \
 		srcs/matrices/basics/determinant.c \
-		srcs/matrices/basics/inverse.c
+		srcs/matrices/basics/inverse.c \
+		srcs/matrices/transformations/translation.c \
+
 
 CC= cc
 

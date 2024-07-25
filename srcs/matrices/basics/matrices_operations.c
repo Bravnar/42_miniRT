@@ -52,9 +52,28 @@ t_column	matrix_mult_col(t_matrix A, t_column b)
 		i = -1;
 		result.m[r] = 0;
 		while (++i < 4)
-		{
 			result.m[r] += A.M[r][i] * b.m[i];
-		}
 	}
+	return (result);
+}
+
+t_tup	matrix_mult_tup(t_matrix A, t_tup b)
+{
+	t_column	temp;
+	t_tup		result;
+	int			r;
+
+	r = -1;
+	while (++r < 4)
+	{
+		temp.m[r] = A.M[r][0] * b.x;
+		temp.m[r] += A.M[r][1] * b.y;
+		temp.m[r] += A.M[r][2] * b.z;
+		temp.m[r] += A.M[r][3] * b.w;
+	}
+	result.x = temp.m[0];
+	result.y = temp.m[1];
+	result.z = temp.m[2];
+	result.w = temp.m[3];
 	return (result);
 }

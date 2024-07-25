@@ -120,6 +120,16 @@ int main(void)
 	print_matrix(inverse(G, 4), 4);
 	printf("Multiplication by inverse:\n");
 	print_matrix(matrix_mult(inverse(G, 4), G), 4);
+	t_tup a = vector(1, 2, 3);
+	printf("Vector a:\n");
+	print_tuple(a);
+	printf("Vector a after transformation:\n");
+	print_tuple(translate_point(a, 5, 3, 5));
+	t_tup e = point(1, 2, 3);
+	printf("Vector e:\n");
+	print_tuple(e);
+	printf("Vector e after transformation:\n");
+	print_tuple(translate_point(e, 5, 3, 5));
 	return 0;
 }
 
