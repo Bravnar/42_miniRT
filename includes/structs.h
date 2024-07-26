@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 15:28:57 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/24 15:28:57 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/25 17:59:39 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/25 17:59:39 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,15 @@ typedef struct s_column
 {
 	double	m[4];
 }	t_column;
+
+typedef struct s_shear
+{
+	double	xy;
+	double	xz;
+	double	yx;
+	double	yz;
+	double	zx;
+	double	zy;
+}	t_shear;
 
 #endif

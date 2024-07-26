@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 11:46:50 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 11:46:50 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/25 18:10:57 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/25 18:10:57 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,22 @@ t_color		color_blend(t_color c1, t_color c2);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                               MATRICES                                     */
+/*                            MATRICES BASICS                                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* MATRICES OPERATIONS */
 
-bool		matrice_compare(t_matrix A, t_matrix B);
-t_matrix	matrice_mult(t_matrix A, t_matrix B);
-t_column	matrice_mult_col(t_matrix A, t_column b);
+bool		matrix_compare(t_matrix A, t_matrix B);
+t_matrix	matrix_mult(t_matrix A, t_matrix B);
+t_column	matrix_mult_col(t_matrix A, t_column b);
+t_tup		matrix_mult_tup(t_matrix A, t_tup b);
 
 /* MATRICES DISPLAY */
 
 void		print_matrix(t_matrix matrix, int size);
 void		print_column(t_column column);
+void		print_tuple(t_tup tuple);
 
 /* IDENTITY */
 
@@ -122,5 +124,38 @@ t_matrix	transpose(t_matrix A);
 /* DETERMINANT */
 
 double		determinant(t_matrix A, int size);
+
+/* INVERSE */
+
+bool		is_invertible(t_matrix A);
+double		cofactor(t_matrix A, int r, int c, int size_M);
+t_matrix	inverse(t_matrix A, int size);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                            TRANSFORMATIONS                                 */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* TRANSLATION */
+
+t_tup		translate(t_tup point, double x, double y, double z);
+t_tup		inverse_translate(t_tup point, double x, double y, double z);
+
+/* SCALING */
+
+t_tup		scale(t_tup point, double x, double y, double z);
+t_tup		inverse_scale(t_tup point, double x, double y, double z);
+
+/* ROTATIONS */
+
+t_tup		rotate(t_tup point, double deg, char axis);
+t_tup		inverse_rotate(t_tup point, double deg, char axis);
+
+/* SHEARING */
+
+t_shear		shear(double numbers[6]);
+t_tup		shearing(t_tup point, t_shear sh);
+t_tup		inverse_shearing(t_tup point, t_shear sh);
 
 #endif

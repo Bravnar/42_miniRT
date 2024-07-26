@@ -74,10 +74,31 @@ int main(void)
 		{18, 6, 4, 1},
 		{0, 0, 0, 1}
 	}};
+
+	t_matrix E = {{
+		{-5, 2, 6, -8},
+		{1, -5, 1, 8},
+		{7, 7, -6, -7},
+		{1, -3, 7, 4}
+	}};
+
+	t_matrix F = {{
+		{8, -5, 9, 2},
+		{7, 5, 6, 1},
+		{-6, 0, 9, 6},
+		{-3, 0, -9, -4}
+	}};
+
+	t_matrix G = {{
+		{9, 3, 0, 9},
+		{-5, -2, -6, -3},
+		{-4, 9, 6, 4},
+		{-7, 6, 6, 2}
+	}};
 	t_column b = {{1, 2, 3, 1}};
 
-	t_matrix result = matrice_mult(A, B);
-	t_column c = matrice_mult_col(C, b);
+	t_matrix result = matrix_mult(A, B);
+	t_column c = matrix_mult_col(C, b);
 	printf("Result matrix:\n");
 	print_matrix(result, 4);
 	printf("Result column:\n");
@@ -87,6 +108,41 @@ int main(void)
 	print_matrix(transpose(C), 4);
 	printf("Matrix D:\n");
 	print_matrix(D, 4);
-	printf("Determinant D: %f\n", determinant(D, 4));
+	printf("Matrix E:\n");
+	print_matrix(E, 4);
+	printf("A is invertible: %d\n", is_invertible(A));
+	printf("D is invertible: %d\n", is_invertible(D));
+	printf("Inverse of E:\n");
+	print_matrix(inverse(E, 4), 4);
+	printf("Inverse of F:\n");
+	print_matrix(inverse(F, 4), 4);
+	printf("Inverse of G:\n");
+	print_matrix(inverse(G, 4), 4);
+	printf("Multiplication by inverse:\n");
+	print_matrix(matrix_mult(inverse(G, 4), G), 4);
+	t_tup a = vector(2, 3, 4);
+	printf("Vector a:\n");
+	print_tuple(a);
+	printf("Vector a after translation:\n");
+	print_tuple(translate(a, 5, 3, 5));
+	t_tup e = point(2, 3, 4);
+	printf("Vector e:\n");
+	print_tuple(e);
+	printf("Point e after translation:\n");
+	print_tuple(translate(e, 5, 3, 5));
+	printf("Vector a after scaling:\n");
+	print_tuple(scale(a, 5, 3, 5));
+	printf("Point e after scaling:\n");
+	print_tuple(scale(e, 2, 3, 4));
+	printf("Vector after reversing scaling:\n");
+	print_tuple(inverse_scale(vector(-4, 6, 8), 2, 3, 4));
+	t_tup f = vector(2, 3, 4);
+	printf("Vector f:\n");
+	print_tuple(f);
+	printf("Vector f after reflection:\n");
+	print_tuple(scale(e, -1, 1, 1));
+
 	return 0;
 }
+
+

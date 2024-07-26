@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/24 15:58:00 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/25 17:59:56 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,16 @@ SRCS= 	srcs/main.c \
 		srcs/floats/float_compare.c \
 		srcs/colors/colors_init.c \
 		srcs/colors/colors_operations.c \
-		srcs/matrices/matrices_display.c \
-		srcs/matrices/matrices_operations.c \
-		srcs/matrices/identity.c \
-		srcs/matrices/transpose.c \
-		srcs/matrices/determinant.c \
+		srcs/matrices/basics/matrices_display.c \
+		srcs/matrices/basics/matrices_operations.c \
+		srcs/matrices/basics/identity.c \
+		srcs/matrices/basics/transpose.c \
+		srcs/matrices/basics/determinant.c \
+		srcs/matrices/basics/inverse.c \
+		srcs/matrices/transformations/translation.c \
+		srcs/matrices/transformations/scaling.c \
+		srcs/matrices/transformations/rotation.c \
+		srcs/matrices/transformations/shearing.c
 
 CC= cc
 

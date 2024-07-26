@@ -23,3 +23,8 @@ void	print_column(t_column column)
 	while (++r < 4)
 		printf("%f\n", column.m[r]);
 }
+
+void	print_tuple(t_tup tuple)
+{
+	printf("(%f, %f, %f, %d)\n", tuple.x, tuple.y, tuple.z, tuple.w);
+}
