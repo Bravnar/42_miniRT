@@ -151,7 +151,7 @@ typedef struct s_intersection
 typedef struct s_inter
 {
 	int				count;
-	t_intersection	i[2];
+	t_intersection	*i;
 }	t_inter;
 
 #endif

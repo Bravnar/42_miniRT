@@ -178,18 +178,23 @@ int main(void)
 	print_tuple(position(ray, 2.5));
 
 	t_obj *sphere = (t_obj *)sphere_create(2);
-	t_inter i = intersect(ray_new(point(0, 0, 5), vector(0, 0, 1)), sphere);
+	t_inter i = intersect_sphere(ray_new(point(0, 0, 5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 		i.count, i.i[0].t, i.i[1].t);
-	i = intersect(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
+	i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 		i.count, i.i[0].t, i.i[1].t);
-	i = intersect(ray_new(point(0, 1, -5), vector(0, 0, 1)), sphere);
+	i = intersect_sphere(ray_new(point(0, 1, -5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 		i.count, i.i[0].t, i.i[1].t);
-	i = intersect(ray_new(point(0, 0, 0), vector(0, 0, 1)), sphere);
+	i = intersect_sphere(ray_new(point(0, 0, 0), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 		i.count, i.i[0].t, i.i[1].t);
+	t_inter inters = intersections(4, intersection(-1, sphere), intersection(1, sphere),
+			intersection(-3, sphere), intersection(-2, sphere));
+
+	t_intersection h = hit(inters);
+	printf("Hit t: %f\n", h.t);
 	return 0;
 }
 
