@@ -65,10 +65,23 @@ void	draw_watch(t_main *rt)
 }
 
 /*PARSING TESTING MAIN */
+int	main(int ac, char **av)
+{
+	t_main	*rt;
 
+	if (ac != 2)
+		return (0);
+	rt = init_all(av[1]);
+	if (!rt)
+		exit(1);
+	populate_scene_struct(av[1], get_scene());
+	print_scene_details();
+	free(rt);
+}
+/*
 int main(void)
 {
-	/* t_main  *rt;
+	t_main  *rt;
 
 	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
@@ -180,7 +193,7 @@ int main(void)
 	printf("Vector f after reflection:\n");
 	print_tuple(scale(e, -1, 1, 1)); */
 
-	t_ray	ray;
+/* 	t_ray	ray;
 
 	ray = ray_new(point(2, 3, 4), vector(1, 0, 0));
 	print_tuple(position(ray, 0));
@@ -207,6 +220,6 @@ int main(void)
 	t_intersection h = hit(inters);
 	printf("Hit t: %f\n", h.t);
 	return 0;
-}
+} */
 
 

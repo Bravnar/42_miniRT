@@ -22,16 +22,12 @@ typedef struct s_tup
 	int		w;
 }	t_tup;
 
+/* Object libraries */
 # include "object.h"
-
-typedef struct s_color
-{
-	int				r;
-	int				g;
-	int				b;
-	int				t;
-	unsigned int	hex;
-}	t_color;
+# include "sphere.h"
+# include "cube.h"
+# include "cylinder.h"
+# include "plane.h"
 
 typedef struct	s_rect
 {
@@ -41,20 +37,6 @@ typedef struct	s_rect
 	int	height;
 	int	color;
 }	t_rect;
-
-typedef struct s_tup
-{
-	double	x;
-	double	y;
-	double	z;
-	int		w;
-}	t_tup;
-
-/* Object libraries */
-# include "sphere.h"
-# include "cube.h"
-# include "cylinder.h"
-# include "plane.h"
 
 typedef struct	s_rwin
 {
