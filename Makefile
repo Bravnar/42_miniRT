@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/25 17:59:56 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/25 18:00:04 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,14 @@ SRCS= 	srcs/main.c \
 		srcs/matrices/transformations/rotation.c \
 		srcs/matrices/transformations/shearing.c
 
+
 CC= cc
 
 CFLAGS= -Wall -Wextra -Werror -I$(INCLUDES)
 
-MACOS_MINILIBX = -lm -framework OpenGL -framework AppKit
+LINUX_MINILIBX = -lXext -lX11 -lm
 
-MINILIBX_DIR = minilibx_macos
+MINILIBX_DIR = minilibx-linux
 
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
@@ -81,7 +82,7 @@ $(NAME) : $(SRCS)
 			@echo "\n\nCompiling LIBFT: (loading bar - courtesy of rrouille)\n"
 			@make -C $(LIBFT) all
 			@make -C $(MINILIBX_DIR) all
-			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(MACOS_MINILIBX) $(SANITIZE)
+			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(LINUX_MINILIBX) $(SANITIZE)
 			@echo "$(YELLOW)\no------------------------------------o$(RESET)"
 			@echo "$(GREEN)|           MINIRT_COMPILED          |$(RESET)"
 			@echo "$(YELLOW)o------------------------------------o\n$(RESET)"

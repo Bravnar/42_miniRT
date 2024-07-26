@@ -37,15 +37,42 @@ void	draw_projectile(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
+void	draw_watch(t_main *rt)
+{
+	t_env	environment;
+	t_proj	projectile;
+	t_tup	velocity;
+	t_proj	temp;
+	int		i;
+
+	environment = env_new(vector(0, 0, 0), vector(0, 0 ,0));
+	velocity = vector_scalar_mult(vector_norm(vector(1, 0, 0)), 150);
+	projectile = proj_new(point(0, 0, 0), velocity);
+	init_mlx(&rt->mlx);
+	i = 0;
+	while (i < 12)
+	{
+		temp = tick(environment, projectile);
+		my_pixel(&rt->mlx, temp.position.x + 450, 550 - temp.position.y - 275, 0x00ff00);
+		velocity = rotate(velocity, 30, 'z');
+		projectile = proj_new(point(0, 0, 0), velocity);
+		i++;
+	}
+	mlx_put_image_to_window \
+			 (rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
+	handle_events(rt);
+	mlx_loop(rt->mlx.mlx_ptr);
+}
+
 int main(void)
 {
-	/* t_main  *rt;
+	t_main  *rt;
 
 	rt = init_main();
 	if (!rt)
 		exit(1);
-	draw_projectile(rt);
-	free(rt); */
+	draw_watch(rt);
+	free(rt);
 
 	t_matrix A = {{
 		{1, 2, 3, 4},

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 13:27:53 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 10:03:58 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/26 10:30:29 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 10:30:29 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "structs.h"
 # include "functions.h"
 # include "../lib/includes/my_lib.h"
-/* # include "../minilibx-linux/mlx.h" */
-#include "../minilibx_macos/mlx.h"
+# include "../minilibx-linux/mlx.h"
+/* #include "../minilibx_macos/mlx.h" */
 
 /* Object libraries */
 # include "sphere.h"
