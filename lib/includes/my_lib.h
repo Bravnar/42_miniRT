@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_lib.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:16:08 by hmorand           #+#    #+#             */
-/*   Updated: 2024/06/25 15:16:08 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/07/26 14:03:06 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isprint(int c);
 int		ft_isspace(int c);
+int		ft_strisalpha(char *str);
 
 /* ************************************************************************** */
 /*                          LINKED LIST FUNCTIONS                             */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 18:10:57 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 18:10:57 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/24 13:15:12 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 16:02:27 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,38 @@ void		redraw(t_main *rt); //IMPORTANT TO ADAPT
 
 
 /* INIT */
-t_main		*init_main(void);
-void		init_mlx(t_mlx  *mlx);
-void		init_rect(t_rect *rect);
+// t_main	*init_all(void);
+t_main	*init_all(char *file_name);
+t_map	*get_scene(void);
+// t_main	*init_main(void);
+// void	init_mlx(t_mlx  *mlx);
+// void	init_rect(t_rect *rect);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                            PARSING                                         */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* read_rt_file.c */
+void	populate_scene_struct(char *file_name, t_map *scene);
+void	populate_rwin(void);
+void	populate_amb(void);
+void	get_amb_rgb(char *str);
+void	check_identifier(t_parse **head);
+void	read_file(char *file_name, t_map *data);
+void	print_scene_details(void);
+
+
+/* utils.c */
+t_parse	*new_parse_node(char *line);
+void	add_node(t_parse **parsed, t_parse *new_node);
+void	free_nodes(t_parse *list);
+void	print_nodes(t_parse **head);
+
+/* validity.c */
+
+/* ft_stdtod.c */
 
 /* EVENT HANDLER */
 int				close_win(void *param);
