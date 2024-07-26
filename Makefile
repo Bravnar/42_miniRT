@@ -1,21 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/25 18:00:04 by smuravye         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME= miniRT
 
 INCLUDES = includes
 
 SRCS= 	srcs/main.c \
-		srcs/init.c \
 		srcs/mlx_utils.c \
 		srcs/event_handler.c \
 		srcs/tuples/tuple_create.c \
@@ -28,6 +15,9 @@ SRCS= 	srcs/main.c \
 		srcs/floats/float_compare.c \
 		srcs/colors/colors_init.c \
 		srcs/colors/colors_operations.c \
+		srcs/init/init_new.c \
+		srcs/parsing/read_rt_file.c \
+		srcs/parsing/utils.c \
 		srcs/matrices/basics/matrices_display.c \
 		srcs/matrices/basics/matrices_operations.c \
 		srcs/matrices/basics/identity.c \
@@ -81,6 +71,7 @@ $(NAME) : $(SRCS)
 			@$(MAKE) header
 			@echo "\n\nCompiling LIBFT: (loading bar - courtesy of rrouille)\n"
 			@make -C $(LIBFT) all
+			@echo "\n\nCompiling MINILIBX: (loading bar - courtesy of rrouille)\n"
 			@make -C $(MINILIBX_DIR) all
 			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(LINUX_MINILIBX) $(SANITIZE)
 			@echo "$(YELLOW)\no------------------------------------o$(RESET)"
