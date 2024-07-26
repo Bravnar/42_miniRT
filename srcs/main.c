@@ -66,15 +66,15 @@ void	draw_watch(t_main *rt)
 
 int main(void)
 {
-	t_main  *rt;
+	/* t_main  *rt;
 
 	rt = init_main();
 	if (!rt)
 		exit(1);
 	draw_watch(rt);
-	free(rt);
+	free(rt); */
 
-	t_matrix A = {{
+	/* t_matrix A = {{
 		{1, 2, 3, 4},
 		{5, 6, 7, 8},
 		{9, 8, 7, 6},
@@ -167,7 +167,15 @@ int main(void)
 	printf("Vector f:\n");
 	print_tuple(f);
 	printf("Vector f after reflection:\n");
-	print_tuple(scale(e, -1, 1, 1));
+	print_tuple(scale(e, -1, 1, 1)); */
+
+	t_ray	ray;
+
+	ray = ray_new(point(2, 3, 4), vector(1, 0, 0));
+	print_tuple(position(ray, 0));
+	print_tuple(position(ray, 1));
+	print_tuple(position(ray, -1));
+	print_tuple(position(ray, 2.5));
 
 	return 0;
 }

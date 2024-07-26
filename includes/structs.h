@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 17:59:39 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/25 17:59:39 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/26 10:54:04 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 10:54:07 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,11 @@ typedef struct s_shear
 	double	zx;
 	double	zy;
 }	t_shear;
+
+typedef struct s_ray
+{
+	t_tup	point;
+	t_tup	direction;
+}	t_ray;
 
 #endif
