@@ -36,18 +36,25 @@ SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \
 
 OBJ_DIR = obj
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
-CFLAGS	= -O3 -I$(INC)
+CFLAGS	= -O3 -I$(INC) -Wno-deprecated-declarations -Wno-unused-result
+
+BG_GREEN = \\033[45m
+NO_COLOR = \\033[0m
 
 all	: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+	@echo "$(BG_GREEN) $(NO_COLOR)\c"	
+	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
-	ar -r $(NAME) $(OBJ)
-	ranlib $(NAME)
-	cp $(NAME) $(NAME_UNAME)
+	@ar -r $(NAME) $(OBJ) > /dev/null 2>&1
+	@ranlib $(NAME)
+	@cp $(NAME) $(NAME_UNAME)
+	@echo "\n\no------------------------------------o"
+	@echo "|            MLX_COMPILED            |"
+	@echo "o------------------------------------o\n"
 
 check: all
 	@test/run_tests.sh

@@ -2,7 +2,7 @@
 
 void	game_loop(t_main *rt)
 {
-	init_mlx(&rt->mlx);
+	//init_mlx(&rt->mlx);
 	draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
@@ -22,7 +22,7 @@ void	draw_projectile(t_main *rt)
 	environment = env_new(vector(0.0, -0.1, 0), vector(-0.01, 0, 0));
 	col = color(255, 0, 0);
 	add_hex_color(&col);
-	init_mlx(&rt->mlx);
+	//init_mlx(&rt->mlx);
 	while (projectile.position.x < 900)
 	{
 		my_pixel(&rt->mlx, projectile.position.x, 550 - projectile.position.y, col.hex);
@@ -64,17 +64,28 @@ void	draw_watch(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
+/*PARSING TESTING MAIN */
+
 int main(void)
 {
 	/* t_main  *rt;
 
-	rt = init_main();
+	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
 		exit(1);
 	draw_watch(rt);
 	free(rt); */
 
 	/* t_matrix A = {{
+
+	populate_scene_struct("test_rt/minimalist.rt", get_scene());
+	print_scene_details();
+  
+	//draw_projectile(rt);
+	free(rt);
+  
+  
+	t_matrix A = {{
 		{1, 2, 3, 4},
 		{5, 6, 7, 8},
 		{9, 8, 7, 6},
