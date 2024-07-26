@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 10:34:00 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/24 15:33:02 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:23:25 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ typedef struct s_tup
 
 # include "object.h"
 
+typedef struct s_color
+{
+	int				r;
+	int				g;
+	int				b;
+	int				t;
+	unsigned int	hex;
+}	t_color;
+
 typedef struct	s_rect
 {
 	int	x;
@@ -53,8 +62,8 @@ typedef struct	s_rwin
 
 typedef struct	s_amb
 {
-	double	ratio;
-	int		rgb[3];
+	double		ratio;
+	t_color		rgb;
 }	t_amb;
 
 typedef struct	s_cam
@@ -66,9 +75,10 @@ typedef struct	s_cam
 
 typedef struct	s_light
 {
-	t_tup	point;
-	double	bright;
-	int		rgb[3];			// Bonus
+	t_tup			point;
+	double			bright;
+	int				rgb[3];			// Bonus
+	struct s_light	*next;
 }	t_light;
 
 typedef struct s_parse
@@ -91,7 +101,7 @@ typedef struct	s_map
 	t_rwin		win;
 	t_amb		amb;
 	t_cam		cam;
-	t_light		light;
+	t_light		*light;
 	t_obj		*obj_list;
 	
 }	t_map;
@@ -100,7 +110,7 @@ typedef struct	s_main
 {
 	t_mlx	mlx;
 	t_rect	rect;
-	t_map	data;
+	t_map	*data;
 	//view?
 	//mouse?
 	//kb?
@@ -118,13 +128,5 @@ typedef struct s_environment
 	t_tup	wind;
 }	t_env;
 
-typedef struct s_color
-{
-	int				r;
-	int				g;
-	int				b;
-	int				t;
-	unsigned int	hex;
-}	t_color;
 
 #endif

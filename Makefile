@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/24 15:30:05 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/26 15:31:59 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS= 	srcs/main.c \
 		srcs/colors/colors_operations.c \
 		srcs/init/init_new.c \
 		srcs/parsing/read_rt_file.c \
+		srcs/parsing/utils.c \
 
 CC= cc
 
@@ -71,6 +72,7 @@ $(NAME) : $(SRCS)
 			@$(MAKE) header
 			@echo "\n\nCompiling LIBFT: (loading bar - courtesy of rrouille)\n"
 			@make -C $(LIBFT) all
+			@echo "\n\nCompiling MINILIBX: (loading bar - courtesy of rrouille)\n"
 			@make -C $(MINILIBX_DIR) all
 			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(LINUX_MINILIBX) $(SANITIZE)
 			@echo "$(YELLOW)\no------------------------------------o$(RESET)"

@@ -37,15 +37,17 @@ void	draw_projectile(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
+/*PARSING TESTING MAIN */
+
 int main(void)
 {
 	t_main  *rt;
 
-	rt = init_all();
-	read_file("test_rt/minimalist.rt", &rt->data);
+	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
 		exit(1);
-
+	populate_scene_struct("test_rt/minimalist.rt", get_scene());
+	print_scene_details();
 	//draw_projectile(rt);
 	free(rt);
 }

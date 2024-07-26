@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smuravyev <smuravyev@student.42.fr>        +#+  +:+       +#+         #
+#    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 16:33:12 by smuravye          #+#    #+#              #
-#    Updated: 2024/06/25 14:23:31 by smuravyev        ###   ########.fr        #
+#    Updated: 2024/07/26 10:37:10 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ $(NAME):				$(OBJS)
 							@ranlib	$(NAME)
 							@echo "\n\no------------------------------------o"
 							@echo "|          MY_LIB_COMPILED           |"
-							@echo "o------------------------------------o"
+							@echo "o------------------------------------o\n"
+
 
 $(OBJECTDIR)/%.o:		$(SOURCEDIR)/%.c
 							@mkdir	-p	$(@D)
@@ -80,7 +81,14 @@ $(OBJECTDIR)/%.o:		$(SOURCEDIR)/%.c
 #							@printf	"\033[KCompiling libft -----------> $<\r"
 							@$(CC) $(CFLAGS) -I $(HEADERDIR) -c $< -o $@
 
-
+define loadbar
+	@echo -n "$(1): (loading bar - courtesy of rrouille)"
+	@for i in {1..10}; do \
+	    echo -n "."; \
+	    sleep 0.1; \
+	done; \
+	echo ""
+endef
 clean:
 								@$(RM)	$(OBJECTDIR)
 								@echo "All the .o files have been deleted!"
