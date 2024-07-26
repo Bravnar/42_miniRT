@@ -180,16 +180,16 @@ int main(void)
 	t_obj *sphere = (t_obj *)sphere_create(2);
 	t_inter i = intersect(ray_new(point(0, 0, 5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
-		i.count, i.t[0], i.t[1]);
+		i.count, i.i[0].t, i.i[1].t);
 	i = intersect(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
-		i.count, i.t[0], i.t[1]);
+		i.count, i.i[0].t, i.i[1].t);
 	i = intersect(ray_new(point(0, 1, -5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
-		i.count, i.t[0], i.t[1]);
+		i.count, i.i[0].t, i.i[1].t);
 	i = intersect(ray_new(point(0, 0, 0), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
-		i.count, i.t[0], i.t[1]);
+		i.count, i.i[0].t, i.i[1].t);
 	return 0;
 }
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 13:53:38 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 13:53:38 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/26 14:29:41 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 14:29:41 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,16 @@ typedef struct s_ray
 	t_tup	direction;
 }	t_ray;
 
+typedef struct s_intersection
+{
+	t_obj	*shape;
+	double	t;
+}	t_intersection;
+
 typedef struct s_inter
 {
-	int		count;
-	double	t[2];
+	int				count;
+	t_intersection	i[2];
 }	t_inter;
 
 #endif

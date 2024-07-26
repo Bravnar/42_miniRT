@@ -25,8 +25,10 @@ t_inter	intersect(t_ray r, t_obj *sphere)
 		i.count = 0;
 		return (i);
 	}
-	i.t[0] = (-b - sqrt(disc)) / 2 * a;
-	i.t[1] = (-b + sqrt(disc)) / 2 * a;
+	i.i[0].t = (-b - sqrt(disc)) / 2 * a;
+	i.i[1].t = (-b + sqrt(disc)) / 2 * a;
+	i.i[0].shape = sphere;
+	i.i[1].shape = sphere;
 	i.count = 2;
 	return (i);
 }
