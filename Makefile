@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/26 15:31:59 by smuravye         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME= miniRT
 
 INCLUDES = includes
@@ -46,9 +34,9 @@ CC= cc
 
 CFLAGS= -Wall -Wextra -Werror -I$(INCLUDES)
 
-MACOS_MINILIBX = -lm -framework OpenGL -framework AppKit
+LINUX_MINILIBX = -lXext -lX11 -lm
 
-MINILIBX_DIR = minilibx_macos
+MINILIBX_DIR = minilibx-linux
 
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
@@ -85,7 +73,7 @@ $(NAME) : $(SRCS)
 			@make -C $(LIBFT) all
 			@echo "\n\nCompiling MINILIBX: (loading bar - courtesy of rrouille)\n"
 			@make -C $(MINILIBX_DIR) all
-			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(MACOS_MINILIBX) $(SANITIZE)
+			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(LINUX_MINILIBX) $(SANITIZE)
 			@echo "$(YELLOW)\no------------------------------------o$(RESET)"
 			@echo "$(GREEN)|           MINIRT_COMPILED          |$(RESET)"
 			@echo "$(YELLOW)o------------------------------------o\n$(RESET)"

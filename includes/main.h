@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 13:27:53 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/24 15:31:24 by smuravye         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MAIN_H
 # define MAIN_H
 
@@ -24,8 +12,8 @@
 # include "structs.h"
 # include "functions.h"
 # include "../lib/includes/my_lib.h"
-/* # include "../minilibx-linux/mlx.h" */
-#include "../minilibx_macos/mlx.h"
+# include "../minilibx-linux/mlx.h"
+/* #include "../minilibx_macos/mlx.h" */
 
 /* Object libraries */
 # include "sphere.h"
