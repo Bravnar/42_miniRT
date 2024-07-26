@@ -1,14 +1,14 @@
 #include "main.h"
 
 /* ********************************* */
-/* CYLLINDER STRUCT CREATION         */
+/* CYLINDER STRUCT CREATION         */
 /* To be called during map reading   */
 /* ********************************* */
 
 static char	*get_name(t_obj *shape)
 {
 	(void) shape;
-	return ("Cyllinder");
+	return ("Cylinder");
 }
 
 static double	volume(t_obj *shape)
@@ -32,10 +32,11 @@ t_cyl	*cyl_create(double diameter, double height)
 	cyl->shape.get_name = get_name;
 	cyl->shape.volume = volume;
 	cyl->shape.destroy = cyl_destroy;
-	cyl->shape.point = ---;//parse_point;
-	cyl->shape.dir_vector = ---;//parse_vector;
-	cyl->shape.rgb = ---;//parse_rgb;
+	cyl->shape.point = point(0, 0 , 0);//parse_point;
+	cyl->shape.dir_vector = vector(0, 0 , 0);//parse_vector;
+	cyl->shape.color = color(255, 0 , 0);//parse_rgb;
 	cyl->shape.next = NULL;
+	cyl->height = height;
 	return (cyl);
 }
 

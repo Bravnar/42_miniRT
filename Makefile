@@ -6,7 +6,7 @@
 #    By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 10:02:18 by smuravye          #+#    #+#              #
-#    Updated: 2024/07/25 18:00:04 by smuravye         ###   ########.fr        #
+#    Updated: 2024/07/26 12:11:15 by smuravye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,12 @@ SRCS= 	srcs/main.c \
 		srcs/matrices/transformations/scaling.c \
 		srcs/matrices/transformations/rotation.c \
 		srcs/matrices/transformations/shearing.c \
-		srcs/raycasting/ray.c
+		srcs/raycasting/ray.c \
+		srcs/raycasting/intersect.c \
+		srcs/shapes/cube.c \
+		srcs/shapes/cylinder.c \
+		srcs/shapes/sphere.c
+
 
 
 CC= cc

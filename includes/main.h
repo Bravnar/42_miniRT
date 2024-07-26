@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   settings.json                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 10:30:29 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 10:30:29 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/26 13:52:50 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 13:53:10 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,5 @@
 # include "../lib/includes/my_lib.h"
 # include "../minilibx-linux/mlx.h"
 /* #include "../minilibx_macos/mlx.h" */
-
-/* Object libraries */
-# include "sphere.h"
-# include "cube.h"
-# include "cyllinder.h"
-# include "plane.h"
 
 #endif

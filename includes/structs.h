@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 10:54:04 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 10:54:07 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/26 13:53:38 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 13:53:38 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ typedef struct s_tup
 	int		w;
 }	t_tup;
 
-# include "object.h"
+/* Object libraries */
+# include "sphere.h"
+# include "cube.h"
+# include "cylinder.h"
+# include "plane.h"
 
 typedef struct	s_rwin
 {
@@ -112,15 +116,6 @@ typedef struct s_environment
 	t_tup	wind;
 }	t_env;
 
-typedef struct s_color
-{
-	int				r;
-	int				g;
-	int				b;
-	int				t;
-	unsigned int	hex;
-}	t_color;
-
 typedef struct s_matrix
 {
 	double	M[4][4];
@@ -146,5 +141,11 @@ typedef struct s_ray
 	t_tup	point;
 	t_tup	direction;
 }	t_ray;
+
+typedef struct s_inter
+{
+	int		count;
+	double	t[2];
+}	t_inter;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 15:03:47 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/24 10:19:18 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/26 13:36:33 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 13:36:33 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct	s_plane
 	t_obj	shape;
 }	t_plane;
 
-t_plane	plane_create(void);
+t_plane	*plane_create(void);
 void	plane_destroy(t_obj *shape);
 
 #endif

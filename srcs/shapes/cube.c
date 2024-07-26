@@ -32,9 +32,9 @@ t_cube	*cube_create(double length, double width, double height)
 	cube->shape.get_name = get_name;
 	cube->shape.volume = volume;
 	cube->shape.destroy = cube_destroy;
-	cube->shape.point = ---;//parse_point;
-	cube->shape.dir_vector = ---;//parse_vector;
-	cube->shape.rgb = ---;//parse_rgb;
+	cube->shape.point = point(0, 0, 0);//parse_point;
+	cube->shape.dir_vector = vector(0, 0, 0);//parse_vector;
+	cube->shape.color = color(0, 255, 0);//parse_rgb;
 	cube->shape.next = NULL;
 	return (cube);
 }

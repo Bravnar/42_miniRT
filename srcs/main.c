@@ -177,6 +177,19 @@ int main(void)
 	print_tuple(position(ray, -1));
 	print_tuple(position(ray, 2.5));
 
+	t_obj *sphere = (t_obj *)sphere_create(2);
+	t_inter i = intersect(ray_new(point(0, 0, 5), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.t[0], i.t[1]);
+	i = intersect(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.t[0], i.t[1]);
+	i = intersect(ray_new(point(0, 1, -5), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.t[0], i.t[1]);
+	i = intersect(ray_new(point(0, 0, 0), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.t[0], i.t[1]);
 	return 0;
 }
 

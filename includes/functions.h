@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 10:59:04 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 10:59:04 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/26 13:55:42 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 13:55:42 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void		init_mlx(t_mlx  *mlx);
 void		init_rect(t_rect *rect);
 
 /* EVENT HANDLER */
-int				close_win(void *param);
-int				keyboard(int keycode, t_main *rt);
+int			close_win(void *param);
+int			keyboard(int keycode, t_main *rt);
 void		handle_events(t_main *rt);
 
 /* ************************************************************************** */
@@ -54,6 +54,7 @@ t_tup		vector_scalar_mult(t_tup a, double scalar);
 t_tup		vector_scalar_div(t_tup a, double scalar);
 t_tup		vector_norm(t_tup a);
 t_tup		vector_cross(t_tup a, t_tup b);
+double		dot(t_tup a, t_tup b);
 
 /* VECTOR INFO */
 
@@ -160,7 +161,7 @@ t_tup		inverse_shearing(t_tup point, t_shear sh);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                            TUPLES/VECTORS                                  */
+/*                              RAYCASTING                                    */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,5 +169,9 @@ t_tup		inverse_shearing(t_tup point, t_shear sh);
 
 t_ray		ray_new(t_tup point, t_tup direction);
 t_tup		position(t_ray ray, double t);
+
+/* INTERSECTIONS */
+
+t_inter		intersect(t_ray r, t_obj *sphere);
 
 #endif

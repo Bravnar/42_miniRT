@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cyllinder.h                                        :+:      :+:    :+:   */
+/*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 15:03:18 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/24 10:20:47 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/26 13:35:58 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/26 13:35:58 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CYLLINDER_H
-# define CYLLINDER_H
+#ifndef CYLINDER_H
+# define CYLINDER_H
 
 # include "object.h"
 
@@ -22,7 +22,7 @@ typedef struct	s_cyl
 	double	height;
 }	t_cyl;
 
-t_cyl	cyl_create(double diameter, double height);
+t_cyl	*cyl_create(double diameter, double height);
 void	cyl_destroy(t_obj *shape);
 
 #endif
