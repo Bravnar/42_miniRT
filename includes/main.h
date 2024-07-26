@@ -15,10 +15,4 @@
 # include "../minilibx-linux/mlx.h"
 /* #include "../minilibx_macos/mlx.h" */
 
-/* Object libraries */
-# include "sphere.h"
-# include "cube.h"
-# include "cyllinder.h"
-# include "plane.h"
-
 #endif

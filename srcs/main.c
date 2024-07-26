@@ -68,12 +68,15 @@ void	draw_watch(t_main *rt)
 
 int main(void)
 {
-	t_main  *rt;
+	/* t_main  *rt;
 
 	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
 		exit(1);
 	draw_watch(rt);
+	free(rt); */
+
+	/* t_matrix A = {{
 
 	populate_scene_struct("test_rt/minimalist.rt", get_scene());
 	print_scene_details();
@@ -175,8 +178,34 @@ int main(void)
 	printf("Vector f:\n");
 	print_tuple(f);
 	printf("Vector f after reflection:\n");
-	print_tuple(scale(e, -1, 1, 1));
+	print_tuple(scale(e, -1, 1, 1)); */
 
+	t_ray	ray;
+
+	ray = ray_new(point(2, 3, 4), vector(1, 0, 0));
+	print_tuple(position(ray, 0));
+	print_tuple(position(ray, 1));
+	print_tuple(position(ray, -1));
+	print_tuple(position(ray, 2.5));
+
+	t_obj *sphere = (t_obj *)sphere_create(2);
+	t_inter i = intersect_sphere(ray_new(point(0, 0, 5), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.i[0].t, i.i[1].t);
+	i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.i[0].t, i.i[1].t);
+	i = intersect_sphere(ray_new(point(0, 1, -5), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.i[0].t, i.i[1].t);
+	i = intersect_sphere(ray_new(point(0, 0, 0), vector(0, 0, 1)), sphere);
+	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+		i.count, i.i[0].t, i.i[1].t);
+	t_inter inters = intersections(4, intersection(-1, sphere), intersection(1, sphere),
+			intersection(-3, sphere), intersection(-2, sphere));
+
+	t_intersection h = hit(inters);
+	printf("Hit t: %f\n", h.t);
 	return 0;
 }
 

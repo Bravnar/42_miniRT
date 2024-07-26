@@ -27,7 +27,14 @@ SRCS= 	srcs/main.c \
 		srcs/matrices/transformations/translation.c \
 		srcs/matrices/transformations/scaling.c \
 		srcs/matrices/transformations/rotation.c \
-		srcs/matrices/transformations/shearing.c
+		srcs/matrices/transformations/shearing.c \
+		srcs/raycasting/ray.c \
+		srcs/raycasting/intersect.c \
+		srcs/raycasting/hit.c \
+		srcs/shapes/cube.c \
+		srcs/shapes/cylinder.c \
+		srcs/shapes/sphere.c
+
 
 
 CC= cc

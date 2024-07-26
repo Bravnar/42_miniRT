@@ -24,3 +24,8 @@ t_tup	vector_cross(t_tup a, t_tup b)
 			a.z * b.x - a.x * b.z,
 			a.x * b.y - a.y * b.x));
 }
+
+double	dot(t_tup a, t_tup b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
+}

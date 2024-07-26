@@ -32,9 +32,9 @@ t_sphere	*sphere_create(double diameter)
 	sphere->shape.get_name = get_name;
 	sphere->shape.volume = volume;
 	sphere->shape.destroy = sphere_destroy;
-	sphere->shape.point = ---;//parse_point;
-	sphere->shape.dir_vector = ---;//parse_vector;
-	sphere->shape.rgb = ---;//parse_rgb;
+	sphere->shape.point = point(0, 0 ,0);//parse_point; //most basic sphere
+	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
+	sphere->shape.color = color(255, 0, 0);//parse_rgb; // by default to red
 	sphere->shape.next = NULL;
 	return (sphere);
 }

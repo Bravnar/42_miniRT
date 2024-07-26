@@ -1,19 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 10:34:00 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 15:23:25 by smuravye         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-
 
 typedef struct	s_mlx
 {
@@ -64,7 +50,11 @@ typedef struct s_tup
 	int		w;
 }	t_tup;
 
-# include "object.h"
+/* Object libraries */
+# include "sphere.h"
+# include "cube.h"
+# include "cylinder.h"
+# include "plane.h"
 
 typedef struct	s_rwin
 {
@@ -140,7 +130,6 @@ typedef struct s_environment
 	t_tup	wind;
 }	t_env;
 
-
 typedef struct s_matrix
 {
 	double	M[4][4];
@@ -160,5 +149,23 @@ typedef struct s_shear
 	double	zx;
 	double	zy;
 }	t_shear;
+
+typedef struct s_ray
+{
+	t_tup	point;
+	t_tup	direction;
+}	t_ray;
+
+typedef struct s_intersection
+{
+	t_obj	*shape;
+	double	t;
+}	t_intersection;
+
+typedef struct s_inter
+{
+	int				count;
+	t_intersection	*i;
+}	t_inter;
 
 #endif

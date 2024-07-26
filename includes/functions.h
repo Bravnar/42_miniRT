@@ -1,26 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 13:15:12 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 16:02:27 by smuravye         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
 /* MLX UTILS */
 
-void		draw_rectangle(t_main *rt); //TMP
-void		my_pixel(t_mlx *mlx, int x, int y, int color); //IMPORTANT
-void		redraw(t_main *rt); //IMPORTANT TO ADAPT
+void			draw_rectangle(t_main *rt); //TMP
+void			my_pixel(t_mlx *mlx, int x, int y, int color); //IMPORTANT
+void			redraw(t_main *rt); //IMPORTANT TO ADAPT
 
 
 /* INIT */
+
+t_main			*init_main(void);
+void			init_mlx(t_mlx  *mlx);
+void			init_rect(t_rect *rect);
 // t_main	*init_all(void);
 t_main	*init_all(char *file_name);
 t_map	*get_scene(void);
@@ -57,7 +49,7 @@ void	print_nodes(t_parse **head);
 /* EVENT HANDLER */
 int				close_win(void *param);
 int				keyboard(int keycode, t_main *rt);
-void		handle_events(t_main *rt);
+void			handle_events(t_main *rt);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -67,34 +59,35 @@ void		handle_events(t_main *rt);
 
 /* CREATE */
 
-t_tup		tuple(double x, double y, double z, int w);
-t_tup		point(double x, double y, double z);
-t_tup		vector(double x, double y, double z);
+t_tup			tuple(double x, double y, double z, int w);
+t_tup			point(double x, double y, double z);
+t_tup			vector(double x, double y, double z);
 
 /* TUPLE OPERATIONS */
 
-t_tup		tuple_sub(t_tup a, t_tup b);
-t_tup		tuple_add(t_tup a, t_tup b);
-t_tup		tuple_neg(t_tup a);
+t_tup			tuple_sub(t_tup a, t_tup b);
+t_tup			tuple_add(t_tup a, t_tup b);
+t_tup			tuple_neg(t_tup a);
 
 /* VECTOR OPERATIONS */
 
-t_tup		vector_scalar_mult(t_tup a, double scalar);
-t_tup		vector_scalar_div(t_tup a, double scalar);
-t_tup		vector_norm(t_tup a);
-t_tup		vector_cross(t_tup a, t_tup b);
+t_tup			vector_scalar_mult(t_tup a, double scalar);
+t_tup			vector_scalar_div(t_tup a, double scalar);
+t_tup			vector_norm(t_tup a);
+t_tup			vector_cross(t_tup a, t_tup b);
+double			dot(t_tup a, t_tup b);
 
 /* VECTOR INFO */
 
-double		vector_mag(t_tup a);
-bool		is_unit_vector(t_tup a);
-double		vector_dot(t_tup a, t_tup b);
+double			vector_mag(t_tup a);
+bool			is_unit_vector(t_tup a);
+double			vector_dot(t_tup a, t_tup b);
 
 /* PROJECTILES & ENVIRONMENTS */
 
-t_proj		proj_new(t_tup position, t_tup velocity);
-t_env		env_new(t_tup wind, t_tup gravity);
-t_proj		tick(t_env env, t_proj proj);
+t_proj			proj_new(t_tup position, t_tup velocity);
+t_env			env_new(t_tup wind, t_tup gravity);
+t_proj			tick(t_env env, t_proj proj);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -102,7 +95,7 @@ t_proj		tick(t_env env, t_proj proj);
 /*                                                                            */
 /* ************************************************************************** */
 
-bool		equal(double a, double b);
+bool			equal(double a, double b);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -112,16 +105,16 @@ bool		equal(double a, double b);
 
 /* COLOR INITIALISATION */
 
-t_color		color(int r, int g, int b);
-void		add_hex_color(t_color *c);
+t_color			color(int r, int g, int b);
+void			add_hex_color(t_color *c);
 
 /* COLOR OPERATIONS */
 
-t_color		color_add(t_color c1, t_color c2);
-t_color		color_sub(t_color c1, t_color c2);
-t_color		color_scalarmult(int scalar, t_color c2);
-t_color		color_product(t_color c1, t_color c2);
-t_color		color_blend(t_color c1, t_color c2);
+t_color			color_add(t_color c1, t_color c2);
+t_color			color_sub(t_color c1, t_color c2);
+t_color			color_scalarmult(int scalar, t_color c2);
+t_color			color_product(t_color c1, t_color c2);
+t_color			color_blend(t_color c1, t_color c2);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -131,34 +124,34 @@ t_color		color_blend(t_color c1, t_color c2);
 
 /* MATRICES OPERATIONS */
 
-bool		matrix_compare(t_matrix A, t_matrix B);
-t_matrix	matrix_mult(t_matrix A, t_matrix B);
-t_column	matrix_mult_col(t_matrix A, t_column b);
-t_tup		matrix_mult_tup(t_matrix A, t_tup b);
+bool			matrix_compare(t_matrix A, t_matrix B);
+t_matrix		matrix_mult(t_matrix A, t_matrix B);
+t_column		matrix_mult_col(t_matrix A, t_column b);
+t_tup			matrix_mult_tup(t_matrix A, t_tup b);
 
 /* MATRICES DISPLAY */
 
-void		print_matrix(t_matrix matrix, int size);
-void		print_column(t_column column);
-void		print_tuple(t_tup tuple);
+void			print_matrix(t_matrix matrix, int size);
+void			print_column(t_column column);
+void			print_tuple(t_tup tuple);
 
 /* IDENTITY */
 
-t_matrix	identity(void);
+t_matrix		identity(void);
 
 /* TRANSPOSE */
 
-t_matrix	transpose(t_matrix A);
+t_matrix		transpose(t_matrix A);
 
 /* DETERMINANT */
 
-double		determinant(t_matrix A, int size);
+double			determinant(t_matrix A, int size);
 
 /* INVERSE */
 
-bool		is_invertible(t_matrix A);
-double		cofactor(t_matrix A, int r, int c, int size_M);
-t_matrix	inverse(t_matrix A, int size);
+bool			is_invertible(t_matrix A);
+double			cofactor(t_matrix A, int r, int c, int size_M);
+t_matrix		inverse(t_matrix A, int size);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -168,23 +161,44 @@ t_matrix	inverse(t_matrix A, int size);
 
 /* TRANSLATION */
 
-t_tup		translate(t_tup point, double x, double y, double z);
-t_tup		inverse_translate(t_tup point, double x, double y, double z);
+t_tup			translate(t_tup point, double x, double y, double z);
+t_tup			inverse_translate(t_tup point, double x, double y, double z);
 
 /* SCALING */
 
-t_tup		scale(t_tup point, double x, double y, double z);
-t_tup		inverse_scale(t_tup point, double x, double y, double z);
+t_tup			scale(t_tup point, double x, double y, double z);
+t_tup			inverse_scale(t_tup point, double x, double y, double z);
 
 /* ROTATIONS */
 
-t_tup		rotate(t_tup point, double deg, char axis);
-t_tup		inverse_rotate(t_tup point, double deg, char axis);
+t_tup			rotate(t_tup point, double deg, char axis);
+t_tup			inverse_rotate(t_tup point, double deg, char axis);
 
 /* SHEARING */
 
-t_shear		shear(double numbers[6]);
-t_tup		shearing(t_tup point, t_shear sh);
-t_tup		inverse_shearing(t_tup point, t_shear sh);
+t_shear			shear(double numbers[6]);
+t_tup			shearing(t_tup point, t_shear sh);
+t_tup			inverse_shearing(t_tup point, t_shear sh);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                              RAYCASTING                                    */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* RAYS */
+
+t_ray			ray_new(t_tup point, t_tup direction);
+t_tup			position(t_ray ray, double t);
+
+/* INTERSECTIONS */
+
+t_inter			intersect_sphere(t_ray r, t_obj *sphere);
+t_intersection	intersection(double t, t_obj *shape);
+t_inter			intersections(int c, ...);
+
+/* HITS */
+
+t_intersection	hit(t_inter inters);
 
 #endif
