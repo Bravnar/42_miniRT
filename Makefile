@@ -18,7 +18,6 @@ SRCS= 	srcs/main.c \
 		srcs/init/init_new.c \
 		srcs/parsing/read_rt_file.c \
 		srcs/parsing/utils.c \
-		srcs/matrices/basics/matrices_display.c \
 		srcs/matrices/basics/matrices_operations.c \
 		srcs/matrices/basics/identity.c \
 		srcs/matrices/basics/transpose.c \
@@ -31,9 +30,11 @@ SRCS= 	srcs/main.c \
 		srcs/raycasting/ray.c \
 		srcs/raycasting/intersect.c \
 		srcs/raycasting/hit.c \
+		srcs/raycasting/ray_transform.c \
 		srcs/shapes/cube.c \
 		srcs/shapes/cylinder.c \
-		srcs/shapes/sphere.c
+		srcs/shapes/sphere.c \
+		srcs/utils/display.c
 
 
 

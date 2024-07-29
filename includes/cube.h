@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 14:01:07 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 14:01:07 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/29 14:49:58 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/29 14:49:58 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 typedef struct	s_cube
 {
-	t_obj	shape;
-	double	length;
-	double	height;
-	double	width;
+	t_obj		shape;
+	double		length;
+	double		height;
+	double		width;
 }	t_cube;
 
 t_cube	*cube_create(double length, double height, double width);

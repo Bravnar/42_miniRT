@@ -48,9 +48,11 @@ t_inter	intersect_sphere(t_ray r, t_obj *sphere)
 	double	disc;
 	double	a;
 	double	b;
+	t_ray	inv_ray;
 	t_inter	i;
 
-	disc = discriminant(r, sphere, &a, &b);
+	inv_ray = ray_transform(r, sphere->inverse_transformation);
+	disc = discriminant(inv_ray, sphere, &a, &b);
 	if (disc < 0)
 	{
 		i.count = 0;

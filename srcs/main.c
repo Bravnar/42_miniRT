@@ -50,11 +50,11 @@ void	draw_watch(t_main *rt)
 	projectile = proj_new(point(0, 0, 0), velocity);
 	init_mlx(&rt->mlx);
 	i = 0;
-	while (i < 12)
+	while (i < 3600)
 	{
 		temp = tick(environment, projectile);
 		my_pixel(&rt->mlx, temp.position.x + 450, 550 - temp.position.y - 275, 0x00ff00);
-		velocity = rotate(velocity, 30, 'z');
+		velocity = scale(rotate(velocity, 0.1, 'z'), 1-1/3600, 0, 0);
 		projectile = proj_new(point(0, 0, 0), velocity);
 		i++;
 	}
@@ -130,7 +130,7 @@ int	main(void)
 		{1, -5, 1, 8},
 		{7, 7, -6, -7},
 		{1, -3, 7, 4}
-	}}; */
+	}};
 
 	t_matrix F = {{
 		{8, -5, 9, 2},
@@ -144,7 +144,7 @@ int	main(void)
 		{0, -2, 0, 0},
 		{0, 0, 6, 0},
 		{0, 0, 0, 2}
-	}};
+	}};*/
 	//t_column b = {{1, 2, 3, 1}};
 
 	/* t_matrix result = matrix_mult(A, B);
@@ -190,32 +190,34 @@ int	main(void)
 	printf("Vector f:\n");
 	print_tuple(f);
 	printf("Vector f after reflection:\n");
-	print_tuple(scale(e, -1, 1, 1)); */
+	print_tuple(scale(e, -1, 1, 1));
 	printf("Triangular matrix: %d\n", is_triangular(G, 4));
 	clock_t start_time = clock();
-	for (int i = 0; i < 100000000; i++)
-		determinant(F, 4);
+	determinant(F, 4);
 	clock_t end_time = clock();
 	double elapsed_time = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
 	printf("Elapsed time: %lf seconds\n", elapsed_time);
-	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));
+	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));*/
 
  	/* t_ray	ray;
 
-	ray = ray_new(point(2, 3, 4), vector(1, 0, 0));
+	ray = ray_new(point(1, 2, 3), vector(0, 1, 0));
 	print_tuple(position(ray, 0));
 	print_tuple(position(ray, 1));
 	print_tuple(position(ray, -1));
-	print_tuple(position(ray, 2.5));
+	print_tuple(position(ray, 2.5)); */
 
 	t_obj *sphere = (t_obj *)sphere_create(2);
-	t_inter i = intersect_sphere(ray_new(point(0, 0, 5), vector(0, 0, 1)), sphere);
+	print_matrix(sphere->transformation, 4);
+	sphere->transform(sphere, scaling_matrix(2,2,2));
+	print_matrix(((t_sphere *)sphere)->shape.transformation, 4);
+	t_inter i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 		i.count, i.i[0].t, i.i[1].t);
-	i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
-	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
-		i.count, i.i[0].t, i.i[1].t);
-	i = intersect_sphere(ray_new(point(0, 1, -5), vector(0, 0, 1)), sphere);
+	// i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
+	// printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+	// 	i.count, i.i[0].t, i.i[1].t);
+	/* i = intersect_sphere(ray_new(point(0, 1, -5), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 		i.count, i.i[0].t, i.i[1].t);
 	i = intersect_sphere(ray_new(point(0, 0, 0), vector(0, 0, 1)), sphere);
@@ -223,9 +225,18 @@ int	main(void)
 		i.count, i.i[0].t, i.i[1].t);
 	t_inter inters = intersections(4, intersection(-1, sphere), intersection(1, sphere),
 			intersection(-3, sphere), intersection(-2, sphere));
-
 	t_intersection h = hit(inters);
-	printf("Hit t: %f\n", h.t); */
+	printf("Hit t: %f\n", h.t);
+	print_matrix(sphere->transform, 4);*/
+
+	/* t_ray r1 = ray_transform(ray, translation_matrix(3, 4, 5));
+	t_ray r2 = ray_transform(ray, scaling_matrix(2, 3, 4));
+	printf("Ray after translation\n");
+	print_ray(r1);
+	printf("Ray after scaling\n");
+	print_ray(r2); */
+
+
 	return 0;
 }
 

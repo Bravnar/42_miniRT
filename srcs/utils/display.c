@@ -28,3 +28,11 @@ void	print_tuple(t_tup tuple)
 {
 	printf("(%f, %f, %f, %d)\n", tuple.x, tuple.y, tuple.z, tuple.w);
 }
+
+void	print_ray(t_ray ray)
+{
+	printf("Direction: ");
+	print_tuple(ray.direction);
+	printf("Point: ");
+	print_tuple(ray.point);
+}
