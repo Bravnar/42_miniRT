@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:16:08 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/26 14:03:06 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:25:50 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,6 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	**ft_megasplit(char *str, char *charset);
 char	*ft_better_join(char *s1, char *s2, int free_);
 char	*ft_superstrchr(char *s, char *chars);
+int		ft_arr_len(char **split);
 
 #endif

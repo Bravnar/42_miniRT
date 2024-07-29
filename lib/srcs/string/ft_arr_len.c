@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   ft_arr_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 13:51:23 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/29 15:08:50 by smuravye         ###   ########.fr       */
+/*   Created: 2024/07/29 16:24:54 by smuravye          #+#    #+#             */
+/*   Updated: 2024/07/29 16:25:24 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "my_lib.h"
 
-# define EPSILON	0.000001
-# define ESC		65307
-# define PI			3.1416
-# define WHITESPACE " \t\n\r\f\v"
-# define WIN_X_MAX	3840
-# define WIN_Y_MAX	2160
+int	ft_arr_len(char **split)
+{
+	int	i;
 
-#endif
+	i = 0;
+	if (!split && !split[0])
+		return (i);
+	while (split[i])
+		i++;
+	return (i);
+}

@@ -28,12 +28,21 @@ t_map	*get_scene(void);
 
 /* read_rt_file.c */
 void	populate_scene_struct(char *file_name, t_map *scene);
-void	populate_rwin(void);
-void	populate_amb(void);
-void	get_amb_rgb(char *str);
 void	check_identifier(t_parse **head);
 void	read_file(char *file_name, t_map *data);
 void	print_scene_details(void);
+
+/* Ambient */
+void	populate_amb(void);
+
+/* Camera */
+void	populate_cam(void);
+
+/* Light */
+
+/* Resolution */
+void	populate_rwin(void);
+
 
 
 /* utils.c */
@@ -45,6 +54,8 @@ void	print_nodes(t_parse **head);
 /* validity.c */
 
 /* ft_stdtod.c */
+double	ft_strtod(char *str);
+int	ft_strtoi(const char *nptr, char **endptr);
 
 /* EVENT HANDLER */
 int				close_win(void *param);

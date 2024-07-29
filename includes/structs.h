@@ -150,4 +150,22 @@ typedef struct s_inter
 	t_intersection	*i;
 }	t_inter;
 
+typedef struct s_strtoi
+{
+	const char	*s;
+	int		sign;
+	int		result;
+	int		digit;
+	int		digit_count;
+}	t_strtoi;
+
+typedef	struct s_conv
+{
+	char	**split;
+	double	b_result;
+	double	a_result;
+	double	final_result;
+	int		sign;
+}	t_conv;
+
 #endif

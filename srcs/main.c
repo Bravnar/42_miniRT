@@ -74,8 +74,10 @@ int	main(int ac, char **av)
 	rt = init_all(av[1]);
 	if (!rt)
 		exit(1);
+	// printf("ft_strtod: %f\n", ft_strtod("-50"));
 	populate_scene_struct(av[1], get_scene());
 	print_scene_details();
+	//game_loop(rt);
 	free(rt);
 }
 /*

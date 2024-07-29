@@ -33,7 +33,13 @@ SRCS= 	srcs/main.c \
 		srcs/raycasting/hit.c \
 		srcs/shapes/cube.c \
 		srcs/shapes/cylinder.c \
-		srcs/shapes/sphere.c
+		srcs/shapes/sphere.c \
+		srcs/parsing/ft_strtod.c \
+		srcs/parsing/ft_strtoi.c \
+		srcs/parsing/ambient/amb.c \
+		srcs/parsing/camera/cam.c \
+		srcs/parsing/resolution/res.c \
+#		srcs/parsing/light/light.c \
 
 
 

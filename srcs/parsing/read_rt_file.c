@@ -16,7 +16,7 @@ void	read_file(char *file_name, t_map *data)
 		free(line);
 		line = get_next_line(data->file.fd);
 	}
-	print_nodes(&data->file.parse);
+	//print_nodes(&data->file.parse);
 	free(line);
 }
 
@@ -32,100 +32,6 @@ void	check_identifier(t_parse **head)
 			if (!ft_strisalpha(tmp->line_split[0]))
 				exit(1); //error_quit invalid scene
 		}	
-		tmp = tmp->next;
-	}
-}
-
-void	get_amb_rgb(char *str)
-{
-	char **color_split;
-
-	color_split = ft_split(str, ',');
-	get_scene()->amb.rgb = color(ft_atoi(color_split[0]),
-								ft_atoi(color_split[1]),
-								ft_atoi(color_split[2]));
-	ft_free_arr(color_split);
-}
-
-
-void	get_cam_point(char *str)
-{
-	char	**tup_split;
-	char	*endptr;
-
-	endptr = NULL;
-	tup_split = ft_split(str, ',');
-	get_scene()->cam.point = point(strtod(tup_split[0], &endptr),
-							strtod(tup_split[1], &endptr),
-							strtod(tup_split[2], &endptr));
-	ft_free_arr(tup_split);
-}
-
-void	get_cam_vector(char *str)
-{
-	char	**tup_split;
-	char	*endptr;
-
-	endptr = NULL;
-	tup_split = ft_split(str, ',');
-	get_scene()->cam.vector = vector(strtod(tup_split[0], &endptr),
-							strtod(tup_split[1], &endptr),
-							strtod(tup_split[2], &endptr));
-	ft_free_arr(tup_split);
-}
-
-void	populate_amb(void)
-{
-	t_parse *tmp;
-	char	*endptr;
-
-	endptr = NULL;
-	tmp = get_scene()->file.parse;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->line_split[0], "A"))
-		{
-			get_scene()->amb.ratio = strtod(tmp->line_split[1], &endptr); //replace by own strtod
-			get_amb_rgb(tmp->line_split[2]);
-			break ;
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	populate_cam(void)
-{
-	t_parse *tmp;
-
-	tmp = get_scene()->file.parse;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->line_split[0], "C"))
-		{
-			get_cam_point(tmp->line_split[1]);
-			get_cam_vector(tmp->line_split[2]);
-			get_scene()->cam.fov = ft_atoi(tmp->line_split[3]);
-			break ;
-		}
-	tmp = tmp->next;
-	}
-}
-
-void	populate_rwin(void)
-{
-	t_parse	*tmp;
-
-	tmp = get_scene()->file.parse;
-	// if (ft_lstsize((t_list *)tmp) != 3)
-	// 	exit (1); //wrong list size;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->line_split[0], "R"))
-		{
-			get_scene()->win.x = ft_atoi(tmp->line_split[1]);
-			get_scene()->win.y = ft_atoi(tmp->line_split[2]);
-			break ;
-		}
 		tmp = tmp->next;
 	}
 }

@@ -5,6 +5,9 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
+# include <float.h>
+# include <errno.h>
+# include <limits.h>
 
 /* Custom libraries */
 # include "colors.h"

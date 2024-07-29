@@ -4,9 +4,9 @@ t_color	color(int r, int g, int b)
 {
 	t_color	new;
 
-	new.r = r;
-	new.g = g;
-	new.b = b;
+	new.r = (unsigned char)r;
+	new.g = (unsigned char)g;
+	new.b = (unsigned char)b;
 	new.t = 255;
 	return (new);
 }
