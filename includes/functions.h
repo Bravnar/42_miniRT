@@ -22,7 +22,13 @@ t_map	*get_scene(void);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                            PARSING                                         */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/29 12:27:59 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/29 12:27:59 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +151,7 @@ t_matrix		transpose(t_matrix A);
 
 /* DETERMINANT */
 
+bool			is_triangular(t_matrix	A, int	size);
 double			determinant(t_matrix A, int size);
 
 /* INVERSE */
@@ -161,6 +168,7 @@ t_matrix		inverse(t_matrix A, int size);
 
 /* TRANSLATION */
 
+t_matrix		translation_matrix(double x, double y, double z);
 t_tup			translate(t_tup point, double x, double y, double z);
 t_tup			inverse_translate(t_tup point, double x, double y, double z);
 

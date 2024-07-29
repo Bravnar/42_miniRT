@@ -65,23 +65,23 @@ void	draw_watch(t_main *rt)
 }
 
 /*PARSING TESTING MAIN */
-int	main(int ac, char **av)
-{
-	t_main	*rt;
+// int	main(int ac, char **av)
+// {
+// 	t_main	*rt;
 
-	if (ac != 2)
-		return (0);
-	rt = init_all(av[1]);
-	if (!rt)
-		exit(1);
-	populate_scene_struct(av[1], get_scene());
-	print_scene_details();
-	free(rt);
-}
-/*
-int main(void)
+// 	if (ac != 2)
+// 		return (0);
+// 	rt = init_all(av[1]);
+// 	if (!rt)
+// 		exit(1);
+// 	populate_scene_struct(av[1], get_scene());
+// 	print_scene_details();
+// 	free(rt);
+// }
+
+int	main(void)
 {
-	t_main  *rt;
+	/* t_main  *rt;
 
 	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
@@ -89,16 +89,15 @@ int main(void)
 	draw_watch(rt);
 	free(rt); */
 
-	/* t_matrix A = {{
 
-	populate_scene_struct("test_rt/minimalist.rt", get_scene());
+	/* populate_scene_struct("test_rt/minimalist.rt", get_scene());
 	print_scene_details();
-  
+
 	//draw_projectile(rt);
-	free(rt);
-  
-  
-	t_matrix A = {{
+	free(rt); */
+
+
+	/* t_matrix A = {{
 		{1, 2, 3, 4},
 		{5, 6, 7, 8},
 		{9, 8, 7, 6},
@@ -131,7 +130,7 @@ int main(void)
 		{1, -5, 1, 8},
 		{7, 7, -6, -7},
 		{1, -3, 7, 4}
-	}};
+	}}; */
 
 	t_matrix F = {{
 		{8, -5, 9, 2},
@@ -142,13 +141,13 @@ int main(void)
 
 	t_matrix G = {{
 		{9, 3, 0, 9},
-		{-5, -2, -6, -3},
-		{-4, 9, 6, 4},
-		{-7, 6, 6, 2}
+		{0, -2, 0, 0},
+		{0, 0, 6, 0},
+		{0, 0, 0, 2}
 	}};
-	t_column b = {{1, 2, 3, 1}};
+	//t_column b = {{1, 2, 3, 1}};
 
-	t_matrix result = matrix_mult(A, B);
+	/* t_matrix result = matrix_mult(A, B);
 	t_column c = matrix_mult_col(C, b);
 	printf("Result matrix:\n");
 	print_matrix(result, 4);
@@ -192,8 +191,16 @@ int main(void)
 	print_tuple(f);
 	printf("Vector f after reflection:\n");
 	print_tuple(scale(e, -1, 1, 1)); */
+	printf("Triangular matrix: %d\n", is_triangular(G, 4));
+	clock_t start_time = clock();
+	for (int i = 0; i < 100000000; i++)
+		determinant(F, 4);
+	clock_t end_time = clock();
+	double elapsed_time = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
+	printf("Elapsed time: %lf seconds\n", elapsed_time);
+	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));
 
-/* 	t_ray	ray;
+ 	/* t_ray	ray;
 
 	ray = ray_new(point(2, 3, 4), vector(1, 0, 0));
 	print_tuple(position(ray, 0));
@@ -218,8 +225,8 @@ int main(void)
 			intersection(-3, sphere), intersection(-2, sphere));
 
 	t_intersection h = hit(inters);
-	printf("Hit t: %f\n", h.t);
+	printf("Hit t: %f\n", h.t); */
 	return 0;
-} */
+}
 
 
