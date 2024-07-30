@@ -51,8 +51,8 @@ void			handle_events(t_main *rt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 15:51:20 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/29 15:51:20 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/30 11:28:40 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/30 11:28:40 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ t_matrix		transpose(t_matrix A);
 /* DETERMINANT */
 
 bool			is_triangular(t_matrix	A, int	size);
+double			diagonal_product(t_matrix A, int size);
 double			determinant(t_matrix A, int size);
 
 /* INVERSE */
@@ -218,5 +219,6 @@ void			print_matrix(t_matrix matrix, int size);
 void			print_column(t_column column);
 void			print_tuple(t_tup tuple);
 void			print_ray(t_ray ray);
+void			print_cofactors(t_matrix A, int size);
 
 #endif

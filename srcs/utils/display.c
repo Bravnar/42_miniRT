@@ -36,3 +36,18 @@ void	print_ray(t_ray ray)
 	printf("Point: ");
 	print_tuple(ray.point);
 }
+
+void	print_cofactors(t_matrix A, int size)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < size)
+	{
+		j = -1;
+		while (++j < size)
+			printf("%f ",cofactor(A, i, j, size));
+		printf("\n");
+	}
+}

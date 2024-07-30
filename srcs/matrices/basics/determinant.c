@@ -45,8 +45,10 @@ bool	is_triangular(t_matrix	A, int	size)
 		{
 			if (!lower && !upper)
 				break ;
-			upper = !equal(A.M[i][j], 0);
-			lower = !equal(A.M[j][i], 0);
+			if (upper)
+				upper = !equal(A.M[i][j], 0);
+			if (lower)
+				lower = !equal(A.M[j][i], 0);
 		}
 	}
 	return (lower || upper);
@@ -85,6 +87,7 @@ double	diagonal_product(t_matrix A, int size)
 	int	i;
 	int	product;
 
+	i = -1;
 	product = 1;
 	while (++i < size)
 		product *= A.M[i][i];
@@ -103,12 +106,13 @@ double	determinant(t_matrix A, int size)
 		return (A.M[0][0] * A.M[1][1] - A.M[0][1] * A.M[1][0]);
 	if (is_triangular(A, size))
 		return (diagonal_product(A, size));
-	if (has_zero_row_column(A, size))
-		return (0);
+	// if (has_zero_row_column(A, size))
+	// 	return (0);
 	while (++i < size)
 	{
 		subm = sub(A, size - 1, i);
-		result += pow(-1, i) * determinant(subm, size - 1) * A.M[0][i];
+		if (A.M[0][i])
+			result += pow(-1, i) * determinant(subm, size - 1) * A.M[0][i];
 	}
 	return (result);
 }

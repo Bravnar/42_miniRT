@@ -208,12 +208,14 @@ int	main(void)
 	print_tuple(position(ray, 2.5)); */
 
 	t_obj *sphere = (t_obj *)sphere_create(2);
-	print_matrix(sphere->transformation, 4);
 	sphere->transform(sphere, scaling_matrix(2,2,2));
-	print_matrix(((t_sphere *)sphere)->shape.transformation, 4);
+	printf("Determinant transformation: %f\n",determinant(sphere->transformation, 4));
 	t_inter i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
-	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
-		i.count, i.i[0].t, i.i[1].t);
+	if (i.count)
+		printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
+			i.count, i.i[0].t, i.i[1].t);
+	else
+		printf("No intersect");
 	// i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
 	// printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 	// 	i.count, i.i[0].t, i.i[1].t);
