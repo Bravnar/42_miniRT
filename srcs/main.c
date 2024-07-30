@@ -130,7 +130,7 @@ int	main(void)
 		{1, -5, 1, 8},
 		{7, 7, -6, -7},
 		{1, -3, 7, 4}
-	}};
+	}};*/
 
 	t_matrix F = {{
 		{8, -5, 9, 2},
@@ -139,15 +139,15 @@ int	main(void)
 		{-3, 0, -9, -4}
 	}};
 
-	t_matrix G = {{
+	/*t_matrix G = {{
 		{9, 3, 0, 9},
 		{0, -2, 0, 0},
 		{0, 0, 6, 0},
 		{0, 0, 0, 2}
-	}};*/
+	}};
 	//t_column b = {{1, 2, 3, 1}};
 
-	/* t_matrix result = matrix_mult(A, B);
+	 t_matrix result = matrix_mult(A, B);
 	t_column c = matrix_mult_col(C, b);
 	printf("Result matrix:\n");
 	print_matrix(result, 4);
@@ -191,13 +191,13 @@ int	main(void)
 	print_tuple(f);
 	printf("Vector f after reflection:\n");
 	print_tuple(scale(e, -1, 1, 1));
-	printf("Triangular matrix: %d\n", is_triangular(G, 4));
+	printf("Triangular matrix: %d\n", is_triangular(G, 4));*/
 	clock_t start_time = clock();
 	determinant(F, 4);
 	clock_t end_time = clock();
 	double elapsed_time = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
 	printf("Elapsed time: %lf seconds\n", elapsed_time);
-	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));*/
+	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));
 
  	/* t_ray	ray;
 
