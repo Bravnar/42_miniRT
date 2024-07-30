@@ -79,15 +79,17 @@ typedef struct	s_file
 	bool	is_valid;
 }	t_file;
 
+typedef 
+
 typedef struct	s_map
 {
 	t_file		file;
 	t_rwin		win;
 	t_amb		amb;
 	t_cam		cam;
+	t_count		count;
 	t_light		*light;
 	t_obj		*obj_list;
-
 }	t_map;
 
 typedef struct	s_main
