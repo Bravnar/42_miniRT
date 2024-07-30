@@ -52,20 +52,22 @@ t_inter	intersect_sphere(t_ray r, t_obj *sphere)
 	t_inter	i;
 
 	inv_ray = ray_transform(r, sphere->inverse_transformation);
+	print_ray(inv_ray);
 	disc = discriminant(inv_ray, sphere, &a, &b);
 	if (disc < 0)
 	{
 		i.count = 0;
 		return (i);
 	}
-	i.i = malloc(sizeof(t_intersection) * (2 +1));
+	printf("Discriminant: %f\n", disc);
+	i.i = malloc(sizeof(t_intersection) * (2 + 1));
 	if (!i.i)
 	{
 		i.i = NULL;
 		return (i);
 	}
-	i.i[0] = intersection((-b - sqrt(disc)) / 2 * a, sphere);
-	i.i[1] = intersection((-b + sqrt(disc)) / 2 * a, sphere);
+	i.i[0] = intersection((-b - sqrt(disc)) / (2 * a), sphere);
+	i.i[1] = intersection((-b + sqrt(disc)) / (2 * a), sphere);
 	i.count = 2;
 	return (i);
 }
