@@ -76,8 +76,8 @@ void			handle_events(t_main *rt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 14:53:38 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/31 14:53:56 by hmorand          ###   ########.ch       */
+/*   Created: 2024/07/31 17:24:20 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/31 17:24:32 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,17 @@ t_ray			ray_transform(t_ray ray, t_matrix transform);
 /*                                                                            */
 /* ************************************************************************** */
 
+/* NORMAL */
+
 t_tup			normal_at(t_obj *sphere, t_tup point);
+
+/* REFLECTION */
+
+t_tup			vector_reflect(t_tup in, t_tup normal);
+
+/* LIGHTING */
+
+t_material		material(t_color c, double d, double s, double sh);
 
 /* ************************************************************************** */
 /*                                                                            */

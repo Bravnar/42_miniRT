@@ -46,7 +46,7 @@ t_cyl	*cyl_create(double diameter, double height)
 	cyl->shape.transform = transform;
 	cyl->shape.point = point(0, 0, 0);//parse_point;
 	cyl->shape.dir_vector = vector(0, 0, 0);//parse_vector;
-	cyl->shape.color = color(255, 0, 0);//parse_rgb;
+	cyl->shape.material = material(color(255, 0, 0), 0.9, 0.9, 200);
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();

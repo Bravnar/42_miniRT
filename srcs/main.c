@@ -86,7 +86,10 @@ void	draw_circle(t_main *rt)
 	pixel_size = wall_size / pixels;
 	sphere = (t_obj *)sphere_create(2);
 	double	sh[6] = {1, 0, 0, 0, 0, 0};
+	sphere->transform(sphere, scaling_matrix(0.1, 0.5, 0.001));
 	sphere->transform(sphere, shearing_matrix(shear(sh)));
+	sphere->transform(sphere, rotation_z(-25));
+	sphere->transform(sphere, rotation_x(30));
 	if (!sphere)
 		return;
 	y = -1;
@@ -97,14 +100,14 @@ void	draw_circle(t_main *rt)
 		while (++x < pixels)
 		{
 			world_x = -half + pixel_size * x;
-			ray = ray_new(point(0, 0, -10), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -10))));
+			ray = ray_new(point(0, 0, -5), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -5))));
 			inter = intersect_sphere(ray, sphere);
 			if (inter.i)
 			{
 				t_intersection hit_info = hit(inter);
 				if (hit_info.t != -1)
 				{
-					my_pixel(&rt->mlx, x, y, 0xff0000);
+					my_pixel(&rt->mlx, x, y, 0xffaf00);
 					free(inter.i);
 				}
 			}
@@ -117,13 +120,13 @@ void	draw_circle(t_main *rt)
 
 int	main(void)
 {
-	/* t_main  *rt;
+	t_main  *rt;
 
 	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
 		exit(1);
 	draw_circle(rt);
-	free(rt); */
+	free(rt);
 
 	/* t_matrix A = {{
 		{1, 2, 3, 4},
@@ -269,8 +272,6 @@ int	main(void)
 
 	sphere->transform(sphere,
 			matrix_mult(scaling_matrix(1, 0.5, 1), rotation_z(48)));
-	//print_matrix(matrix_mult(scaling_matrix(1, 0.5, 1), rotation_z(48)), 4);
-	//print_matrix(sphere->inverse_transformation, 4);
 	t_tup n = normal_at(sphere, point(0, sqrt(2)/2, -sqrt(2)/2));
 	print_tuple(n);
 

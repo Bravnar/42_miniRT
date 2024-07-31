@@ -55,6 +55,24 @@ typedef struct s_column
 	double	m[4];
 }	t_column;
 
+typedef struct s_color
+{
+	int				r;
+	int				g;
+	int				b;
+	int				t;
+	unsigned int	hex;
+}	t_color;
+
+typedef	struct s_material
+{
+	double	amb;
+	double	diffuse;
+	double	specular;
+	double	shininess;
+	t_color	color;
+}	t_material;
+
 /* Object libraries */
 # include "object.h"
 # include "sphere.h"
@@ -157,7 +175,6 @@ typedef struct s_environment
 	t_tup	wind;
 }	t_env;
 
-
 typedef struct s_shear
 {
 	double	xy;
@@ -203,5 +220,6 @@ typedef	struct s_conv
 	double	final_result;
 	int		sign;
 }	t_conv;
+
 
 #endif

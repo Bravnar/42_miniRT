@@ -32,6 +32,8 @@ SRCS= 	srcs/main.c \
 		srcs/raycasting/hit.c \
 		srcs/raycasting/ray_transform.c \
 		srcs/shading/normal.c \
+		srcs/shading/material.c \
+		srcs/shading/reflect.c \
 		srcs/shapes/cube.c \
 		srcs/shapes/cylinder.c \
 		srcs/shapes/sphere.c \
