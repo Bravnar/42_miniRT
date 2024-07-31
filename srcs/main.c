@@ -115,21 +115,6 @@ void	draw_circle(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
-/*PARSING TESTING MAIN */
-// int	main(int ac, char **av)
-// {
-// 	t_main	*rt;
-
-// 	if (ac != 2)
-// 		return (0);
-// 	rt = init_all(av[1]);
-// 	if (!rt)
-// 		exit(1);
-// 	populate_scene_struct(av[1], get_scene());
-// 	print_scene_details();
-// 	free(rt);
-// }
-
 int	main(void)
 {
 	t_main  *rt;
@@ -139,8 +124,7 @@ int	main(void)
 		exit(1);
 	draw_circle(rt);
 	free(rt);
-
-
+  
 	/* populate_scene_struct("test_rt/minimalist.rt", get_scene());
 	print_scene_details();
 	//draw_projectile(rt);
@@ -293,4 +277,18 @@ int	main(void)
 	return 0;
 }
 
-
+/*  STAN TESTER MAIN
+int main(int ac, char **av)
+{
+	if (ac != 2)
+		return (0);
+	rt = init_all(av[1]);
+	if (!rt)
+		exit(1);
+	// printf("ft_strtod: %f\n", ft_strtod("-50"));
+	populate_scene_struct(av[1], get_scene());
+	print_scene_details();
+	//game_loop(rt);
+	free(rt);
+}
+*/
