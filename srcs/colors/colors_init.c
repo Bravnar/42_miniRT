@@ -15,4 +15,3 @@ void	add_hex_color(t_color *c)
 {
 	c->hex = (c->t << 24 | c->r << 16 | c->g << 8 | c->b);
 }
-

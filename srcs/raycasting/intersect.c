@@ -69,4 +69,3 @@ t_inter	intersect_sphere(t_ray r, t_obj *sphere)
 	i.count = 2;
 	return (i);
 }
-

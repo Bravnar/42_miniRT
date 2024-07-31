@@ -1,6 +1,6 @@
 #include "main.h"
 
-void print_matrix(t_matrix matrix, int size)
+void	print_matrix(t_matrix matrix, int size)
 {
 	int	r;
 	int	c;
@@ -47,7 +47,7 @@ void	print_cofactors(t_matrix A, int size)
 	{
 		j = -1;
 		while (++j < size)
-			printf("%f ",cofactor(A, i, j, size));
+			printf("%f ", cofactor(A, i, j, size));
 		printf("\n");
 	}
 }

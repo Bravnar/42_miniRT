@@ -24,10 +24,9 @@ static double	volume(t_obj *shape)
 static void	transform(t_obj *shape, t_matrix transformation)
 {
 	shape->transformation = matrix_mult(shape->transformation,
-												transformation);
+			transformation);
 	shape->inverse_transformation = matrix_mult(shape->inverse_transformation,
-												inverse(transformation, 4));
-
+			inverse(transformation, 4));
 }
 
 t_sphere	*sphere_create(double diameter)
@@ -42,7 +41,7 @@ t_sphere	*sphere_create(double diameter)
 	sphere->shape.volume = volume;
 	sphere->shape.destroy = sphere_destroy;
 	sphere->shape.transform = transform;
-	sphere->shape.point = point(0, 0 ,0);//parse_point; //most basic sphere
+	sphere->shape.point = point(0, 0, 0);//parse_point; //most basic sphere
 	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
 	sphere->shape.color = color(255, 0, 0);//parse_rgb; // by default to red
 	sphere->shape.next = NULL;

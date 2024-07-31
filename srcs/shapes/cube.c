@@ -21,13 +21,13 @@ static double	volume(t_obj *shape)
 
 static void	transform(t_obj *shape, t_matrix transformation)
 {
-
 	t_cube	*cube;
+
 	cube = (t_cube *) shape;
 	cube->shape.transformation = matrix_mult(cube->shape.transformation,
-												transformation);
+			transformation);
 	cube->shape.transformation = matrix_mult(cube->shape.inverse_transformation,
-												inverse(transformation, 4));
+			inverse(transformation, 4));
 }
 
 t_cube	*cube_create(double length, double width, double height)

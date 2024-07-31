@@ -85,6 +85,8 @@ void	draw_circle(t_main *rt)
 	pixels = 1600;
 	pixel_size = wall_size / pixels;
 	sphere = (t_obj *)sphere_create(2);
+	double	sh[6] = {1, 0, 0, 0, 0, 0};
+	sphere->transform(sphere, shearing_matrix(shear(sh)));
 	if (!sphere)
 		return;
 	y = -1;
@@ -95,7 +97,7 @@ void	draw_circle(t_main *rt)
 		while (++x < pixels)
 		{
 			world_x = -half + pixel_size * x;
-			ray = ray_new(point(0, 0, -5), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -5))));
+			ray = ray_new(point(0, 0, -10), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -10))));
 			inter = intersect_sphere(ray, sphere);
 			if (inter.i)
 			{

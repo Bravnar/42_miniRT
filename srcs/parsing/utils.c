@@ -31,7 +31,7 @@ void	add_node(t_parse **parsed, t_parse *new_node)
 
 void	free_nodes(t_parse *list)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 
 	if (!list)
 		return ;
@@ -52,7 +52,7 @@ void	print_nodes(t_parse **head)
 	int		i;
 
 	tmp = *head;
-	while(tmp)
+	while (tmp)
 	{
 		i = -1;
 		while (tmp->line_split[++i])

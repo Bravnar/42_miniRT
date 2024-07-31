@@ -49,5 +49,3 @@ t_matrix	inverse(t_matrix A, int size)
 	}
 	return (inv);
 }
-
-

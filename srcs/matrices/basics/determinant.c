@@ -25,8 +25,9 @@ t_matrix	sub(t_matrix A, int size, int ex)
 	return (sub);
 }
 
-/* USED TO OPTIMIZE THE DETERMINANT COMPUTATION TIME, THUS ONLY CODED TO TAKE MATRIX OF SIZE > 2 */
-bool	is_triangular(t_matrix	A, int	size)
+/* USED TO OPTIMIZE THE DETERMINANT COMPUTATION TIME,
+THUS ONLY CODED TO TAKE MATRIX OF SIZE > 2 */
+bool	is_triangular(t_matrix A, int size)
 {
 	int		i;
 	int		j;
@@ -40,7 +41,7 @@ bool	is_triangular(t_matrix	A, int	size)
 	{
 		j = 0 + i;
 		if (!lower && !upper)
-				break ;
+			break ;
 		while (++j < size)
 		{
 			if (!lower && !upper)

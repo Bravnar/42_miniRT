@@ -1,6 +1,6 @@
 #include "main.h"
 
-t_shear shear(double numbers[6])
+t_shear	shear(double numbers[6])
 {
 	t_shear	s;
 
