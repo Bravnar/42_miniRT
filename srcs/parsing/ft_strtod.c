@@ -87,5 +87,6 @@ double	ft_strtod(char *str)
 	if (stod.split[1])
 		stod.a_result = handle_after(stod.split[1], stod.sign);
 	stod.final_result = stod.b_result + stod.a_result;
+	ft_free_arr(stod.split);
 	return (stod.final_result);
 }

@@ -1,49 +1,9 @@
 #include "main.h"
 
-typedef enum s_err
-{
-	NO_ERR,
-	ACL_MISSING,
-	TOO_MANY_R,
-	TOO_MANY_A,
-	TOO_MANY_C,
-	A_RATIO_RANGE,
-	C_VECTOR_RANGE,
-	C_FOV_RANGE,
-	L_BRIGHT_RANGE,
-	UKNOWN_ID,
-	R_OVER_PARAM,
-	A_OVER_PARAM,
-	C_OVER_PARAM,
-	L_OVER_PARAM,
-	SP_OVER_PARAM,
-	PL_OVER_PARAM,
-	PL_VECTOR_RANGE,
-	CY_VECTOR_RANGE,
-//	MORE_TO_BE_ADDED,
-}	t_err;
-
-#define M_ACL_MISSING		"Missing key parameters (A, C, L)"
-#define M_TOO_MANY_R		"Too many R-parameters"
-#define M_TOO_MANY_A		"Too many A-parameters"
-#define	M_TOO_MANY_C		"Too many C-parameters"	
-#define	M_A_RATIO_RANGE		"A: ratio out of range (0.0 / 1.0)"
-#define	M_C_VECTOR_RANGE	"C: vector out of range (-1.0 / 1.0)"
-#define	M_C_FOV_RANGE		"C: FOV out of range (0 / 180)"
-#define	M_L_BRIGHT_RANGE	"L: Brightness out of range (0.0 / 1.0)"
-#define	M_UKNOWN_ID			"Unknown identifier in file"
-#define	M_R_OVER_PARAM		"Too many arguments in R"
-#define	M_A_OVER_PARAM		"Too many arguments in A"
-#define	M_C_OVER_PARAM		"Too many arguments in C"
-#define	M_L_OVER_PARAM		"Too many arguments in L"
-#define	M_SP_OVER_PARAM		"Too many arguments in sp"
-#define	M_PL_OVER_PARAM		"Too many arguments in pl"
-#define	M_PL_VECTOR_RANGE	"pl: vector out of range (-1.0 / 1.0)"
-#define	M_CY_VECTOR_RANGE	"cy: vector out of range (-1.0 / 1.0)"
-
 void	err_quit(char *msg)
 {
-	ft_fprintf(2, "Error:\t%s\n", msg);
+	ft_fprintf(2, BOLD_RED"Error:\t"RESET);
+	ft_fprintf(2, BOLD_YELLOW"%s\n"RESET, msg);
 	exit(1);
 }
 

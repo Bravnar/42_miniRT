@@ -29,8 +29,13 @@ void	check_identifier(t_parse **head)
 	{
 		if (tmp->line_split && tmp->line_split[0])
 		{
-			if (!ft_strisalpha(tmp->line_split[0]))
-				exit(1); //error_quit invalid scene
+			if (ft_strisalpha(tmp->line_split[0]))
+			{
+				if (!ft_strstr(GOOD_ID, tmp->line_split[0]))
+					err_handler(UKNOWN_ID);
+			}
+			else
+				err_handler(UKNOWN_ID);
 		}	
 		tmp = tmp->next;
 	}
@@ -40,9 +45,14 @@ void	populate_scene_struct(char *file_name, t_map *scene)
 {
 	read_file(file_name, scene);
 	check_identifier(&get_scene()->file.parse);
+	// count_identifier(&get_scene()->file.parse);
+	check_count();
+	printf("count of L: %d\n", get_scene()->count.l);
+	printf("count of pl: %d\n", get_scene()->count.pl);
 	populate_rwin();
 	populate_amb();
 	populate_cam();
+	populate_light();
 }
 
 void	print_scene_details(void)
@@ -56,6 +66,8 @@ void	print_scene_details(void)
 	printf("Camera position: [%f, %f, %f]\n", cam.point.x, cam.point.y, cam.point.z);
 	printf("Camera vector: [%f, %f, %f]\n", cam.vector.x, cam.vector.y, cam.vector.z);
 	printf("Camera FOV: %d\n", cam.fov);
+	printf("Lights -------------------------:\n");
+	print_light_nodes(&get_scene()->light);
 }
 /* 
 	1) Go over parsed lines and check identifiers

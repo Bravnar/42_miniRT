@@ -47,10 +47,7 @@ void	populate_cam(void)
 			get_cam_vector(tmp->line_split[2]);
 			get_scene()->cam.fov = ft_atoi(tmp->line_split[3]);
 			if (!get_scene()->cam.fov || get_scene()->cam.fov > 180)
-			{
-				printf("error with fov\n");
-				exit(1);
-			}
+				err_handler(C_FOV_RANGE);
 			break ;
 		}
 	tmp = tmp->next;

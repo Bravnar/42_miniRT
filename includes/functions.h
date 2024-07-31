@@ -40,10 +40,20 @@ void	populate_cam(void);
 
 /* Light */
 
+void	populate_light(void);
+
+/* light_utils.c */
+t_light	*new_light_node(t_tup point, double bright, t_color rgb);
+void	add_light_node(t_light **head, t_light *new_node);
+void	free_light_nodes(t_light *light);
+void	print_light_nodes(t_light **head);
+
 /* Resolution */
 void	populate_rwin(void);
 
-
+/* ft_errorquit.c */
+void	err_quit(char *msg);
+void	err_handler(t_err code);
 
 /* utils.c */
 t_parse	*new_parse_node(char *line);
@@ -52,6 +62,10 @@ void	free_nodes(t_parse *list);
 void	print_nodes(t_parse **head);
 
 /* validity.c */
+
+/* counter.c */
+void	check_count(void);
+void	count_identifier(t_parse **head);
 
 /* ft_stdtod.c */
 double	ft_strtod(char *str);

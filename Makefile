@@ -39,6 +39,10 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/ambient/amb.c \
 		srcs/parsing/camera/cam.c \
 		srcs/parsing/resolution/res.c \
+		srcs/error/ft_errorquit.c \
+		srcs/parsing/counter.c \
+		srcs/parsing/light/light_utils.c \
+		srcs/parsing/light/light.c \
 #		srcs/parsing/light/light.c \
 
 
