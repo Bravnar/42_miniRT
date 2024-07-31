@@ -28,16 +28,17 @@ void	init_map(t_map *data)
 	init_rwin(&data->win);
 	init_amb(&data->amb);
 	init_cam(&data->cam);
-	init_light(data->light);		//if bonus needs to be linked list!
+	init_light(data->light); //if bonus needs to be linked list!
 	data->obj_list = NULL;
 }
 
 void	init_mlx(t_mlx *mlx)
 {
-	mlx->win_x = 900;
-	mlx->win_y = 550;
+	mlx->win_x = 1600;
+	mlx->win_y = 1600;
 	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->win_x, mlx->win_y, "miniRT");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->win_x,
+			mlx->win_y, "miniRT");
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, mlx->win_x, mlx->win_y);
 	mlx->img_data = mlx_get_data_addr(mlx->img_ptr, \
 		&mlx->bits_per_pixel, &mlx->size_line, &mlx->endian);
@@ -64,13 +65,13 @@ t_map	*create_scene(char *file_name)
 	// populate_scene_struct(file_name, scene);
 	// if (!scene->file.is_valid)
 	// 	return (NULL);
-	return(scene);
+	return (scene);
 }
 
 t_map	*get_scene(void)
 {
 	static t_map	*scene;
-	
+
 	if (!scene)
 		scene = create_scene(NULL);
 	return (scene);
@@ -84,6 +85,6 @@ t_main	*init_all(char *file_name)
 	if (!main)
 		return (NULL);
 	main->data = create_scene(file_name);
-	//init_mlx(&main->mlx);
+	init_mlx(&main->mlx);
 	return (main);
 }

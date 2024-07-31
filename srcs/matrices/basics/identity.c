@@ -1,10 +1,10 @@
 #include "main.h"
 
-t_matrix identity(void)
+t_matrix	identity(void)
 {
 	int			r;
 	int			c;
-	t_matrix	I;
+	t_matrix	i;
 
 	r = -1;
 	while (++r < 4)
@@ -13,10 +13,10 @@ t_matrix identity(void)
 		while (++c < 4)
 		{
 			if (c == r)
-				I.M[r][c] = 1;
+				i.M[r][c] = 1;
 			else
-				I.M[r][c] = 0;
+				i.M[r][c] = 0;
 		}
 	}
-	return (I);
+	return (i);
 }

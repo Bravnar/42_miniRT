@@ -23,8 +23,8 @@ t_tup	translate(t_tup point, double x, double y, double z)
 
 t_tup	inverse_translate(t_tup point, double x, double y, double z)
 {
-	t_tup transformed;
-	t_matrix transformation_matrix;
+	t_tup		transformed;
+	t_matrix	transformation_matrix;
 
 	transformation_matrix = inverse(translation_matrix(x, y, z), 4);
 	transformed = matrix_mult_tup(transformation_matrix, point);

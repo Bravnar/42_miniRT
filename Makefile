@@ -18,7 +18,6 @@ SRCS= 	srcs/main.c \
 		srcs/init/init_new.c \
 		srcs/parsing/read_rt_file.c \
 		srcs/parsing/utils.c \
-		srcs/matrices/basics/matrices_display.c \
 		srcs/matrices/basics/matrices_operations.c \
 		srcs/matrices/basics/identity.c \
 		srcs/matrices/basics/transpose.c \
@@ -31,9 +30,12 @@ SRCS= 	srcs/main.c \
 		srcs/raycasting/ray.c \
 		srcs/raycasting/intersect.c \
 		srcs/raycasting/hit.c \
+		srcs/raycasting/ray_transform.c \
+		srcs/shading/normal.c \
 		srcs/shapes/cube.c \
 		srcs/shapes/cylinder.c \
 		srcs/shapes/sphere.c \
+		srcs/utils/display.c
 		srcs/parsing/ft_strtod.c \
 		srcs/parsing/ft_strtoi.c \
 		srcs/parsing/ambient/amb.c \
@@ -43,9 +45,6 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/counter.c \
 		srcs/parsing/light/light_utils.c \
 		srcs/parsing/light/light.c \
-#		srcs/parsing/light/light.c \
-
-
 
 CC= cc
 
@@ -58,7 +57,7 @@ MINILIBX_DIR = minilibx-linux
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-#SANITIZE= -g3 -fsanitize=address
+# SANITIZE= -g3 -fsanitize=address
 SANITIZE= -g
 
 # Color Variables

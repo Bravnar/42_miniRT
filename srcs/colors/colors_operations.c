@@ -8,7 +8,7 @@
 /*                                                                */
 /* ****************************************************************/
 
-t_color color_add(t_color c1, t_color c2)
+t_color	color_add(t_color c1, t_color c2)
 {
 	t_color	new;
 
@@ -27,7 +27,7 @@ t_color color_add(t_color c1, t_color c2)
 /*                                                                */
 /* ****************************************************************/
 
-t_color color_sub(t_color c1, t_color c2)
+t_color	color_sub(t_color c1, t_color c2)
 {
 	t_color	new;
 
@@ -46,7 +46,7 @@ t_color color_sub(t_color c1, t_color c2)
 /*                                                                */
 /* ****************************************************************/
 
-t_color color_scalarmult(int scalar, t_color c2)
+t_color	color_scalarmult(int scalar, t_color c2)
 {
 	t_color	new;
 
@@ -65,7 +65,7 @@ t_color color_scalarmult(int scalar, t_color c2)
 /*                                                                */
 /* ****************************************************************/
 
-t_color color_product(t_color c1, t_color c2)
+t_color	color_product(t_color c1, t_color c2)
 {
 	t_color	new;
 
@@ -86,8 +86,7 @@ t_color color_product(t_color c1, t_color c2)
 /*	- This only works with flat shapes                            */
 /* ****************************************************************/
 
-
-t_color color_blend(t_color c1, t_color c2)
+t_color	color_blend(t_color c1, t_color c2)
 {
 	t_color	new;
 
@@ -97,4 +96,3 @@ t_color color_blend(t_color c1, t_color c2)
 	new.b = (c1.b * c1.t + c2.b * c2.t * (255 - c1.t) / 255) / new.t;
 	return (new);
 }
-

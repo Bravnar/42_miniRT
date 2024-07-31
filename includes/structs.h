@@ -45,6 +45,16 @@ typedef struct s_tup
 	int		w;
 }	t_tup;
 
+typedef struct s_matrix
+{
+	double	M[4][4];
+}	t_matrix;
+
+typedef struct s_column
+{
+	double	m[4];
+}	t_column;
+
 /* Object libraries */
 # include "object.h"
 # include "sphere.h"
@@ -147,15 +157,6 @@ typedef struct s_environment
 	t_tup	wind;
 }	t_env;
 
-typedef struct s_matrix
-{
-	double	M[4][4];
-}	t_matrix;
-
-typedef struct s_column
-{
-	double	m[4];
-}	t_column;
 
 typedef struct s_shear
 {

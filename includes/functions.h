@@ -7,7 +7,6 @@ void			draw_rectangle(t_main *rt); //TMP
 void			my_pixel(t_mlx *mlx, int x, int y, int color); //IMPORTANT
 void			redraw(t_main *rt); //IMPORTANT TO ADAPT
 
-
 /* INIT */
 
 t_main			*init_main(void);
@@ -19,12 +18,6 @@ t_map	*get_scene(void);
 // t_main	*init_main(void);
 // void	init_mlx(t_mlx  *mlx);
 // void	init_rect(t_rect *rect);
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                            PARSING                                         */
-/*                                                                            */
-/* ************************************************************************** */
 
 /* read_rt_file.c */
 void	populate_scene_struct(char *file_name, t_map *scene);
@@ -78,7 +71,13 @@ void			handle_events(t_main *rt);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                            TUPLES/VECTORS                                  */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/31 14:53:38 by hmorand           #+#    #+#             */
+/*   Updated: 2024/07/31 14:53:56 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,12 +153,6 @@ t_matrix		matrix_mult(t_matrix A, t_matrix B);
 t_column		matrix_mult_col(t_matrix A, t_column b);
 t_tup			matrix_mult_tup(t_matrix A, t_tup b);
 
-/* MATRICES DISPLAY */
-
-void			print_matrix(t_matrix matrix, int size);
-void			print_column(t_column column);
-void			print_tuple(t_tup tuple);
-
 /* IDENTITY */
 
 t_matrix		identity(void);
@@ -170,6 +163,8 @@ t_matrix		transpose(t_matrix A);
 
 /* DETERMINANT */
 
+bool			is_triangular(t_matrix	A, int	size);
+double			diagonal_product(t_matrix A, int size);
 double			determinant(t_matrix A, int size);
 
 /* INVERSE */
@@ -186,22 +181,29 @@ t_matrix		inverse(t_matrix A, int size);
 
 /* TRANSLATION */
 
+t_matrix		translation_matrix(double x, double y, double z);
 t_tup			translate(t_tup point, double x, double y, double z);
 t_tup			inverse_translate(t_tup point, double x, double y, double z);
 
 /* SCALING */
 
+t_matrix		scaling_matrix(double x, double y, double z);
 t_tup			scale(t_tup point, double x, double y, double z);
 t_tup			inverse_scale(t_tup point, double x, double y, double z);
 
 /* ROTATIONS */
 
+t_matrix		rotation_x(double deg);
+t_matrix		rotation_y(double deg);
+t_matrix		rotation_z(double deg);
 t_tup			rotate(t_tup point, double deg, char axis);
 t_tup			inverse_rotate(t_tup point, double deg, char axis);
 
 /* SHEARING */
 
+
 t_shear			shear(double numbers[6]);
+t_matrix		shearing_matrix(t_shear sh);
 t_tup			shearing(t_tup point, t_shear sh);
 t_tup			inverse_shearing(t_tup point, t_shear sh);
 
@@ -225,5 +227,31 @@ t_inter			intersections(int c, ...);
 /* HITS */
 
 t_intersection	hit(t_inter inters);
+
+/* RAY TRANSFORMATIONS */
+
+t_ray			ray_transform(t_ray ray, t_matrix transform);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                SHADING                                     */
+/*                                                                            */
+/* ************************************************************************** */
+
+t_tup			normal_at(t_obj *sphere, t_tup point);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                 UTILS                                      */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* DISPLAY */
+
+void			print_matrix(t_matrix matrix, int size);
+void			print_column(t_column column);
+void			print_tuple(t_tup tuple);
+void			print_ray(t_ray ray);
+void			print_cofactors(t_matrix A, int size);
 
 #endif

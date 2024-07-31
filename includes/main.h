@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
+# include <time.h>
 # include <float.h>
 # include <errno.h>
 # include <limits.h>
