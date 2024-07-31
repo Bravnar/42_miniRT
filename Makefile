@@ -31,6 +31,7 @@ SRCS= 	srcs/main.c \
 		srcs/raycasting/intersect.c \
 		srcs/raycasting/hit.c \
 		srcs/raycasting/ray_transform.c \
+		srcs/shading/normal.c \
 		srcs/shapes/cube.c \
 		srcs/shapes/cylinder.c \
 		srcs/shapes/sphere.c \
@@ -49,7 +50,7 @@ MINILIBX_DIR = minilibx-linux
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-#SANITIZE= -g3 -fsanitize=address
+# SANITIZE= -g3 -fsanitize=address
 SANITIZE= -g
 
 # Color Variables
