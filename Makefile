@@ -35,7 +35,7 @@ SRCS= 	srcs/main.c \
 		srcs/shapes/cube.c \
 		srcs/shapes/cylinder.c \
 		srcs/shapes/sphere.c \
-		srcs/utils/display.c
+		srcs/utils/display.c \
 		srcs/parsing/ft_strtod.c \
 		srcs/parsing/ft_strtoi.c \
 		srcs/parsing/ambient/amb.c \
@@ -44,7 +44,7 @@ SRCS= 	srcs/main.c \
 		srcs/error/ft_errorquit.c \
 		srcs/parsing/counter.c \
 		srcs/parsing/light/light_utils.c \
-		srcs/parsing/light/light.c \
+		srcs/parsing/light/light.c
 
 CC= cc
 

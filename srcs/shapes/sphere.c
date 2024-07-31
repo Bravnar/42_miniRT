@@ -25,6 +25,7 @@ static void	transform(t_obj *shape, t_matrix transformation)
 {
 	shape->transformation = matrix_mult(shape->transformation,
 			transformation);
+	print_matrix(inverse(transformation, 4), 4);
 	shape->inverse_transformation = matrix_mult(shape->inverse_transformation,
 			inverse(transformation, 4));
 }
