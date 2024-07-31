@@ -1,6 +1,29 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+typedef enum s_err
+{
+	NO_ERR,
+	ACL_MISSING,
+	TOO_MANY_R,
+	TOO_MANY_A,
+	TOO_MANY_C,
+	A_RATIO_RANGE,
+	C_VECTOR_RANGE,
+	C_FOV_RANGE,
+	L_BRIGHT_RANGE,
+	UKNOWN_ID,
+	R_OVER_PARAM,
+	A_OVER_PARAM,
+	C_OVER_PARAM,
+	L_OVER_PARAM,
+	SP_OVER_PARAM,
+	PL_OVER_PARAM,
+	PL_VECTOR_RANGE,
+	CY_VECTOR_RANGE,
+//	MORE_TO_BE_ADDED,
+}	t_err;
+
 typedef struct	s_mlx
 {
 	void	*mlx_ptr;
@@ -61,7 +84,7 @@ typedef struct	s_light
 {
 	t_tup			point;
 	double			bright;
-	int				rgb[3];			// Bonus
+	t_color			rgb;			// Bonus
 	struct s_light	*next;
 }	t_light;
 
@@ -79,15 +102,27 @@ typedef struct	s_file
 	bool	is_valid;
 }	t_file;
 
+typedef struct	s_count
+{
+	int	r;
+	int	a;
+	int	c;
+	int	l;
+	int	sp;
+	int	cy;
+	int	pl;
+	int	cu;
+}	t_count;
+
 typedef struct	s_map
 {
 	t_file		file;
 	t_rwin		win;
 	t_amb		amb;
 	t_cam		cam;
+	t_count		count;
 	t_light		*light;
 	t_obj		*obj_list;
-
 }	t_map;
 
 typedef struct	s_main
@@ -149,5 +184,23 @@ typedef struct s_inter
 	int				count;
 	t_intersection	*i;
 }	t_inter;
+
+typedef struct s_strtoi
+{
+	const char	*s;
+	int		sign;
+	int		result;
+	int		digit;
+	int		digit_count;
+}	t_strtoi;
+
+typedef	struct s_conv
+{
+	char	**split;
+	double	b_result;
+	double	a_result;
+	double	final_result;
+	int		sign;
+}	t_conv;
 
 #endif
