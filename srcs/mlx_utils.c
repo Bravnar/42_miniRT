@@ -6,8 +6,8 @@ void	my_pixel(t_mlx *mlx, int x, int y, int color)
 
 	if (x >= 0 && x < mlx->win_x && y >= 0 && y < mlx->win_y)
 	{
-	dst = mlx->img_data + (y * mlx->size_line + x * (mlx->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+		dst = mlx->img_data + (y * mlx->size_line + x * (mlx->bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
 	}
 }
 

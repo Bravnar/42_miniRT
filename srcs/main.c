@@ -64,6 +64,55 @@ void	draw_watch(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
+void	draw_circle(t_main *rt)
+{
+	t_obj	*sphere;
+	int		y;
+	int		x;
+	int		pixels;
+	double	wall_size;
+	double	wall_z;
+	double	half;
+	double	pixel_size;
+	double	world_y;
+	double	world_x;
+	t_ray	ray;
+	t_inter	inter;
+
+	wall_z = 10;
+	wall_size = 7;
+	half = wall_size / 2;
+	pixels = 1600;
+	pixel_size = wall_size / pixels;
+	sphere = (t_obj *)sphere_create(2);
+	if (!sphere)
+		return;
+	y = -1;
+	while (++y < pixels)
+	{
+		world_y = half - pixel_size * y;
+		x = -1;
+		while (++x < pixels)
+		{
+			world_x = -half + pixel_size * x;
+			ray = ray_new(point(0, 0, -5), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -5))));
+			inter = intersect_sphere(ray, sphere);
+			if (inter.i)
+			{
+				t_intersection hit_info = hit(inter);
+				if (hit_info.t != -1)
+				{
+					my_pixel(&rt->mlx, x, y, 0xff0000);
+					free(inter.i);
+				}
+			}
+		}
+	}
+	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
+	handle_events(rt);
+	mlx_loop(rt->mlx.mlx_ptr);
+}
+
 /*PARSING TESTING MAIN */
 // int	main(int ac, char **av)
 // {
@@ -81,19 +130,19 @@ void	draw_watch(t_main *rt)
 
 int	main(void)
 {
-	/* t_main  *rt;
+	t_main  *rt;
 
 	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
 		exit(1);
-	draw_watch(rt);
-	free(rt); */
+	draw_circle(rt);
+	free(rt);
 
 
 	/* populate_scene_struct("test_rt/minimalist.rt", get_scene());
 	print_scene_details();
-
 	//draw_projectile(rt);
+
 	free(rt); */
 
 
@@ -130,14 +179,14 @@ int	main(void)
 		{1, -5, 1, 8},
 		{7, 7, -6, -7},
 		{1, -3, 7, 4}
-	}};*/
+	}};
 
 	t_matrix F = {{
 		{8, -5, 9, 2},
 		{7, 5, 6, 1},
 		{-6, 0, 9, 6},
 		{-3, 0, -9, -4}
-	}};
+	}};*/
 
 	/*t_matrix G = {{
 		{9, 3, 0, 9},
@@ -191,13 +240,13 @@ int	main(void)
 	print_tuple(f);
 	printf("Vector f after reflection:\n");
 	print_tuple(scale(e, -1, 1, 1));
-	printf("Triangular matrix: %d\n", is_triangular(G, 4));*/
+	printf("Triangular matrix: %d\n", is_triangular(G, 4));
 	clock_t start_time = clock();
 	determinant(F, 4);
 	clock_t end_time = clock();
 	double elapsed_time = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
 	printf("Elapsed time: %lf seconds\n", elapsed_time);
-	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));
+	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));*/
 
  	/* t_ray	ray;
 
@@ -205,7 +254,7 @@ int	main(void)
 	print_tuple(position(ray, 0));
 	print_tuple(position(ray, 1));
 	print_tuple(position(ray, -1));
-	print_tuple(position(ray, 2.5)); */
+	print_tuple(position(ray, 2.5));
 
 	t_obj *sphere = (t_obj *)sphere_create(2);
 	sphere->transform(sphere, scaling_matrix(2,2,2));
@@ -215,7 +264,7 @@ int	main(void)
 		printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 			i.count, i.i[0].t, i.i[1].t);
 	else
-		printf("No intersect");
+		printf("No intersect");*/
 	// i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
 	// printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 	// 	i.count, i.i[0].t, i.i[1].t);
