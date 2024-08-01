@@ -31,6 +31,7 @@ static void	transform(t_obj *shape, t_matrix transformation)
 
 t_sphere	*sphere_create(double diameter)
 {
+	printf("entering sphere_create\n");
 	t_sphere	*sphere;
 
 	sphere = malloc(sizeof(t_sphere));

@@ -36,6 +36,7 @@ void	populate_cam(void);
 void	populate_light(void);
 
 /* light_utils.c */
+
 t_light	*new_light_node(t_tup point, double bright, t_color rgb);
 void	add_light_node(t_light **head, t_light *new_node);
 void	free_light_nodes(t_light *light);
@@ -43,6 +44,10 @@ void	print_light_nodes(t_light **head);
 
 /* Resolution */
 void	populate_rwin(void);
+
+/* Shapes/Objects */
+
+void	populate_shapes(void);
 
 /* ft_errorquit.c */
 void	err_quit(char *msg);
@@ -68,18 +73,6 @@ int	ft_strtoi(const char *nptr, char **endptr);
 int				close_win(void *param);
 int				keyboard(int keycode, t_main *rt);
 void			handle_events(t_main *rt);
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 14:53:38 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/31 14:53:56 by hmorand          ###   ########.ch       */
-/*                                                                            */
-/* ************************************************************************** */
 
 /* CREATE */
 

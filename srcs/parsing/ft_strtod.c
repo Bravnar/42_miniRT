@@ -73,6 +73,8 @@ int	check_num(char *str, int *sign)
 
 double	ft_strtod(char *str)
 {
+	printf("entering ft_strtod\n");
+	printf("passing %s\n", str);
 	t_conv	stod;
 	char	*endptr;
 
@@ -88,5 +90,6 @@ double	ft_strtod(char *str)
 		stod.a_result = handle_after(stod.split[1], stod.sign);
 	stod.final_result = stod.b_result + stod.a_result;
 	ft_free_arr(stod.split);
+	printf("exiting ft_strtod\n");
 	return (stod.final_result);
 }
