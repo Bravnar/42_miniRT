@@ -46,7 +46,7 @@ t_color	color_sub(t_color c1, t_color c2)
 /*                                                                */
 /* ****************************************************************/
 
-t_color	color_scalarmult(int scalar, t_color c2)
+t_color	color_scalarmult(double scalar, t_color c2)
 {
 	t_color	new;
 

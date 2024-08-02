@@ -34,6 +34,8 @@ SRCS= 	srcs/main.c \
 		srcs/shading/normal.c \
 		srcs/shading/material.c \
 		srcs/shading/reflect.c \
+		srcs/shading/lighting.c \
+		srcs/shading/lighting_utils.c \
 		srcs/shapes/cube.c \
 		srcs/shapes/cylinder.c \
 		srcs/shapes/sphere.c \
@@ -49,7 +51,7 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/light/light_utils.c \
 		srcs/parsing/light/light.c \
 		srcs/parsing/objects/objects.c \
-		srcs/parsing/objects/objects_utils.c 
+		srcs/parsing/objects/objects_utils.c
 
 CC= cc
 
