@@ -17,7 +17,7 @@ int	close_win(void *param)
 int	keyboard(int keycode, t_main *rt)
 {
 	printf("key pressed: %d\n", keycode);
-	if (keycode == ESC)
+	if (keycode == ESC || keycode == Q_KEY)
 	{
 		if (rt->mlx.win_ptr)
 		{

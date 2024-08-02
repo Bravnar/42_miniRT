@@ -3,6 +3,7 @@
 
 # define EPSILON	(0.000001)
 # define ESC		(65307)
+# define Q_KEY		(113)
 # define PI			(3.1416)
 # define WHITESPACE " \t\n\r\f\v"
 # define WIN_X_MAX	(3840)

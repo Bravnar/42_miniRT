@@ -1,5 +1,7 @@
 #include "main.h"
 
+void	add_hex_color(t_color *c);
+
 t_color	color(int r, int g, int b)
 {
 	t_color	new;
@@ -8,6 +10,7 @@ t_color	color(int r, int g, int b)
 	new.g = (unsigned char)g;
 	new.b = (unsigned char)b;
 	new.t = 255;
+	add_hex_color(&new);
 	return (new);
 }
 

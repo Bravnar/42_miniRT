@@ -124,7 +124,7 @@ void	draw_circle(t_main *rt)
 				t_intersection hit_info = hit(inter);
 				if (hit_info.t != -1)
 				{
-					my_pixel(&rt->mlx, x, y, 0xff0000);
+					my_pixel(&rt->mlx, x, y, sphere->material.color.hex);
 					free(inter.i);
 				}
 			}

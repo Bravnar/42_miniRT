@@ -11,6 +11,7 @@ void	print_object_nodes(t_obj **head)
 	{
 		printf("\tShape %d:\n", i++);
 		printf("\t\tType: %s\n", tmp->get_name(tmp));
+		printf("\t\tDiameter: %f\n", ((t_sphere *)tmp)->diameter);
 		printf("\t\tPoint: %f, %f, %f\n", tmp->point.x, tmp->point.y, tmp->point.z);
 		printf("\t\tVector: %f, %f, %f\n", tmp->dir_vector.x,
 											tmp->dir_vector.y,
