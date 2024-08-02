@@ -4,7 +4,7 @@ void	draw_circle(t_main *rt);
 
 void	game_loop(t_main *rt)
 {
-	init_mlx(&rt->mlx);
+	//init_mlx(&rt->mlx);
 	draw_circle(rt);
 	//draw_rectangle(rt);
 	handle_events(rt);
@@ -132,7 +132,7 @@ void	draw_circle(t_main *rt)
 	}
 	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 	handle_events(rt);
-	mlx_loop(rt->mlx.mlx_ptr);
+	//mlx_loop(rt->mlx.mlx_ptr);
 }
 
 // int	main(void)
@@ -309,6 +309,7 @@ int main(int ac, char **av)
 		exit(1);
 	// printf("ft_strtod: %f\n", ft_strtod("-50"));
 	populate_scene_struct(av[1], get_scene());
+	init_mlx(&rt->mlx);
 	print_scene_details();
 	game_loop(rt);
 	free(rt);

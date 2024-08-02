@@ -7,7 +7,7 @@ void	read_file(char *file_name, t_map *data)
 
 	data->file.fd = open(file_name, O_RDONLY);
 	if (data->file.fd == -1)
-		exit(1);
+		err_handler(OPEN_FAILED);
 	line = get_next_line(data->file.fd);
 	while (line)
 	{
@@ -16,7 +16,6 @@ void	read_file(char *file_name, t_map *data)
 		free(line);
 		line = get_next_line(data->file.fd);
 	}
-	//print_nodes(&data->file.parse);
 	free(line);
 }
 
@@ -41,8 +40,24 @@ void	check_identifier(t_parse **head)
 	}
 }
 
+int	check_file_name(char *name)
+{
+	size_t	length;
+	char	*tested_string;
+
+	length = ft_strlen(name);
+	tested_string = ft_strstr(name + length - 3, ".rt");
+	if (ft_strlen(tested_string) > 3)
+		return (0);
+	if (!tested_string)
+		return (0);
+	return (1);
+}
+
 void	populate_scene_struct(char *file_name, t_map *scene)
 {
+	if (!check_file_name(file_name))
+		err_handler(WRONG_EXT);
 	read_file(file_name, scene);
 	check_count();
 	populate_rwin();
@@ -50,7 +65,6 @@ void	populate_scene_struct(char *file_name, t_map *scene)
 	populate_cam();
 	populate_light();
 	populate_shapes();
-	printf("name: %s\n", get_scene()->obj_list->get_name(get_scene()->obj_list));
 }
 
 

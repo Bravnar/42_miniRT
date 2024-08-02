@@ -85,6 +85,5 @@ t_main	*init_all(char *file_name)
 	if (!main)
 		return (NULL);
 	main->data = create_scene(file_name);
-	//init_mlx(&main->mlx);
 	return (main);
 }

@@ -84,7 +84,7 @@ void	print_scene_details(void)
 			cam.vector.x, cam.vector.y, cam.vector.z);
 	printf("\tCamera FOV: %d\n", cam.fov);
 	printf("Lights --------------------------------------------------:\n");
-	print_light_nodes(&get_scene()->light);
+	print_light_nodes(get_scene_light());
 	printf("Shapes ---------------------------------------------------:\n");
-	print_object_nodes(&get_scene()->obj_list);
+	print_object_nodes(get_scene_objs());
 }

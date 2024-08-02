@@ -32,5 +32,7 @@
 # define	M_PL_OVER_PARAM		"Too many arguments in pl"
 # define	M_PL_VECTOR_RANGE	"pl: vector out of range (-1.0 / 1.0)"
 # define	M_CY_VECTOR_RANGE	"cy: vector out of range (-1.0 / 1.0)"
+# define	M_WRONG_EXTENSION	"wrong file extension, expected '.rt'"
+# define	M_OPEN_FAILED		"failed to open file"
 
 #endif

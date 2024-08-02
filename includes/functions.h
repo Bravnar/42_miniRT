@@ -13,11 +13,19 @@ t_main			*init_main(void);
 void			init_mlx(t_mlx  *mlx);
 void			init_rect(t_rect *rect);
 // t_main	*init_all(void);
-t_main	*init_all(char *file_name);
 t_map	*get_scene(void);
+t_main	*init_all(char *file_name);
 // t_main	*init_main(void);
 // void	init_mlx(t_mlx  *mlx);
 // void	init_rect(t_rect *rect);
+
+/* scene_getters */
+t_rwin	*get_scene_win(void);
+t_amb	*get_scene_amb(void);
+t_cam	*get_scene_cam(void);
+t_light	**get_scene_light(void);
+t_obj	**get_scene_objs(void);
+
 
 /* read_rt_file.c */
 void	populate_scene_struct(char *file_name, t_map *scene);
