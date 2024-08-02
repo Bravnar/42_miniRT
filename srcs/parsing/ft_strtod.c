@@ -73,15 +73,13 @@ int	check_num(char *str, int *sign)
 
 double	ft_strtod(char *str)
 {
-	printf("entering ft_strtod\n");
-	printf("passing %s\n", str);
 	t_conv	stod;
 	char	*endptr;
 
 	ft_bzero(&stod, sizeof(stod));
 	stod.sign = 1;
 	if (!check_num(str, &stod.sign))
-		exit(1);
+		err_handler(INVALID_NUMBER);
 	if (!ft_strchr(str, '.'))
 		return ((double)ft_strtoi(str, &endptr));
 	stod.split = ft_split(str, '.');
@@ -90,6 +88,5 @@ double	ft_strtod(char *str)
 		stod.a_result = handle_after(stod.split[1], stod.sign);
 	stod.final_result = stod.b_result + stod.a_result;
 	ft_free_arr(stod.split);
-	printf("exiting ft_strtod\n");
 	return (stod.final_result);
 }

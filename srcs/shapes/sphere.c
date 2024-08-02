@@ -29,22 +29,21 @@ static void	transform(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_sphere	*sphere_create(double diameter)
+t_sphere	*sphere_create(char **sphere_split)
 {
-	printf("entering sphere_create\n");
 	t_sphere	*sphere;
 
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
 		return (NULL);
-	sphere->diameter = diameter;
+	sphere->diameter = ft_strtod(sphere_split[2]);
 	sphere->shape.get_name = get_name;
 	sphere->shape.volume = volume;
 	sphere->shape.destroy = sphere_destroy;
 	sphere->shape.transform = transform;
-	sphere->shape.point = point(0, 0, 0);//parse_point; //most basic sphere
+	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
-	sphere->shape.color = color(255, 0, 0);//parse_rgb; // by default to red
+	sphere->shape.color = get_color(sphere_split[3]);//parse_rgb; // by default to red
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();

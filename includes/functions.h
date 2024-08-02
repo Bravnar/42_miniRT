@@ -48,6 +48,12 @@ void	populate_rwin(void);
 /* Shapes/Objects */
 
 void	populate_shapes(void);
+t_tup	get_vector(char *str);
+t_tup	get_point(char *str);
+t_color	get_color(char *str);
+
+/* objects_utils.c */
+void	print_object_nodes(t_obj **head);
 
 /* ft_errorquit.c */
 void	err_quit(char *msg);

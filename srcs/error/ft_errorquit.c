@@ -43,4 +43,6 @@ void	err_handler(t_err code)
 		err_quit(M_PL_VECTOR_RANGE);
 	if (code == CY_VECTOR_RANGE)
 		err_quit(M_CY_VECTOR_RANGE);
+	if (code == INVALID_NUMBER)
+		err_quit(M_INVALID_ENTRY);
 }

@@ -86,4 +86,5 @@ void	print_scene_details(void)
 	printf("Lights --------------------------------------------------:\n");
 	print_light_nodes(&get_scene()->light);
 	printf("Shapes ---------------------------------------------------:\n");
+	print_object_nodes(&get_scene()->obj_list);
 }

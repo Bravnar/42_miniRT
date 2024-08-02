@@ -64,7 +64,7 @@ void	draw_watch(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
-void	draw_circle(t_main *rt)
+/* void	draw_circle(t_main *rt)
 {
 	t_obj	*sphere;
 	int		y;
@@ -113,7 +113,7 @@ void	draw_circle(t_main *rt)
 	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
-}
+} */
 
 // int	main(void)
 // {
