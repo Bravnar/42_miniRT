@@ -21,6 +21,7 @@ typedef enum s_err
 	PL_OVER_PARAM,
 	PL_VECTOR_RANGE,
 	CY_VECTOR_RANGE,
+	INVALID_NUMBER,
 //	MORE_TO_BE_ADDED,
 }	t_err;
 

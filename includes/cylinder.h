@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:49:51 by hmorand           #+#    #+#             */
-/*   Updated: 2024/07/29 14:49:51 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/08/02 10:59:07 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_cyl
 	double	height;
 }	t_cyl;
 
-t_cyl	*cyl_create(double diameter, double height);
+t_cyl	*cyl_create(char **cyl_line);
 void	cyl_destroy(t_obj *shape);
 
 #endif

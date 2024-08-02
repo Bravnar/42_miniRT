@@ -79,7 +79,7 @@ double	ft_strtod(char *str)
 	ft_bzero(&stod, sizeof(stod));
 	stod.sign = 1;
 	if (!check_num(str, &stod.sign))
-		exit(1);
+		err_handler(INVALID_NUMBER);
 	if (!ft_strchr(str, '.'))
 		return ((double)ft_strtoi(str, &endptr));
 	stod.split = ft_split(str, '.');

@@ -64,7 +64,7 @@ void	draw_watch(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
-void	draw_circle(t_main *rt)
+/* void	draw_circle(t_main *rt)
 {
 	t_obj	*sphere;
 	int		y;
@@ -113,11 +113,12 @@ void	draw_circle(t_main *rt)
 	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
-}
+} */
 
+/*
 int	main(void)
 {
-	/* t_main  *rt;
+  t_main  *rt;
 
 	rt = init_all("test_rt/minimalist.rt");
 	if (!rt)
@@ -235,7 +236,6 @@ int	main(void)
 	print_tuple(position(ray, -1));
 	print_tuple(position(ray, 2.5));
 
-	t_obj *sphere = (t_obj *)sphere_create(2);
 	sphere->transform(sphere, scaling_matrix(2,2,2));
 	printf("Determinant transformation: %f\n",determinant(sphere->transformation, 4));
 	t_inter i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
@@ -264,7 +264,7 @@ int	main(void)
 	printf("Ray after translation\n");
 	print_ray(r1);
 	printf("Ray after scaling\n");
-	print_ray(r2); */
+	print_ray(r2); 
 	t_obj *sphere = (t_obj *)sphere_create(2);
 
 	sphere->transform(sphere,
@@ -272,15 +272,17 @@ int	main(void)
 	//print_matrix(matrix_mult(scaling_matrix(1, 0.5, 1), rotation_z(48)), 4);
 	//print_matrix(sphere->inverse_transformation, 4);
 	t_tup n = normal_at(sphere, point(0, sqrt(2)/2, -sqrt(2)/2));
-	print_tuple(n);
+	print_tuple(n);*/
 
 
-	return 0;
-}
+// 	return 0;
+// }
 
-/*  STAN TESTER MAIN
+// STAN TESTER MAIN
 int main(int ac, char **av)
 {
+	t_main  *rt;
+
 	if (ac != 2)
 		return (0);
 	rt = init_all(av[1]);
@@ -292,4 +294,4 @@ int main(int ac, char **av)
 	//game_loop(rt);
 	free(rt);
 }
-*/
+

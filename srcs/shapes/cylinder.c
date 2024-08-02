@@ -32,25 +32,25 @@ static void	transform(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_cyl	*cyl_create(double diameter, double height)
+t_cyl	*cyl_create(char **cyl_line)
 {
 	t_cyl	*cyl;
 
 	cyl = malloc(sizeof(t_cyl));
 	if (!cyl)
 		return (NULL);
-	cyl->diameter = diameter;
+	cyl->diameter = ft_strtod(cyl_line[3]);
+	cyl->height = ft_strtod(cyl_line[4]);
 	cyl->shape.get_name = get_name;
 	cyl->shape.volume = volume;
 	cyl->shape.destroy = cyl_destroy;
 	cyl->shape.transform = transform;
-	cyl->shape.point = point(0, 0, 0);//parse_point;
-	cyl->shape.dir_vector = vector(0, 0, 0);//parse_vector;
-	cyl->shape.color = color(255, 0, 0);//parse_rgb;
+	cyl->shape.point = get_point(cyl_line[1]);//parse_point;
+	cyl->shape.dir_vector = get_vector(cyl_line[2]);//parse_vector;
+	cyl->shape.color = get_color(cyl_line[5]);//parse_rgb;
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
-	cyl->height = height;
 	return (cyl);
 }
 

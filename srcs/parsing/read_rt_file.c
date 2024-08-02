@@ -44,31 +44,16 @@ void	check_identifier(t_parse **head)
 void	populate_scene_struct(char *file_name, t_map *scene)
 {
 	read_file(file_name, scene);
-	check_identifier(&get_scene()->file.parse);
-	// count_identifier(&get_scene()->file.parse);
 	check_count();
-	printf("count of L: %d\n", get_scene()->count.l);
-	printf("count of pl: %d\n", get_scene()->count.pl);
 	populate_rwin();
 	populate_amb();
 	populate_cam();
 	populate_light();
+	populate_shapes();
+	printf("name: %s\n", get_scene()->obj_list->get_name(get_scene()->obj_list));
 }
 
-void	print_scene_details(void)
-{
-	t_rwin	res = get_scene()->win;
-	t_amb	amb = get_scene()->amb;
-	t_cam	cam = get_scene()->cam;
 
-	printf("Resolution x: %d\nResolution y: %d\n", res.x, res.y);
-	printf("Ambient ratio: %f\nAmbient rgb: [%d,%d,%d]\n", amb.ratio, amb.rgb.r, amb.rgb.g, amb.rgb.b);
-	printf("Camera position: [%f, %f, %f]\n", cam.point.x, cam.point.y, cam.point.z);
-	printf("Camera vector: [%f, %f, %f]\n", cam.vector.x, cam.vector.y, cam.vector.z);
-	printf("Camera FOV: %d\n", cam.fov);
-	printf("Lights -------------------------:\n");
-	print_light_nodes(&get_scene()->light);
-}
 /* 
 	1) Go over parsed lines and check identifiers
 		a) RAC are unique
