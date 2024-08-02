@@ -1,6 +1,6 @@
 #include "main.h"
 
-t_light	*new_light_node(t_tup point, double bright, t_color rgb)
+t_light	*new_light_node(t_tup point, double bright, t_color rgb, t_color i)
 {
 	t_light	*light;
 
@@ -10,6 +10,7 @@ t_light	*new_light_node(t_tup point, double bright, t_color rgb)
 	light->point = point;
 	light->bright = bright;
 	light->rgb = rgb;
+	light->intensity = i;
 	light->next = NULL;
 	return (light);
 }
@@ -18,7 +19,7 @@ void	add_light_node(t_light **head, t_light *new_node)
 {
 	t_light	*tmp;
 
-	if( !*head)
+	if (!*head)
 		*head = new_node;
 	else
 	{
@@ -51,12 +52,13 @@ void	print_light_nodes(t_light **head)
 
 	tmp = *head;
 	i = 1;
-	while(tmp)
+	while (tmp)
 	{
 		printf("\tLight %d:\n", i++);
-		printf("\t\tPoint: %f, %f, %f\n", tmp->point.x, tmp->point.y, tmp->point.z);
+		printf("\t\tPoint: %f, %f, %f\n", tmp->point.x, tmp->point.y,
+			tmp->point.z);
 		printf("\t\tBrightness: %f\n", tmp->bright);
-		printf("\t\tColor: %d, %d, %d\n", tmp->rgb.r, tmp->rgb.g, tmp->rgb.b);
+		printf("\t\tColor: %f, %f, %f\n", tmp->rgb.r, tmp->rgb.g, tmp->rgb.b);
 		tmp = tmp->next;
 	}
 }

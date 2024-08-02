@@ -144,7 +144,7 @@ void	draw_circle(t_main *rt)
 // 		exit(1);
 // 	draw_circle(rt);
 // 	free(rt);
-  
+
 	/* populate_scene_struct("test_rt/minimalist.rt", get_scene());
 	print_scene_details();
 	//draw_projectile(rt);
@@ -307,10 +307,16 @@ int main(int ac, char **av)
 	rt = init_all(av[1]);
 	if (!rt)
 		exit(1);
-	// printf("ft_strtod: %f\n", ft_strtod("-50"));
 	populate_scene_struct(av[1], get_scene());
-	print_scene_details();
-	game_loop(rt);
+	//print_scene_details();
+	//game_loop(rt);
+	t_tup eyev = vector(0, 0, -1);
+	t_tup normalv = vector(0, 0, -1);
+	t_obj *sphere = get_scene()->obj_list;
+	t_tup p = point(0, 0, 0);
+	t_color l = lighting(sphere->material, p, eyev, normalv);
+	print_color(l);
+	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
 	free(rt);
 }
 

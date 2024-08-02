@@ -37,7 +37,7 @@ void	populate_light(void);
 
 /* light_utils.c */
 
-t_light	*new_light_node(t_tup point, double bright, t_color rgb);
+t_light	*new_light_node(t_tup point, double bright, t_color rgb, t_color i);
 void	add_light_node(t_light **head, t_light *new_node);
 void	free_light_nodes(t_light *light);
 void	print_light_nodes(t_light **head);
@@ -114,7 +114,13 @@ t_proj			tick(t_env env, t_proj proj);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                                FLOATS                                      */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 17:28:59 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/02 17:28:59 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,12 +136,14 @@ bool			equal(double a, double b);
 
 t_color			color(int r, int g, int b);
 void			add_hex_color(t_color *c);
+t_color			black(void);
+void			print_color(t_color c);
 
 /* COLOR OPERATIONS */
 
 t_color			color_add(t_color c1, t_color c2);
 t_color			color_sub(t_color c1, t_color c2);
-t_color			color_scalarmult(int scalar, t_color c2);
+t_color			color_scalarmult(double scalar, t_color c2);
 t_color			color_product(t_color c1, t_color c2);
 t_color			color_blend(t_color c1, t_color c2);
 
@@ -248,6 +256,13 @@ t_tup			vector_reflect(t_tup in, t_tup normal);
 /* LIGHTING */
 
 t_material		material(t_color c, double d, double s, double sh);
+t_color			lighting(t_material m, t_tup p, t_tup ev, t_tup nv);
+
+/* LIGHTING UTILS */
+
+t_color			ambient(t_color effective_color, t_material mat);
+t_color			diffuse(double ldn, t_material m, t_color eff_color);
+t_color			specular(double ldn, t_tup light_v, t_material m, t_tup ev, t_tup nv);
 
 /* ************************************************************************** */
 /*                                                                            */
