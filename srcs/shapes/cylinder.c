@@ -45,9 +45,9 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.volume = volume;
 	cyl->shape.destroy = cyl_destroy;
 	cyl->shape.transform = transform;
+	cyl->shape.material = material(get_color(cyl_line[5]), 0.9, 0.9, 200);
 	cyl->shape.point = get_point(cyl_line[1]);//parse_point;
 	cyl->shape.dir_vector = get_vector(cyl_line[2]);//parse_vector;
-	cyl->shape.color = get_color(cyl_line[5]);//parse_rgb;
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();

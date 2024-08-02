@@ -25,7 +25,6 @@ static void	transform(t_obj *shape, t_matrix transformation)
 {
 	shape->transformation = matrix_mult(shape->transformation,
 			transformation);
-	print_matrix(inverse(transformation, 4), 4);
 	shape->inverse_transformation = matrix_mult(shape->inverse_transformation,
 			inverse(transformation, 4));
 }
@@ -44,7 +43,8 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.transform = transform;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
-	sphere->shape.color = get_color(sphere_split[3]);//parse_rgb; // by default to red
+	sphere->shape.material = material(get_color(sphere_split[3]), 0.9, 0.9, 200);
+	sphere->shape.color = ;//parse_rgb; // by default to red
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();
