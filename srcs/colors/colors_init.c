@@ -26,5 +26,5 @@ t_color	black(void)
 
 void	print_color(t_color c)
 {
-	printf("Color: (%f, %f, %f)\n", c.r/255, c.g/255, c.b/255);
+	printf("(%f, %f, %f) ", c.r/255, c.g/255, c.b/255);
 }
