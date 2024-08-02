@@ -30,23 +30,23 @@ static void	transform(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_cube	*cube_create(double length, double width, double height)
+t_cube	*cube_create(char **cube_line)
 {
 	t_cube	*cube;
 
 	cube = malloc(sizeof(t_cube));
 	if (!cube)
 		return (NULL);
-	cube->length = length;
-	cube->width = width;
-	cube->height = height;
+	cube->length = ft_strtod(cube_line[3]);
+	cube->width = ft_strtod(cube_line[4]);
+	cube->height = ft_strtod(cube_line[5]);
 	cube->shape.get_name = get_name;
 	cube->shape.volume = volume;
 	cube->shape.destroy = cube_destroy;
 	cube->shape.transform = transform;
-	cube->shape.point = point(0, 0, 0);//parse_point;
-	cube->shape.dir_vector = vector(0, 0, 0);//parse_vector;
-	cube->shape.material = material(color(255, 0, 0), 0.9, 0.9, 200);
+	cube->shape.material = material(get_color(cube_line[6]);, 0.9, 0.9, 200);
+	cube->shape.point = get_point(cube_line[1]);//parse_point;
+	cube->shape.dir_vector = get_vector(cube_line[2]);//parse_vector;
 	cube->shape.transformation = identity();
 	cube->shape.inverse_transformation = identity();
 	cube->shape.next = NULL;

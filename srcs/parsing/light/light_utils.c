@@ -47,13 +47,16 @@ void	free_light_nodes(t_light *light)
 void	print_light_nodes(t_light **head)
 {
 	t_light	*tmp;
+	int		i;
 
 	tmp = *head;
+	i = 1;
 	while(tmp)
 	{
-		printf("Point: %f, %f, %f\n", tmp->point.x, tmp->point.y, tmp->point.z);
-		printf("Brightness: %f\n", tmp->bright);
-		printf("Color: %d, %d, %d\n", tmp->rgb.r, tmp->rgb.g, tmp->rgb.b);
+		printf("\tLight %d:\n", i++);
+		printf("\t\tPoint: %f, %f, %f\n", tmp->point.x, tmp->point.y, tmp->point.z);
+		printf("\t\tBrightness: %f\n", tmp->bright);
+		printf("\t\tColor: %d, %d, %d\n", tmp->rgb.r, tmp->rgb.g, tmp->rgb.b);
 		tmp = tmp->next;
 	}
 }
