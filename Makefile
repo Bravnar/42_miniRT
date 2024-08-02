@@ -47,7 +47,7 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/light/light_utils.c \
 		srcs/parsing/light/light.c \
 		srcs/parsing/objects/objects.c \
-		srcs/parsing/objects/objects_utils.c \
+		srcs/parsing/objects/objects_utils.c 
 
 CC= cc
 

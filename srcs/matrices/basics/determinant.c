@@ -105,13 +105,9 @@ double	determinant(t_matrix A, int size)
 	result = 0;
 	if (size == 2)
 		return (A.M[0][0] * A.M[1][1] - A.M[0][1] * A.M[1][0]);
-	if (is_triangular(A, size))
-		return (diagonal_product(A, size));
-	if (has_zero_row_column(A, size))
-		return (0);
 	while (++i < size)
 	{
-		if (A.M[0][i])
+		if (!A.M[0][i])
 			continue ;
 		subm = sub(A, size - 1, i);
 		result += pow(-1, i) * determinant(subm, size - 1) * A.M[0][i];
