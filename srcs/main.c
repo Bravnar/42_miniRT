@@ -86,10 +86,7 @@ void	draw_watch(t_main *rt)
 	pixel_size = wall_size / pixels;
 	sphere = (t_obj *)sphere_create(2);
 	double	sh[6] = {1, 0, 0, 0, 0, 0};
-	sphere->transform(sphere, scaling_matrix(0.1, 0.5, 0.001));
 	sphere->transform(sphere, shearing_matrix(shear(sh)));
-	sphere->transform(sphere, rotation_z(-25));
-	sphere->transform(sphere, rotation_x(30));
 	if (!sphere)
 		return;
 	y = -1;
@@ -100,14 +97,14 @@ void	draw_watch(t_main *rt)
 		while (++x < pixels)
 		{
 			world_x = -half + pixel_size * x;
-			ray = ray_new(point(0, 0, -5), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -5))));
+			ray = ray_new(point(0, 0, -10), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -10))));
 			inter = intersect_sphere(ray, sphere);
 			if (inter.i)
 			{
 				t_intersection hit_info = hit(inter);
 				if (hit_info.t != -1)
 				{
-					my_pixel(&rt->mlx, x, y, 0xffaf00);
+					my_pixel(&rt->mlx, x, y, 0xff0000);
 					free(inter.i);
 				}
 			}
@@ -118,17 +115,22 @@ void	draw_watch(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 } */
 
-/*
-int	main(void)
-{
+// int	main(void)
+// {
+// 	t_main  *rt;
 
-	t_main  *rt;
+// 	rt = init_all("test_rt/minimalist.rt");
+// 	if (!rt)
+// 		exit(1);
+// 	draw_circle(rt);
+// 	free(rt);
+  
+	/* populate_scene_struct("test_rt/minimalist.rt", get_scene());
+	print_scene_details();
+	//draw_projectile(rt);
 
-	rt = init_all("test_rt/minimalist.rt");
-	if (!rt)
-		exit(1);
-	draw_circle(rt);
-	free(rt);
+	free(rt); */
+
 
 	/* t_matrix A = {{
 		{1, 2, 3, 4},
@@ -240,6 +242,7 @@ int	main(void)
 	print_tuple(position(ray, -1));
 	print_tuple(position(ray, 2.5));
 
+	t_obj *sphere = (t_obj *)sphere_create(2);
 	sphere->transform(sphere, scaling_matrix(2,2,2));
 	printf("Determinant transformation: %f\n",determinant(sphere->transformation, 4));
 	t_inter i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
@@ -268,13 +271,7 @@ int	main(void)
 	printf("Ray after translation\n");
 	print_ray(r1);
 	printf("Ray after scaling\n");
-	print_ray(r2); 
-	t_obj *sphere = (t_obj *)sphere_create(2);
-
-	sphere->transform(sphere,
-			matrix_mult(scaling_matrix(1, 0.5, 1), rotation_z(48)));
-	t_tup n = normal_at(sphere, point(0, sqrt(2)/2, -sqrt(2)/2));
-	print_tuple(n);*/
+	print_ray(r2); */
 
 
 // 	return 0;

@@ -30,7 +30,7 @@ t_plane	*plane_create(char **plane_line)
 	plane->shape.transform = transform;
 	plane->shape.point = get_point(plane_line[1]);//parse_point;
 	plane->shape.dir_vector = get_vector(plane_line[2]);//parse_vector;
-	plane->shape.color = get_color(plane_line[3]);//parse_rgb;
+	plane->shape.material = material(get_color(plane_line[6]), 0.9, 0.9, 200);
 	plane->shape.transformation = identity();
 	plane->shape.inverse_transformation = identity();
 	plane->shape.next = NULL;

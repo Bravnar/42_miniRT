@@ -44,7 +44,7 @@ t_cube	*cube_create(char **cube_line)
 	cube->shape.volume = volume;
 	cube->shape.destroy = cube_destroy;
 	cube->shape.transform = transform;
-	cube->shape.material = material(get_color(cube_line[6]);, 0.9, 0.9, 200);
+	cube->shape.material = material(get_color(cube_line[6]), 0.9, 0.9, 200);
 	cube->shape.point = get_point(cube_line[1]);//parse_point;
 	cube->shape.dir_vector = get_vector(cube_line[2]);//parse_vector;
 	cube->shape.transformation = identity();
