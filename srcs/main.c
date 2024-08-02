@@ -1,9 +1,12 @@
 #include "main.h"
 
+void	draw_circle(t_main *rt);
+
 void	game_loop(t_main *rt)
 {
-	//init_mlx(&rt->mlx);
-	draw_rectangle(rt);
+	init_mlx(&rt->mlx);
+	draw_circle(rt);
+	//draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
 }
@@ -64,7 +67,23 @@ void	draw_watch(t_main *rt)
 	mlx_loop(rt->mlx.mlx_ptr);
 }
 
-/* void	draw_circle(t_main *rt)
+t_obj	*search_obj_list(char *type)
+{
+	t_obj	**head;
+	t_obj	*target;
+
+	head = &get_scene()->obj_list;
+	target = *head;
+	while (target)
+	{
+		if (!ft_strcmp(target->get_name(target), type))
+			return (target);
+		target = target->next;
+	}
+	return (target);
+}
+
+void	draw_circle(t_main *rt)
 {
 	t_obj	*sphere;
 	int		y;
@@ -84,9 +103,10 @@ void	draw_watch(t_main *rt)
 	half = wall_size / 2;
 	pixels = 1600;
 	pixel_size = wall_size / pixels;
-	sphere = (t_obj *)sphere_create(2);
-	double	sh[6] = {1, 0, 0, 0, 0, 0};
-	sphere->transform(sphere, shearing_matrix(shear(sh)));
+	// sphere = (t_obj *)sphere_create(2);
+	sphere = search_obj_list("Sphere");
+	//double	sh[6] = {1, 0, 0, 0, 0, 0};
+	//sphere->transform(sphere, shearing_matrix(shear(sh)));
 	if (!sphere)
 		return;
 	y = -1;
@@ -113,7 +133,7 @@ void	draw_watch(t_main *rt)
 	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
-} */
+}
 
 // int	main(void)
 // {
@@ -290,7 +310,7 @@ int main(int ac, char **av)
 	// printf("ft_strtod: %f\n", ft_strtod("-50"));
 	populate_scene_struct(av[1], get_scene());
 	print_scene_details();
-	//game_loop(rt);
+	game_loop(rt);
 	free(rt);
 }
 
