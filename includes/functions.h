@@ -15,6 +15,7 @@ void			init_rect(t_rect *rect);
 // t_main	*init_all(void);
 t_map	*get_scene(void);
 t_main	*init_all(char *file_name);
+t_obj	*search_obj_list(char *type);
 // t_main	*init_main(void);
 // void	init_mlx(t_mlx  *mlx);
 // void	init_rect(t_rect *rect);
