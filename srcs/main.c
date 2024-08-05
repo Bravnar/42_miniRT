@@ -83,6 +83,21 @@ t_obj	*search_obj_list(char *type)
 	return (target);
 }
 
+t_color	color_at_hit(t_intersection hit, t_ray ray)
+{
+	t_color	col;
+	t_tup	point;
+	t_tup	normal;
+	t_tup	eyev;
+
+	point = position(ray, hit.t);
+	normal = normal_at(hit.shape, point);
+	eyev = tuple_neg(ray.direction);
+	col = lighting(hit.shape->material, point, eyev, normal);
+	add_hex_color(&col);
+	return (col);
+}
+
 void	draw_circle(t_main *rt)
 {
 	t_obj	*sphere;
@@ -105,8 +120,9 @@ void	draw_circle(t_main *rt)
 	pixel_size = wall_size / pixels;
 	// sphere = (t_obj *)sphere_create(2);
 	sphere = search_obj_list("Sphere");
-	//double	sh[6] = {1, 0, 0, 0, 0, 0};
-	//sphere->transform(sphere, shearing_matrix(shear(sh)));
+	double	sh[6] = {1, 0, 0, 0, 0, 0};
+	sphere->transform(sphere, shearing_matrix(shear(sh)));
+	sphere->transform(sphere, rotation_z(-30));
 	if (!sphere)
 		return;
 	y = -1;
@@ -124,7 +140,7 @@ void	draw_circle(t_main *rt)
 				t_intersection hit_info = hit(inter);
 				if (hit_info.t != -1)
 				{
-					my_pixel(&rt->mlx, x, y, sphere->material.color.hex);
+					my_pixel(&rt->mlx, x, y, color_at_hit(hit_info, ray).hex);
 					free(inter.i);
 				}
 			}
@@ -144,7 +160,7 @@ void	draw_circle(t_main *rt)
 // 		exit(1);
 // 	draw_circle(rt);
 // 	free(rt);
-  
+
 	/* populate_scene_struct("test_rt/minimalist.rt", get_scene());
 	print_scene_details();
 	//draw_projectile(rt);
@@ -307,11 +323,18 @@ int main(int ac, char **av)
 	rt = init_all(av[1]);
 	if (!rt)
 		exit(1);
-	// printf("ft_strtod: %f\n", ft_strtod("-50"));
 	populate_scene_struct(av[1], get_scene());
-	init_mlx(&rt->mlx);
-	print_scene_details();
-	game_loop(rt);
+	//print_scene_details();
+	//game_loop(rt);
+
+	/* t_tup eyev = vector(0, 0, -1);
+	t_tup normalv = vector(0, 0, -1);
+	t_obj *sphere = get_scene()->obj_list;
+	t_tup p = point(0, 0, 0);
+	t_color l = lighting(sphere->material, p, eyev, normalv);
+	print_color(l); */
+	draw_circle(rt);
+	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
 	free(rt);
 }
 

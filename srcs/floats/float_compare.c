@@ -6,7 +6,7 @@ bool	equal(double a, double b)
 
 	diff = a - b;
 	if (diff >= 0)
-		return (diff > EPSILON);
+		return (diff < EPSILON);
 	else
-		return (diff < -EPSILON);
+		return (diff > -EPSILON);
 }

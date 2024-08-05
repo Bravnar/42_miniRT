@@ -71,11 +71,11 @@ void	print_scene_details(void)
 	t_rwin	res = get_scene()->win;
 	t_amb	amb = get_scene()->amb;
 	t_cam	cam = get_scene()->cam;
-	
+
 	printf("Resolution: ---------------------------------------------:\n");
 	printf("\tResolution x: %d\n\tResolution y: %d\n", res.x, res.y);
 	printf("Ambient lighting: --------------:\n");
-	printf("\tAmbient ratio: %f\n\tAmbient rgb: [%d,%d,%d]\n",
+	printf("\tAmbient ratio: %f\n\tAmbient rgb: [%f,%f,%f]\n",
 			amb.ratio, amb.rgb.r, amb.rgb.g, amb.rgb.b);
 	printf("Camera: -------------------------------------------------:\n");
 	printf("\tCamera position: [%f, %f, %f]\n",

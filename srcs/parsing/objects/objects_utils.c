@@ -29,7 +29,7 @@ void	print_object_nodes(t_obj **head)
 		printf("\t\tVector: %.2f, %.2f, %.2f\n", tmp->dir_vector.x,
 											tmp->dir_vector.y,
 											tmp->dir_vector.z);
-		printf("\t\tColor: %d, %d, %d\n",
+		printf("\t\tColor: %f, %f, %f\n",
 		 					tmp->material.color.r,
 							tmp->material.color.g,
 							tmp->material.color.b);

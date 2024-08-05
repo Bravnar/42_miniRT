@@ -60,10 +60,10 @@ typedef struct s_column
 
 typedef struct s_color
 {
-	int				r;
-	int				g;
-	int				b;
-	int				t;
+	double			r;
+	double			g;
+	double			b;
+	double			t;
 	unsigned int	hex;
 }	t_color;
 
@@ -115,6 +115,7 @@ typedef struct	s_light
 {
 	t_tup			point;
 	double			bright;
+	t_color			intensity;
 	t_color			rgb;			// Bonus
 	struct s_light	*next;
 }	t_light;
