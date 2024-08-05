@@ -1,11 +1,30 @@
 #include "main.h"
 
-void	draw_circle(t_main *rt);
+void	draw_circle(t_main *rt, t_obj *obj, int to_shear);
+
+void	iterate_through_obj(t_obj **head, t_main *rt)
+{
+	t_obj	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = *head;
+	while(tmp)
+	{
+		if (i == 7)
+			draw_circle(rt, tmp, 1);
+		else
+			draw_circle(rt, tmp, 0);
+		i++;
+		tmp = tmp->next;
+	}
+}
 
 void	game_loop(t_main *rt)
 {
 	init_mlx(&rt->mlx);
-	draw_circle(rt);
+	iterate_through_obj(get_scene_objs(), rt);
+	// draw_circle(rt);
 	//draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
@@ -98,7 +117,7 @@ t_color	color_at_hit(t_intersection hit, t_ray ray)
 	return (col);
 }
 
-void	draw_circle(t_main *rt)
+void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 {
 	t_obj	*sphere;
 	int		y;
@@ -113,16 +132,19 @@ void	draw_circle(t_main *rt)
 	t_ray	ray;
 	t_inter	inter;
 
-	wall_z = 10;
-	wall_size = 7;
+	wall_z = 5;
+	wall_size = 2 * wall_z * tan(get_scene_cam()->fov / 2);
 	half = wall_size / 2;
 	pixels = 1600;
 	pixel_size = wall_size / pixels;
 	// sphere = (t_obj *)sphere_create(2);
-	sphere = search_obj_list("Sphere");
-	double	sh[6] = {1, 0, 0, 0, 0, 0};
-	sphere->transform(sphere, shearing_matrix(shear(sh)));
-	sphere->transform(sphere, rotation_z(-30));
+	// sphere = search_obj_list("Sphere");
+	sphere = obj;
+	if (to_shear)
+	{
+		double	sh[6] = {1, 0, 0, 0, 0, 0};
+		sphere->transform(sphere, shearing_matrix(shear(sh)));
+	}
 	if (!sphere)
 		return;
 	y = -1;
@@ -133,7 +155,8 @@ void	draw_circle(t_main *rt)
 		while (++x < pixels)
 		{
 			world_x = -half + pixel_size * x;
-			ray = ray_new(point(0, 0, -10), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -10))));
+			ray = ray_new(get_scene_cam()->point, vector_norm(tuple_sub(point(world_x, world_y, wall_z), get_scene_cam()->point)));
+			//ray = ray_new(get_scene_cam()->point, get_scene_cam()->vector);
 			inter = intersect_sphere(ray, sphere);
 			if (inter.i)
 			{
@@ -147,8 +170,6 @@ void	draw_circle(t_main *rt)
 		}
 	}
 	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
-	handle_events(rt);
-	//mlx_loop(rt->mlx.mlx_ptr);
 }
 
 // int	main(void)

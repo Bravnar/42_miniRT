@@ -1,26 +1,18 @@
 #include "main.h"
 
-void	my_draw_sphere(t_main *rt)
+void	setup_world(t_world *world)
 {
-	double	wall_size;
-	double	wall_z;
-	double	half;
-	int		win_x;
-	int		win_y;
-	t_obj	sphere[3];
-	int		y;
-	int		x;
-
-	y = 0;
-	x = 0;
-	win_x = get_scene_win()->x;
-	win_y = get_scene_win()->y;
-	sphere[0] = *get_scene()->obj_list;
-	sphere[1] = *get_scene()->obj_list->next;
-	sphere[2] = *get_scene()->obj_list->next->next;
-
-	while (y < win_y)
-	{
-		win_y 
-	}
+	t_map	*scene;
+	scene = get_scene();
+	
+	world->aspect_ratio = (double)scene->win.x / (double)scene->win.y;
+	world->hfov_radians = scene->cam.fov * PI / 180;
+	world->view_width = 2.0 * tan(world->hfov_radians / 2.0);
+	world->view_height = world->view_width / world->aspect_ratio;
+	world->limit_x = scene->win.x;
+	world->limit_y = scene->win.y;
+	world->x = -1;
+	world->y = -1;
+	world->cam_pos = scene->cam.point;
+	world->cam_dir = scene->cam.vector;
 }
