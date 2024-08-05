@@ -4,7 +4,7 @@ void	draw_circle(t_main *rt);
 
 void	game_loop(t_main *rt)
 {
-	//init_mlx(&rt->mlx);
+	init_mlx(&rt->mlx);
 	draw_circle(rt);
 	//draw_rectangle(rt);
 	handle_events(rt);
@@ -324,8 +324,8 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
-	//print_scene_details();
-	//game_loop(rt);
+	print_scene_details();
+	game_loop(rt);
 
 	/* t_tup eyev = vector(0, 0, -1);
 	t_tup normalv = vector(0, 0, -1);
@@ -333,7 +333,7 @@ int main(int ac, char **av)
 	t_tup p = point(0, 0, 0);
 	t_color l = lighting(sphere->material, p, eyev, normalv);
 	print_color(l); */
-	draw_circle(rt);
+	//draw_circle(rt);
 	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
 	free(rt);
 }
