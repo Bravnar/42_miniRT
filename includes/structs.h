@@ -22,6 +22,8 @@ typedef enum s_err
 	PL_VECTOR_RANGE,
 	CY_VECTOR_RANGE,
 	INVALID_NUMBER,
+	WRONG_EXT,
+	OPEN_FAILED,
 //	MORE_TO_BE_ADDED,
 }	t_err;
 

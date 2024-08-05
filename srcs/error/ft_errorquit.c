@@ -45,4 +45,8 @@ void	err_handler(t_err code)
 		err_quit(M_CY_VECTOR_RANGE);
 	if (code == INVALID_NUMBER)
 		err_quit(M_INVALID_ENTRY);
+	if (code == OPEN_FAILED)
+		err_quit(M_OPEN_FAILED);
+	if (code == WRONG_EXT)
+		err_quit(M_WRONG_EXTENSION);
 }
