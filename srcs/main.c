@@ -1,11 +1,16 @@
 #include "main.h"
 
-void	draw_circle(t_main *rt);
+void	draw_circle(t_main *rt, t_obj *sphere);
 
 void	game_loop(t_main *rt)
 {
+	t_obj	*sphere;
+
 	init_mlx(&rt->mlx);
-	draw_circle(rt);
+	sphere = search_obj_list("Sphere");
+	draw_circle(rt, sphere);
+	sphere = sphere->next;
+	draw_circle(rt, sphere);
 	//draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
@@ -98,9 +103,8 @@ t_color	color_at_hit(t_intersection hit, t_ray ray)
 	return (col);
 }
 
-void	draw_circle(t_main *rt)
+void	draw_circle(t_main *rt, t_obj *sphere)
 {
-	t_obj	*sphere;
 	int		y;
 	int		x;
 	int		pixels;
@@ -119,10 +123,9 @@ void	draw_circle(t_main *rt)
 	pixels = 1600;
 	pixel_size = wall_size / pixels;
 	// sphere = (t_obj *)sphere_create(2);
-	sphere = search_obj_list("Sphere");
-	double	sh[6] = {1, 0, 0, 0, 0, 0};
+	/* double	sh[6] = {1, 0, 0, 0, 0, 0};
 	sphere->transform(sphere, shearing_matrix(shear(sh)));
-	sphere->transform(sphere, rotation_z(-30));
+	sphere->transform(sphere, rotation_z(-30)); */
 	if (!sphere)
 		return;
 	y = -1;
@@ -133,8 +136,8 @@ void	draw_circle(t_main *rt)
 		while (++x < pixels)
 		{
 			world_x = -half + pixel_size * x;
-			ray = ray_new(point(0, 0, -10), vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -10))));
-			inter = intersect_sphere(ray, sphere);
+			ray = ray_new(sphere->point, vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -10))));
+			inter = sphere->local_intersect(ray, sphere);
 			if (inter.i)
 			{
 				t_intersection hit_info = hit(inter);
@@ -147,8 +150,6 @@ void	draw_circle(t_main *rt)
 		}
 	}
 	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
-	handle_events(rt);
-	//mlx_loop(rt->mlx.mlx_ptr);
 }
 
 // int	main(void)
@@ -324,17 +325,7 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
-	print_scene_details();
 	game_loop(rt);
-
-	/* t_tup eyev = vector(0, 0, -1);
-	t_tup normalv = vector(0, 0, -1);
-	t_obj *sphere = get_scene()->obj_list;
-	t_tup p = point(0, 0, 0);
-	t_color l = lighting(sphere->material, p, eyev, normalv);
-	print_color(l); */
-	//draw_circle(rt);
-	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
 	free(rt);
 }
 

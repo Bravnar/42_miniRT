@@ -17,6 +17,7 @@ t_color	specular(double ldn, t_tup light_v, t_material m, t_tup ev, t_tup nv)
 {
 	t_tup	reflect_v;
 	t_color	intensity;
+	double	factor;
 	double	reflect_dot_eye;
 
 	intensity = get_scene()->light->intensity;
@@ -26,10 +27,12 @@ t_color	specular(double ldn, t_tup light_v, t_material m, t_tup ev, t_tup nv)
 	{
 		reflect_v = vector_reflect(tuple_neg(light_v), nv);
 		reflect_dot_eye = dot(reflect_v, ev);
-		if (reflect_dot_eye < 0 || equal(reflect_dot_eye, 0))
+		if (reflect_dot_eye <= 0)
 			return (black());
 		else
-			return (color_scalarmult(
-					pow(reflect_dot_eye, m.shininess) * m.specular, intensity));
+		{
+			factor = pow(reflect_dot_eye, m.shininess) * m.specular;
+			return (color_scalarmult(factor, intensity));
+		}
 	}
 }

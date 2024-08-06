@@ -43,16 +43,14 @@ t_inter	intersections(int c, ...)
 	return (inters);
 }
 
-t_inter	intersect_sphere(t_ray r, t_obj *sphere)
+t_inter	intersect(t_ray inv_ray, t_obj *shape)
 {
 	double	disc;
 	double	a;
 	double	b;
-	t_ray	inv_ray;
 	t_inter	i;
 
-	inv_ray = ray_transform(r, sphere->inverse_transformation);
-	disc = discriminant(inv_ray, sphere, &a, &b);
+	disc = discriminant(inv_ray, shape, &a, &b);
 	if (disc < 0)
 	{
 		i.count = 0;
@@ -64,8 +62,8 @@ t_inter	intersect_sphere(t_ray r, t_obj *sphere)
 		i.i = NULL;
 		return (i);
 	}
-	i.i[0] = intersection((-b - sqrt(disc)) / (2 * a), sphere);
-	i.i[1] = intersection((-b + sqrt(disc)) / (2 * a), sphere);
+	i.i[0] = intersection((-b - sqrt(disc)) / (2 * a), shape);
+	i.i[1] = intersection((-b + sqrt(disc)) / (2 * a), shape);
 	i.count = 2;
 	return (i);
 }

@@ -32,6 +32,14 @@ static void	transform(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
+static t_inter	local_intersect(t_ray r, t_obj *cyl)
+{
+	t_ray	inv_ray;
+
+	inv_ray = ray_transform(r, cyl->inverse_transformation);
+	return (intersect(inv_ray, cyl));
+}
+
 t_cyl	*cyl_create(char **cyl_line)
 {
 	t_cyl	*cyl;
@@ -45,6 +53,7 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.volume = volume;
 	cyl->shape.destroy = cyl_destroy;
 	cyl->shape.transform = transform;
+	cyl->shape.local_intersect = local_intersect;
 	cyl->shape.material = material(get_color(cyl_line[5]), 0.9, 0.9, 200);
 	cyl->shape.point = get_point(cyl_line[1]);//parse_point;
 	cyl->shape.dir_vector = get_vector(cyl_line[2]);//parse_vector;

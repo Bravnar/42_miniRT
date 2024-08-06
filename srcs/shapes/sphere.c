@@ -29,6 +29,14 @@ static void	transform(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
+static t_inter	local_intersect(t_ray r, t_obj *sphere)
+{
+	t_ray	inv_ray;
+
+	inv_ray = ray_transform(r, sphere->inverse_transformation);
+	return (intersect(inv_ray, sphere));
+}
+
 t_sphere	*sphere_create(char **sphere_split)
 {
 	t_sphere	*sphere;
@@ -41,13 +49,14 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.volume = volume;
 	sphere->shape.destroy = sphere_destroy;
 	sphere->shape.transform = transform;
+	sphere->shape.local_intersect = local_intersect;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
 	sphere->shape.material = material(get_color(sphere_split[3]), 0.9, 0.9, 200);
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();
-	sphere->shape.transform((t_obj *) sphere, 
+	sphere->shape.transform((t_obj *) sphere,
 			scaling_matrix(sphere->diameter/2, sphere->diameter/2, sphere->diameter/2));
 	return (sphere);
 }
