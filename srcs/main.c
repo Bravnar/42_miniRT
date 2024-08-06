@@ -358,7 +358,7 @@ int main(int ac, char **av)
 	free(xs.i);
 
 
-	// game_loop(rt);
+	game_loop(rt);
 
 	/* t_tup eyev = vector(0, 0, -1);
 	t_tup normalv = vector(0, 0, -1);
