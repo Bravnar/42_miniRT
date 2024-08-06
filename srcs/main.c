@@ -346,17 +346,44 @@ int main(int ac, char **av)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
 	print_scene_details();
+
+
 	printf("Creating world -------------------------------------------:\n");
 	t_world	w;
 	w = create_world();
-	t_ray	r = ray_new(point(0, 0, -5), vector(0, 0, 1));
+	t_ray	r = ray_new(point(0, 0, 0), vector(0, 0, 1));
 	t_inter	xs = intersect_world(w, r);
+
+
+	printf("Calculating intersection ---------------------------------:\n");
 	printf("xs: count = %d\n", xs.count);
 	int	i = -1;
 	while (++i < xs.count)
 		printf("xs[%d].t = %f\n", i, xs.i[i].t);
-	free(xs.i);
+	w.shapes->next->material.diffuse = 0.9;
+	w.shapes->next->material.specular = 0.9;
+	t_intersection test = intersection(0.5, w.shapes->next);
+	// t_intersection test = hit(xs);
+	printf("test result: %f\n", test.t);
 
+
+	printf("Testing computations -------------------------------------:\n");
+	t_comps test_comp = prepare_comp(test, r);
+	print_tuple(test_comp.point);
+	print_tuple(test_comp.eyev);
+	printf("test_comp result: %d\n", test_comp.is_inside);
+	print_tuple(test_comp.normalv);
+
+	printf("Testing shade_hit ----------------------------------------:\n");
+	
+	t_color	c = shade_hit(w, test_comp);
+	print_color(c);
+	
+	
+	
+	// END ------------------------------------------------------------//
+	free(xs.i);
+	free(rt);
 
 	// game_loop(rt);
 
@@ -368,6 +395,5 @@ int main(int ac, char **av)
 	print_color(l); */
 	//draw_circle(rt);
 	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
-	free(rt);
 }
 

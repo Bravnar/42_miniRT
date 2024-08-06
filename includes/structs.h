@@ -40,6 +40,7 @@ typedef struct	s_mlx
 	int		win_y;
 }	t_mlx;
 
+
 typedef struct s_tup
 {
 	double	x;
@@ -210,6 +211,15 @@ typedef struct s_shear
 	double	zy;
 }	t_shear;
 
+typedef struct s_comps
+{
+	double	t;
+	t_obj	*obj;
+	t_tup	point;
+	t_tup	eyev;
+	t_tup	normalv;
+	bool	is_inside;
+}	t_comps;
 
 
 typedef struct s_strtoi

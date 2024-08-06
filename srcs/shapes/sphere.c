@@ -52,7 +52,7 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.local_intersect = local_intersect;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
-	sphere->shape.material = material(get_color(sphere_split[3]), 0.9, 0.9, 200);
+	sphere->shape.material = material(get_color(sphere_split[3]), 0.7, 0.2, 200);
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();

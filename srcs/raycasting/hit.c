@@ -5,7 +5,7 @@ t_intersection	hit(t_inter inters)
 	int				i;
 	t_intersection	h;
 
-	i = 0;
+	i = -1;		// was originally 0, skipping the first number??
 	h.t = -1;
 	while (++i < inters.count)
 	{

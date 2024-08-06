@@ -1,21 +1,13 @@
 #include "main.h"
 
-/* void	setup_world(t_world *world)
+t_color	shade_hit(t_world w, t_comps comps)
 {
-	t_map	*scene;
-	scene = get_scene();
-	
-	world->aspect_ratio = (double)scene->win.x / (double)scene->win.y;
-	world->hfov_radians = scene->cam.fov * PI / 180;
-	world->view_width = 2.0 * tan(world->hfov_radians / 2.0);
-	world->view_height = world->view_width / world->aspect_ratio;
-	world->limit_x = scene->win.x;
-	world->limit_y = scene->win.y;
-	world->x = -1;
-	world->y = -1;
-	world->cam_pos = scene->cam.point;
-	world->cam_dir = scene->cam.vector;
-} */
+	(void) w;
+	return (lighting(comps.obj->material,
+					comps.point, 
+					comps.eyev, 
+					comps.normalv));
+}
 
 t_inter	app_intersect(t_inter *xs, t_inter *new)
 {
@@ -73,4 +65,24 @@ t_world	create_world(void)
 	w.light = get_scene()->light;
 	w.shapes = get_scene()->obj_list;
 	return w;
+}
+
+t_comps	prepare_comp(t_intersection h, t_ray r)
+{
+	t_comps	new;
+
+	ft_bzero(&new, sizeof(t_comps));
+	new.t = h.t;
+	new.obj = h.shape;
+	new.point = position(r, h.t);
+	new.eyev = tuple_neg(r.direction);
+	new.normalv = normal_at(new.obj, new.point);
+	if (dot(new.normalv, new.eyev) < 0)
+	{
+		new.is_inside = true;
+		new.normalv = tuple_neg(new.normalv);
+	}
+	else
+		new.is_inside = false;
+	return (new);
 }

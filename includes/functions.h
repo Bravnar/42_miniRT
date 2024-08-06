@@ -92,6 +92,8 @@ int	ft_strtoi(const char *nptr, char **endptr);
 
 t_world	create_world(void);
 t_inter	intersect_world(t_world w, t_ray r);
+t_comps	prepare_comp(t_intersection h, t_ray r);
+t_color	shade_hit(t_world w, t_comps comps);
 
 
 /* EVENT HANDLER */
