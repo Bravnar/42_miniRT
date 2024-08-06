@@ -128,8 +128,8 @@ t_proj			tick(t_env env, t_proj proj);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 17:28:59 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/02 17:28:59 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/06 13:36:27 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/06 13:36:27 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,8 @@ t_tup			position(t_ray ray, double t);
 
 /* INTERSECTIONS */
 
-t_inter			intersect_sphere(t_ray r, t_obj *sphere);
+double			discriminant(t_ray r, t_obj *sphere, double *a, double *b);
+t_inter			intersect(t_ray inv_ray, t_obj *shape);
 t_intersection	intersection(double t, t_obj *shape);
 t_inter			intersections(int c, ...);
 
@@ -286,5 +287,9 @@ void			print_column(t_column column);
 void			print_tuple(t_tup tuple);
 void			print_ray(t_ray ray);
 void			print_cofactors(t_matrix A, int size);
+
+/* SORTING INTERSECTIONS */
+
+void			sort_inter(t_inter *inter);
 
 #endif
