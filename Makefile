@@ -41,6 +41,7 @@ SRCS= 	srcs/main.c \
 		srcs/shapes/sphere.c \
 		srcs/shapes/plane.c \
 		srcs/utils/display.c \
+		srcs/utils/sort_inter.c \
 		srcs/parsing/ft_strtod.c \
 		srcs/parsing/ft_strtoi.c \
 		srcs/parsing/ambient/amb.c \

@@ -76,6 +76,26 @@ typedef	struct s_material
 	t_color	color;
 }	t_material;
 
+typedef struct s_obj	t_obj;
+
+typedef struct s_intersection
+{
+	t_obj	*shape;
+	double	t;
+}	t_intersection;
+
+typedef struct s_inter
+{
+	int				count;
+	t_intersection	*i;
+}	t_inter;
+
+typedef struct s_ray
+{
+	t_tup	point;
+	t_tup	direction;
+}	t_ray;
+
 /* Object libraries */
 # include "object.h"
 # include "sphere.h"
@@ -190,23 +210,7 @@ typedef struct s_shear
 	double	zy;
 }	t_shear;
 
-typedef struct s_ray
-{
-	t_tup	point;
-	t_tup	direction;
-}	t_ray;
 
-typedef struct s_intersection
-{
-	t_obj	*shape;
-	double	t;
-}	t_intersection;
-
-typedef struct s_inter
-{
-	int				count;
-	t_intersection	*i;
-}	t_inter;
 
 typedef struct s_strtoi
 {

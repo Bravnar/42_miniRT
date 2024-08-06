@@ -22,6 +22,8 @@ void	iterate_through_obj(t_obj **head, t_main *rt)
 
 void	game_loop(t_main *rt)
 {
+	t_obj	*sphere;
+
 	init_mlx(&rt->mlx);
 	iterate_through_obj(get_scene_objs(), rt);
 	// draw_circle(rt);
@@ -119,7 +121,6 @@ t_color	color_at_hit(t_intersection hit, t_ray ray)
 
 void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 {
-	t_obj	*sphere;
 	int		y;
 	int		x;
 	int		pixels;
@@ -157,7 +158,7 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 			world_x = -half + pixel_size * x;
 			ray = ray_new(get_scene_cam()->point, vector_norm(tuple_sub(point(world_x, world_y, wall_z), get_scene_cam()->point)));
 			//ray = ray_new(get_scene_cam()->point, get_scene_cam()->vector);
-			inter = intersect_sphere(ray, sphere);
+			inter = sphere->local_intersect(ray, sphere);
 			if (inter.i)
 			{
 				t_intersection hit_info = hit(inter);
@@ -349,18 +350,12 @@ int main(int ac, char **av)
 	printf("Creating world -------------------------------------------:\n");
 	t_world	w;
 	w = create_world();
-	if (w.light && w.shapes)
-		printf("world created with light and objects successfully\n");
-	else
-		printf("world missing objects or light source\n");
 	t_ray	r = ray_new(point(0, 0, -5), vector(0, 0, 1));
 	t_inter	xs = intersect_world(w, r);
 	printf("xs: count = %d\n", xs.count);
 	int	i = -1;
 	while (++i < xs.count)
-	{
 		printf("xs[%d].t = %f\n", i, xs.i[i].t);
-	}
 	free(xs.i);
 
 
