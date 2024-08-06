@@ -34,8 +34,8 @@ void	init_map(t_map *data)
 
 void	init_mlx(t_mlx *mlx)
 {
-	mlx->win_x = get_scene()->win.x; //changed from static 1600
-	mlx->win_y = get_scene()->win.y; //changed from static 1600
+	mlx->win_x = 1600; //changed from static 1600
+	mlx->win_y = 1600; //changed from static 1600
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->win_x,
 			mlx->win_y, "miniRT");

@@ -146,22 +146,6 @@ typedef struct	s_count
 	int	cu;
 }	t_count;
 
-/* typedef struct	s_world
-{
-	int		y;
-	int		x;
-	int		limit_y;
-	int		limit_x;
-	double	aspect_ratio;
-	double	hfov_radians;
-	double	view_width;
-	double	view_height;
-	t_tup	cam_pos;
-	t_tup	cam_dir;
-	t_ray	ray;
-	t_inter	inter;
-}	t_world; */
-
 typedef struct	s_map
 {
 	t_file		file;
@@ -241,6 +225,12 @@ typedef	struct s_conv
 	double	final_result;
 	int		sign;
 }	t_conv;
+
+typedef struct s_world
+{
+	t_obj	*shapes;
+	t_light	*light;
+}	t_world;
 
 
 #endif

@@ -14,11 +14,14 @@ static void	counter_single(char	c)
 
 static void	counter_double(char *str)
 {
-	char	tmp[2];
+	// char	tmp[2];
 
-	tmp[0] = str[0];
-	tmp[1] = str[1];
-	tmp[2] = '\0';
+	// tmp[0] = str[0];
+	// tmp[1] = str[1];
+	// tmp[2] = '\0';
+	char	*tmp;
+
+	tmp = ft_strdup(str);
 	if (!ft_strcmp("pl", tmp))
 		get_scene()->count.pl++;
 	if (!ft_strcmp("sp", tmp))
@@ -27,6 +30,7 @@ static void	counter_double(char *str)
 		get_scene()->count.cy++;
 	if (!ft_strcmp("cu", tmp))
 		get_scene()->count.cu++;
+	free(tmp);
 }
 
 static void	counter_breakdown(char *cptr)

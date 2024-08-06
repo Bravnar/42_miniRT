@@ -84,6 +84,16 @@ void	count_identifier(t_parse **head);
 double	ft_strtod(char *str);
 int	ft_strtoi(const char *nptr, char **endptr);
 
+/* ************************************************************************** */
+/*                                                                            */
+/*                               WORLD                                        */
+/*                                                                            */
+/* ************************************************************************** */
+
+t_world	create_world(void);
+t_inter	intersect_world(t_world w, t_ray r);
+
+
 /* EVENT HANDLER */
 int				close_win(void *param);
 int				keyboard(int keycode, t_main *rt);

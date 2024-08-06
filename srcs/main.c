@@ -346,7 +346,25 @@ int main(int ac, char **av)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
 	print_scene_details();
-	game_loop(rt);
+	printf("Creating world -------------------------------------------:\n");
+	t_world	w;
+	w = create_world();
+	if (w.light && w.shapes)
+		printf("world created with light and objects successfully\n");
+	else
+		printf("world missing objects or light source\n");
+	t_ray	r = ray_new(point(0, 0, -5), vector(0, 0, 1));
+	t_inter	xs = intersect_world(w, r);
+	printf("xs: count = %d\n", xs.count);
+	int	i = -1;
+	while (++i < xs.count)
+	{
+		printf("xs[%d].t = %f\n", i, xs.i[i].t);
+	}
+	free(xs.i);
+
+
+	// game_loop(rt);
 
 	/* t_tup eyev = vector(0, 0, -1);
 	t_tup normalv = vector(0, 0, -1);
