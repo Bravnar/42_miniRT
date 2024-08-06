@@ -162,6 +162,7 @@ typedef struct	s_main
 	t_mlx	mlx;
 	t_rect	rect;
 	t_map	*data;
+	//t_world	world;
 	//view?
 	//mouse?
 	//kb?
@@ -224,6 +225,12 @@ typedef	struct s_conv
 	double	final_result;
 	int		sign;
 }	t_conv;
+
+typedef struct s_world
+{
+	t_obj	*shapes;
+	t_light	*light;
+}	t_world;
 
 
 #endif
