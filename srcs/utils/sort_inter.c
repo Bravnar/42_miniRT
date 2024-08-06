@@ -1,11 +1,13 @@
 #include "main.h"
 
-t_inter	intersect_slice(t_inter *inter, int start, int end, int size)
+t_inter	intersect_slice(t_inter *inter, int start, int end)
 {
 	t_inter copy;
 	int		i;
+	int		size;
 
-	copy.i = malloc(sizeof(double) * size);
+	size = end - start;
+	copy.i = malloc(sizeof(t_intersection) * size);
 	if (!copy.i)
 	{
 		copy.count = 0;
@@ -13,7 +15,11 @@ t_inter	intersect_slice(t_inter *inter, int start, int end, int size)
 	}
 	i = 0;
 	while (start < end)
+	{
+		printf("t: %f - start: %d\n", inter->i[start].t, start);
 		copy.i[i++] = inter->i[start++];
+	}
+		
 	copy.count = size;
 	return (copy);
 }
@@ -39,34 +45,37 @@ void	insert_inter(t_inter left, t_inter right, t_inter *ret)
 	while (j < left.count)
 		ret->i[k++] = left.i[j++];
 	if (right.count > 0)
-		free(left.i);
-	if (left.count > 0)
 		free(right.i);
+	if (left.count > 0)
+		free(left.i);
 }
 
-void	sort_inter(t_inter *inter)
+t_inter	sort_inter(t_inter inter)
 {
 	t_inter	ret;
 	t_inter	left;
 	t_inter	right;
 
-	if (inter->count > 1)
+	ret.i = malloc(sizeof(t_intersection) * inter.count);
+	if (!ret.i)
 	{
-		left = intersect_slice(inter, 0, inter->count/2, inter->count/2);
-		right = intersect_slice(inter, inter->count/2, inter->count, inter->count/2);
-		sort_inter(&left);
-		sort_inter(&right);
-		ret.i = malloc(sizeof(double) * inter->count);
-		if (!ret.i)
-		{
-			ret.count = 0;
-			free(inter->i);
-			inter = &ret;
-			return ;
-		}
-		insert_inter(left, right, &ret);
+		ret.count = 0;
+		free(inter.i);
+		return (ret);
 	}
-	if (inter->count > 0)
-		free(inter->i);
-	inter = &ret;
+	if (inter.count > 1)
+	{
+		left = intersect_slice(&inter, 0, inter.count/2);
+		right = intersect_slice(&inter, inter.count/2, inter.count);
+		sort_inter(left);
+		sort_inter(right);
+		insert_inter(left, right, &ret);
+		ret.count = inter.count;
+	// if (inter->count > 0)
+	// 	free(inter->i);
+	}
+	if (ret.count > 1)
+		return (ret);
+	else
+		return (inter);
 }

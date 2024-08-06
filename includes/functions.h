@@ -300,6 +300,6 @@ void			print_cofactors(t_matrix A, int size);
 
 /* SORTING INTERSECTIONS */
 
-void			sort_inter(t_inter *inter);
+t_inter			sort_inter(t_inter inter);
 
 #endif
