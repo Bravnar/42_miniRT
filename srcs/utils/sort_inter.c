@@ -54,23 +54,18 @@ t_inter sort_inter(t_inter inter)
 	t_inter right;
 
 	if (inter.count <= 1)
-	return inter;
-
+		return inter;
 	ret.i = malloc(sizeof(t_intersection) * inter.count);
 	if (!ret.i)
 	{
-	ret.count = 0;
-	return ret;
+		ret.count = 0;
+		return ret;
 	}
-
 	left = intersect_slice(&inter, 0, inter.count/2);
 	right = intersect_slice(&inter, inter.count/2, inter.count);
-
 	left = sort_inter(left);
 	right = sort_inter(right);
-
 	insert_inter(left, right, &ret, inter);
-
 	free(inter.i);
 	return ret;
 }
