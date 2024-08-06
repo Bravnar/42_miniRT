@@ -58,12 +58,12 @@ t_inter	intersect_world(t_world w, t_ray r)
 	{
 		if (!ft_strcmp(tmp->get_name(tmp), "Sphere"))
 		{
-			sphere_tmp = intersect_sphere(r, tmp);
+			sphere_tmp = tmp->local_intersect(r, tmp);
 			xs = app_intersect(&xs, &sphere_tmp);
 		}
 		tmp = tmp->next;
 	}
-	return (xs);
+	return (sort_inter(xs));
 }
 
 t_world	create_world(void)

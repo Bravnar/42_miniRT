@@ -22,8 +22,6 @@ void	iterate_through_obj(t_obj **head, t_main *rt)
 
 void	game_loop(t_main *rt)
 {
-	t_obj	*sphere;
-
 	init_mlx(&rt->mlx);
 	iterate_through_obj(get_scene_objs(), rt);
 	// draw_circle(rt);
@@ -132,6 +130,7 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 	double	world_x;
 	t_ray	ray;
 	t_inter	inter;
+	t_obj	*sphere;
 
 	wall_z = 5;
 	wall_size = 2 * wall_z * tan(get_scene_cam()->fov / 2);
