@@ -1,16 +1,32 @@
 #include "main.h"
 
-void	draw_circle(t_main *rt, t_obj *sphere);
+void	draw_circle(t_main *rt, t_obj *obj, int to_shear);
+
+void	iterate_through_obj(t_obj **head, t_main *rt)
+{
+	t_obj	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = *head;
+	while(tmp)
+	{
+		if (i == 7)
+			draw_circle(rt, tmp, 1);
+		else
+			draw_circle(rt, tmp, 0);
+		i++;
+		tmp = tmp->next;
+	}
+}
 
 void	game_loop(t_main *rt)
 {
 	t_obj	*sphere;
 
 	init_mlx(&rt->mlx);
-	sphere = search_obj_list("Sphere");
-	draw_circle(rt, sphere);
-	sphere = sphere->next;
-	draw_circle(rt, sphere);
+	iterate_through_obj(get_scene_objs(), rt);
+	// draw_circle(rt);
 	//draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
@@ -103,7 +119,7 @@ t_color	color_at_hit(t_intersection hit, t_ray ray)
 	return (col);
 }
 
-void	draw_circle(t_main *rt, t_obj *sphere)
+void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 {
 	int		y;
 	int		x;
@@ -117,15 +133,19 @@ void	draw_circle(t_main *rt, t_obj *sphere)
 	t_ray	ray;
 	t_inter	inter;
 
-	wall_z = 10;
-	wall_size = 7;
+	wall_z = 5;
+	wall_size = 2 * wall_z * tan(get_scene_cam()->fov / 2);
 	half = wall_size / 2;
 	pixels = 1600;
 	pixel_size = wall_size / pixels;
 	// sphere = (t_obj *)sphere_create(2);
-	/* double	sh[6] = {1, 0, 0, 0, 0, 0};
-	sphere->transform(sphere, shearing_matrix(shear(sh)));
-	sphere->transform(sphere, rotation_z(-30)); */
+	// sphere = search_obj_list("Sphere");
+	sphere = obj;
+	if (to_shear)
+	{
+		double	sh[6] = {1, 0, 0, 0, 0, 0};
+		sphere->transform(sphere, shearing_matrix(shear(sh)));
+	}
 	if (!sphere)
 		return;
 	y = -1;
@@ -136,7 +156,8 @@ void	draw_circle(t_main *rt, t_obj *sphere)
 		while (++x < pixels)
 		{
 			world_x = -half + pixel_size * x;
-			ray = ray_new(sphere->point, vector_norm(tuple_sub(point(world_x, world_y, wall_z), point(0, 0, -10))));
+			ray = ray_new(get_scene_cam()->point, vector_norm(tuple_sub(point(world_x, world_y, wall_z), get_scene_cam()->point)));
+			//ray = ray_new(get_scene_cam()->point, get_scene_cam()->vector);
 			inter = sphere->local_intersect(ray, sphere);
 			if (inter.i)
 			{
@@ -325,7 +346,29 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
-	game_loop(rt);
+	print_scene_details();
+	printf("Creating world -------------------------------------------:\n");
+	t_world	w;
+	w = create_world();
+	t_ray	r = ray_new(point(0, 0, -5), vector(0, 0, 1));
+	t_inter	xs = intersect_world(w, r);
+	printf("xs: count = %d\n", xs.count);
+	int	i = -1;
+	while (++i < xs.count)
+		printf("xs[%d].t = %f\n", i, xs.i[i].t);
+	free(xs.i);
+
+
+	// game_loop(rt);
+
+	/* t_tup eyev = vector(0, 0, -1);
+	t_tup normalv = vector(0, 0, -1);
+	t_obj *sphere = get_scene()->obj_list;
+	t_tup p = point(0, 0, 0);
+	t_color l = lighting(sphere->material, p, eyev, normalv);
+	print_color(l); */
+	//draw_circle(rt);
+	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
 	free(rt);
 }
 
