@@ -345,7 +345,7 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
-	print_scene_details();
+	/*print_scene_details();
 	printf("Creating world -------------------------------------------:\n");
 	t_world	w;
 	w = create_world();
@@ -358,16 +358,13 @@ int main(int ac, char **av)
 	free(xs.i);
 
 
-	game_loop(rt);
+	game_loop(rt); */
 
-	/* t_tup eyev = vector(0, 0, -1);
-	t_tup normalv = vector(0, 0, -1);
-	t_obj *sphere = get_scene()->obj_list;
-	t_tup p = point(0, 0, 0);
-	t_color l = lighting(sphere->material, p, eyev, normalv);
-	print_color(l); */
-	//draw_circle(rt);
-	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
+	t_matrix A = translation_matrix(0, 1, 0);
+	t_obj *ob = get_scene()->obj_list;
+	ob->transform(ob, A);
+	t_tup a = normal_at(ob, point(0, 1.70711, -0.70711));
+	print_tuple(a);
 	free(rt);
 }
 
