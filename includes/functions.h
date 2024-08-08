@@ -86,7 +86,13 @@ int	ft_strtoi(const char *nptr, char **endptr);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                               WORLD                                        */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 11:38:23 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/08 11:38:23 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,8 +252,8 @@ t_tup			position(t_ray ray, double t);
 
 /* INTERSECTIONS */
 
-double			discriminant(t_ray r, t_obj *sphere, double *a, double *b);
-t_inter			intersect(t_ray inv_ray, t_obj *shape);
+double			discriminant(t_obj *sphere, double *a, double *b);
+t_inter			intersect(t_obj *shape);
 t_intersection	intersection(double t, t_obj *shape);
 t_inter			intersections(int c, ...);
 

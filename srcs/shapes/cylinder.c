@@ -37,7 +37,8 @@ static t_inter	local_intersect(t_ray r, t_obj *cyl)
 	t_ray	inv_ray;
 
 	inv_ray = ray_transform(r, cyl->inverse_transformation);
-	return (intersect(inv_ray, cyl));
+	cyl->saved_ray = inv_ray;
+	return (intersect(cyl));
 }
 
 t_cyl	*cyl_create(char **cyl_line)

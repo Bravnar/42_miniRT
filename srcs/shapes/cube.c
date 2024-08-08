@@ -35,7 +35,8 @@ static t_inter	local_intersect(t_ray r, t_obj *cube)
 	t_ray	inv_ray;
 
 	inv_ray = ray_transform(r, cube->inverse_transformation);
-	return (intersect(inv_ray, cube));
+	cube->saved_ray = inv_ray;
+	return (intersect(cube));
 }
 
 t_cube	*cube_create(char **cube_line)

@@ -13,6 +13,7 @@ typedef struct s_obj
 	t_material		material;
 	t_matrix		transformation;
 	t_matrix		inverse_transformation;
+	t_ray			saved_ray;
 	struct s_obj	*next;
 }	t_obj;
 

@@ -34,7 +34,8 @@ static t_inter	local_intersect(t_ray r, t_obj *sphere)
 	t_ray	inv_ray;
 
 	inv_ray = ray_transform(r, sphere->inverse_transformation);
-	return (intersect(inv_ray, sphere));
+	sphere->saved_ray = inv_ray;
+	return (intersect(sphere));
 }
 
 t_sphere	*sphere_create(char **sphere_split)

@@ -22,7 +22,8 @@ static t_inter	local_intersect(t_ray r, t_obj *plane)
 	t_ray	inv_ray;
 
 	inv_ray = ray_transform(r, plane->inverse_transformation);
-	return (intersect(inv_ray, plane));
+	plane->saved_ray = inv_ray;
+	return (intersect(plane));
 }
 
 t_plane	*plane_create(char **plane_line)
