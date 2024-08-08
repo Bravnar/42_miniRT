@@ -50,6 +50,8 @@ t_light	*new_light_node(t_tup point, double bright, t_color rgb, t_color i);
 void	add_light_node(t_light **head, t_light *new_node);
 void	free_light_nodes(t_light *light);
 void	print_light_nodes(t_light **head);
+void	add_light_node_front(t_light *light, t_light **head);
+void	remove_first_light(t_light **head);
 
 /* Resolution */
 void	populate_rwin(void);
@@ -91,8 +93,8 @@ int	ft_strtoi(const char *nptr, char **endptr);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 11:38:23 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/08 11:38:23 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/08 17:43:33 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/08 17:43:33 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +126,7 @@ t_tup			vector_scalar_div(t_tup a, double scalar);
 t_tup			vector_norm(t_tup a);
 t_tup			vector_cross(t_tup a, t_tup b);
 double			dot(t_tup a, t_tup b);
+t_tup normalize(t_tup v);
 
 /* VECTOR INFO */
 
@@ -159,7 +162,7 @@ bool			equal(double a, double b);
 
 /* COLOR INITIALISATION */
 
-t_color			color(int r, int g, int b);
+t_color			color(double r, double g, double b);
 void			add_hex_color(t_color *c);
 t_color			black(void);
 void			print_color(t_color c);
@@ -273,7 +276,7 @@ t_ray			ray_transform(t_ray ray, t_matrix transform);
 
 /* NORMAL */
 
-t_tup			normal_at(t_obj *sphere, t_tup point);
+t_tup			normal_at(t_obj *shape, t_tup point);
 
 /* REFLECTION */
 
@@ -282,6 +285,7 @@ t_tup			vector_reflect(t_tup in, t_tup normal);
 /* LIGHTING */
 
 t_material		material(t_color c, double d, double s, double sh);
+t_material		mat_default(void);
 t_color			lighting(t_material m, t_tup p, t_tup ev, t_tup nv);
 
 /* LIGHTING UTILS */
@@ -307,5 +311,21 @@ void			print_cofactors(t_matrix A, int size);
 /* SORTING INTERSECTIONS */
 
 t_inter			sort_inter(t_inter inter);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                 TESTS                                      */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* EQUALS */
+
+bool			equal_color(t_color a, t_color b);
+bool			equal_tuple(t_tup a, t_tup b);
+bool			equal_matrix(t_matrix a, t_matrix b);
+
+/* LIGHTING */
+
+void			lighting_test_battery(void);
 
 #endif

@@ -2,13 +2,13 @@
 
 void	add_hex_color(t_color *c);
 
-t_color	color(int r, int g, int b)
+t_color	color(double r, double g, double b)
 {
 	t_color	new;
 
-	new.r = (double)(unsigned char)r;
-	new.g = (double)(unsigned char)g;
-	new.b = (double)(unsigned char)b;
+	new.r = r;
+	new.g = g;
+	new.b = b;
 	new.t = 255;
 	add_hex_color(&new);
 	return (new);

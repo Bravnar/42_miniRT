@@ -38,6 +38,11 @@ static t_inter	local_intersect(t_ray r, t_obj *sphere)
 	return (intersect(sphere));
 }
 
+static t_tup	local_normal_at(t_obj *sphere, t_tup point)
+{
+	return normal_at(sphere, point);
+}
+
 t_sphere	*sphere_create(char **sphere_split)
 {
 	t_sphere	*sphere;
@@ -51,6 +56,7 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.destroy = sphere_destroy;
 	sphere->shape.transform = transform;
 	sphere->shape.local_intersect = local_intersect;
+	sphere->shape.local_normal_at = local_normal_at;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
 	sphere->shape.material = material(get_color(sphere_split[3]), 0.9, 0.9, 200);

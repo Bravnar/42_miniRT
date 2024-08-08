@@ -8,6 +8,7 @@ typedef struct s_obj
 	void			(*destroy)(struct s_obj *shape);
 	void			(*transform)(struct s_obj *shape, t_matrix transform);\
 	t_inter			(*local_intersect)(t_ray ray, struct s_obj *shape);
+	t_tup			(*local_normal_at)(t_obj *shape, t_tup point);
 	t_tup			point;
 	t_tup			dir_vector; 		//cube/cyllinder/cone/parallelogram
 	t_material		material;
