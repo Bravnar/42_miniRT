@@ -55,7 +55,8 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/objects/objects_utils.c \
 		srcs/init/scene_getters.c \
 		srcs/parsing/objects/objects_utils.c \
-		srcs/world/world.c
+		srcs/world/world.c \
+		srcs/world/view.c \
 
 CC= cc
 
@@ -68,8 +69,8 @@ MINILIBX_DIR = minilibx-linux
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-SANITIZE= -g3 -fsanitize=address
-# SANITIZE= -g
+# SANITIZE= -g3 -fsanitize=address
+SANITIZE= -g
 
 # Color Variables
 RED=\033[0;31m

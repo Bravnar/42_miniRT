@@ -15,10 +15,7 @@ t_inter	intersect_slice(t_inter *inter, int start, int end)
 	}
 	i = 0;
 	while (start < end)
-	{
-		printf("t: %f - start: %d\n", inter->i[start].t, start);
 		copy.i[i++] = inter->i[start++];
-	}
 		
 	copy.count = size;
 	return (copy);
