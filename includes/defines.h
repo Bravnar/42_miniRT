@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define EPSILON	(0.000001)
+# define EPSILON	(0.00001)
 # define ESC		(65307)
 # define Q_KEY		(113)
 # define PI			(3.1416)
@@ -18,7 +18,7 @@
 # define 	M_ACL_MISSING		"Missing key parameters (A, C, L)"
 # define 	M_TOO_MANY_R		"Too many R-parameters"
 # define 	M_TOO_MANY_A		"Too many A-parameters"
-# define	M_TOO_MANY_C		"Too many C-parameters"	
+# define	M_TOO_MANY_C		"Too many C-parameters"
 # define	M_A_RATIO_RANGE		"A: ratio out of range (0.0 / 1.0)"
 # define	M_C_VECTOR_RANGE	"C: vector out of range (-1.0 / 1.0)"
 # define	M_C_FOV_RANGE		"C: FOV out of range (0 / 180)"

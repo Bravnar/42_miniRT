@@ -1,10 +1,10 @@
 #include "main.h"
 
-static void	counter_single(char	c)
+static void	counter_single(char c)
 {
 	if (c == 'R')
 		get_scene()->count.r++;
-	else if(c == 'A')
+	else if (c == 'A')
 		get_scene()->count.a++;
 	else if (c == 'C')
 		get_scene()->count.c++;
@@ -14,11 +14,6 @@ static void	counter_single(char	c)
 
 static void	counter_double(char *str)
 {
-	// char	tmp[2];
-
-	// tmp[0] = str[0];
-	// tmp[1] = str[1];
-	// tmp[2] = '\0';
 	char	*tmp;
 
 	tmp = ft_strdup(str);

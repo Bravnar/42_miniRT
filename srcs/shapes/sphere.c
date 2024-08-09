@@ -5,36 +5,28 @@
 /* To be called during map reading   */
 /* ********************************* */
 
-static char	*get_name(t_obj *shape)
+char	*get_name_s(t_obj *sphere)
 {
-	(void) shape;
+	(void) sphere;
 	return ("Sphere");
 }
 
-static double	volume(t_obj *shape)
+double	volume_s(t_obj *sphere)
 {
-	t_sphere	*sphere;
+	t_sphere	*sphere_1;
 	double		radius;
 
-	sphere = (t_sphere *)shape;
-	radius = sphere->diameter / 2.0;
+	sphere_1 = (t_sphere *)sphere;
+	radius = sphere_1->diameter / 2.0;
 	return ((4.0 / 3.0) * PI * pow(radius, 3));
 }
 
-static void	transform(t_obj *shape, t_matrix transformation)
+void	transform_s(t_obj *sphere, t_matrix transformation)
 {
-	shape->transformation = matrix_mult(shape->transformation,
+	sphere->transformation = matrix_mult(sphere->transformation,
 			transformation);
-	shape->inverse_transformation = matrix_mult(shape->inverse_transformation,
+	sphere->inverse_transformation = matrix_mult(sphere->inverse_transformation,
 			inverse(transformation, 4));
-}
-
-static t_inter	local_intersect(t_ray r, t_obj *sphere)
-{
-	t_ray	inv_ray;
-
-	inv_ray = ray_transform(r, sphere->inverse_transformation);
-	return (intersect(inv_ray, sphere));
 }
 
 t_sphere	*sphere_create(char **sphere_split)
@@ -45,19 +37,22 @@ t_sphere	*sphere_create(char **sphere_split)
 	if (!sphere)
 		return (NULL);
 	sphere->diameter = ft_strtod(sphere_split[2]);
-	sphere->shape.get_name = get_name;
-	sphere->shape.volume = volume;
+	sphere->shape.get_name = get_name_s;
+	sphere->shape.volume = volume_s;
 	sphere->shape.destroy = sphere_destroy;
-	sphere->shape.transform = transform;
-	sphere->shape.local_intersect = local_intersect;
+	sphere->shape.transform = transform_s;
+	sphere->shape.local_intersect = local_intersect_s;
+	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = get_point(sphere_split[1]);
-	sphere->shape.dir_vector = vector(0, 0, 0);//parse_vector;
-	sphere->shape.material = material(get_color(sphere_split[3]), 0.7, 0.2, 200);
+	sphere->shape.dir_vector = vector(0, 0, 0);
+	sphere->shape.material = material(get_color(sphere_split[3]),
+			0.9, 0.9, 200);
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();
 	sphere->shape.transform((t_obj *) sphere,
-			scaling_matrix(sphere->diameter/2, sphere->diameter/2, sphere->diameter/2));
+		scaling_matrix(sphere->diameter / 2,
+			sphere->diameter / 2, sphere->diameter / 2));
 	return (sphere);
 }
 

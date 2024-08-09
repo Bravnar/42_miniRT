@@ -37,10 +37,16 @@ SRCS= 	srcs/main.c \
 		srcs/shading/lighting.c \
 		srcs/shading/lighting_utils.c \
 		srcs/shapes/cube.c \
+		srcs/shapes/cube_utils.c \
 		srcs/shapes/cylinder.c \
+		srcs/shapes/cylinder_utils.c \
 		srcs/shapes/sphere.c \
+		srcs/shapes/sphere_utils.c \
 		srcs/shapes/plane.c \
+		srcs/shapes/plane_utils.c \
 		srcs/utils/display.c \
+		srcs/utils/display_2.c \
+		srcs/utils/memory.c \
 		srcs/utils/sort_inter.c \
 		srcs/parsing/ft_strtod.c \
 		srcs/parsing/ft_strtoi.c \
@@ -56,6 +62,10 @@ SRCS= 	srcs/main.c \
 		srcs/init/scene_getters.c \
 		srcs/parsing/objects/objects_utils.c \
 		srcs/world/world.c \
+		srcs/test/equals.c \
+		srcs/test/lighting_test.c \
+		srcs/test/ray_test.c \
+		srcs/test/hit_test.c \
 		srcs/world/view.c \
 
 CC= cc

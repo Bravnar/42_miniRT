@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 13:36:29 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/02 10:41:51 by smuravye         ###   ########.fr       */
+/*   Created: 2024/08/09 11:57:10 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/09 11:57:10 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ typedef struct s_sphere
 	double	diameter;
 }	t_sphere;
 
-t_sphere	*sphere_create(char **sphere_split);
-void		sphere_destroy(t_obj *shape);
+t_sphere		*sphere_create(char **sphere_split);
+void			sphere_destroy(t_obj *shape);
+t_sphere		*sphere(void);
+t_tup			local_normal_at_s(t_obj *sphere, t_tup point);
+t_inter			local_intersect_s(t_ray r, t_obj *sphere);
+void			transform_s(t_obj *sphere, t_matrix transformation);
+double			volume_s(t_obj *sphere);
+char			*get_name_s(t_obj *sphere);
 
 #endif

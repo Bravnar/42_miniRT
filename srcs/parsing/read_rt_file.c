@@ -1,4 +1,4 @@
-# include "main.h"
+#include "main.h"
 
 void	read_file(char *file_name, t_map *data)
 {
@@ -35,7 +35,7 @@ void	check_identifier(t_parse **head)
 			}
 			else
 				err_handler(UKNOWN_ID);
-		}	
+		}
 		tmp = tmp->next;
 	}
 }
@@ -67,8 +67,7 @@ void	populate_scene_struct(char *file_name, t_map *scene)
 	populate_shapes();
 }
 
-
-/* 
+/*
 	1) Go over parsed lines and check identifiers
 		a) RAC are unique
 		b) if multiple Ls detected, make ->light into a linked list

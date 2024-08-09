@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 14:49:51 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/02 10:59:07 by smuravye         ###   ########.fr       */
+/*   Created: 2024/08/09 12:18:24 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/09 12:18:24 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,10 @@ typedef struct	s_cyl
 
 t_cyl	*cyl_create(char **cyl_line);
 void	cyl_destroy(t_obj *shape);
+char	*get_name_cy(t_obj *shape);
+double	volume_cy(t_obj *shape);
+void	transform_cy(t_obj *shape, t_matrix transformation);
+t_inter	local_intersect_cy(t_ray r, t_obj *cyl);
+t_cyl	*cylinder(void);
 
 #endif

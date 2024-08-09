@@ -110,7 +110,7 @@ t_color	color_at_hit(t_intersection hit, t_ray ray)
 	t_tup	eyev;
 
 	point = position(ray, hit.t);
-	normal = normal_at(hit.shape, point);
+	normal = hit.shape->local_normal_at(hit.shape, point);
 	eyev = tuple_neg(ray.direction);
 	col = lighting(hit.shape->material, point, eyev, normal);
 	add_hex_color(&col);
@@ -137,8 +137,6 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 	half = wall_size / 2;
 	pixels = 1600;
 	pixel_size = wall_size / pixels;
-	// sphere = (t_obj *)sphere_create(2);
-	// sphere = search_obj_list("Sphere");
 	sphere = obj;
 	if (to_shear)
 	{
@@ -156,16 +154,17 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 		{
 			world_x = -half + pixel_size * x;
 			ray = ray_new(get_scene_cam()->point, vector_norm(tuple_sub(point(world_x, world_y, wall_z), get_scene_cam()->point)));
-			//ray = ray_new(get_scene_cam()->point, get_scene_cam()->vector);
 			inter = sphere->local_intersect(ray, sphere);
-			if (inter.i)
+			if (inter.count)
 			{
 				t_intersection hit_info = hit(inter);
 				if (hit_info.t != -1)
 				{
+					printf("Point: %d, %d\n", x, y);
 					my_pixel(&rt->mlx, x, y, color_at_hit(hit_info, ray).hex);
-					free(inter.i);
 				}
+				free(inter.i);
+				inter.i = NULL;
 			}
 		}
 	}
@@ -394,6 +393,16 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
+
+
+
+
+	// ===== test lightning =====
+	/*t_material mat = mat_default();
+	t_color test = lighting(mat, point(0,0,0), vector(0,0,-1),vector(0,0,-1));
+
+	print_color(test);*/
+
 	print_scene_details();
 
 	test_gameloop(rt);
@@ -510,6 +519,23 @@ int main(int ac, char **av)
 
 	// END ------------------------------------------------------------//
 	free(xs.i);
+
+	t_obj *ob = get_scene()->obj_list;
+	t_ray ra = ray_new(point(0, -1, 0), vector(0, 1, 0));
+	t_inter in = ob->local_intersect(ra, ob);
+	printf("Count: %d\nT_0: %f\n", in.count, in.i[0].t);
+	free(in.i);
+	//game_loop(rt);
+	lighting_test_battery();
+	ray_test_battery();
+	hit_test_battery();
+
+
+	/* t_matrix A = translation_matrix(0, 1, 0);
+	t_obj *ob = get_scene()->obj_list;
+	ob->transform(ob, A);
+	t_tup a = normal_at(ob, point(0, 1.70711, -0.70711));
+	print_tuple(a); */
 	free(rt);
 
 	// game_loop(rt);

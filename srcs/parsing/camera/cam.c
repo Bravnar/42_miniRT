@@ -18,8 +18,8 @@ static void	get_cam_vector(char *str)
 
 	tup_split = ft_split(str, ',');
 	get_scene()->cam.vector = vector(ft_strtod(tup_split[0]),
-							ft_strtod(tup_split[1]),
-							ft_strtod(tup_split[2]));
+		ft_strtod(tup_split[1]),
+		ft_strtod(tup_split[2]));
 	tmp = get_scene()->cam.vector;
 	if (tmp.x < -1.0 || tmp.x < -1.0 || tmp.z < -1.0)
 	{
@@ -36,7 +36,7 @@ static void	get_cam_vector(char *str)
 
 void	populate_cam(void)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 
 	tmp = get_scene()->file.parse;
 	while (tmp)
@@ -50,6 +50,6 @@ void	populate_cam(void)
 				err_handler(C_FOV_RANGE);
 			break ;
 		}
-	tmp = tmp->next;
+		tmp = tmp->next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 14:49:58 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/02 11:13:44 by smuravye         ###   ########.fr       */
+/*   Created: 2024/08/09 12:14:44 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/09 12:14:44 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ typedef struct	s_cube
 	double		width;
 }	t_cube;
 
-t_cube	*cube_create(char **cube_line);
 void	cube_destroy(t_obj *shape);
-
+char	*get_name_cu(t_obj *shape);
+double	volume_cu(t_obj *shape);
+void	transform_cu(t_obj *shape, t_matrix transformation);
+t_inter	local_intersect_cu(t_ray r, t_obj *cube);
+void	cube_destroy(t_obj *shape);
+t_cube	*cube_create(char **cube_line);
 #endif

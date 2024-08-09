@@ -9,8 +9,7 @@ t_color	diffuse(double ldn, t_material m, t_color eff_color)
 {
 	if (ldn < 0)
 		return (black());
-	else
-		return (color_scalarmult(m.diffuse * ldn, eff_color));
+	return (color_scalarmult(m.diffuse * ldn, eff_color));
 }
 
 t_color	specular(double ldn, t_tup light_v, t_material m, t_tup ev, t_tup nv)

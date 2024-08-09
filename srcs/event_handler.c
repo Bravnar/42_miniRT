@@ -34,7 +34,7 @@ int	keyboard(int keycode, t_main *rt)
 void	handle_events(t_main *rt)
 {
 	mlx_hook(rt->mlx.win_ptr, 17, 0, close_win, rt);
-	mlx_hook(rt->mlx.win_ptr, 2, 1L<<0, keyboard, rt);
+	mlx_hook(rt->mlx.win_ptr, 2, 1L << 0, keyboard, rt);
 	// mlx_hook(rt->mlx.win_ptr, 4, 0, mouse_down, rt);
 	// mlx_hook(rt->mlx.win_ptr, 5, 0, mouse_up, rt);
 	// mlx_hook(rt->mlx.win_ptr, 6, 0, mouse_move, rt);

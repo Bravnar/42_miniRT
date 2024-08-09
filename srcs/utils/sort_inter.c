@@ -2,7 +2,7 @@
 
 t_inter	intersect_slice(t_inter *inter, int start, int end)
 {
-	t_inter copy;
+	t_inter	copy;
 	int		i;
 	int		size;
 
@@ -16,12 +16,11 @@ t_inter	intersect_slice(t_inter *inter, int start, int end)
 	i = 0;
 	while (start < end)
 		copy.i[i++] = inter->i[start++];
-		
 	copy.count = size;
 	return (copy);
 }
 
-void	insert_inter(t_inter left, t_inter right, t_inter *ret)
+void	insert_inter(t_inter left, t_inter right, t_inter *ret, t_inter inter)
 {
 	int		i;
 	int		j;
@@ -41,10 +40,24 @@ void	insert_inter(t_inter left, t_inter right, t_inter *ret)
 		ret->i[k++] = right.i[i++];
 	while (j < left.count)
 		ret->i[k++] = left.i[j++];
+	ret->count = inter.count;
 	if (right.count > 0)
 		free(right.i);
 	if (left.count > 0)
 		free(left.i);
+}
+bool	is_sorted(t_inter inter)
+{
+	int	i;
+
+	i = 0;
+	while (i < inter.count - 1)
+	{
+		if (inter.i[i].t > inter.i[i + 1].t)
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 t_inter	sort_inter(t_inter inter)
@@ -53,26 +66,19 @@ t_inter	sort_inter(t_inter inter)
 	t_inter	left;
 	t_inter	right;
 
+	if (inter.count <= 1 || is_sorted(inter))
+		return (inter);
 	ret.i = malloc(sizeof(t_intersection) * inter.count);
 	if (!ret.i)
 	{
 		ret.count = 0;
-		free(inter.i);
 		return (ret);
 	}
-	if (inter.count > 1)
-	{
-		left = intersect_slice(&inter, 0, inter.count/2);
-		right = intersect_slice(&inter, inter.count/2, inter.count);
-		sort_inter(left);
-		sort_inter(right);
-		insert_inter(left, right, &ret);
-		ret.count = inter.count;
-	// if (inter->count > 0)
-	// 	free(inter->i);
-	}
-	if (ret.count > 1)
-		return (ret);
-	else
-		return (inter);
+	left = intersect_slice(&inter, 0, inter.count / 2);
+	right = intersect_slice(&inter, inter.count / 2, inter.count);
+	left = sort_inter(left);
+	right = sort_inter(right);
+	insert_inter(left, right, &ret, inter);
+	free(inter.i);
+	return (ret);
 }

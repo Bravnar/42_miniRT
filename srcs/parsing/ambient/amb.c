@@ -2,18 +2,22 @@
 
 static void	get_amb_rgb(char *str)
 {
-	char **color_split;
+	char	**color_split;
+	int		r;
+	int		g;
+	int		b;
 
 	color_split = ft_split(str, ',');
-	get_scene()->amb.rgb = color(ft_atoi(color_split[0]),
-								ft_atoi(color_split[1]),
-								ft_atoi(color_split[2]));
+	r = ft_atoi(color_split[0]);
+	g = ft_atoi(color_split[1]);
+	b = ft_atoi(color_split[2]);
+	get_scene()->amb.rgb = color(r, g, b);
 	ft_free_arr(color_split);
 }
 
 void	populate_amb(void)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 	double	*ratio;
 
 	ratio = &get_scene()->amb.ratio;
