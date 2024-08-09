@@ -40,6 +40,7 @@ typedef struct	s_mlx
 	int		win_y;
 }	t_mlx;
 
+
 typedef struct s_tup
 {
 	double	x;
@@ -210,6 +211,15 @@ typedef struct s_shear
 	double	zy;
 }	t_shear;
 
+typedef struct s_comps
+{
+	double	t;
+	t_obj	*obj;
+	t_tup	point;
+	t_tup	eyev;
+	t_tup	normalv;
+	bool	is_inside;
+}	t_comps;
 
 
 typedef struct s_strtoi
@@ -235,6 +245,28 @@ typedef struct s_world
 	t_obj	*shapes;
 	t_light	*light;
 }	t_world;
+
+typedef	struct	s_view_cam
+{
+	double		hsize;
+	double		vsize;
+	double		fov;
+	double		pixel_size;
+	double		half_view;
+	double		aspect;
+	double		half_width;
+	double		half_height;
+	t_matrix	transf_matrix;
+}	t_view_cam;
+
+typedef struct	s_cam_ray
+{
+	double	xoffset;
+	double	yoffset;
+	double	world_x;
+	double	world_y;
+	t_tup	pixel;
+}	t_cam_ray;
 
 
 #endif

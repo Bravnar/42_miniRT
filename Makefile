@@ -65,7 +65,8 @@ SRCS= 	srcs/main.c \
 		srcs/test/equals.c \
 		srcs/test/lighting_test.c \
 		srcs/test/ray_test.c \
-		srcs/test/hit_test.c
+		srcs/test/hit_test.c \
+		srcs/world/view.c \
 
 CC= cc
 
@@ -78,8 +79,8 @@ MINILIBX_DIR = minilibx-linux
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-SANITIZE= -g3 -fsanitize=address
-#SANITIZE= -g
+# SANITIZE= -g3 -fsanitize=address
+SANITIZE= -g
 
 # Color Variables
 RED=\033[0;31m
