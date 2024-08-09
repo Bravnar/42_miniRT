@@ -1,12 +1,11 @@
 #include "main.h"
 
-
 bool	equal_color(t_color a, t_color b)
 {
 	return (equal(a.r, b.r) && \
 			equal(a.g, b.g) && \
 			equal(a.b, b.b) && \
-			equal(a.t*255, b.t));
+			equal(a.t * 255, b.t));
 }
 
 bool	equal_tuple(t_tup a, t_tup b)
@@ -33,4 +32,20 @@ bool	equal_matrix(t_matrix a, t_matrix b)
 	return (true);
 }
 
+bool	equal_inter(t_inter a, t_inter b)
+{
+	int		i;
 
+	if (b.count == 0)
+		return (!a.count);
+	else if (a.count != b.count)
+		return (false);
+	i = 0;
+	while (i < a.count)
+	{
+		if (!equal(a.i[i].t, b.i[i].t))
+			return (false);
+		i++;
+	}
+	return (true);
+}

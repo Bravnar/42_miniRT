@@ -45,6 +45,8 @@ SRCS= 	srcs/main.c \
 		srcs/shapes/plane.c \
 		srcs/shapes/plane_utils.c \
 		srcs/utils/display.c \
+		srcs/utils/display_2.c \
+		srcs/utils/memory.c \
 		srcs/utils/sort_inter.c \
 		srcs/parsing/ft_strtod.c \
 		srcs/parsing/ft_strtoi.c \
@@ -61,7 +63,8 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/objects/objects_utils.c \
 		srcs/world/world.c \
 		srcs/test/equals.c \
-		srcs/test/lighting_test.c
+		srcs/test/lighting_test.c \
+		srcs/test/ray_testing.c
 
 CC= cc
 
@@ -74,8 +77,8 @@ MINILIBX_DIR = minilibx-linux
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-# SANITIZE= -g3 -fsanitize=address
-SANITIZE= -g
+SANITIZE= -g3 -fsanitize=address
+#SANITIZE= -g
 
 # Color Variables
 RED=\033[0;31m

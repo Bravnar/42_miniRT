@@ -93,8 +93,8 @@ int	ft_strtoi(const char *nptr, char **endptr);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 17:43:33 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/08 17:43:33 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/09 13:24:04 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/09 13:24:04 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,7 @@ t_tup			position(t_ray ray, double t);
 
 double			discriminant(t_obj *sphere, double *a, double *b);
 t_inter			intersect(t_obj *shape);
+t_inter			new_inter(int count, t_obj *shape, ...);
 t_intersection	intersection(double t, t_obj *shape);
 t_inter			intersections(int c, ...);
 
@@ -307,6 +308,11 @@ void			print_column(t_column column);
 void			print_tuple(t_tup tuple);
 void			print_ray(t_ray ray);
 void			print_cofactors(t_matrix A, int size);
+void			print_inter(t_inter i);
+
+/* MEMORY */
+
+void	free_inter(t_inter inter);
 
 /* SORTING INTERSECTIONS */
 
@@ -323,9 +329,11 @@ t_inter			sort_inter(t_inter inter);
 bool			equal_color(t_color a, t_color b);
 bool			equal_tuple(t_tup a, t_tup b);
 bool			equal_matrix(t_matrix a, t_matrix b);
+bool			equal_inter(t_inter a, t_inter b);
 
 /* LIGHTING */
 
 void			lighting_test_battery(void);
+void			ray_test_battery(void);
 
 #endif

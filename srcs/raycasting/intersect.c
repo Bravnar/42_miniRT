@@ -1,5 +1,26 @@
 #include "main.h"
 
+t_inter	new_inter(int count, t_obj *shape, ...)
+{
+	va_list	args;
+	int		i;
+	t_inter	new;
+
+	new.i = malloc(sizeof(t_intersection) * count);
+	if (!new.i)
+	{
+		new.i = NULL;
+		return (new);
+	}
+	i = -1;
+	va_start(args, shape);
+	new.count = count;
+	while (++i < count)
+		new.i[i] = intersection(va_arg(args, double), shape);
+	va_end(args);
+	return (new);
+}
+
 double	discriminant(t_obj *shape, double *a, double *b)
 {
 	t_tup	sphere_to_ray;

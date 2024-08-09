@@ -374,6 +374,7 @@ int main(int ac, char **av)
 	free(in.i);
 	//game_loop(rt);
 	lighting_test_battery();
+	ray_test_battery();
 
 
 	/* t_matrix A = translation_matrix(0, 1, 0);
