@@ -37,9 +37,13 @@ SRCS= 	srcs/main.c \
 		srcs/shading/lighting.c \
 		srcs/shading/lighting_utils.c \
 		srcs/shapes/cube.c \
+		srcs/shapes/cube_utils.c \
 		srcs/shapes/cylinder.c \
+		srcs/shapes/cylinder_utils.c \
 		srcs/shapes/sphere.c \
+		srcs/shapes/sphere_utils.c \
 		srcs/shapes/plane.c \
+		srcs/shapes/plane_utils.c \
 		srcs/utils/display.c \
 		srcs/utils/sort_inter.c \
 		srcs/parsing/ft_strtod.c \
@@ -70,8 +74,8 @@ MINILIBX_DIR = minilibx-linux
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-SANITIZE= -g3 -fsanitize=address
-# SANITIZE= -g
+# SANITIZE= -g3 -fsanitize=address
+SANITIZE= -g
 
 # Color Variables
 RED=\033[0;31m
