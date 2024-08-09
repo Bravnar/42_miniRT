@@ -375,6 +375,7 @@ int main(int ac, char **av)
 	//game_loop(rt);
 	lighting_test_battery();
 	ray_test_battery();
+	hit_test_battery();
 
 
 	/* t_matrix A = translation_matrix(0, 1, 0);

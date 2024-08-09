@@ -64,7 +64,8 @@ SRCS= 	srcs/main.c \
 		srcs/world/world.c \
 		srcs/test/equals.c \
 		srcs/test/lighting_test.c \
-		srcs/test/ray_testing.c
+		srcs/test/ray_test.c \
+		srcs/test/hit_test.c
 
 CC= cc
 

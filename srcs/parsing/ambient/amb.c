@@ -7,11 +7,11 @@ static void	get_amb_rgb(char *str)
 	int		g;
 	int		b;
 
-	get_scene()->amb.rgb = color(r, g, b);
+	color_split = ft_split(str, ',');
 	r = ft_atoi(color_split[0]);
 	g = ft_atoi(color_split[1]);
 	b = ft_atoi(color_split[2]);
-	color_split = ft_split(str, ',');
+	get_scene()->amb.rgb = color(r, g, b);
 	ft_free_arr(color_split);
 }
 

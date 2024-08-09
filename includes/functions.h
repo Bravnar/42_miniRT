@@ -93,8 +93,8 @@ int	ft_strtoi(const char *nptr, char **endptr);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 13:24:04 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/09 13:24:04 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/09 15:23:07 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/09 15:23:07 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,10 +309,11 @@ void			print_tuple(t_tup tuple);
 void			print_ray(t_ray ray);
 void			print_cofactors(t_matrix A, int size);
 void			print_inter(t_inter i);
+void			print_intersection(t_intersection i);
 
 /* MEMORY */
 
-void	free_inter(t_inter inter);
+void			free_inter(t_inter inter);
 
 /* SORTING INTERSECTIONS */
 
@@ -335,5 +336,6 @@ bool			equal_inter(t_inter a, t_inter b);
 
 void			lighting_test_battery(void);
 void			ray_test_battery(void);
+void			hit_test_battery(void);
 
 #endif

@@ -46,6 +46,19 @@ void	insert_inter(t_inter left, t_inter right, t_inter *ret, t_inter inter)
 	if (left.count > 0)
 		free(left.i);
 }
+bool	is_sorted(t_inter inter)
+{
+	int	i;
+
+	i = 0;
+	while (i < inter.count - 1)
+	{
+		if (inter.i[i].t > inter.i[i + 1].t)
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 t_inter	sort_inter(t_inter inter)
 {
@@ -53,7 +66,7 @@ t_inter	sort_inter(t_inter inter)
 	t_inter	left;
 	t_inter	right;
 
-	if (inter.count <= 1)
+	if (inter.count <= 1 || is_sorted(inter))
 		return (inter);
 	ret.i = malloc(sizeof(t_intersection) * inter.count);
 	if (!ret.i)

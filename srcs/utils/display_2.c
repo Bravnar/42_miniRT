@@ -17,3 +17,13 @@ void	print_inter(t_inter i)
 		j++;
 	}
 }
+
+void	print_intersection(t_intersection i)
+{
+	if (i.t == -1)
+	{
+		printf("No intersection\n");
+		return ;
+	}
+	printf("Intersection.t: %.2f\n", i.t);
+}
