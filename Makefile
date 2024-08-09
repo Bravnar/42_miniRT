@@ -55,7 +55,8 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/objects/objects_utils.c \
 		srcs/init/scene_getters.c \
 		srcs/parsing/objects/objects_utils.c \
-		srcs/world/world.c
+		srcs/world/world.c \
+		srcs/world/view.c \
 
 CC= cc
 

@@ -94,7 +94,19 @@ t_world	create_world(void);
 t_inter	intersect_world(t_world w, t_ray r);
 t_comps	prepare_comp(t_intersection h, t_ray r);
 t_color	shade_hit(t_world w, t_comps comps);
+t_color	color_at(t_world w, t_ray r);
 
+/* ************************************************************************** */
+/*                                                                            */
+/*                               VIEW                                         */
+/*                                                                            */
+/* ************************************************************************** */
+
+t_matrix	view_transform(t_tup from, t_tup to, t_tup up);
+t_view_cam	init_camera(double hsize, double vsize, double fov);
+void		print_view_cam(t_view_cam cam);
+t_ray		ray_for_pixel(t_view_cam cam, double px, double py);
+void		render(t_view_cam cam, t_world w, t_main *rt);
 
 /* EVENT HANDLER */
 int				close_win(void *param);
@@ -256,6 +268,7 @@ t_inter			intersections(int c, ...);
 /* HITS */
 
 t_intersection	hit(t_inter inters);
+t_intersection	nhit(t_inter inters);
 
 /* RAY TRANSFORMATIONS */
 

@@ -1,5 +1,24 @@
 #include "main.h"
 
+t_color	color_at(t_world w, t_ray r)
+{
+	t_inter			inters;
+	t_intersection	h;
+	t_comps			comps;
+
+	inters = intersect_world(w, r);
+	h = nhit(inters);
+	printf("result of h.t: %f\n", h.t);
+	// free(inters.i);
+	if (h.t == -1)
+	{
+		free(inters.i);
+		return (black());
+	}
+	comps = prepare_comp(h, r);
+	return (shade_hit(w, comps));
+}
+
 t_color	shade_hit(t_world w, t_comps comps)
 {
 	(void) w;
