@@ -18,6 +18,14 @@ t_color	color(double r, double g, double b)
 
 void	add_hex_color(t_color *c)
 {
+	if (c->r > 255)
+		c->r = 255;
+	if (c->g > 255)
+		c->g = 255;
+	if (c->b > 255)
+		c->b = 255;
+	if (c->t > 255)
+		c->t = 255;
 	c->hex = ((int)c->t << 24 | \
 			(int) c->r << 16 | \
 			(int) c->g << 8 | \
@@ -27,6 +35,15 @@ void	add_hex_color(t_color *c)
 int	nadd_hex_color(int r, int g, int b, int t)
 {
 	int	hex;
+
+	if (r > 255)
+		r = 255;
+	if (g > 255)
+		g = 255;
+	if (b > 255)
+		b = 255;
+	if (t > 255)
+		t = 255;
 	hex = (t << 24 | \
 			r << 16 | \
 			g << 8 | \
