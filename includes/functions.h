@@ -178,6 +178,7 @@ bool			equal(double a, double b);
 
 t_color			color(double r, double g, double b);
 void			add_hex_color(t_color *c);
+int				nadd_hex_color(int r, int g, int b, int t);
 t_color			black(void);
 void			print_color(t_color c);
 

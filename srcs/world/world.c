@@ -7,14 +7,9 @@ t_color	color_at(t_world w, t_ray r)
 	t_comps			comps;
 
 	inters = intersect_world(w, r);
-	h = nhit(inters);
-	printf("result of h.t: %f\n", h.t);
-	// free(inters.i);
+	h = hit(inters);
 	if (h.t == -1)
-	{
-		free(inters.i);
 		return (black());
-	}
 	comps = prepare_comp(h, r);
 	return (shade_hit(w, comps));
 }
@@ -95,7 +90,7 @@ t_comps	prepare_comp(t_intersection h, t_ray r)
 	new.obj = h.shape;
 	new.point = position(r, h.t);
 	new.eyev = tuple_neg(r.direction);
-	new.normalv = normal_at(new.obj, new.point);
+	new.normalv = new.obj->local_normal_at(new.obj, new.point);
 	if (dot(new.normalv, new.eyev) < 0)
 	{
 		new.is_inside = true;

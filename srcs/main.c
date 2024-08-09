@@ -344,35 +344,45 @@ void	test_gameloop(t_main *rt)
 	t_obj		*left_wall;
 	t_obj		*right_wall;
 	t_obj		*middle;
-	// t_obj		*right;
-	// t_obj		*left;
+	t_obj		*right;
+	t_obj		*left;
 
 	init_mlx(&rt->mlx);
 	w = create_world();
 	floor = w.shapes;
 	floor->transform(floor, scaling_matrix(10, 0.01, 10));
-	floor->material.amb = 0.9;
+	floor->material = mat_default();
 	floor->material.diffuse = 0.9;
-	floor->material.color = color(255, 230, 230);
 	floor->material.specular = 0;
+	floor->material.color = color(255, 230, 230);
 	left_wall = w.shapes->next;
-	left_wall->transform(left_wall, matrix_mult(matrix_mult(translation_matrix(0, 0, 5),
-												matrix_mult(rotation_y(-45), rotation_x(90))),
-	 											scaling_matrix(10, 0.01, 10)));
+	left_wall->transform(left_wall, matrix_mult(translation_matrix(0, 0, 5),
+												matrix_mult(rotation_y(-45),
+												matrix_mult(rotation_x(90),
+												scaling_matrix(100, 0.01, 100)))));
 	left_wall->material = floor->material;
 	right_wall = w.shapes->next->next;
-	right_wall->transform(right_wall, matrix_mult(matrix_mult(translation_matrix(0, 0, 5),
-												matrix_mult(rotation_y(45), rotation_x(90))),
-	 											scaling_matrix(10, 0.01, 10)));
+	right_wall->transform(right_wall, matrix_mult(translation_matrix(0, 0, 5),
+												matrix_mult(rotation_y(45),
+												matrix_mult(rotation_x(90),
+												scaling_matrix(100, 0.01, 100)))));
 	right_wall->material = floor->material;
 	middle = w.shapes->next->next->next;
 	middle->transform(middle, translation_matrix(-0.5, 1, 0.5));
-	middle->material.amb = 0.9;
 	middle->material.diffuse = 0.7;
 	middle->material.specular = 0.3;
-	// right = w.shapes->next->next->next->next;
-	// left = w.shapes->next->next->next->next->next;
-	cam = init_camera(500, 500, PI/3);
+	middle->material.color = color(25.5, 255, 127.5);
+	right = w.shapes->next->next->next->next;
+	right->transform(right, translation_matrix(1.5, 0.5, -0.5));
+	right->material.diffuse = 0.7;
+	right->material.specular = 0.3;
+	right->material.color = color(127.5, 255, 25.5);
+	left = w.shapes->next->next->next->next->next;
+	left->transform(left, translation_matrix(-1.5, 0.33, -0.75));
+	left->material.diffuse = 0.7;
+	left->material.specular = 0.3;
+	left->material.color = color(255, 204, 25.5);
+	cam = init_camera(1000, 1000, PI/3);
 	from = point(0, 1.5, -5);
 	to = point(0, 1, 0);
 	up = vector(0, 1, 0);
@@ -393,16 +403,6 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
-
-
-
-
-	// ===== test lightning =====
-	/*t_material mat = mat_default();
-	t_color test = lighting(mat, point(0,0,0), vector(0,0,-1),vector(0,0,-1));
-
-	print_color(test);*/
-
 	print_scene_details();
 
 	test_gameloop(rt);
