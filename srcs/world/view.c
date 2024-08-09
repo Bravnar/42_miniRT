@@ -5,6 +5,7 @@ void	render(t_view_cam cam, t_world w, t_main *rt)
 	int		y;
 	int		x;
 	t_ray	new;
+	t_color	c;
 
 	y = 0;
 	while (y < cam.vsize - 1)
@@ -13,13 +14,16 @@ void	render(t_view_cam cam, t_world w, t_main *rt)
 		while (x < cam.hsize - 1)
 		{
 			new = ray_for_pixel(cam, x, y);
-			// if (x == 5 && y == 5)
-			// {
-			// 	printf("pixel at [%d],[%d]:\n", x, y);
-			// 	print_color(color_at(w, new));
-			// 	return ;
-			// }
-			my_pixel(&rt->mlx, x, y, color_at(w, new).hex);
+			c = color_at(w, new);
+			add_hex_color(&c);
+			/* if (x == 5 && y == 5)
+			{
+				printf("pixel at [%d],[%d]:\n", x, y);
+				printf("color hex: %x\n", c.hex);
+				print_color(c);
+				return ;
+			} */
+			my_pixel(&rt->mlx, x, y, c.hex);
 			x++;
 		}
 		y++;
