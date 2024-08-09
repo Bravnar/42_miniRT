@@ -11,7 +11,7 @@ t_inter	local_intersect_s(t_ray r, t_obj *sphere)
 
 t_tup	local_normal_at_s(t_obj *sphere, t_tup point)
 {
-	return normal_at(sphere, point);
+	return (normal_at(sphere, point));
 }
 
 t_sphere	*sphere(void)
@@ -28,13 +28,13 @@ t_sphere	*sphere(void)
 	s->shape.transform = transform_s;
 	s->shape.local_intersect = local_intersect_s;
 	s->shape.local_normal_at = local_normal_at_s;
-	s->shape.point = point(0, 0 , 0);
+	s->shape.point = point(0, 0, 0);
 	s->shape.dir_vector = vector(0, 0, 0);
 	s->shape.material = mat_default();
 	s->shape.next = NULL;
 	s->shape.transformation = identity();
 	s->shape.inverse_transformation = identity();
 	s->shape.transform((t_obj *) s,
-			scaling_matrix(s->diameter/2, s->diameter/2, s->diameter/2));
+		scaling_matrix(s->diameter / 2, s->diameter / 2, s->diameter / 2));
 	return (s);
 }

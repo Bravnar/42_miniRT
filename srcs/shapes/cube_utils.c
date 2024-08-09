@@ -36,11 +36,10 @@ t_cube	*cube(void)
 	c->shape.transform = transform_cu;
 	c->shape.local_intersect = local_intersect_cu;
 	c->shape.material = mat_default();
-	c->shape.point = point(0, 0, 0);//parse_point;
-	c->shape.dir_vector = vector(0, 0, 1);//parse_vector;
+	c->shape.point = point(0, 0, 0);
+	c->shape.dir_vector = vector(0, 0, 1);
 	c->shape.transformation = identity();
 	c->shape.inverse_transformation = identity();
 	c->shape.next = NULL;
 	return (c);
-
 }

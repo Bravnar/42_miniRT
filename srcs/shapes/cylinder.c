@@ -36,8 +36,8 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.transform = transform_cy;
 	cyl->shape.local_intersect = local_intersect_cy;
 	cyl->shape.material = material(get_color(cyl_line[5]), 0.9, 0.9, 200);
-	cyl->shape.point = get_point(cyl_line[1]);//parse_point;
-	cyl->shape.dir_vector = get_vector(cyl_line[2]);//parse_vector;
+	cyl->shape.point = get_point(cyl_line[1]);
+	cyl->shape.dir_vector = get_vector(cyl_line[2]);
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();

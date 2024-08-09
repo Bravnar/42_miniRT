@@ -68,20 +68,23 @@ void	print_nodes(t_parse **head)
 
 void	print_scene_details(void)
 {
-	t_rwin	res = get_scene()->win;
-	t_amb	amb = get_scene()->amb;
-	t_cam	cam = get_scene()->cam;
+	t_rwin	res;
+	t_amb	amb;
+	t_cam	cam;
 
+	res = get_scene()->win;
+	amb = get_scene()->amb;
+	cam = get_scene()->cam;
 	printf("Resolution: ---------------------------------------------:\n");
 	printf("\tResolution x: %d\n\tResolution y: %d\n", res.x, res.y);
 	printf("Ambient lighting: --------------:\n");
 	printf("\tAmbient ratio: %f\n\tAmbient rgb: [%f,%f,%f]\n",
-			amb.ratio, amb.rgb.r, amb.rgb.g, amb.rgb.b);
+		amb.ratio, amb.rgb.r, amb.rgb.g, amb.rgb.b);
 	printf("Camera: -------------------------------------------------:\n");
 	printf("\tCamera position: [%f, %f, %f]\n",
-			cam.point.x, cam.point.y, cam.point.z);
+		cam.point.x, cam.point.y, cam.point.z);
 	printf("\tCamera vector: [%f, %f, %f]\n",
-			cam.vector.x, cam.vector.y, cam.vector.z);
+		cam.vector.x, cam.vector.y, cam.vector.z);
 	printf("\tCamera FOV: %d\n", cam.fov);
 	printf("Lights --------------------------------------------------:\n");
 	print_light_nodes(get_scene_light());

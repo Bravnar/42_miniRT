@@ -2,7 +2,7 @@
 
 t_inter	intersect_slice(t_inter *inter, int start, int end)
 {
-	t_inter copy;
+	t_inter	copy;
 	int		i;
 	int		size;
 
@@ -47,25 +47,25 @@ void	insert_inter(t_inter left, t_inter right, t_inter *ret, t_inter inter)
 		free(left.i);
 }
 
-t_inter sort_inter(t_inter inter)
+t_inter	sort_inter(t_inter inter)
 {
-	t_inter ret;
-	t_inter left;
-	t_inter right;
+	t_inter	ret;
+	t_inter	left;
+	t_inter	right;
 
 	if (inter.count <= 1)
-		return inter;
+		return (inter);
 	ret.i = malloc(sizeof(t_intersection) * inter.count);
 	if (!ret.i)
 	{
 		ret.count = 0;
-		return ret;
+		return (ret);
 	}
-	left = intersect_slice(&inter, 0, inter.count/2);
-	right = intersect_slice(&inter, inter.count/2, inter.count);
+	left = intersect_slice(&inter, 0, inter.count / 2);
+	right = intersect_slice(&inter, inter.count / 2, inter.count);
 	left = sort_inter(left);
 	right = sort_inter(right);
 	insert_inter(left, right, &ret, inter);
 	free(inter.i);
-	return ret;
+	return (ret);
 }

@@ -35,8 +35,8 @@ t_cube	*cube_create(char **cube_line)
 	c->shape.transform = transform_cu;
 	c->shape.local_intersect = local_intersect_cu;
 	c->shape.material = material(get_color(cube_line[6]), 0.9, 0.9, 200);
-	c->shape.point = get_point(cube_line[1]);//parse_point;
-	c->shape.dir_vector = get_vector(cube_line[2]);//parse_vector;
+	c->shape.point = get_point(cube_line[1]);
+	c->shape.dir_vector = get_vector(cube_line[2]);
 	c->shape.transformation = identity();
 	c->shape.inverse_transformation = identity();
 	c->shape.next = NULL;

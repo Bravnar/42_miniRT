@@ -64,4 +64,3 @@ void	populate_light(void)
 		tmp = tmp->next;
 	}
 }
-

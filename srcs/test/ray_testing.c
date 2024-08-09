@@ -17,7 +17,6 @@ void	test_inter(t_inter got, t_inter exp, char *tn)
 	printf("\n");
 }
 
-
 void	ray_test_1(void)
 {
 	t_ray	r;

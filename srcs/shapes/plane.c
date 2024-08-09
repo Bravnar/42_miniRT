@@ -12,8 +12,9 @@ void	transform_pl(t_obj *shape, t_matrix transformation)
 
 	plane = (t_plane *) shape;
 	plane->shape.transformation = matrix_mult(plane->shape.transformation,
-		transformation);
-	plane->shape.transformation = matrix_mult(plane->shape.inverse_transformation,
+			transformation);
+	plane->shape.transformation = matrix_mult(
+			plane->shape.inverse_transformation,
 			inverse(transformation, 4));
 }
 
@@ -30,8 +31,8 @@ t_plane	*plane_create(char **plane_line)
 	p->shape.local_normal_at = local_normal_at_pl;
 	p->shape.transform = transform_pl;
 	p->shape.local_intersect = local_intersect_pl;
-	p->shape.point = get_point(plane_line[1]);//parse_point;
-	p->shape.dir_vector = get_vector(plane_line[2]);//parse_vector;
+	p->shape.point = get_point(plane_line[1]);
+	p->shape.dir_vector = get_vector(plane_line[2]);
 	p->shape.material = material(get_color(plane_line[3]), 0.9, 0.9, 200);
 	p->shape.transformation = identity();
 	p->shape.inverse_transformation = identity();

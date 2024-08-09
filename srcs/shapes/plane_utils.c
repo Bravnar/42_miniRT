@@ -11,7 +11,7 @@ t_inter	local_intersect_pl(t_ray r, t_obj *plane)
 	inter.i = malloc(sizeof(t_intersection) * 1);
 	if (!inter.i)
 		return (inter);
-	t = -r.point.y/r.direction.y;
+	t = -r.point.y / r.direction.y;
 	inter.count++;
 	inter.i[0] = intersection(t, plane);
 	return (inter);
@@ -21,7 +21,7 @@ t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
 	(void) plane;
 	(void) point;
-	return vector(0, 1, 0);
+	return (vector(0, 1, 0));
 }
 
 t_plane	*plane(void)

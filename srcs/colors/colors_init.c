@@ -16,7 +16,10 @@ t_color	color(double r, double g, double b)
 
 void	add_hex_color(t_color *c)
 {
-	c->hex = ((int)c->t << 24 | (int) c->r << 16 | (int) c->g << 8 | (int) c->b);
+	c->hex = ((int)c->t << 24 | \
+			(int) c->r << 16 | \
+			(int) c->g << 8 | \
+			(int) c->b);
 }
 
 t_color	black(void)
@@ -26,5 +29,5 @@ t_color	black(void)
 
 void	print_color(t_color c)
 {
-	printf("(%f, %f, %f) ", c.r/255, c.g/255, c.b/255);
+	printf("(%f, %f, %f) ", c.r / 255, c.g / 255, c.b / 255);
 }

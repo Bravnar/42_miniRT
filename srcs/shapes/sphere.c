@@ -45,12 +45,14 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
-	sphere->shape.material = material(get_color(sphere_split[3]), 0.9, 0.9, 200);
+	sphere->shape.material = material(get_color(sphere_split[3]),
+			0.9, 0.9, 200);
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();
 	sphere->shape.transform((t_obj *) sphere,
-			scaling_matrix(sphere->diameter/2, sphere->diameter/2, sphere->diameter/2));
+		scaling_matrix(sphere->diameter / 2,
+			sphere->diameter / 2, sphere->diameter / 2));
 	return (sphere);
 }
 

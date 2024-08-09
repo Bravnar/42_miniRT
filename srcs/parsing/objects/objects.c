@@ -22,10 +22,10 @@ t_color	get_color(char *str)
 
 	rgb_split = ft_split(str, ',');
 	rgb = color(ft_atoi(rgb_split[0]),
-				ft_atoi(rgb_split[1]),
-				ft_atoi(rgb_split[2]));
+			ft_atoi(rgb_split[1]),
+			ft_atoi(rgb_split[2]));
 	ft_free_arr(rgb_split);
-	return rgb;
+	return (rgb);
 }
 
 t_tup	get_point(char *str)
@@ -35,8 +35,8 @@ t_tup	get_point(char *str)
 
 	point_split = ft_split(str, ',');
 	n_point = point(ft_strtod(point_split[0]),
-				ft_strtod(point_split[1]),
-				ft_strtod(point_split[2]));
+			ft_strtod(point_split[1]),
+			ft_strtod(point_split[2]));
 	ft_free_arr(point_split);
 	return (n_point);
 }
@@ -48,8 +48,8 @@ t_tup	get_vector(char *str)
 
 	vector_split = ft_split(str, ',');
 	n_vector = point(ft_strtod(vector_split[0]),
-				ft_strtod(vector_split[1]),
-				ft_strtod(vector_split[2]));
+			ft_strtod(vector_split[1]),
+			ft_strtod(vector_split[2]));
 	ft_free_arr(vector_split);
 	return (n_vector);
 }
@@ -85,4 +85,3 @@ void	populate_shapes(void)
 		tmp = tmp->next;
 	}
 }
-
