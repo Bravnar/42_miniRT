@@ -383,7 +383,7 @@ void	test_gameloop(t_main *rt)
 	left->material.specular = 0.3;
 	left->material.color = color(255, 204, 25.5);
 	cam = init_camera(1000, 1000, PI/3);
-	from = point(0, 1.5, -5);
+	from = point(5, 1.5, -5);
 	to = point(0, 1, 0);
 	up = vector(0, 1, 0);
 	cam.transf_matrix = view_transform(from, to, up);
