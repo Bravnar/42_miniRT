@@ -67,6 +67,7 @@ SRCS= 	srcs/main.c \
 		srcs/test/ray_test.c \
 		srcs/test/hit_test.c \
 		srcs/world/view.c \
+		srcs/testing_loop.c \
 
 CC= cc
 

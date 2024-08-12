@@ -125,11 +125,25 @@ typedef struct	s_amb
 	t_color		rgb;
 }	t_amb;
 
+typedef	struct	s_view_cam
+{
+	double		hsize;
+	double		vsize;
+	double		fov;
+	double		pixel_size;
+	double		half_view;
+	double		aspect;
+	double		half_width;
+	double		half_height;
+	t_matrix	transf_matrix;
+}	t_view_cam;
+
 typedef struct	s_cam
 {
-	t_tup	point;
-	t_tup	vector;
-	int		fov;
+	t_tup		point;
+	t_tup		vector;
+	int			fov;
+	t_view_cam	view;
 }	t_cam;
 
 typedef struct	s_light
@@ -246,18 +260,6 @@ typedef struct s_world
 	t_light	*light;
 }	t_world;
 
-typedef	struct	s_view_cam
-{
-	double		hsize;
-	double		vsize;
-	double		fov;
-	double		pixel_size;
-	double		half_view;
-	double		aspect;
-	double		half_width;
-	double		half_height;
-	t_matrix	transf_matrix;
-}	t_view_cam;
 
 typedef struct	s_cam_ray
 {

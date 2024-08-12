@@ -48,6 +48,9 @@ void	populate_cam(void)
 			get_scene()->cam.fov = ft_atoi(tmp->line_split[3]);
 			if (!get_scene()->cam.fov || get_scene()->cam.fov > 180)
 				err_handler(C_FOV_RANGE);
+			get_scene_cam()->view = init_camera(get_scene_win()->x,
+									get_scene_win()->y,
+									PI/3);
 			break ;
 		}
 		tmp = tmp->next;
