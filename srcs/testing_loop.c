@@ -52,9 +52,13 @@ void	test_scene_render(t_main *rt)
 	// create_floor(floor);
 	// create_l_wall(l_wall);
 	// create_r_wall(r_wall);
+	cam->view = init_camera(get_scene_win()->x,
+							get_scene_win()->y,
+							cam->fov * (PI / 180));
 	cam->view.transf_matrix = view_transform(cam->point,
 							cam->vector,
 							point(0, 1, 0));
+	print_view_cam(cam->view);
 	render(cam->view, w, rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);

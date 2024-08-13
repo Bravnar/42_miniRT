@@ -25,7 +25,7 @@ void	game_loop(t_main *rt)
 	init_mlx(&rt->mlx);
 	iterate_through_obj(get_scene_objs(), rt);
 	// draw_circle(rt);
-	//draw_rectangle(rt);
+	// draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
 }

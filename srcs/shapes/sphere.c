@@ -52,7 +52,7 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.inverse_transformation = identity();
 	sphere->shape.transform((t_obj *) sphere,
 		scaling_matrix(sphere->diameter / 2,
-			sphere->diameter / 2, sphere->diameter / 2));
+			sphere->diameter / 2, sphere->diameter / 2)); // ISSUE HERE! APPLIES SCALING BEFORE TRANSFORMATION FIX LATER
 	return (sphere);
 }
 
