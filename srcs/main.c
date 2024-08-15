@@ -106,13 +106,12 @@ t_color	color_at_hit(t_intersection hit, t_ray ray)
 {
 	t_color	col;
 	t_tup	point;
-	t_tup	normal;
-	t_tup	eyev;
+	t_tup	vs[2];
 
 	point = position(ray, hit.t);
-	normal = hit.shape->local_normal_at(hit.shape, point);
-	eyev = tuple_neg(ray.direction);
-	col = lighting(hit.shape->material, point, eyev, normal);
+	vs[0] = tuple_neg(ray.direction);
+	vs[1] = hit.shape->local_normal_at(hit.shape, point);
+	col = lighting(hit.shape->material, point, vs, false);
 	add_hex_color(&col);
 	return (col);
 }
@@ -403,7 +402,7 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
-	print_scene_details();
+	/* print_scene_details();
 
 	test_gameloop(rt);
 	return (0);
@@ -437,10 +436,10 @@ int main(int ac, char **av)
 	print_tuple(test_comp.normalv);
 
 	printf("Testing shade_hit ----------------------------------------:\n");
-	
+
 	t_color	c = shade_hit(w, test_comp);
 	print_color(c);
-	
+
 	printf("\nTesting color_at() ---------------------------------------:\n");
 	t_color color_at_test = color_at(w, r);
 	print_color(color_at_test);
@@ -488,7 +487,7 @@ int main(int ac, char **av)
 	ret = view_transform(from, to, up);
 	print_matrix(ret, 4);
 	printf(" -------------------------------------------------------------\n");
-	
+
 	printf("\nSTART OF CAMERA TESTS -------------------------------------:\n");
 
 	t_view_cam	cam;
@@ -518,35 +517,11 @@ int main(int ac, char **av)
 	render(cam, w, rt);
 
 	// END ------------------------------------------------------------//
-	free(xs.i);
-
-	t_obj *ob = get_scene()->obj_list;
-	t_ray ra = ray_new(point(0, -1, 0), vector(0, 1, 0));
-	t_inter in = ob->local_intersect(ra, ob);
-	printf("Count: %d\nT_0: %f\n", in.count, in.i[0].t);
-	free(in.i);
+	free(xs.i);*/
 	//game_loop(rt);
 	lighting_test_battery();
 	ray_test_battery();
 	hit_test_battery();
-
-
-	/* t_matrix A = translation_matrix(0, 1, 0);
-	t_obj *ob = get_scene()->obj_list;
-	ob->transform(ob, A);
-	t_tup a = normal_at(ob, point(0, 1.70711, -0.70711));
-	print_tuple(a); */
 	free(rt);
-
-	// game_loop(rt);
-
-	/* t_tup eyev = vector(0, 0, -1);
-	t_tup normalv = vector(0, 0, -1);
-	t_obj *sphere = get_scene()->obj_list;
-	t_tup p = point(0, 0, 0);
-	t_color l = lighting(sphere->material, p, eyev, normalv);
-	print_color(l); */
-	//draw_circle(rt);
-	//print_tuple(vector_reflect(vector(0, -1, 0), vector(sqrt(2)/2, sqrt(2)/2, 0)));
 }
 

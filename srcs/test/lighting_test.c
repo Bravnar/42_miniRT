@@ -1,10 +1,10 @@
 #include "main.h"
 
-void	test_lighting(t_tup eye_v, t_tup normal_v, t_color e, char *tn)
+void	test_lighting(t_tup views[2], t_color e, char *tn, bool in_shadow)
 {
 	t_color		result;
 
-	result = lighting(mat_default(), point(0, 0, 0), eye_v, normal_v);
+	result = lighting(mat_default(), point(0, 0, 0), views, in_shadow);
 	printf("--------------------------------------------\
 -----------------------\n");
 	if (equal_color(result, e))
@@ -12,9 +12,9 @@ void	test_lighting(t_tup eye_v, t_tup normal_v, t_color e, char *tn)
 	else
 	{
 		printf(BOLD_RED"Test failed - %s\n"RESET, tn);
-		printf("Expected:\t(%f, %f, %f, %f)\n", e.r / 255,
+		printf("Expected:\t(%.3f, %.3f, %.3f, %.3f)\n", e.r / 255,
 			e.g / 255, e.b / 255, e.t / 255);
-		printf("Got:\t\t(%f, %f, %f, %f)\n", result.r / 255,
+		printf("Got:\t\t(%.3f, %.3f, %.3f, %.3f)\n", result.r / 255,
 			result.g / 255, result.b / 255, result.t);
 	}
 	printf("\n");
@@ -22,68 +22,71 @@ void	test_lighting(t_tup eye_v, t_tup normal_v, t_color e, char *tn)
 
 void	lighting_test_1(void)
 {
-	t_tup		eye_v;
-	t_tup		normal_v;
+	t_tup		views[2];
 	t_light		*light;
 
 	light = new_light_node(point(0, 0, -10), 1,
 			color(255, 255, 255), color(255, 255, 255));
 	add_light_node_front(light, &get_scene()->light);
-	eye_v = vector(0, 0, -1);
-	normal_v = vector(0, 0, -1);
-	test_lighting(eye_v, normal_v,
-		color(1.9 * 255, 1.9 * 255, 1.9 * 255),
-		"Eye between light and surface");
-	eye_v = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
-	normal_v = vector(0, 0, -1);
-	test_lighting(eye_v, normal_v, color(255, 255, 255),
-		"Eye between light and surface, eye offset 45 degrees");
+	views[0] = vector(0, 0, -1);
+	views[1] = vector(0, 0, -1);
+	test_lighting(views, color(1.9 * 255, 1.9 * 255, 1.9 * 255),
+		"Eye between light and surface", false);
+	views[0] = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
+	views[1] = vector(0, 0, -1);
+	test_lighting(views, color(255, 255, 255),
+		"Eye between light and surface, eye offset 45 degrees", false);
 	remove_first_light(&get_scene()->light);
 }
 
 void	lighting_test_2(void)
 {
-	t_tup		eye_v;
-	t_tup		normal_v;
+	t_tup		views[2];
 	t_light		*light;
 
 	light = new_light_node(point(0, 10, -10), 1,
 			color(255, 255, 255), color(255, 255, 255));
 	add_light_node_front(light, &get_scene()->light);
-	eye_v = vector(0, 0, -1);
-	normal_v = vector(0, 0, -1);
-	test_lighting(eye_v, normal_v,
-		color(0.736396 * 255, 0.736396 * 255, 0.736396 * 255),
-		"Light source offset by 45 degrees");
-	eye_v = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
-	normal_v = vector(0, 0, -1);
-	test_lighting(eye_v, normal_v,
+	views[0] = vector(0, 0, -1);
+	views[1] = vector(0, 0, -1);
+	test_lighting(views, color(0.736396 * 255, 0.736396 * 255, 0.736396 * 255),
+		"Light source offset by 45 degrees", false);
+	views[0] = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
+	views[1] = vector(0, 0, -1);
+	test_lighting(views,
 		color(1.636396 * 255, 1.636396 * 255, 1.636396 * 255),
-		"Lighting with eye in the path of reflection");
+		"Lighting with eye in the path of reflection", false);
+	remove_first_light(&get_scene()->light);
+	light = new_light_node(point(0, 0, 10), 1,
+			color(255, 255, 255), color(255, 255, 255));
+	add_light_node_front(light, &get_scene()->light);
+	views[0] = vector(0, 0, -1);
+	views[1] = vector(0, 0, -1);
+	test_lighting(views, color(25.5, 25.5, 25.5),
+		"Lighting with light behind the surface", false);
 	remove_first_light(&get_scene()->light);
 }
 
 void	lighting_test_3(void)
 {
-	t_tup		eye_v;
-	t_tup		normal_v;
+	t_tup		views[2];
 	t_light		*light;
 
-	light = new_light_node(point(0, 0, 10), 1,
-			color(255, 255, 255), color(255, 255, 255));
-	add_light_node_front(light, &get_scene()->light);
-	eye_v = vector(0, 0, -1);
-	normal_v = vector(0, 0, -1);
-	test_lighting(eye_v, normal_v, color(25.5, 25.5, 25.5),
-		"Lighting with light behind the surface");
-	remove_first_light(&get_scene()->light);
 	light = new_light_node(point(0, 0, -10), 1,
 			color(510, 510, 510), color(510, 510, 510));
 	add_light_node_front(light, &get_scene()->light);
-	eye_v = vector(0, 0, -1);
-	normal_v = vector(0, 0, -1);
-	test_lighting(eye_v, normal_v, color(2.8 * 255, 2.8 * 255, 2.8 * 255),
-		"Lighting with intense light source");
+	views[0] = vector(0, 0, -1);
+	views[1] = vector(0, 0, -1);
+	test_lighting(views, color(2.8 * 255, 2.8 * 255, 2.8 * 255),
+		"Lighting with intense light source", false);
+	remove_first_light(&get_scene()->light);
+	light = new_light_node(point(0, 0, -10), 1,
+			color(255, 255, 255), color(255, 255, 255));
+	add_light_node_front(light, &get_scene()->light);
+	views[0] = vector(0, 0, -1);
+	views[1] = vector(0, 0, -1);
+	test_lighting(views, color(25.5, 25.5, 25.5),
+		"Lighting with shadows", true);
 	remove_first_light(&get_scene()->light);
 }
 

@@ -18,12 +18,12 @@ t_matrix	shearing_matrix(t_shear sh)
 	t_matrix	matrix;
 
 	matrix = identity();
-	matrix.M[0][1] = sh.xy;
-	matrix.M[0][2] = sh.xz;
-	matrix.M[1][0] = sh.yx;
-	matrix.M[1][2] = sh.yz;
-	matrix.M[2][0] = sh.zx;
-	matrix.M[2][1] = sh.zy;
+	matrix.m[0][1] = sh.xy;
+	matrix.m[0][2] = sh.xz;
+	matrix.m[1][0] = sh.yx;
+	matrix.m[1][2] = sh.yz;
+	matrix.m[2][0] = sh.zx;
+	matrix.m[2][1] = sh.zy;
 	return (matrix);
 }
 
