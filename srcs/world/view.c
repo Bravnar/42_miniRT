@@ -92,15 +92,16 @@ t_view_cam	init_camera(double hsize, double vsize, double fov)
 	return (camera);
 }
 
-t_matrix	view_transform(t_tup from, t_tup to, t_tup up)
+//t_matrix	view_transform(t_tup from, t_tup to, t_tup up)
+t_matrix	view_transform(t_tup from, t_tup forward, t_tup up)
 {
-	t_tup		forward;
+	//t_tup		forward;
 	t_tup		upn;
 	t_tup		left;
 	t_tup		true_up;
 	t_matrix	orientation;
 
-	forward = vector_norm(tuple_sub(to, from));
+	//forward = vector_norm(tuple_sub(to, from));
 	upn = vector_norm(up);
 	left = vector_cross(forward, upn);
 	true_up = vector_cross(left, forward);

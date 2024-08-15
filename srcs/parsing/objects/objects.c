@@ -65,6 +65,9 @@ void	populate_shapes(void)
 		if (!ft_strcmp(tmp->line_split[0], "sp"))
 		{
 			node = (t_obj *)sphere_create(tmp->line_split);
+			// node->transform(node, translation_matrix(node->point.x,
+			// 										node->point.y,
+			// 										node->point.z));
 			add_obj_node(&get_scene()->obj_list, node);
 		}
 		else if (!ft_strcmp(tmp->line_split[0], "cy"))

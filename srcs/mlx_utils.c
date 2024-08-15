@@ -32,7 +32,7 @@ void	draw_rectangle(t_main *rt)
 			(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 }
 
-void	redraw(t_main *rt)
+/* void	redraw(t_main *rt)
 {
 	if (rt->mlx.img_ptr != NULL)
 		mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
@@ -45,3 +45,4 @@ void	redraw(t_main *rt)
 	mlx_put_image_to_window \
 			(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 }
+ */
