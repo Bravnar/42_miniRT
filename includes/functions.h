@@ -5,7 +5,7 @@
 
 void			draw_rectangle(t_main *rt); //TMP
 void			my_pixel(t_mlx *mlx, int x, int y, int color); //IMPORTANT
-void			redraw(t_main *rt); //IMPORTANT TO ADAPT
+void			redraw(t_main *rt, t_world w);
 
 /* INIT */
 
@@ -92,11 +92,13 @@ t_comps			prepare_comp(t_intersection h, t_ray r);
 t_color			shade_hit(t_world w, t_comps comps);
 t_color			color_at(t_world w, t_ray r);
 
-t_matrix		view_transform(t_tup from, t_tup to, t_tup up);
-t_view_cam		init_camera(double hsize, double vsize, double fov);
-void			print_view_cam(t_view_cam cam);
-t_ray			ray_for_pixel(t_view_cam cam, double px, double py);
-void			render(t_view_cam cam, t_world w, t_main *rt);
+t_matrix	view_transform(t_tup from, t_tup to, t_tup up);
+t_view_cam	init_camera(double hsize, double vsize, double fov);
+void		print_view_cam(t_view_cam cam);
+t_ray		ray_for_pixel(t_view_cam cam, double px, double py);
+void		render(t_view_cam cam, t_world w, t_main *rt);
+// void		test_scene_render(t_main *rt);
+void		test_scene_render(t_main *rt, char *file_name);
 
 /* EVENT HANDLER */
 int				close_win(void *param);

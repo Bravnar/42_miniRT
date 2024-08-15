@@ -14,7 +14,7 @@ t_tup	local_normal_at_s(t_obj *sphere, t_tup point)
 	return (normal_at(sphere, point));
 }
 
-t_sphere	*sphere(void)
+t_sphere	*sphere(void)     // is this a test function?
 {
 	t_sphere	*s;
 

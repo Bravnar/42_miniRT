@@ -34,8 +34,8 @@ void	init_map(t_map *data)
 
 void	init_mlx(t_mlx *mlx)
 {
-	mlx->win_x = 1000; //changed from static 1600
-	mlx->win_y = 1000; //changed from static 1600
+	mlx->win_x = get_scene_win()->x;
+	mlx->win_y = get_scene_win()->y;
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->win_x,
 			mlx->win_y, "miniRT");
@@ -53,8 +53,8 @@ t_map	*create_scene(char *file_name)
 	if (!file_name)
 		return (NULL);
 	scene = ft_calloc(1, sizeof(t_map));
-	scene->win.x = 1920;
-	scene->win.y = 1080;
+	scene->win.x = 1000;
+	scene->win.y = 1000;
 	ft_bzero(&scene->file, sizeof(t_file));
 	scene->file.fd = -1;
 	scene->file.is_valid = true;

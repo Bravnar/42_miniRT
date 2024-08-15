@@ -1,5 +1,7 @@
 NAME= miniRT
 
+MAKEFLAGS= --no-print-directory
+
 INCLUDES = includes
 
 SRCS= 	srcs/main.c \
@@ -67,6 +69,7 @@ SRCS= 	srcs/main.c \
 		srcs/test/ray_test.c \
 		srcs/test/hit_test.c \
 		srcs/world/view.c \
+		srcs/testing_loop.c \
 
 CC= cc
 

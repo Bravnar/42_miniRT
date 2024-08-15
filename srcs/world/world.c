@@ -89,7 +89,7 @@ t_comps	prepare_comp(t_intersection h, t_ray r)
 	ft_bzero(&new, sizeof(t_comps));
 	new.t = h.t;
 	new.obj = h.shape;
-	new.point = position(r, h.t);
+	new.point = position(r, new.t);
 	new.eyev = tuple_neg(r.direction);
 	new.normalv = new.obj->local_normal_at(new.obj, new.point);
 	if (dot(new.normalv, new.eyev) < 0)
