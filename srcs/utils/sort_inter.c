@@ -46,6 +46,7 @@ void	insert_inter(t_inter left, t_inter right, t_inter *ret, t_inter inter)
 	if (left.count > 0)
 		free(left.i);
 }
+
 bool	is_sorted(t_inter inter)
 {
 	int	i;

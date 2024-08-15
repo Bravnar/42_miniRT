@@ -5,9 +5,9 @@ t_matrix	scaling_matrix(double x, double y, double z)
 	t_matrix	matrix;
 
 	matrix = identity();
-	matrix.M[0][0] = x;
-	matrix.M[1][1] = y;
-	matrix.M[2][2] = z;
+	matrix.m[0][0] = x;
+	matrix.m[1][1] = y;
+	matrix.m[2][2] = z;
 	return (matrix);
 }
 

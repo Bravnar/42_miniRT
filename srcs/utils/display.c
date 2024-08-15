@@ -10,7 +10,7 @@ void	print_matrix(t_matrix matrix, int size)
 	{
 		c = -1;
 		while (++c < size)
-			printf("%f ", matrix.M[r][c]);
+			printf("%f ", matrix.m[r][c]);
 		printf("\n");
 	}
 }

@@ -7,10 +7,10 @@ t_matrix	rotation_x(double deg)
 
 	rad = deg / 180 * M_PI;
 	matrix = identity();
-	matrix.M[1][1] = cos(rad);
-	matrix.M[1][2] = -sin(rad);
-	matrix.M[2][1] = sin(rad);
-	matrix.M[2][2] = cos(rad);
+	matrix.m[1][1] = cos(rad);
+	matrix.m[1][2] = -sin(rad);
+	matrix.m[2][1] = sin(rad);
+	matrix.m[2][2] = cos(rad);
 	return (matrix);
 }
 
@@ -21,10 +21,10 @@ t_matrix	rotation_y(double deg)
 
 	rad = deg / 180 * M_PI;
 	matrix = identity();
-	matrix.M[0][0] = cos(rad);
-	matrix.M[0][2] = sin(rad);
-	matrix.M[2][0] = -sin(rad);
-	matrix.M[2][2] = cos(rad);
+	matrix.m[0][0] = cos(rad);
+	matrix.m[0][2] = sin(rad);
+	matrix.m[2][0] = -sin(rad);
+	matrix.m[2][2] = cos(rad);
 	return (matrix);
 }
 
@@ -35,10 +35,10 @@ t_matrix	rotation_z(double deg)
 
 	rad = deg / 180 * M_PI;
 	matrix = identity();
-	matrix.M[0][0] = cos(rad);
-	matrix.M[0][1] = -sin(rad);
-	matrix.M[1][0] = sin(rad);
-	matrix.M[1][1] = cos(rad);
+	matrix.m[0][0] = cos(rad);
+	matrix.m[0][1] = -sin(rad);
+	matrix.m[1][0] = sin(rad);
+	matrix.m[1][1] = cos(rad);
 	return (matrix);
 }
 

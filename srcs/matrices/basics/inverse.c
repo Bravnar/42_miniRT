@@ -25,7 +25,7 @@ double	cofactor(t_matrix A, int r, int c, int size_M)
 		{
 			if (j == c)
 				continue ;
-			sub.M[k][l++] = A.M[i][j];
+			sub.m[k][l++] = A.m[i][j];
 		}
 		k++;
 	}
@@ -45,7 +45,7 @@ t_matrix	inverse(t_matrix A, int size)
 	{
 		c = -1;
 		while (++c < size)
-			inv.M[c][r] = cofactor(A, r, c, size) / det * pow(-1, c + r);
+			inv.m[c][r] = cofactor(A, r, c, size) / det * pow(-1, c + r);
 	}
 	return (inv);
 }

@@ -10,105 +10,87 @@ void			redraw(t_main *rt, t_world w);
 /* INIT */
 
 t_main			*init_main(void);
-void			init_mlx(t_mlx  *mlx);
+void			init_mlx(t_mlx *mlx);
 void			init_rect(t_rect *rect);
 // t_main	*init_all(void);
-t_map	*get_scene(void);
-t_main	*init_all(char *file_name);
-t_obj	*search_obj_list(char *type);
+t_map			*get_scene(void);
+t_main			*init_all(char *file_name);
+t_obj			*search_obj_list(char *type);
 // t_main	*init_main(void);
 // void	init_mlx(t_mlx  *mlx);
 // void	init_rect(t_rect *rect);
 
 /* scene_getters */
-t_rwin	*get_scene_win(void);
-t_amb	*get_scene_amb(void);
-t_cam	*get_scene_cam(void);
-t_light	**get_scene_light(void);
-t_obj	**get_scene_objs(void);
-
+t_rwin			*get_scene_win(void);
+t_amb			*get_scene_amb(void);
+t_cam			*get_scene_cam(void);
+t_light			**get_scene_light(void);
+t_obj			**get_scene_objs(void);
 
 /* read_rt_file.c */
-void	populate_scene_struct(char *file_name, t_map *scene);
-void	check_identifier(t_parse **head);
-void	read_file(char *file_name, t_map *data);
-void	print_scene_details(void);
+void			populate_scene_struct(char *file_name, t_map *scene);
+void			check_identifier(t_parse **head);
+void			read_file(char *file_name, t_map *data);
+void			print_scene_details(void);
 
 /* Ambient */
-void	populate_amb(void);
+void			populate_amb(void);
 
 /* Camera */
-void	populate_cam(void);
+void			populate_cam(void);
 
 /* Light */
 
-void	populate_light(void);
+void			populate_light(void);
 
 /* light_utils.c */
 
-t_light	*new_light_node(t_tup point, double bright, t_color rgb, t_color i);
-void	add_light_node(t_light **head, t_light *new_node);
-void	free_light_nodes(t_light *light);
-void	print_light_nodes(t_light **head);
-void	add_light_node_front(t_light *light, t_light **head);
-void	remove_first_light(t_light **head);
+t_light			*new_light_node(t_tup point, double bright,
+					t_color rgb, t_color i);
+void			add_light_node(t_light **head, t_light *new_node);
+void			free_light_nodes(t_light *light);
+void			print_light_nodes(t_light **head);
+void			add_light_node_front(t_light *light, t_light **head);
+void			remove_first_light(t_light **head);
 
 /* Resolution */
-void	populate_rwin(void);
+void			populate_rwin(void);
 
 /* Shapes/Objects */
 
-void	populate_shapes(void);
-t_tup	get_vector(char *str);
-t_tup	get_point(char *str);
-t_color	get_color(char *str);
+void			populate_shapes(void);
+t_tup			get_vector(char *str);
+t_tup			get_point(char *str);
+t_color			get_color(char *str);
 
 /* objects_utils.c */
-void	print_object_nodes(t_obj **head);
+void			print_object_nodes(t_obj **head);
 
 /* ft_errorquit.c */
-void	err_quit(char *msg);
-void	err_handler(t_err code);
+void			err_quit(char *msg);
+void			err_handler(t_err code);
 
 /* utils.c */
-t_parse	*new_parse_node(char *line);
-void	add_node(t_parse **parsed, t_parse *new_node);
-void	free_nodes(t_parse *list);
-void	print_nodes(t_parse **head);
+t_parse			*new_parse_node(char *line);
+void			add_node(t_parse **parsed, t_parse *new_node);
+void			free_nodes(t_parse *list);
+void			print_nodes(t_parse **head);
 
 /* validity.c */
 
 /* counter.c */
-void	check_count(void);
-void	count_identifier(t_parse **head);
+void			check_count(void);
+void			count_identifier(t_parse **head);
 
 /* ft_stdtod.c */
-double	ft_strtod(char *str);
-int	ft_strtoi(const char *nptr, char **endptr);
+double			ft_strtod(char *str);
+int				ft_strtoi(const char *nptr, char **endptr);
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 15:23:07 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/09 15:23:07 by hmorand          ###   ########.ch       */
-/*                                                                            */
-/* ************************************************************************** */
-
-t_world	create_world(void);
-t_inter	intersect_world(t_world w, t_ray r);
-t_comps	prepare_comp(t_intersection h, t_ray r);
-t_color	shade_hit(t_world w, t_comps comps);
-t_color	color_at(t_world w, t_ray r);
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                               VIEW                                         */
-/*                                                                            */
-/* ************************************************************************** */
+t_world			create_world(void);
+t_inter			intersect_world(t_world w, t_ray r);
+t_comps			prepare_comp(t_intersection h, t_ray r);
+t_color			shade_hit(t_world w, t_comps comps);
+t_color			color_at(t_world w, t_ray r);
 
 t_matrix	view_transform(t_tup from, t_tup to, t_tup up);
 t_view_cam	init_camera(double hsize, double vsize, double fov);
@@ -142,7 +124,7 @@ t_tup			vector_scalar_div(t_tup a, double scalar);
 t_tup			vector_norm(t_tup a);
 t_tup			vector_cross(t_tup a, t_tup b);
 double			dot(t_tup a, t_tup b);
-t_tup normalize(t_tup v);
+t_tup			normalize(t_tup v);
 
 /* VECTOR INFO */
 
@@ -155,18 +137,6 @@ double			vector_dot(t_tup a, t_tup b);
 t_proj			proj_new(t_tup position, t_tup velocity);
 t_env			env_new(t_tup wind, t_tup gravity);
 t_proj			tick(t_env env, t_proj proj);
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 13:36:27 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/06 13:36:27 by hmorand          ###   ########.ch       */
-/*                                                                            */
-/* ************************************************************************** */
 
 bool			equal(double a, double b);
 
@@ -215,7 +185,7 @@ t_matrix		transpose(t_matrix A);
 
 /* DETERMINANT */
 
-bool			is_triangular(t_matrix	A, int	size);
+bool			is_triangular(t_matrix A, int size);
 double			diagonal_product(t_matrix A, int size);
 double			determinant(t_matrix A, int size);
 
@@ -252,7 +222,6 @@ t_tup			rotate(t_tup point, double deg, char axis);
 t_tup			inverse_rotate(t_tup point, double deg, char axis);
 
 /* SHEARING */
-
 
 t_shear			shear(double numbers[6]);
 t_matrix		shearing_matrix(t_shear sh);
@@ -305,13 +274,15 @@ t_tup			vector_reflect(t_tup in, t_tup normal);
 
 t_material		material(t_color c, double d, double s, double sh);
 t_material		mat_default(void);
-t_color			lighting(t_material m, t_tup p, t_tup ev, t_tup nv);
+t_color			lighting(t_material m, t_tup p, t_tup views[2], bool in_shadow);
+
+/* vs[0] = eye_view, vs[1] = normal_view */
 
 /* LIGHTING UTILS */
 
 t_color			ambient(t_color effective_color, t_material mat);
 t_color			diffuse(double ldn, t_material m, t_color eff_color);
-t_color			specular(double ldn, t_tup light_v, t_material m, t_tup ev, t_tup nv);
+t_color			specular(double ldn, t_material m, t_tup v[3]);
 
 /* ************************************************************************** */
 /*                                                                            */

@@ -11,7 +11,7 @@ bool	matrix_compare(t_matrix A, t_matrix B)
 		c = -1;
 		while (++c < 4)
 		{
-			if (A.M[r][c] != B.M[r][c])
+			if (A.m[r][c] != B.m[r][c])
 				return (false);
 		}
 	}
@@ -32,9 +32,9 @@ t_matrix	matrix_mult(t_matrix A, t_matrix B)
 		while (++c < 4)
 		{
 			i = -1;
-			result.M[r][c] = 0;
+			result.m[r][c] = 0;
 			while (++i < 4)
-				result.M[r][c] += A.M[r][i] * B.M[i][c];
+				result.m[r][c] += A.m[r][i] * B.m[i][c];
 		}
 	}
 	return (result);
@@ -52,7 +52,7 @@ t_column	matrix_mult_col(t_matrix A, t_column b)
 		i = -1;
 		result.m[r] = 0;
 		while (++i < 4)
-			result.m[r] += A.M[r][i] * b.m[i];
+			result.m[r] += A.m[r][i] * b.m[i];
 	}
 	return (result);
 }
@@ -66,10 +66,10 @@ t_tup	matrix_mult_tup(t_matrix A, t_tup b)
 	r = -1;
 	while (++r < 4)
 	{
-		temp.m[r] = A.M[r][0] * b.x;
-		temp.m[r] += A.M[r][1] * b.y;
-		temp.m[r] += A.M[r][2] * b.z;
-		temp.m[r] += A.M[r][3] * b.w;
+		temp.m[r] = A.m[r][0] * b.x;
+		temp.m[r] += A.m[r][1] * b.y;
+		temp.m[r] += A.m[r][2] * b.z;
+		temp.m[r] += A.m[r][3] * b.w;
 	}
 	result.x = temp.m[0];
 	result.y = temp.m[1];

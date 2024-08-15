@@ -1,6 +1,6 @@
 #include "main.h"
 
-void	test_hit(t_intersection got, t_intersection exp, char* tn)
+void	test_hit(t_intersection got, t_intersection exp, char *tn)
 {
 	printf("-------------------------------\
 --------------------------\n");

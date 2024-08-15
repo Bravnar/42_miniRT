@@ -18,7 +18,7 @@ t_matrix	sub(t_matrix A, int size, int ex)
 		{
 			if (c == ex)
 				continue ;
-			sub.M[i][j++] = A.M[r][c];
+			sub.m[i][j++] = A.m[r][c];
 		}
 		i++;
 	}
@@ -47,9 +47,9 @@ bool	is_triangular(t_matrix A, int size)
 			if (!lower && !upper)
 				break ;
 			if (upper)
-				upper = !equal(A.M[i][j], 0);
+				upper = !equal(A.m[i][j], 0);
 			if (lower)
-				lower = !equal(A.M[j][i], 0);
+				lower = !equal(A.m[j][i], 0);
 		}
 	}
 	return (lower || upper);
@@ -76,8 +76,8 @@ bool	has_zero_row_column(t_matrix A, int size)
 		j = -1;
 		while (++j < size)
 		{
-			sum_r += A.M[i][j];
-			sum_c += A.M[j][i];
+			sum_r += A.m[i][j];
+			sum_c += A.m[j][i];
 		}
 	}
 	return (equal(sum_c, 0) || equal(sum_r, 0));
@@ -91,7 +91,7 @@ double	diagonal_product(t_matrix A, int size)
 	i = -1;
 	product = 1;
 	while (++i < size)
-		product *= A.M[i][i];
+		product *= A.m[i][i];
 	return (product);
 }
 
@@ -104,13 +104,13 @@ double	determinant(t_matrix A, int size)
 	i = -1;
 	result = 0;
 	if (size == 2)
-		return (A.M[0][0] * A.M[1][1] - A.M[0][1] * A.M[1][0]);
+		return (A.m[0][0] * A.m[1][1] - A.m[0][1] * A.m[1][0]);
 	while (++i < size)
 	{
-		if (!A.M[0][i])
+		if (!A.m[0][i])
 			continue ;
 		subm = sub(A, size - 1, i);
-		result += pow(-1, i) * determinant(subm, size - 1) * A.M[0][i];
+		result += pow(-1, i) * determinant(subm, size - 1) * A.m[0][i];
 	}
 	return (result);
 }
