@@ -38,26 +38,29 @@ void	create_r_wall(t_obj *r_wall)
 
 }
 
-void	test_scene_render(t_main *rt)
+void	test_scene_render(t_main *rt, char *file_name)
 {
-	// t_obj	*floor = NULL;
-	// t_obj	*l_wall = NULL;
-	// t_obj	*r_wall = NULL;
+	if (!ft_strcmp(file_name, "test_w_parsing.rt"))
+	{
+		t_obj	*floor = NULL;
+		t_obj	*l_wall = NULL;
+		t_obj	*r_wall = NULL;
+		create_floor(floor);
+		create_l_wall(l_wall);
+		create_r_wall(r_wall);
+	}
 	t_cam	*cam;
 	t_world	w;
 
 	w = create_world();
 	cam = get_scene_cam();
 	init_mlx(&rt->mlx);
-	// create_floor(floor);
-	// create_l_wall(l_wall);
-	// create_r_wall(r_wall);
 	cam->view = init_camera(get_scene_win()->x,
 							get_scene_win()->y,
 							cam->fov * (PI / 180));
 	cam->view.transf_matrix = view_transform(cam->point,
 							cam->vector,
-							point(0, 1, 0));
+							point(0.0, 1.0, 0));
 	print_view_cam(cam->view);
 	render(cam->view, w, rt);
 	handle_events(rt);

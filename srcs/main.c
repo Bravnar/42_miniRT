@@ -396,19 +396,25 @@ void	test_gameloop(t_main *rt)
 int main(int ac, char **av)
 {
 	t_main  *rt;
+	int		debug = 0;
 
-	if (ac != 2)
+	if (ac > 3)
 		return (0);
+	if (ac == 3)
+		debug = 1;
 	rt = init_all(av[1]);
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
 	print_scene_details();
-
 	//test_gameloop(rt);
-	test_scene_render(rt);
-	return (0);
 
+	// RUNS THE RENDER TEST WITH GIVEN .RT FILE CHECK test_scene_render(rt, av[1])
+	if (!debug)
+	{
+		test_scene_render(rt, av[1]);
+		return (0);
+	}
 	printf("Creating world -------------------------------------------:\n");
 	t_world	w;
 	w = create_world();
@@ -510,13 +516,13 @@ int main(int ac, char **av)
 	cam_r = ray_for_pixel(cam, 100, 5);
 	print_ray(cam_r);
 
-	printf("\nRendering a world with a camera\n");
-	cam = init_camera(11, 11, PI/2);
-	from = point(0, 0, -5);
-	to = point(0, 0, 0);
-	up = vector(0, 1, 0);
-	cam.transf_matrix = view_transform(from, to, up);
-	render(cam, w, rt);
+	// printf("\nRendering a world with a camera\n");
+	// cam = init_camera(11, 11, PI/2);
+	// from = point(0, 0, -5);
+	// to = point(0, 0, 0);
+	// up = vector(0, 1, 0);
+	// cam.transf_matrix = view_transform(from, to, up);
+	// render(cam, w, rt);
 
 	// END ------------------------------------------------------------//
 	free(xs.i);
