@@ -15,18 +15,22 @@ t_tup	light_vector(t_tup point)
 	return (vector_norm(tuple_sub(get_scene()->light->point, point)));
 }
 
-t_color	lighting(t_material m, t_tup p, t_tup ev, t_tup nv)
+t_color	lighting(t_material m, t_tup p, t_tup views[2], bool in_shadow)
 {
 	t_color	eff_color;
-	t_tup	light_v;
 	t_color	diff;
 	t_color	spec;
+	t_tup	v[3];
 	double	light_dot_normal;
 
 	eff_color = compute_eff_color(m);
-	light_v = light_vector(p);
-	light_dot_normal = dot(light_v, nv);
+	v[0] = light_vector(p);
+	v[1] = views[0];
+	v[2] = views[1];
+	light_dot_normal = dot(v[0], views[1]);
 	diff = diffuse(light_dot_normal, m, eff_color);
-	spec = specular(light_dot_normal, light_v, m, ev, nv);
+	spec = specular(light_dot_normal, m, v);
+	if (in_shadow)
+		return (ambient(eff_color, m));
 	return (color_add(ambient(eff_color, m), color_add(diff, spec)));
 }

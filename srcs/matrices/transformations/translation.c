@@ -5,9 +5,9 @@ t_matrix	translation_matrix(double x, double y, double z)
 	t_matrix	matrix;
 
 	matrix = identity();
-	matrix.M[0][3] = x;
-	matrix.M[1][3] = y;
-	matrix.M[2][3] = z;
+	matrix.m[0][3] = x;
+	matrix.m[1][3] = y;
+	matrix.m[2][3] = z;
 	return (matrix);
 }
 

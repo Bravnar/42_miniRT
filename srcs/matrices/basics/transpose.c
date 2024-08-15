@@ -11,7 +11,7 @@ t_matrix	transpose(t_matrix A)
 	{
 		c = -1;
 		while (++c < 4)
-			t.M[c][r] = A.M[r][c];
+			t.m[c][r] = A.m[r][c];
 	}
 	return (t);
 }

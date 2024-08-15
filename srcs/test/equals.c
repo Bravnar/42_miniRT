@@ -26,7 +26,7 @@ bool	equal_matrix(t_matrix a, t_matrix b)
 	{
 		j = -1;
 		while (++j < 4)
-			if (!equal(a.M[i][j], b.M[i][j]))
+			if (!equal(a.m[i][j], b.m[i][j]))
 				return (false);
 	}
 	return (true);

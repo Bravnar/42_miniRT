@@ -1,6 +1,14 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+/* Object libraries */
+
+# include "object.h"
+# include "sphere.h"
+# include "cube.h"
+# include "cylinder.h"
+# include "plane.h"
+
 typedef enum s_err
 {
 	NO_ERR,
@@ -23,11 +31,10 @@ typedef enum s_err
 	CY_VECTOR_RANGE,
 	INVALID_NUMBER,
 	WRONG_EXT,
-	OPEN_FAILED,
-//	MORE_TO_BE_ADDED,
+	OPEN_FAILED
 }	t_err;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -40,71 +47,7 @@ typedef struct	s_mlx
 	int		win_y;
 }	t_mlx;
 
-
-typedef struct s_tup
-{
-	double	x;
-	double	y;
-	double	z;
-	int		w;
-}	t_tup;
-
-typedef struct s_matrix
-{
-	double	M[4][4];
-}	t_matrix;
-
-typedef struct s_column
-{
-	double	m[4];
-}	t_column;
-
-typedef struct s_color
-{
-	double			r;
-	double			g;
-	double			b;
-	double			t;
-	unsigned int	hex;
-}	t_color;
-
-typedef	struct s_material
-{
-	double	amb;
-	double	diffuse;
-	double	specular;
-	double	shininess;
-	t_color	color;
-}	t_material;
-
-typedef struct s_obj	t_obj;
-
-typedef struct s_intersection
-{
-	t_obj	*shape;
-	double	t;
-}	t_intersection;
-
-typedef struct s_inter
-{
-	int				count;
-	t_intersection	*i;
-}	t_inter;
-
-typedef struct s_ray
-{
-	t_tup	point;
-	t_tup	direction;
-}	t_ray;
-
-/* Object libraries */
-# include "object.h"
-# include "sphere.h"
-# include "cube.h"
-# include "cylinder.h"
-# include "plane.h"
-
-typedef struct	s_rect
+typedef struct s_rect
 {
 	int	x;
 	int	y;
@@ -113,19 +56,19 @@ typedef struct	s_rect
 	int	color;
 }	t_rect;
 
-typedef struct	s_rwin
+typedef struct s_rwin
 {
 	int		x;
 	int		y;
 }	t_rwin;
 
-typedef struct	s_amb
+typedef struct s_amb
 {
 	double		ratio;
 	t_color		rgb;
 }	t_amb;
 
-typedef	struct	s_view_cam
+typedef struct s_view_cam
 {
 	double		hsize;
 	double		vsize;
@@ -138,7 +81,7 @@ typedef	struct	s_view_cam
 	t_matrix	transf_matrix;
 }	t_view_cam;
 
-typedef struct	s_cam
+typedef struct s_cam
 {
 	t_tup		point;
 	t_tup		vector;
@@ -146,30 +89,30 @@ typedef struct	s_cam
 	t_view_cam	view;
 }	t_cam;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	t_tup			point;
 	double			bright;
 	t_color			intensity;
-	t_color			rgb;			// Bonus
+	t_color			rgb;
 	struct s_light	*next;
 }	t_light;
 
 typedef struct s_parse
 {
-	char 			*line;
-	char 			**line_split;
+	char			*line;
+	char			**line_split;
 	struct s_parse	*next;
 }	t_parse;
 
-typedef struct	s_file
+typedef struct s_file
 {
 	int		fd;
 	t_parse	*parse;
 	bool	is_valid;
 }	t_file;
 
-typedef struct	s_count
+typedef struct s_count
 {
 	int	r;
 	int	a;
@@ -181,7 +124,7 @@ typedef struct	s_count
 	int	cu;
 }	t_count;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	t_file		file;
 	t_rwin		win;
@@ -192,7 +135,7 @@ typedef struct	s_map
 	t_obj		*obj_list;
 }	t_map;
 
-typedef struct	s_main
+typedef struct s_main
 {
 	t_mlx	mlx;
 	t_rect	rect;
@@ -233,19 +176,19 @@ typedef struct s_comps
 	t_tup	eyev;
 	t_tup	normalv;
 	bool	is_inside;
+	t_tup	over_point;
 }	t_comps;
-
 
 typedef struct s_strtoi
 {
 	const char	*s;
-	int		sign;
-	int		result;
-	int		digit;
-	int		digit_count;
+	int			sign;
+	int			result;
+	int			digit;
+	int			digit_count;
 }	t_strtoi;
 
-typedef	struct s_conv
+typedef struct s_conv
 {
 	char	**split;
 	double	b_result;
@@ -260,8 +203,7 @@ typedef struct s_world
 	t_light	*light;
 }	t_world;
 
-
-typedef struct	s_cam_ray
+typedef struct s_cam_ray
 {
 	double	xoffset;
 	double	yoffset;
@@ -269,6 +211,5 @@ typedef struct	s_cam_ray
 	double	world_y;
 	t_tup	pixel;
 }	t_cam_ray;
-
 
 #endif

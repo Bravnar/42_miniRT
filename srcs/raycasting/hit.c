@@ -33,7 +33,7 @@ t_intersection	nhit(t_inter inters)
 
 	i = 0;
 	h.t = -1;
-	while(i < inters.count)
+	while (i < inters.count)
 	{
 		if (inters.i[i].t >= 0)
 		{

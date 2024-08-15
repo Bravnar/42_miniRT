@@ -16,16 +16,19 @@ t_color	color_at(t_world w, t_ray r)
 
 t_color	shade_hit(t_world w, t_comps comps)
 {
+	t_tup	views[2];
+	bool	shadowed;
+
+	views[0] = comps.eyev;
+	views[1] = comps.normalv;
+	shadowed = is_shadowed(w, comps.over_point);
 	(void) w;
-	return (lighting(comps.obj->material,
-					comps.point, 
-					comps.eyev, 
-					comps.normalv));
+	return (lighting(comps.obj->material, comps.point, views, shadowed));
 }
 
 t_inter	app_intersect(t_inter *xs, t_inter *new)
 {
-	t_inter ret;
+	t_inter	ret;
 	int		i;
 	int		j;
 
@@ -47,7 +50,7 @@ t_inter	app_intersect(t_inter *xs, t_inter *new)
 		free(xs->i);
 	if (new->count)
 		free(new->i);
-	return ret;
+	return (ret);
 }
 
 t_inter	intersect_world(t_world w, t_ray r)
@@ -83,7 +86,7 @@ t_world	create_world(void)
 
 	w.light = get_scene()->light;
 	w.shapes = get_scene()->obj_list;
-	return w;
+	return (w);
 }
 
 t_comps	prepare_comp(t_intersection h, t_ray r)
@@ -103,5 +106,8 @@ t_comps	prepare_comp(t_intersection h, t_ray r)
 	}
 	else
 		new.is_inside = false;
+	new.over_point = tuple_add(
+			new.point,
+			vector_scalar_mult(new.normalv, FLT_EPSILON));
 	return (new);
 }

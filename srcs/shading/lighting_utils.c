@@ -12,7 +12,7 @@ t_color	diffuse(double ldn, t_material m, t_color eff_color)
 	return (color_scalarmult(m.diffuse * ldn, eff_color));
 }
 
-t_color	specular(double ldn, t_tup light_v, t_material m, t_tup ev, t_tup nv)
+t_color	specular(double ldn, t_material m, t_tup v[3])
 {
 	t_tup	reflect_v;
 	t_color	intensity;
@@ -24,8 +24,8 @@ t_color	specular(double ldn, t_tup light_v, t_material m, t_tup ev, t_tup nv)
 		return (black());
 	else
 	{
-		reflect_v = vector_reflect(tuple_neg(light_v), nv);
-		reflect_dot_eye = dot(reflect_v, ev);
+		reflect_v = vector_reflect(tuple_neg(v[0]), v[2]);
+		reflect_dot_eye = dot(reflect_v, v[1]);
 		if (reflect_dot_eye <= 0)
 			return (black());
 		else

@@ -13,9 +13,9 @@ t_matrix	identity(void)
 		while (++c < 4)
 		{
 			if (c == r)
-				i.M[r][c] = 1;
+				i.m[r][c] = 1;
 			else
-				i.M[r][c] = 0;
+				i.m[r][c] = 0;
 		}
 	}
 	return (i);
