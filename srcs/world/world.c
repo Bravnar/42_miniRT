@@ -54,18 +54,23 @@ t_inter	intersect_world(t_world w, t_ray r)
 {
 	t_obj	*tmp;
 	t_inter	xs;
-	t_inter	sphere_tmp;
+	t_inter	obj_tmp;
 
 	xs.count = 0;
 	tmp = w.shapes;
-	sphere_tmp.count = 0;
-	sphere_tmp.i = NULL;
+	obj_tmp.count = 0;
+	obj_tmp.i = NULL;
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->get_name(tmp), "Sphere"))
 		{
-			sphere_tmp = tmp->local_intersect(r, tmp);
-			xs = app_intersect(&xs, &sphere_tmp);
+			obj_tmp = tmp->local_intersect(r, tmp);
+			xs = app_intersect(&xs, &obj_tmp);
+		}
+		else if (!ft_strcmp(tmp->get_name(tmp), "Plane"))
+		{
+			obj_tmp = tmp->local_intersect(r, tmp);
+			xs = app_intersect(&xs, &obj_tmp);
 		}
 		tmp = tmp->next;
 	}

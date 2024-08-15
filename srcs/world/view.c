@@ -16,13 +16,6 @@ void	render(t_view_cam cam, t_world w, t_main *rt)
 			new = ray_for_pixel(cam, x, y);
 			c = color_at(w, new);
 			add_hex_color(&c);
-			/* if (x == 5 && y == 5)
-			{
-				printf("pixel at [%d],[%d]:\n", x, y);
-				printf("color hex: %x\n", c.hex);
-				print_color(c);
-				return ;
-			} */
 			my_pixel(&rt->mlx, x, y, c.hex);
 			x++;
 		}
