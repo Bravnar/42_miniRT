@@ -17,11 +17,13 @@ t_color	color_at(t_world w, t_ray r)
 t_color	shade_hit(t_world w, t_comps comps)
 {
 	t_tup	views[2];
+	bool	shadowed;
 
 	views[0] = comps.eyev;
 	views[1] = comps.normalv;
+	shadowed = is_shadowed(w, comps.over_point);
 	(void) w;
-	return (lighting(comps.obj->material, comps.point, views, false));
+	return (lighting(comps.obj->material, comps.point, views, shadowed));
 }
 
 t_inter	app_intersect(t_inter *xs, t_inter *new)
@@ -99,5 +101,8 @@ t_comps	prepare_comp(t_intersection h, t_ray r)
 	}
 	else
 		new.is_inside = false;
+	new.over_point = tuple_add(
+			new.point,
+			vector_scalar_mult(new.normalv, FLT_EPSILON));
 	return (new);
 }

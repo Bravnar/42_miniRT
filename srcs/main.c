@@ -405,7 +405,7 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
-	/* print_scene_details();
+	//print_scene_details();
 	//test_gameloop(rt);
 
 	// RUNS THE RENDER TEST WITH GIVEN .RT FILE CHECK test_scene_render(rt, av[1])
@@ -414,6 +414,7 @@ int main(int ac, char **av)
 		test_scene_render(rt, av[1]);
 		return (0);
 	}
+	/*
 	printf("Creating world -------------------------------------------:\n");
 	t_world	w;
 	w = create_world();

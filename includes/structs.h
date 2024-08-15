@@ -47,62 +47,6 @@ typedef struct s_mlx
 	int		win_y;
 }	t_mlx;
 
-typedef struct s_tup
-{
-	double	x;
-	double	y;
-	double	z;
-	int		w;
-}	t_tup;
-
-typedef struct s_matrix
-{
-	double	m[4][4];
-}	t_matrix;
-
-typedef struct s_column
-{
-	double	m[4];
-}	t_column;
-
-typedef struct s_color
-{
-	double			r;
-	double			g;
-	double			b;
-	double			t;
-	unsigned int	hex;
-}	t_color;
-
-typedef struct s_material
-{
-	double	amb;
-	double	diffuse;
-	double	specular;
-	double	shininess;
-	t_color	color;
-}	t_material;
-
-typedef struct s_obj	t_obj;
-
-typedef struct s_intersection
-{
-	t_obj	*shape;
-	double	t;
-}	t_intersection;
-
-typedef struct s_inter
-{
-	int				count;
-	t_intersection	*i;
-}	t_inter;
-
-typedef struct s_ray
-{
-	t_tup	point;
-	t_tup	direction;
-}	t_ray;
-
 typedef struct s_rect
 {
 	int	x;
@@ -124,7 +68,7 @@ typedef struct s_amb
 	t_color		rgb;
 }	t_amb;
 
-typedef	struct	s_view_cam
+typedef struct s_view_cam
 {
 	double		hsize;
 	double		vsize;
@@ -137,7 +81,7 @@ typedef	struct	s_view_cam
 	t_matrix	transf_matrix;
 }	t_view_cam;
 
-typedef struct	s_cam
+typedef struct s_cam
 {
 	t_tup		point;
 	t_tup		vector;
@@ -232,6 +176,7 @@ typedef struct s_comps
 	t_tup	eyev;
 	t_tup	normalv;
 	bool	is_inside;
+	t_tup	over_point;
 }	t_comps;
 
 typedef struct s_strtoi

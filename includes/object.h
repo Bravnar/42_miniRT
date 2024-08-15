@@ -1,14 +1,61 @@
 #ifndef OBJECT_H
 # define OBJECT_H
 
-typedef struct s_tup			t_tup;
-typedef struct s_matrix			t_matrix;
-typedef struct s_column			t_column;
-typedef struct s_color			t_color;
-typedef struct s_material		t_material;
-typedef struct s_intersection	t_intersection;
-typedef struct s_inter			t_inter;
-typedef struct s_obj			t_obj;
+typedef struct s_tup
+{
+	double	x;
+	double	y;
+	double	z;
+	int		w;
+}	t_tup;
+
+typedef struct s_matrix
+{
+	double	m[4][4];
+}	t_matrix;
+
+typedef struct s_column
+{
+	double	m[4];
+}	t_column;
+
+typedef struct s_color
+{
+	double			r;
+	double			g;
+	double			b;
+	double			t;
+	unsigned int	hex;
+}	t_color;
+
+typedef struct s_material
+{
+	double	amb;
+	double	diffuse;
+	double	specular;
+	double	shininess;
+	t_color	color;
+}	t_material;
+
+typedef struct s_obj	t_obj;
+
+typedef struct s_intersection
+{
+	t_obj	*shape;
+	double	t;
+}	t_intersection;
+
+typedef struct s_inter
+{
+	int				count;
+	t_intersection	*i;
+}	t_inter;
+
+typedef struct s_ray
+{
+	t_tup	point;
+	t_tup	direction;
+}	t_ray;
 
 typedef struct s_obj
 {

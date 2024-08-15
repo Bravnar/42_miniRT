@@ -92,13 +92,12 @@ t_comps			prepare_comp(t_intersection h, t_ray r);
 t_color			shade_hit(t_world w, t_comps comps);
 t_color			color_at(t_world w, t_ray r);
 
-t_matrix	view_transform(t_tup from, t_tup to, t_tup up);
-t_view_cam	init_camera(double hsize, double vsize, double fov);
-void		print_view_cam(t_view_cam cam);
-t_ray		ray_for_pixel(t_view_cam cam, double px, double py);
-void		render(t_view_cam cam, t_world w, t_main *rt);
-// void		test_scene_render(t_main *rt);
-void		test_scene_render(t_main *rt, char *file_name);
+t_matrix		view_transform(t_tup from, t_tup to, t_tup up);
+t_view_cam		init_camera(double hsize, double vsize, double fov);
+void			print_view_cam(t_view_cam cam);
+t_ray			ray_for_pixel(t_view_cam cam, double px, double py);
+void			render(t_view_cam cam, t_world w, t_main *rt);
+void			test_scene_render(t_main *rt, char *file_name);
 
 /* EVENT HANDLER */
 int				close_win(void *param);
@@ -140,12 +139,6 @@ t_proj			tick(t_env env, t_proj proj);
 
 bool			equal(double a, double b);
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                COLORS                                      */
-/*                                                                            */
-/* ************************************************************************** */
-
 /* COLOR INITIALISATION */
 
 t_color			color(double r, double g, double b);
@@ -164,7 +157,13 @@ t_color			color_blend(t_color c1, t_color c2);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                            MATRICES BASICS                                 */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 16:46:37 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/15 16:47:03 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +285,14 @@ t_color			specular(double ldn, t_material m, t_tup v[3]);
 
 /* ************************************************************************** */
 /*                                                                            */
+/*                                SHADOWS                                     */
+/*                                                                            */
+/* ************************************************************************** */
+
+bool			is_shadowed(t_world w, t_tup point);
+
+/* ************************************************************************** */
+/*                                                                            */
 /*                                 UTILS                                      */
 /*                                                                            */
 /* ************************************************************************** */
@@ -307,6 +314,7 @@ void			free_inter(t_inter inter);
 /* SORTING INTERSECTIONS */
 
 t_inter			sort_inter(t_inter inter);
+
 
 /* ************************************************************************** */
 /*                                                                            */
