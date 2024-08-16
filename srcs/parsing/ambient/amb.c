@@ -3,15 +3,17 @@
 static void	get_amb_rgb(char *str)
 {
 	char	**color_split;
+	t_amb	*a;
 	int		r;
 	int		g;
 	int		b;
-
+	
+	a = &get_scene()->amb;
 	color_split = ft_split(str, ',');
 	r = ft_atoi(color_split[0]);
 	g = ft_atoi(color_split[1]);
 	b = ft_atoi(color_split[2]);
-	get_scene()->amb.rgb = color(r, g, b);
+	a->rgb = color(r, g, b);
 	ft_free_arr(color_split);
 }
 
