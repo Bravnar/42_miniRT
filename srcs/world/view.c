@@ -1,5 +1,10 @@
 #include "main.h"
 
+void	recalc_view(double deg)
+{
+	t_tup		forward;
+}
+
 void	render(t_view_cam cam, t_world w, t_main *rt)
 {
 	int		y;

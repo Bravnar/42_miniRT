@@ -50,7 +50,8 @@ int	keyboard(int keycode, t_main *rt)
 	}
 	if (keycode == LEFT)
 	{
-		get_scene_cam()->point.x -= 2.0;
+		//get_scene_cam()->point.x -= 2.0;
+		recalc_view(-15);
 		print_scene_details();
 		redraw(rt, w);
 	}
