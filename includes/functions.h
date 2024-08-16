@@ -98,7 +98,7 @@ void			print_view_cam(t_view_cam cam);
 t_ray			ray_for_pixel(t_view_cam cam, double px, double py);
 void			render(t_view_cam cam, t_world w, t_main *rt);
 void			test_scene_render(t_main *rt, char *file_name);
-void			recalc_view(double deg);
+void			calc_pixel_size(t_view_cam *cam);
 
 /* EVENT HANDLER */
 int				close_win(void *param);
