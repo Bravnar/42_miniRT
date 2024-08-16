@@ -405,6 +405,7 @@ int main(int ac, char **av)
 	if (!rt)
 		exit(1);
 	populate_scene_struct(av[1], get_scene());
+	print_color(get_scene()->light->intensity);
 	//print_scene_details();
 	//test_gameloop(rt);
 

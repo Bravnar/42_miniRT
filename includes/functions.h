@@ -155,18 +155,6 @@ t_color			color_scalarmult(double scalar, t_color c2);
 t_color			color_product(t_color c1, t_color c2);
 t_color			color_blend(t_color c1, t_color c2);
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 16:46:37 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/15 16:47:03 by hmorand          ###   ########.ch       */
-/*                                                                            */
-/* ************************************************************************** */
-
 /* MATRICES OPERATIONS */
 
 bool			matrix_compare(t_matrix A, t_matrix B);
@@ -193,12 +181,6 @@ double			determinant(t_matrix A, int size);
 bool			is_invertible(t_matrix A);
 double			cofactor(t_matrix A, int r, int c, int size_M);
 t_matrix		inverse(t_matrix A, int size);
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                            TRANSFORMATIONS                                 */
-/*                                                                            */
-/* ************************************************************************** */
 
 /* TRANSLATION */
 
@@ -245,6 +227,10 @@ t_inter			intersect(t_obj *shape);
 t_inter			new_inter(int count, t_obj *shape, ...);
 t_intersection	intersection(double t, t_obj *shape);
 t_inter			intersections(int c, ...);
+
+/* INTERSECTIONS */
+
+void			empty_inter(t_inter *inter);
 
 /* HITS */
 

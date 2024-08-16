@@ -93,6 +93,10 @@ t_color	color_blend(t_color c1, t_color c2)
 {
 	t_color	new;
 
+	// new.t = 255;
+	// new.r = c1.r * c2.r;
+	// new.g = c1.g * c2.g;
+	// new.b = c1.b * c2.b;
 	new.t = c1.t + (c1.t * (255 - c1.t) / 255);
 	new.r = (c1.r * c1.t + c2.r * c2.t * (255 - c1.t) / 255) / new.t;
 	new.g = (c1.g * c1.t + c2.g * c2.t * (255 - c1.t) / 255) / new.t;
