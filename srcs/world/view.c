@@ -41,20 +41,6 @@ t_ray	ray_for_pixel(t_view_cam cam, double px, double py)
 	return (ray_new(origin, direction));
 }
 
-void	print_view_cam(t_view_cam cam)
-{
-	printf("hsize: %f\n", cam.hsize);
-	printf("vsize: %f\n", cam.vsize);
-	printf("fov: %.2f\n", cam.fov);
-	printf("aspect ratio: %f\n", cam.aspect);
-	printf("half_view: %.2f\n", cam.half_view);
-	printf("half_width: %.2f\n", cam.half_width);
-	printf("half_height: %.2f\n", cam.half_height);
-	printf("pixel_size: %.2f\n", cam.pixel_size);
-	printf("tranform-------------:\n");
-	print_matrix(cam.transf_matrix, 4);
-}
-
 void	calc_pixel_size(t_view_cam *cam)
 {
 	cam->half_view = tan(cam->fov / 2);
@@ -72,28 +58,13 @@ void	calc_pixel_size(t_view_cam *cam)
 	cam->pixel_size = (cam->half_width * 2) / cam->hsize;
 }
 
-t_view_cam	init_camera(double hsize, double vsize, double fov)
-{
-	t_view_cam	camera;
-
-	camera.hsize = hsize;
-	camera.vsize = vsize;
-	camera.fov = fov;
-	calc_pixel_size(&camera);
-	camera.transf_matrix = identity();
-	return (camera);
-}
-
-//t_matrix	view_transform(t_tup from, t_tup to, t_tup up)
 t_matrix	view_transform(t_tup from, t_tup forward, t_tup up)
 {
-	//t_tup		forward;
 	t_tup		upn;
 	t_tup		left;
 	t_tup		true_up;
 	t_matrix	orientation;
 
-	//forward = vector_norm(tuple_sub(to, from));
 	upn = vector_norm(up);
 	left = vector_cross(forward, upn);
 	true_up = vector_cross(left, forward);
