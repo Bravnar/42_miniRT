@@ -19,9 +19,9 @@ t_inter	local_intersect_pl(t_ray r, t_obj *plane)
 
 t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
-	(void) plane;
 	(void) point;
-	return (vector(0, 1, 0));
+	return (vector_norm(
+			matrix_mult_tup(plane->transformation, vector(0, 1, 0))));
 }
 
 t_plane	*plane(void)
