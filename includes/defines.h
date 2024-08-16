@@ -12,12 +12,14 @@
 # define WHITESPACE " \t\n\r\f\v"
 # define WIN_X_MAX	(3840)
 # define WIN_Y_MAX	(2160)
+# define P_KEY		(112)
 
 /* Error messages */
 
 # define GOOD_ID			"RACL.pl.sp.cy.cu"
 # define GOOD_ID_SINGLE		"RACL"
 
+# define M_NO_ARGS			"No arguments provided, give path to .rt!"
 # define M_INVALID_ENTRY	"Invalid number entry, only INT or FLOAT"
 # define M_ACL_MISSING		"Missing key parameters (A, C, L)"
 # define M_TOO_MANY_R		"Too many R-parameters"

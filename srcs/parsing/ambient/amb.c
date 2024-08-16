@@ -7,7 +7,7 @@ static void	get_amb_rgb(char *str)
 	int		r;
 	int		g;
 	int		b;
-	
+
 	a = &get_scene()->amb;
 	color_split = ft_split(str, ',');
 	r = ft_atoi(color_split[0]);

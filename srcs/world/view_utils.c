@@ -14,15 +14,11 @@ void	print_view_cam(t_view_cam cam)
 	print_matrix(cam.transf_matrix, 4);
 }
 
-t_view_cam	init_camera(double hsize, double vsize, double fov)
+t_world	create_world(void)
 {
-	t_view_cam	camera;
+	t_world	w;
 
-	camera.hsize = hsize;
-	camera.vsize = vsize;
-	camera.fov = fov;
-	calc_pixel_size(&camera);
-	camera.transf_matrix = identity();
-	return (camera);
+	w.light = get_scene()->light;
+	w.shapes = get_scene()->obj_list;
+	return (w);
 }
-

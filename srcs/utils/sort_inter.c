@@ -41,10 +41,10 @@ void	insert_inter(t_inter left, t_inter right, t_inter *ret, t_inter inter)
 	while (j < left.count)
 		ret->i[k++] = left.i[j++];
 	ret->count = inter.count;
-	if (right.count > 0)
-		free(right.i);
-	if (left.count > 0)
-		free(left.i);
+	// if (right.count > 0)
+	free(right.i);
+	// if (left.count > 0)
+	free(left.i);
 }
 
 bool	is_sorted(t_inter inter)
@@ -73,6 +73,7 @@ t_inter	sort_inter(t_inter inter)
 	if (!ret.i)
 	{
 		ret.count = 0;
+		free(ret.i);
 		return (ret);
 	}
 	left = intersect_slice(&inter, 0, inter.count / 2);
