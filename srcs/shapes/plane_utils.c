@@ -47,7 +47,7 @@ t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
 	(void) point;
 	return (vector_norm(
-			matrix_mult_tup(plane->transformation, vector(0, 1, 0))));
+			matrix_mult_tup(plane->transformation, plane->dir_vector)));
 }
 
 t_plane	*plane(void)

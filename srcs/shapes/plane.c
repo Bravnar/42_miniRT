@@ -32,8 +32,8 @@ t_plane	*plane_create(char **plane_line)
 	p->shape.transform = transform_pl;
 	p->shape.local_intersect = local_intersect_pl;
 	p->shape.point = get_point(plane_line[1]);
-	p->shape.dir_vector = get_vector(plane_line[2]);
-	p->shape.material = material(get_color(plane_line[3]), 0.9, 0.9, 200);
+	p->shape.dir_vector = vector_norm(get_vector(plane_line[2]));
+	p->shape.material = material(get_color(plane_line[3]), 0.9, 0, 200);
 	p->shape.transformation = identity();
 	p->shape.inverse_transformation = identity();
 	p->shape.transform((t_obj *) p, translation_matrix(
