@@ -99,6 +99,7 @@ t_ray			ray_for_pixel(t_view_cam cam, double px, double py);
 void			render(t_view_cam cam, t_world w, t_main *rt);
 void			test_scene_render(t_main *rt, char *file_name);
 void			calc_pixel_size(t_view_cam *cam);
+t_inter			app_intersect(t_inter *xs, t_inter *new);
 
 /* EVENT HANDLER */
 int				close_win(void *param);
@@ -262,7 +263,7 @@ t_tup			position(t_ray ray, double t);
 
 /* INTERSECTIONS */
 
-double			discriminant(t_obj *sphere, double *a, double *b);
+double			discriminant(t_obj *shape, double *a, double *b);
 t_inter			intersect(t_obj *shape);
 t_inter			new_inter(int count, t_obj *shape, ...);
 t_intersection	intersection(double t, t_obj *shape);

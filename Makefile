@@ -94,7 +94,7 @@ endif
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-#SANITIZE= -g3 -fsanitize=address
+# SANITIZE= -g3 -fsanitize=address
 SANITIZE= -g
 
 # Color Variables

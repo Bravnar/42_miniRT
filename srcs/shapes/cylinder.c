@@ -11,6 +11,12 @@ char	*get_name_cy(t_obj *shape)
 	return ("Cylinder");
 }
 
+t_tup	local_normal_at_cy(t_obj *cyl, t_tup point)
+{
+	(void) cyl;
+	return (vector(point.x, 0, point.z));
+}
+
 double	volume_cy(t_obj *shape)
 {
 	t_cyl		*cyl;
@@ -36,6 +42,7 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.destroy = cyl_destroy;
 	cyl->shape.transform = transform_cy;
 	cyl->shape.local_intersect = local_intersect_cy;
+	cyl->shape.local_normal_at = local_normal_at_cy;
 	pat = pattern(get_color(cyl_line[5]), white(), PLAIN);
 	cyl->shape.material = material(pat, 0.9, 0.9, 200);
 	cyl->shape.point = get_point(cyl_line[1]);
@@ -43,6 +50,13 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
+	cyl->shape.transform((t_obj *) cyl,
+			matrix_mult(translation_matrix(cyl->shape.point.x,
+				cyl->shape.point.y,
+				cyl->shape.point.z),
+			scaling_matrix(cyl->diameter / 2,
+				cyl->diameter / 2,
+				cyl->diameter / 2)));
 	return (cyl);
 }
 

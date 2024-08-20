@@ -4,6 +4,7 @@ void	print_inter(t_inter i)
 {
 	int	j;
 
+	printf("count of intersections = %d\n", i.count);
 	if (i.count == 0)
 	{
 		printf("No intersections\n");
