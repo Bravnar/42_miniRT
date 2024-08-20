@@ -28,13 +28,29 @@ typedef struct s_color
 	unsigned int	hex;
 }	t_color;
 
+typedef enum s_patt_type
+{
+	PLAIN,
+	STRIPE,
+	CHECKER,
+	GRADIENT,
+}	e_patt_type;
+
+typedef struct s_pattern
+{
+	t_color		colors[2];
+	e_patt_type	type;
+	t_color		(*color_at)(t_tup dir, t_tup point, struct s_pattern pat);
+}	t_pattern;
+
 typedef struct s_material
 {
-	double	amb;
-	double	diffuse;
-	double	specular;
-	double	shininess;
-	t_color	color;
+	double		amb;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+	t_pattern	pattern;
+	t_color		color;
 }	t_material;
 
 typedef struct s_obj	t_obj;

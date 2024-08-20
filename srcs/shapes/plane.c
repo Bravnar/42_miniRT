@@ -20,7 +20,8 @@ void	transform_pl(t_obj *shape, t_matrix transformation)
 
 t_plane	*plane_create(char **plane_line)
 {
-	t_plane	*p;
+	t_plane		*p;
+	t_pattern	pat;
 
 	p = malloc(sizeof(t_plane));
 	if (!p)
@@ -33,7 +34,8 @@ t_plane	*plane_create(char **plane_line)
 	p->shape.local_intersect = local_intersect_pl;
 	p->shape.point = get_point(plane_line[1]);
 	p->shape.dir_vector = vector_norm(get_vector(plane_line[2]));
-	p->shape.material = material(get_color(plane_line[3]), 0.9, 0, 200);
+	pat = pattern(get_color(plane_line[3]), white(), PLAIN);
+	p->shape.material = material(pat, 0.9, 0, 200);
 	p->shape.transformation = identity();
 	p->shape.inverse_transformation = identity();
 	p->shape.transform((t_obj *) p, translation_matrix(

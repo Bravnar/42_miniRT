@@ -23,7 +23,7 @@ t_color	shade_hit(t_world w, t_comps comps)
 	views[1] = comps.normalv;
 	shadowed = is_shadowed(w, comps.over_point);
 	(void) w;
-	return (lighting(comps.obj->material, comps.point, views, shadowed));
+	return (lighting(comps.obj, comps.point, views, shadowed));
 }
 
 t_inter	app_intersect(t_inter *xs, t_inter *new)
@@ -65,16 +65,8 @@ t_inter	intersect_world(t_world w, t_ray r)
 	obj_tmp.i = NULL;
 	while (tmp)
 	{
-		if (!ft_strcmp(tmp->get_name(tmp), "Sphere"))
-		{
-			obj_tmp = tmp->local_intersect(r, tmp);
-			xs = app_intersect(&xs, &obj_tmp);
-		}
-		else if (!ft_strcmp(tmp->get_name(tmp), "Plane"))
-		{
-			obj_tmp = tmp->local_intersect(r, tmp);
-			xs = app_intersect(&xs, &obj_tmp);
-		}
+		obj_tmp = tmp->local_intersect(r, tmp);
+		xs = app_intersect(&xs, &obj_tmp);
 		tmp = tmp->next;
 	}
 	return (sort_inter(xs));

@@ -21,7 +21,8 @@ double	volume_cu(t_obj *shape)
 
 t_cube	*cube_create(char **cube_line)
 {
-	t_cube	*c;
+	t_cube		*c;
+	t_pattern	pat;
 
 	c = malloc(sizeof(t_cube));
 	if (!c)
@@ -34,7 +35,8 @@ t_cube	*cube_create(char **cube_line)
 	c->shape.destroy = cube_destroy;
 	c->shape.transform = transform_cu;
 	c->shape.local_intersect = local_intersect_cu;
-	c->shape.material = material(get_color(cube_line[6]), 0.9, 0.9, 200);
+	pat = pattern(get_color(cube_line[6]), white(), PLAIN);
+	c->shape.material = material(pat, 0.9, 0.9, 200);
 	c->shape.point = get_point(cube_line[1]);
 	c->shape.dir_vector = get_vector(cube_line[2]);
 	c->shape.transformation = identity();

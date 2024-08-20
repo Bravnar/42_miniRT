@@ -105,6 +105,18 @@ int				close_win(void *param);
 int				keyboard(int keycode, t_main *rt);
 void			handle_events(t_main *rt);
 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/20 10:55:37 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/20 10:55:37 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /* CREATE */
 
 t_tup			tuple(double x, double y, double z, int w);
@@ -140,12 +152,17 @@ t_proj			tick(t_env env, t_proj proj);
 
 bool			equal(double a, double b);
 
+/* ************************************************************************** */
+/*                                                                            */
+/*                           COLORS & PATTERNS                                */
+/*                                                                            */
+/* ************************************************************************** */
+
 /* COLOR INITIALISATION */
 
 t_color			color(double r, double g, double b);
 void			add_hex_color(t_color *c);
 int				nadd_hex_color(int r, int g, int b, int t);
-t_color			black(void);
 void			print_color(t_color c);
 
 /* COLOR OPERATIONS */
@@ -155,6 +172,22 @@ t_color			color_sub(t_color c1, t_color c2);
 t_color			color_scalarmult(double scalar, t_color c2);
 t_color			color_product(t_color c1, t_color c2);
 t_color			color_blend(t_color c1, t_color c2);
+
+/* BASIC COLORS */
+
+t_color			black(void);
+t_color			white(void);
+
+/* PATTERNS */
+
+t_color			plain_pattern(t_tup dir, t_tup point, t_pattern pat);
+t_pattern		pattern(t_color a, t_color b, e_patt_type type);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                             MATRIX BASICS                                  */
+/*                                                                            */
+/* ************************************************************************** */
 
 /* MATRICES OPERATIONS */
 
@@ -182,6 +215,12 @@ double			determinant(t_matrix A, int size);
 bool			is_invertible(t_matrix A);
 double			cofactor(t_matrix A, int r, int c, int size_M);
 t_matrix		inverse(t_matrix A, int size);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                        LINEAR TRANSFORMATIONS                              */
+/*                                                                            */
+/* ************************************************************************** */
 
 /* TRANSLATION */
 
@@ -258,9 +297,9 @@ t_tup			vector_reflect(t_tup in, t_tup normal);
 
 /* LIGHTING */
 
-t_material		material(t_color c, double d, double s, double sh);
+t_material		material(t_pattern p, double d, double s, double sh);
 t_material		mat_default(void);
-t_color			lighting(t_material m, t_tup p, t_tup views[2], bool in_shadow);
+t_color			lighting(t_obj *shape, t_tup p, t_tup views[2], bool in_shadow);
 
 /* vs[0] = eye_view, vs[1] = normal_view */
 

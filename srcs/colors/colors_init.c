@@ -51,11 +51,6 @@ int	nadd_hex_color(int r, int g, int b, int t)
 	return (hex);
 }
 
-t_color	black(void)
-{
-	return (color(0, 0, 0));
-}
-
 void	print_color(t_color c)
 {
 	printf("(%.4f, %.4f, %.4f) ", c.r / 255, c.g / 255, c.b / 255);
