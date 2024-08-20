@@ -17,6 +17,7 @@ SRCS= 	srcs/main.c \
 		srcs/floats/float_compare.c \
 		srcs/colors/colors_init.c \
 		srcs/colors/colors_operations.c \
+		srcs/colors/basic_colors.c \
 		srcs/init/init_new.c \
 		srcs/parsing/read_rt_file.c \
 		srcs/parsing/utils.c \

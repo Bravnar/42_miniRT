@@ -4,7 +4,7 @@ void	test_lighting(t_tup views[2], t_color e, char *tn, bool in_shadow)
 {
 	t_color		result;
 
-	result = lighting(mat_default(), point(0, 0, 0), views, in_shadow);
+	result = lighting((t_obj *)sphere(), point(0, 0, 0), views, in_shadow);
 	printf("--------------------------------------------\
 -----------------------\n");
 	if (equal_color(result, e))

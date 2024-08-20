@@ -21,7 +21,7 @@ t_intersection	hit(t_inter inters)
 	while (++i < inters.count)
 	{
 		if (inters.i[i].t > 0)
-			return (inters.i[i]);
+			return (copy_intersection(inters.i[i]));
 	}
 	return (h);
 }
@@ -32,12 +32,12 @@ t_intersection	nhit(t_inter inters)
 	t_intersection	h;
 
 	i = 0;
-	h.t = -1;
+	h = intersection(-1, NULL);
 	while (i < inters.count)
 	{
 		if (inters.i[i].t >= 0)
 		{
-			h = inters.i[i];
+			h = copy_intersection(inters.i[i]);
 			return (h);
 		}
 		i++;

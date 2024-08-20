@@ -32,6 +32,7 @@ void	transform_s(t_obj *sphere, t_matrix transformation)
 t_sphere	*sphere_create(char **sphere_split)
 {
 	t_sphere	*sphere;
+	t_pattern	pat;
 
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
@@ -45,8 +46,8 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
-	sphere->shape.material = material(get_color(sphere_split[3]),
-			0.9, 0.9, 200);
+	pat = pattern(get_color(sphere_split[3]), white(), PLAIN);
+	sphere->shape.material = material(pat, 0.9, 0.9, 200);
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();
