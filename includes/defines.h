@@ -22,6 +22,7 @@
 #  define UP	(65362)
 #  define DOWN	(65364)
 #  define Q_KEY	(113)
+#  define P_KEY (112)
 
 #  define WIN_X_MAX (3840)
 #  define WIN_Y_MAX (2160)
