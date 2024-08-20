@@ -19,7 +19,7 @@ t_material	mat_default(void)
 	new_mat.amb = 0.1;
 	new_mat.diffuse = 0.9;
 	new_mat.specular = 0.9;
-	new_mat.pattern = pattern(color(255, 255, 255), white(), PLAIN);
+	new_mat.pattern = pattern(color(255, 255, 255), white(), PLAIN, identity());
 	new_mat.shininess = 200;
 	return (new_mat);
 }

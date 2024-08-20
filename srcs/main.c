@@ -14,14 +14,9 @@ int	main(int ac, char **av)
 			exit(1);
 		populate_scene_struct(av[1], get_scene());
 		print_color(get_scene()->light->intensity);
+		//tests();
 		test_scene_render(rt, av[1]);
 		free(rt);
-	}
-	else
-	{
-		lighting_test_battery();
-		ray_test_battery();
-		hit_test_battery();
 	}
 	return (0);
 }

@@ -1,8 +1,8 @@
 #include "main.h"
 
-t_color	plain_pattern(t_tup dir, t_tup point, t_pattern pat)
+t_color	plain_pattern(t_obj *shape, t_tup point, t_pattern pat)
 {
-	(void) dir;
 	(void) point;
+	(void) shape;
 	return (pat.colors[0]);
 }

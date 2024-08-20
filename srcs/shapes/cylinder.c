@@ -36,7 +36,7 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.destroy = cyl_destroy;
 	cyl->shape.transform = transform_cy;
 	cyl->shape.local_intersect = local_intersect_cy;
-	pat = pattern(get_color(cyl_line[5]), white(), PLAIN);
+	pat = pattern(get_color(cyl_line[5]), white(), PLAIN, identity());
 	cyl->shape.material = material(pat, 0.9, 0.9, 200);
 	cyl->shape.point = get_point(cyl_line[1]);
 	cyl->shape.dir_vector = get_vector(cyl_line[2]);

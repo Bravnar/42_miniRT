@@ -18,6 +18,9 @@ SRCS= 	srcs/main.c \
 		srcs/colors/colors_init.c \
 		srcs/colors/colors_operations.c \
 		srcs/colors/basic_colors.c \
+		srcs/colors/pattern.c \
+		srcs/colors/plain_pattern.c \
+		srcs/colors/stripe_pattern.c \
 		srcs/init/init_new.c \
 		srcs/parsing/read_rt_file.c \
 		srcs/parsing/utils.c \
@@ -71,11 +74,11 @@ SRCS= 	srcs/main.c \
 		srcs/test/lighting_test.c \
 		srcs/test/ray_test.c \
 		srcs/test/hit_test.c \
+		srcs/test/patterns_test.c \
+		srcs/test/test_main.c \
 		srcs/world/view.c \
 		srcs/testing_loop.c \
 		srcs/world/view_utils.c \
-		srcs/colors/pattern.c \
-		srcs/colors/plain_pattern.c \
 
 CC= cc
 
