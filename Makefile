@@ -73,15 +73,23 @@ SRCS= 	srcs/main.c \
 		srcs/test/hit_test.c \
 		srcs/world/view.c \
 		srcs/testing_loop.c \
-		srcs/world/view_utils.c
+		srcs/world/view_utils.c \
+		srcs/colors/pattern.c \
+		srcs/colors/plain_pattern.c \
 
 CC= cc
 
 CFLAGS= -Wall -Wextra -Werror -I$(INCLUDES)
 
-LINUX_MINILIBX = -lXext -lX11 -lm
+UNAME_S := $(shell uname -s)
 
-MINILIBX_DIR = minilibx-linux
+ifeq ($(UNAME_S),Linux)
+	MINILIBX_DIR = minilibx-linux
+	MINILIBX_FLAGS = -lXext -lX11 -lm
+else ifeq ($(UNAME_S),Darwin)
+	MINILIBX_DIR = minilibx_macos
+	MINILIBX_FLAGS = -lm -framework OpenGL -framework AppKit
+endif
 
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
@@ -118,7 +126,7 @@ $(NAME) : $(SRCS)
 			@make -C $(LIBFT) all
 			@echo "\n\nCompiling MINILIBX: (loading bar - courtesy of rrouille)\n"
 			@make -C $(MINILIBX_DIR) all
-			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(LINUX_MINILIBX) $(SANITIZE)
+			@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(MINILIBX_FLAGS) $(SANITIZE)
 			@echo "$(YELLOW)\no------------------------------------o$(RESET)"
 			@echo "$(GREEN)|           MINIRT_COMPILED          |$(RESET)"
 			@echo "$(YELLOW)o------------------------------------o\n$(RESET)"
