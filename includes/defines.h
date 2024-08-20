@@ -2,16 +2,34 @@
 # define DEFINES_H
 
 # define EPSILON	(0.00001)
-# define ESC		(65307)
-# define LEFT		(65361)
-# define RIGHT		(65363)
-# define UP			(65362)
-# define DOWN		(65364)
-# define Q_KEY		(113)
+
+# ifdef __APPLE__
+
+#  define ESC (53)
+#  define LEFT (123)
+#  define RIGHT (124)
+#  define UP (126)
+#  define DOWN (125)
+#  define Q_KEY (12)
+#  define WIN_X_MAX (3840)
+#  define WIN_Y_MAX (2160)
+
+# else
+
+#  define ESC	(65307)
+#  define LEFT	(65361)
+#  define RIGHT	(65363)
+#  define UP	(65362)
+#  define DOWN	(65364)
+#  define Q_KEY	(113)
+
+#  define WIN_X_MAX (3840)
+#  define WIN_Y_MAX (2160)
+
+# endif
+
 # define PI			(3.1416)
 # define WHITESPACE " \t\n\r\f\v"
-# define WIN_X_MAX	(3840)
-# define WIN_Y_MAX	(2160)
 
 /* Error messages */
 
