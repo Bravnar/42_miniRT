@@ -11,6 +11,7 @@ t_color	color_at(t_world w, t_ray r)
 	if (h.t == -1)
 		return (black());
 	comps = prepare_comp(h, r);
+	empty_inter(&inters);
 	return (shade_hit(w, comps));
 }
 
@@ -35,7 +36,11 @@ t_inter	app_intersect(t_inter *xs, t_inter *new)
 	i = 0;
 	j = 0;
 	ret.count = xs->count + new->count;
-	ret.i = malloc(ret.count * sizeof(t_inter));
+	if (!ret.count)
+		ret.i = NULL;
+	if (!ret.count)
+		return (ret);
+	ret.i = malloc(ret.count * sizeof(t_intersection));
 	if (!ret.i)
 	{
 		ret.count = 0;
@@ -46,10 +51,8 @@ t_inter	app_intersect(t_inter *xs, t_inter *new)
 	j = 0;
 	while (j < new->count)
 		ret.i[i++] = new->i[j++];
-	if (xs->count)
-		free(xs->i);
-	if (new->count)
-		free(new->i);
+	empty_inter(xs);
+	empty_inter(new);
 	return (ret);
 }
 
@@ -70,15 +73,6 @@ t_inter	intersect_world(t_world w, t_ray r)
 		tmp = tmp->next;
 	}
 	return (sort_inter(xs));
-}
-
-t_world	create_world(void)
-{
-	t_world	w;
-
-	w.light = get_scene()->light;
-	w.shapes = get_scene()->obj_list;
-	return (w);
 }
 
 t_comps	prepare_comp(t_intersection h, t_ray r)

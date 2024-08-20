@@ -37,6 +37,7 @@ int	keyboard(int keycode, t_main *rt)
 	t_world	w;
 
 	w = create_world();
+	(void)	w;
 	printf("key pressed: %d\n", keycode);
 	if (keycode == ESC || keycode == Q_KEY)
 	{
@@ -49,29 +50,15 @@ int	keyboard(int keycode, t_main *rt)
 		}
 	}
 	if (keycode == LEFT)
-	{
-		get_scene_cam()->point.x -= 2.0;
-		print_scene_details();
-		redraw(rt, w);
-	}
+		printf("Pressing LEFT\n");
 	else if (keycode == RIGHT)
-	{
-		get_scene_cam()->point.x += 2.0;
-		print_scene_details();
-		redraw(rt, w);
-	}
-	if (keycode == DOWN)
-	{
-		get_scene_cam()->point.y -= 2.0;
-		print_scene_details();
-		redraw(rt, w);
-	}
+		printf("Pressing RIGHT\n");
+	else if (keycode == DOWN)
+		printf("Pressing DOWN\n");
 	else if (keycode == UP)
-	{
-		get_scene_cam()->point.y += 2.0;
+		printf("Pressing UP\n");
+	else if (keycode == P_KEY)
 		print_scene_details();
-		redraw(rt, w);
-	}
 	return (0);
 }
 

@@ -31,7 +31,8 @@ typedef enum s_err
 	CY_VECTOR_RANGE,
 	INVALID_NUMBER,
 	WRONG_EXT,
-	OPEN_FAILED
+	OPEN_FAILED,
+	NO_ARGS,
 }	t_err;
 
 typedef struct s_mlx

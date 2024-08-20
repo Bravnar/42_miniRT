@@ -2,7 +2,10 @@
 
 void	empty_inter(t_inter *inter)
 {
-	inter->count = 0;
-	free(inter->i);
+	if (inter->count > 0)
+	{
+		inter->count = 0;
+		free(inter->i);
+	}
 	inter->i = NULL;
 }

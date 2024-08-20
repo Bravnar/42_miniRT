@@ -55,12 +55,12 @@ void	test_scene_render(t_main *rt, char *file_name)
 	w = create_world();
 	cam = get_scene_cam();
 	init_mlx(&rt->mlx);
-	cam->view = init_camera(get_scene_win()->x,
-							get_scene_win()->y,
-							cam->fov * (PI / 180));
-	cam->view.transf_matrix = view_transform(cam->point,
-							cam->vector,
-							point(0.0, 1.0, 0));
+	// cam->view = init_camera(get_scene_win()->x,
+	// 						get_scene_win()->y,
+	// 						cam->fov * (PI / 180));
+	// cam->view.transf_matrix = view_transform(cam->point,
+	// 						cam->vector,
+	// 						point(0.0, 1.0, 0));
 	print_view_cam(cam->view);
 	render(cam->view, w, rt);
 	handle_events(rt);

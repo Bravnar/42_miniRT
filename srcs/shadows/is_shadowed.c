@@ -13,6 +13,7 @@ bool	is_shadowed(t_world w, t_tup point)
 	direction = vector_norm(v);
 	inter = intersect_world(w, ray_new(point, direction));
 	h = hit(inter);
+	empty_inter(&inter);
 	if (h.t != -1 && h.t < distance)
 		return (true);
 	else

@@ -57,34 +57,22 @@ t_tup	get_vector(char *str)
 void	populate_shapes(void)
 {
 	t_parse	*tmp;
-	t_obj	*node;
+	t_obj	*(*create_shape)(char **);
 
 	tmp = get_scene()->file.parse;
 	while (tmp)
 	{
+		create_shape = NULL;
 		if (!ft_strcmp(tmp->line_split[0], "sp"))
-		{
-			node = (t_obj *)sphere_create(tmp->line_split);
-			// node->transform(node, translation_matrix(node->point.x,
-			// 										node->point.y,
-			// 										node->point.z));
-			add_obj_node(&get_scene()->obj_list, node);
-		}
+			create_shape = (t_obj *(*)(char **))sphere_create;
 		else if (!ft_strcmp(tmp->line_split[0], "cy"))
-		{
-			node = (t_obj *)cyl_create(tmp->line_split);
-			add_obj_node(&get_scene()->obj_list, node);
-		}
+			create_shape = (t_obj *(*)(char **))cyl_create;
 		else if (!ft_strcmp(tmp->line_split[0], "pl"))
-		{
-			node = (t_obj *)plane_create(tmp->line_split);
-			add_obj_node(&get_scene()->obj_list, node);
-		}
+			create_shape = (t_obj *(*)(char **))plane_create;
 		else if (!ft_strcmp(tmp->line_split[0], "cu"))
-		{
-			node = (t_obj *)cube_create(tmp->line_split);
-			add_obj_node(&get_scene()->obj_list, node);
-		}
+			create_shape = (t_obj *(*)(char **))cube_create;
+		if (create_shape)
+			add_obj_node(&get_scene()->obj_list, create_shape(tmp->line_split));
 		tmp = tmp->next;
 	}
 }

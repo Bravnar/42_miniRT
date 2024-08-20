@@ -49,4 +49,6 @@ void	err_handler(t_err code)
 		err_quit(M_OPEN_FAILED);
 	if (code == WRONG_EXT)
 		err_quit(M_WRONG_EXTENSION);
+	if (code == NO_ARGS)
+		err_quit(M_NO_ARGS);
 }
