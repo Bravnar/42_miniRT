@@ -1,9 +1,9 @@
 #include "main.h"
 
 // STAN TESTER MAIN
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_main  *rt;
+	t_main 	*rt;
 
 	if (ac < 2)
 		err_handler(NO_ARGS);
@@ -23,7 +23,6 @@ int main(int ac, char **av)
 		ray_test_battery();
 		hit_test_battery();
 	}
-	free(rt);
 	return (0);
 }
 
