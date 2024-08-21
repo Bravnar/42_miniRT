@@ -24,7 +24,6 @@ typedef struct s_color
 	double			r;
 	double			g;
 	double			b;
-	double			t;
 	unsigned int	hex;
 }	t_color;
 

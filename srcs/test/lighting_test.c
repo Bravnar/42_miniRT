@@ -12,10 +12,10 @@ void	test_lighting(t_tup views[2], t_color e, char *tn, bool in_shadow)
 	else
 	{
 		printf(BOLD_RED"Test failed - %s\n"RESET, tn);
-		printf("Expected:\t(%.3f, %.3f, %.3f, %.3f)\n", e.r / 255,
-			e.g / 255, e.b / 255, e.t / 255);
-		printf("Got:\t\t(%.3f, %.3f, %.3f, %.3f)\n", result.r / 255,
-			result.g / 255, result.b / 255, result.t);
+		printf("Expected:\t(%.8f, %.8f, %.8f)\n", e.r / 255,
+			e.g / 255, e.b / 255);
+		printf("Got:\t\t(%.8f, %.8f, %.8f)\n", result.r / 255,
+			result.g / 255, result.b / 255);
 	}
 	printf("\n");
 }
@@ -49,12 +49,13 @@ void	lighting_test_2(void)
 	add_light_node_front(light, &get_scene()->light);
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
-	test_lighting(views, color(0.736396 * 255, 0.736396 * 255, 0.736396 * 255),
+	test_lighting(views, color(0.7363961 * 255,
+			0.7363961 * 255, 0.7363961 * 255),
 		"Light source offset by 45 degrees", false);
 	views[0] = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
 	views[1] = vector(0, 0, -1);
 	test_lighting(views,
-		color(1.636396 * 255, 1.636396 * 255, 1.636396 * 255),
+		color(1.6363961 * 255, 1.6363961 * 255, 1.6363961 * 255),
 		"Lighting with eye in the path of reflection", false);
 	remove_first_light(&get_scene()->light);
 	light = new_light_node(point(0, 0, 10), 1,
