@@ -107,7 +107,13 @@ void			handle_events(t_main *rt);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                           VECTORS & TUPLES                                 */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/21 09:48:24 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/21 09:48:24 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +162,7 @@ bool			equal(double a, double b);
 
 t_color			color(double r, double g, double b);
 void			add_hex_color(t_color *c);
-int				nadd_hex_color(int r, int g, int b, int t);
+int				nadd_hex_color(int r, int g, int b);
 void			print_color(t_color c);
 
 /* COLOR OPERATIONS */
@@ -171,11 +177,13 @@ t_color			color_blend(t_color c1, t_color c2);
 
 t_color			black(void);
 t_color			white(void);
+t_color 		c(char *name);
 
 /* PATTERNS */
 
 t_color			plain_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			stripe_pattern(t_obj *shape, t_tup point, t_pattern pat);
+t_color			gradient_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
 
 /* ************************************************************************** */
@@ -234,6 +242,7 @@ t_tup			inverse_scale(t_tup point, double x, double y, double z);
 t_matrix		rotation_x(double deg);
 t_matrix		rotation_y(double deg);
 t_matrix		rotation_z(double deg);
+t_matrix		rotation_z_pat(double angle);
 t_tup			rotate(t_tup point, double deg, char axis);
 t_tup			inverse_rotate(t_tup point, double deg, char axis);
 
@@ -335,7 +344,6 @@ void			free_inter(t_inter inter);
 /* SORTING INTERSECTIONS */
 
 t_inter			sort_inter(t_inter inter);
-
 
 /* ************************************************************************** */
 /*                                                                            */

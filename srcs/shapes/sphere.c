@@ -48,8 +48,8 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
-	pat = pattern(get_color(sphere_split[3]), color(0, 0, 255), STRIPE,
-			matrix_mult(rotation_z(45), scaling_matrix(0.2, 0.2, 0.2)));
+	pat = pattern(get_color(sphere_split[3]), color(0, 0, 255), GRADIENT,
+			rotation_z_pat(45));
 	sphere->shape.material = material(pat, 0.9, 0.9, 200);
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
