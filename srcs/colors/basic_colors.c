@@ -15,7 +15,7 @@ t_color	c(char *name)
 	if (ft_strcmp(name, "red") == 0)
 		return (color(255, 0, 0));
 	else if (ft_strcmp(name, "green") == 0)
-		return (color(0, 255, 0));
+		return (color(0, 128, 0));
 	else if (ft_strcmp(name, "blue") == 0)
 		return (color(30, 144, 255));
 	else if (ft_strcmp(name, "yellow") == 0)
