@@ -112,8 +112,8 @@ void			handle_events(t_main *rt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 09:48:24 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/21 09:48:24 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/26 18:11:28 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/26 18:11:28 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,7 @@ t_tup			inverse_scale(t_tup point, double x, double y, double z);
 t_matrix		rotation_x(double deg);
 t_matrix		rotation_y(double deg);
 t_matrix		rotation_z(double deg);
-t_matrix		rotation_z_pat(double angle);
+t_matrix		rotation_z_pat(double angle, char *name);
 t_tup			rotate(t_tup point, double deg, char axis);
 t_tup			inverse_rotate(t_tup point, double deg, char axis);
 
