@@ -72,6 +72,7 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/objects/objects_utils.c \
 		srcs/world/world.c \
 		srcs/shadows/is_shadowed.c \
+		srcs/refraction/reflection.c \
 		srcs/test/equals.c \
 		srcs/test/lighting_test.c \
 		srcs/test/ray_test.c \

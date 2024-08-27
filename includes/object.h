@@ -35,7 +35,7 @@ typedef enum s_patt_type
 	GRADIENT,
 }	t_patt_type;
 
-typedef struct s_obj t_obj;
+typedef struct s_obj	t_obj;
 
 typedef struct s_pattern
 {
@@ -53,6 +53,7 @@ typedef struct s_material
 	double		diffuse;
 	double		specular;
 	double		shininess;
+	double		reflective;
 	t_pattern	pattern;
 	t_color		color;
 }	t_material;

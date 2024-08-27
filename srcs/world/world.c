@@ -1,6 +1,6 @@
 #include "main.h"
 
-t_color	color_at(t_world w, t_ray r)
+t_color	color_at(t_world w, t_ray r, int remaining)
 {
 	t_inter			inters;
 	t_intersection	h;
@@ -12,19 +12,24 @@ t_color	color_at(t_world w, t_ray r)
 		return (black());
 	comps = prepare_comp(h, r);
 	empty_inter(&inters);
-	return (shade_hit(w, comps));
+	return (shade_hit(w, comps, remaining));
 }
 
-t_color	shade_hit(t_world w, t_comps comps)
+t_color	shade_hit(t_world w, t_comps comps, int remaining)
 {
 	t_tup	views[2];
+	t_color	reflected;
+	t_color	surface;
 	bool	shadowed;
 
 	views[0] = comps.eyev;
 	views[1] = comps.normalv;
 	shadowed = is_shadowed(w, comps.over_point);
+	surface = lighting(comps.obj, comps.point, views, shadowed);
+	reflected = reflected_color(w, comps, remaining);
+
 	(void) w;
-	return (lighting(comps.obj, comps.point, views, shadowed));
+	return (color_add(reflected, surface));
 }
 
 t_inter	app_intersect(t_inter *xs, t_inter *new)
@@ -85,6 +90,7 @@ t_comps	prepare_comp(t_intersection h, t_ray r)
 	new.point = position(r, new.t);
 	new.eyev = tuple_neg(r.direction);
 	new.normalv = new.obj->local_normal_at(new.obj, new.point);
+	new.reflectv = vector_reflect(r.direction, new.normalv);
 	if (dot(new.normalv, new.eyev) < 0)
 	{
 		new.is_inside = true;

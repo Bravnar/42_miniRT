@@ -89,8 +89,8 @@ int				ft_strtoi(const char *nptr, char **endptr);
 t_world			create_world(void);
 t_inter			intersect_world(t_world w, t_ray r);
 t_comps			prepare_comp(t_intersection h, t_ray r);
-t_color			shade_hit(t_world w, t_comps comps);
-t_color			color_at(t_world w, t_ray r);
+t_color			shade_hit(t_world w, t_comps comps, int remaining);
+t_color			color_at(t_world w, t_ray r, int remaining);
 
 t_matrix		view_transform(t_tup from, t_tup to, t_tup up);
 t_view_cam		init_camera(double hsize, double vsize, double fov);
@@ -107,13 +107,7 @@ void			handle_events(t_main *rt);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 18:11:28 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/26 18:11:28 by hmorand          ###   ########.ch       */
+/*                           TUPLES AND VECTORS                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +188,7 @@ t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
 
 /* MATRICES OPERATIONS */
 
-bool matrix_compare(t_matrix A, t_matrix B);
+bool			matrix_compare(t_matrix A, t_matrix B);
 t_matrix		matrix_mult(t_matrix A, t_matrix B);
 t_column		matrix_mult_col(t_matrix A, t_column b);
 t_tup			matrix_mult_tup(t_matrix A, t_tup b);
@@ -320,6 +314,14 @@ t_color			specular(double ldn, t_material m, t_tup v[3]);
 /* ************************************************************************** */
 
 bool			is_shadowed(t_world w, t_tup point);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                        REFLECTION & REFRACTION                             */
+/*                                                                            */
+/* ************************************************************************** */
+
+t_color			reflected_color(t_world world, t_comps comps, int remaining);
 
 /* ************************************************************************** */
 /*                                                                            */
