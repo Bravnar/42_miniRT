@@ -179,6 +179,7 @@ typedef struct s_comps
 	t_tup	reflectv;
 	bool	is_inside;
 	t_tup	over_point;
+	t_tup	under_point;
 }	t_comps;
 
 typedef struct s_strtoi

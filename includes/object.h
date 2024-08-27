@@ -54,6 +54,8 @@ typedef struct s_material
 	double		specular;
 	double		shininess;
 	double		reflective;
+	double		transparency;
+	double		refractive_index;
 	t_pattern	pattern;
 	t_color		color;
 }	t_material;
