@@ -32,6 +32,9 @@ t_color	lighting(t_obj *shape, t_tup p, t_tup views[2], bool in_shadow)
 	light_dot_normal = dot(v[0], views[1]);
 	diff = diffuse(light_dot_normal, shape->material, eff_color);
 	spec = specular(light_dot_normal, shape->material, v);
+	printf("SPEC --> ");
+	print_color(spec);
+	printf("\n");
 	if (in_shadow)
 		return (ambient(eff_color, shape->material));
 	return (color_add(ambient(eff_color, shape->material),

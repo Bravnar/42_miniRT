@@ -20,11 +20,16 @@ t_color	shade_hit(t_world w, t_comps comps)
 	t_tup	views[2];
 	bool	shadowed;
 
+	t_color	tmp_color;
+
 	views[0] = comps.eyev;
 	views[1] = comps.normalv;
 	shadowed = is_shadowed(w, comps.over_point);
 	(void) w;
-	return (lighting(comps.obj, comps.point, views, shadowed));
+	tmp_color = lighting(comps.obj, comps.point, views, shadowed);
+	print_color(tmp_color);
+	return (tmp_color);
+	// return (lighting(comps.obj, comps.point, views, shadowed));
 }
 
 t_inter	app_intersect(t_inter *xs, t_inter *new)
