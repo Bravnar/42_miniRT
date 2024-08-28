@@ -18,7 +18,7 @@ void	transform_pl(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_plane	*plane_create(char **plane_line)
+t_plane	*plane_create(char **plane_line, int i)
 {
 	t_plane		*p;
 	t_pattern	pat;
@@ -41,6 +41,7 @@ t_plane	*plane_create(char **plane_line)
 	p->shape.transform((t_obj *) p, translation_matrix(
 			p->shape.point.x, p->shape.point.y, p->shape.point.z));
 	p->shape.next = NULL;
+	p->shape.id = i;
 	return (p);
 }
 

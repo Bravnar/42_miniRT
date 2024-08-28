@@ -23,7 +23,7 @@ void	hit_test_1(void)
 	t_inter			inter;
 	t_intersection	got;
 
-	s = (t_obj *) sphere();
+	s = (t_obj *) sphere(0);
 	inter = sort_inter(new_inter(2, s, 1.0, 2.0));
 	got = hit(inter);
 	test_hit(got, intersection(1, s),
@@ -48,7 +48,7 @@ void	hit_test_2(void)
 	t_inter			inter;
 	t_intersection	got;
 
-	s = (t_obj *) sphere();
+	s = (t_obj *) sphere(0);
 	inter = sort_inter(new_inter(4, s, 5.0, 7.0, -3.0, 2.0));
 	got = hit(inter);
 	test_hit(got, intersection(2, s),

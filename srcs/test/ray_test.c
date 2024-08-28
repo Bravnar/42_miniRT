@@ -24,7 +24,7 @@ void	ray_test_1(void)
 	t_inter	got;
 	t_inter	expected;
 
-	shape = (t_obj *) sphere();
+	shape = (t_obj *) sphere(0);
 	r = ray_new(point(0, 0, -5), vector(0, 0, 1));
 	got = shape->local_intersect(r, shape);
 	expected = new_inter(2, shape, 4.0, 6.0);
@@ -53,7 +53,7 @@ void	ray_test_2(void)
 	t_inter	got;
 	t_inter	expected;
 
-	shape = (t_obj *) sphere();
+	shape = (t_obj *) sphere(0);
 	r = ray_new(point(0, 0, 0), vector(0, 0, 1));
 	got = shape->local_intersect(r, shape);
 	expected = new_inter(2, shape, -1.0, 1.0);

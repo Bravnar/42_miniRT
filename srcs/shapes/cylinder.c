@@ -21,7 +21,7 @@ double	volume_cy(t_obj *shape)
 	return ((PI * pow(radius, 2)) * cyl->height);
 }
 
-t_cyl	*cyl_create(char **cyl_line)
+t_cyl	*cyl_create(char **cyl_line, int i)
 {
 	t_cyl		*cyl;
 	t_pattern	pat;
@@ -43,6 +43,7 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
+	cyl->shape.id = i;
 	return (cyl);
 }
 

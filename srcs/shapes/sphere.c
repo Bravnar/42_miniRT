@@ -31,7 +31,7 @@ void	transform_s(t_obj *sphere, t_matrix transformation)
 
 
 
-t_sphere	*sphere_create(char **sphere_split)
+t_sphere	*sphere_create(char **sphere_split, int i)
 {
 	t_sphere	*sphere;
 	t_pattern	pat;
@@ -40,6 +40,7 @@ t_sphere	*sphere_create(char **sphere_split)
 	if (!sphere)
 		return (NULL);
 	sphere->diameter = ft_strtod(sphere_split[2]);
+	sphere->shape.id = i;
 	sphere->shape.get_name = get_name_s;
 	sphere->shape.volume = volume_s;
 	sphere->shape.destroy = sphere_destroy;

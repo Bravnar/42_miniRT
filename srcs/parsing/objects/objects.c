@@ -57,22 +57,24 @@ t_tup	get_vector(char *str)
 void	populate_shapes(void)
 {
 	t_parse	*tmp;
-	t_obj	*(*create_shape)(char **);
+	t_obj	*(*create_shape)(char **, int);
+	int		i;
 
+	i = 0;
 	tmp = get_scene()->file.parse;
 	while (tmp)
 	{
 		create_shape = NULL;
 		if (!ft_strcmp(tmp->line_split[0], "sp"))
-			create_shape = (t_obj *(*)(char **))sphere_create;
+			create_shape = (t_obj *(*)(char **, int))sphere_create;
 		else if (!ft_strcmp(tmp->line_split[0], "cy"))
-			create_shape = (t_obj *(*)(char **))cyl_create;
+			create_shape = (t_obj *(*)(char **, int)) cyl_create;
 		else if (!ft_strcmp(tmp->line_split[0], "pl"))
-			create_shape = (t_obj *(*)(char **))plane_create;
+			create_shape = (t_obj *(*)(char **, int)) plane_create;
 		else if (!ft_strcmp(tmp->line_split[0], "cu"))
-			create_shape = (t_obj *(*)(char **))cube_create;
+			create_shape = (t_obj *(*)(char **, int)) cube_create;
 		if (create_shape)
-			add_obj_node(&get_scene()->obj_list, create_shape(tmp->line_split));
+			add_obj_node(&get_scene()->obj_list, create_shape(tmp->line_split, i++));
 		tmp = tmp->next;
 	}
 }

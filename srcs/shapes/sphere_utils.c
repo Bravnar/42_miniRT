@@ -14,7 +14,7 @@ t_tup	local_normal_at_s(t_obj *sphere, t_tup point)
 	return (normal_at(sphere, point));
 }
 
-t_sphere	*sphere(void)
+t_sphere	*sphere(int i)
 {
 	t_sphere	*s;
 
@@ -32,6 +32,7 @@ t_sphere	*sphere(void)
 	s->shape.dir_vector = vector(0, 0, 0);
 	s->shape.material = mat_default();
 	s->shape.next = NULL;
+	s->shape.id = i;
 	s->shape.transformation = identity();
 	s->shape.inverse_transformation = identity();
 	s->shape.transform((t_obj *) s,
@@ -39,7 +40,7 @@ t_sphere	*sphere(void)
 	return (s);
 }
 
-t_sphere	*glass_sphere(void)
+t_sphere	*glass_sphere(int i)
 {
 	t_sphere	*s;
 
@@ -59,6 +60,7 @@ t_sphere	*glass_sphere(void)
 	s->shape.material.refractive_index = 1.5;
 	s->shape.material.transparency = 1;
 	s->shape.next = NULL;
+	s->shape.id = i;
 	s->shape.transformation = identity();
 	s->shape.inverse_transformation = identity();
 	s->shape.transform((t_obj *) s,
