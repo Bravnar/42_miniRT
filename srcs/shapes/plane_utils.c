@@ -1,13 +1,13 @@
 #include "main.h"
 
 
-t_inter	local_intersect_pl(t_ray r, t_obj *plane)
+t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 {
 	t_ray	trans;
 	t_tup	to_orig;
 	double	dot_prod;
 	double	t;
-	t_inter	inter;
+	t_inter	*inter;
 
 	trans = ray_transform(r, plane->inverse_transformation);
 	dot_prod = dot(plane->local_normal_at(plane, trans.point), trans.direction);
@@ -17,31 +17,18 @@ t_inter	local_intersect_pl(t_ray r, t_obj *plane)
 		to_orig = tuple_sub(plane->point, trans.point);
 		t = dot(to_orig, plane->local_normal_at(plane, r.point)) / dot_prod;
 		if (t >= 0)
-			inter.i[0] = intersection(t, plane);
-		else
-			empty_inter(&inter);
+		{
+			remove_inter(&inter, inter);
+			add_inter_node(&inter, new_inter_node(intersection(t, plane)));
+		}
+		// else
+		// 	free_inter_nodes(inter);
 	}
-	else
-		empty_inter(&inter);
+	// else
+	// 	free_inter_nodes(inter);
 	return (inter);
 }
 
-// t_inter	local_intersect_pl(t_ray r, t_obj *plane)
-// {
-// 	double	t;
-// 	t_inter	inter;
-
-// 	inter.count = 0;
-// 	if (equal(r.direction.y, 0))
-// 		return (inter);
-// 	inter.i = malloc(sizeof(t_intersection) * 1);
-// 	if (!inter.i)
-// 		return (inter);
-// 	t = -r.point.y / r.direction.y;
-// 	inter.count++;
-// 	inter.i[0] = intersection(t, plane);
-// 	return (inter);
-// }
 
 t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
@@ -50,7 +37,7 @@ t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 			matrix_mult_tup(plane->transformation, plane->dir_vector)));
 }
 
-t_plane	*plane(void)
+t_plane	*plane(int i)
 {
 	t_plane	*p;
 
@@ -67,6 +54,7 @@ t_plane	*plane(void)
 	p->shape.dir_vector = vector(0, 1, 0);
 	p->shape.material = mat_default();
 	p->shape.transformation = identity();
+	p->shape.id = i;
 	p->shape.inverse_transformation = identity();
 	p->shape.next = NULL;
 	return (p);

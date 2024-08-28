@@ -20,40 +20,40 @@ void	test_hit(t_intersection got, t_intersection exp, char *tn)
 void	hit_test_1(void)
 {
 	t_obj			*s;
-	t_inter			inter;
+	t_inter			*inter;
 	t_intersection	got;
 
 	s = (t_obj *) sphere(0);
-	inter = sort_inter(new_inter(2, s, 1.0, 2.0));
-	got = hit(inter);
+	inter = new_inter(2, s, 1.0, 2.0);
+	got = hit(&inter);
 	test_hit(got, intersection(1, s),
 		"Hit when all intersections have positive t");
-	free_inter(inter);
-	inter = sort_inter(new_inter(2, s, -1.0, 1.0));
-	got = hit(inter);
+	free_inter_nodes(inter);
+	inter = new_inter(2, s, -1.0, 1.0);
+	got = hit(&inter);
 	test_hit(got, intersection(1, s),
 		"Hit when some intersections have negative t");
-	free_inter(inter);
-	inter = sort_inter(new_inter(2, s, -2.0, -1.0));
-	got = hit(inter);
+	free_inter_nodes(inter);
+	inter = new_inter(2, s, -2.0, -1.0);
+	got = hit(&inter);
 	test_hit(got, intersection(-1, s),
 		"Hit when all intersections have negative t");
-	free_inter(inter);
+	free_inter_nodes(inter);
 	free(s);
 }
 
 void	hit_test_2(void)
 {
 	t_obj			*s;
-	t_inter			inter;
+	t_inter			*inter;
 	t_intersection	got;
 
 	s = (t_obj *) sphere(0);
-	inter = sort_inter(new_inter(4, s, 5.0, 7.0, -3.0, 2.0));
-	got = hit(inter);
+	inter = new_inter(4, s, 5.0, 7.0, -3.0, 2.0);
+	got = hit(&inter);
 	test_hit(got, intersection(2, s),
 		"Hit when some intersections are positive");
-	free_inter(inter);
+	free_inter_nodes(inter);
 	free(s);
 }
 

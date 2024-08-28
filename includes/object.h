@@ -68,10 +68,16 @@ typedef struct s_intersection
 	double	t;
 }	t_intersection;
 
-typedef struct s_inter
+/* typedef struct s_inter
 {
 	int				count;
 	t_intersection	*i;
+}	t_inter; */
+
+typedef struct s_inter
+{
+	t_intersection	i;
+	struct s_inter	*next;
 }	t_inter;
 
 typedef struct s_ray
@@ -86,7 +92,7 @@ typedef struct s_obj
 	double			(*volume)(t_obj *shape);
 	void			(*destroy)(t_obj *shape);
 	void			(*transform)(t_obj *shape, t_matrix transform);
-	t_inter			(*local_intersect)(t_ray ray, t_obj *shape);
+	t_inter			*(*local_intersect)(t_ray ray, t_obj *shape);
 	t_tup			(*local_normal_at)(t_obj *shape, t_tup point);
 	int				id;
 	t_tup			point;

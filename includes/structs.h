@@ -180,6 +180,8 @@ typedef struct s_comps
 	bool	is_inside;
 	t_tup	over_point;
 	t_tup	under_point;
+	double	n1;
+	double	n2;
 }	t_comps;
 
 typedef struct s_strtoi

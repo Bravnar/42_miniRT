@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 11:57:50 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/28 11:57:50 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/28 13:09:31 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/28 13:09:31 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	cube_destroy(t_obj *shape);
 char	*get_name_cu(t_obj *shape);
 double	volume_cu(t_obj *shape);
 void	transform_cu(t_obj *shape, t_matrix transformation);
-t_inter	local_intersect_cu(t_ray r, t_obj *cube);
+t_inter	*local_intersect_cu(t_ray r, t_obj *cube);
 void	cube_destroy(t_obj *shape);
 t_cube	*cube_create(char **cube_line, int i);
 #endif

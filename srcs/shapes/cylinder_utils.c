@@ -11,7 +11,7 @@ void	transform_cy(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_inter	local_intersect_cy(t_ray r, t_obj *cyl)
+t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 {
 	t_ray	inv_ray;
 

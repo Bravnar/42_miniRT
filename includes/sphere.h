@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 11:57:25 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/28 11:57:25 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/28 13:09:18 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/28 13:09:18 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			sphere_destroy(t_obj *shape);
 t_sphere		*sphere(int i);
 t_sphere		*glass_sphere(int i);
 t_tup			local_normal_at_s(t_obj *sphere, t_tup point);
-t_inter			local_intersect_s(t_ray r, t_obj *sphere);
+t_inter			*local_intersect_s(t_ray r, t_obj *sphere);
 void			transform_s(t_obj *sphere, t_matrix transformation);
 double			volume_s(t_obj *sphere);
 char			*get_name_s(t_obj *sphere);

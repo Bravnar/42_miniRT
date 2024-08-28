@@ -1,6 +1,6 @@
 #include "main.h"
 
-t_inter	local_intersect_s(t_ray r, t_obj *sphere)
+t_inter	*local_intersect_s(t_ray r, t_obj *sphere)
 {
 	t_ray	inv_ray;
 
