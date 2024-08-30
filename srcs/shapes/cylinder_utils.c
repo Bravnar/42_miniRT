@@ -17,7 +17,7 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 	double	b;
 	double	c;
 	t_inter	*ret;
-	
+
 	t_ray	new_r;
 	new_r = ray_transform(r, cyl->inverse_transformation);
 	ret = NULL;
@@ -36,10 +36,10 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 	double	cyl_max = 2;
 	double y0 = new_r.point.y + t0 * new_r.direction.y;
 	if (cyl_min < y0 && y0 < cyl_max)
-		add_inter_node(&ret, new_inter_node(intersection(t0, cyl));
+		add_inter_node(&ret, new_inter_node(intersection(t0, cyl)));
 	double y1 = new_r.point.y + t1 * new_r.direction.y;
 	if (cyl_min < y1 && y1 < cyl_max)
-    add_inter_node(&ret, new_inter_node(intersection(t1, cyl));
+		add_inter_node(&ret, new_inter_node(intersection(t1, cyl)));
 	return (ret);
 }
 

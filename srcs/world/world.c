@@ -35,11 +35,9 @@ t_color	shade_hit(t_world w, t_comps comps, int remaining)
 {
 	t_tup	views[2];
 	t_color	reflected;
-	t_color	refracted;
+	// t_color	refracted;
 	t_color	surface;
 	bool	shadowed;
-
-	t_color	tmp_color;
 
 	views[0] = comps.eyev;
 	views[1] = comps.normalv;
@@ -49,7 +47,7 @@ t_color	shade_hit(t_world w, t_comps comps, int remaining)
 	//refracted = refracted_color(w, comps, remaining);
 	//return (with_reflect(comps, surface, reflected, refracted);
 	surface = lighting(comps.obj, comps.point, views, shadowed);
-	print_color(surface);
+	// print_color(surface);
 	return (color_add(reflected, surface));
 }
 

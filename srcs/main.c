@@ -9,9 +9,8 @@ void	test_cy(void)
 	cyl = w.shapes;
 	t_tup direction = vector_norm(vector(0, 0, 1));
 	t_ray r = ray_new(point(0, 1.5, -2), direction);
-	t_inter	xs = cyl->local_intersect(r, cyl);
-	printf("xs.count = %d\n", xs.count);
-	print_inter(xs);
+	t_inter	*xs = cyl->local_intersect(r, cyl);
+	print_inter(&xs);
 }
 
 // STAN TESTER MAIN
