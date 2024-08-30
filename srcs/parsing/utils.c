@@ -1,15 +1,38 @@
 #include "main.h"
 
+void	set_type(t_type *type, char *identifier)
+{
+	
+}
+
+char **set_type_and_clean(char **tmp, t_type *type)
+{
+	char	**ret;
+	int		len;
+	int		i;
+
+	len = ft_arr_len(tmp);
+	set_type(type);
+	printf("Len = %d\n", len);
+	ret = malloc(sizeof(char *) * len - 1);	
+}
+
 t_parse	*new_parse_node(char *line)
 {
 	t_parse	*node;
+	char	**tmp;
 
 	node = ft_calloc(1, sizeof(t_parse));
 	if (!node)
 		return (NULL);
 	node->line = ft_strdup(line);
 	if (line)
+	{
+		tmp = ft_megasplit(node->line, WHITESPACE);
+		node->line_split = set_type_and_clean(tmp, &node->type);
 		node->line_split = ft_megasplit(node->line, WHITESPACE);
+
+	}
 	node->next = NULL;
 	return (node);
 }

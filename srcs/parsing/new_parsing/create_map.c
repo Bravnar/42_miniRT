@@ -23,6 +23,8 @@ t_file	parse_file(char *filename)
 {
 	t_file	file;
 
+	file.fd = -1;
+	file.parse = NULL;
 	if (!check_file_name(filename))
 		err_handler(WRONG_EXT);
 	read_rt(filename, &file);
@@ -86,7 +88,7 @@ t_mrt	*initialize(char *filename)
 	printf("Entering initialize() ---------------:\n");
 	t_mrt	*mrt;
 
-	mrt = malloc(sizeof(t_mrt));
+	mrt = ft_calloc(1, sizeof(t_mrt));
 	if (!mrt)
 		return (NULL);
 	mrt->map = create_map(filename);
