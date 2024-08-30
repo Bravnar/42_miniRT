@@ -22,6 +22,8 @@ t_pattern	pattern(t_color a, t_color b, t_patt_type type, t_matrix trans)
 		pat.color_at = plain_pattern;
 	else if (type == STRIPE)
 		pat.color_at = stripe_pattern;
+	else if (type == GRADIENT)
+		pat.color_at = gradient_pattern;
 	return (pat);
 }
 

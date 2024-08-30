@@ -112,8 +112,8 @@ void			handle_events(t_main *rt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 10:55:37 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/20 10:55:37 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/26 18:11:28 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/26 18:11:28 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ bool			equal(double a, double b);
 
 t_color			color(double r, double g, double b);
 void			add_hex_color(t_color *c);
-int				nadd_hex_color(int r, int g, int b, int t);
+int				nadd_hex_color(int r, int g, int b);
 void			print_color(t_color c);
 
 /* COLOR OPERATIONS */
@@ -177,11 +177,14 @@ t_color			color_blend(t_color c1, t_color c2);
 
 t_color			black(void);
 t_color			white(void);
+t_color 		c(char *name);
 
 /* PATTERNS */
 
-t_color			plain_pattern(t_tup dir, t_tup point, t_pattern pat);
-t_pattern		pattern(t_color a, t_color b, e_patt_type type);
+t_color			plain_pattern(t_obj *shape, t_tup point, t_pattern pat);
+t_color			stripe_pattern(t_obj *shape, t_tup point, t_pattern pat);
+t_color			gradient_pattern(t_obj *shape, t_tup point, t_pattern pat);
+t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -191,7 +194,7 @@ t_pattern		pattern(t_color a, t_color b, e_patt_type type);
 
 /* MATRICES OPERATIONS */
 
-bool			matrix_compare(t_matrix A, t_matrix B);
+bool matrix_compare(t_matrix A, t_matrix B);
 t_matrix		matrix_mult(t_matrix A, t_matrix B);
 t_column		matrix_mult_col(t_matrix A, t_column b);
 t_tup			matrix_mult_tup(t_matrix A, t_tup b);
@@ -239,6 +242,7 @@ t_tup			inverse_scale(t_tup point, double x, double y, double z);
 t_matrix		rotation_x(double deg);
 t_matrix		rotation_y(double deg);
 t_matrix		rotation_z(double deg);
+t_matrix		rotation_z_pat(double angle, char *name);
 t_tup			rotate(t_tup point, double deg, char axis);
 t_tup			inverse_rotate(t_tup point, double deg, char axis);
 
@@ -341,7 +345,6 @@ void			free_inter(t_inter inter);
 
 t_inter			sort_inter(t_inter inter);
 
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                 TESTS                                      */
@@ -360,5 +363,7 @@ bool			equal_inter(t_inter a, t_inter b);
 void			lighting_test_battery(void);
 void			ray_test_battery(void);
 void			hit_test_battery(void);
+void			pattern_test_battery(void);
+void			tests(void);
 
 #endif

@@ -34,7 +34,7 @@ t_plane	*plane_create(char **plane_line)
 	p->shape.local_intersect = local_intersect_pl;
 	p->shape.point = get_point(plane_line[1]);
 	p->shape.dir_vector = vector_norm(get_vector(plane_line[2]));
-	pat = pattern(get_color(plane_line[3]), white(), PLAIN);
+	pat = pattern(get_color(plane_line[2]), c("pink"), GRADIENT, rotation_z_pat(45, "plane"));
 	p->shape.material = material(pat, 0.9, 0, 200);
 	p->shape.transformation = identity();
 	p->shape.inverse_transformation = identity();

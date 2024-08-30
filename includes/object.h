@@ -24,7 +24,6 @@ typedef struct s_color
 	double			r;
 	double			g;
 	double			b;
-	double			t;
 	unsigned int	hex;
 }	t_color;
 
@@ -34,13 +33,18 @@ typedef enum s_patt_type
 	STRIPE,
 	CHECKER,
 	GRADIENT,
-}	e_patt_type;
+}	t_patt_type;
+
+typedef struct s_obj t_obj;
 
 typedef struct s_pattern
 {
 	t_color		colors[2];
-	e_patt_type	type;
-	t_color		(*color_at)(t_tup dir, t_tup point, struct s_pattern pat);
+	t_patt_type	type;
+	t_color		(*color_at)(t_obj *shape, t_tup point, struct s_pattern pat);
+	void		(*transform)(struct s_pattern *pat, t_matrix transformation);
+	t_matrix	transformation;
+	t_matrix	inverse_transformation;
 }	t_pattern;
 
 typedef struct s_material

@@ -4,8 +4,7 @@ bool	equal_color(t_color a, t_color b)
 {
 	return (equal(a.r, b.r) && \
 			equal(a.g, b.g) && \
-			equal(a.b, b.b) && \
-			equal(a.t * 255, b.t));
+			equal(a.b, b.b));
 }
 
 bool	equal_tuple(t_tup a, t_tup b)
