@@ -8,7 +8,7 @@ void	test_stripe_pattern(t_tup p, t_color exp, char *tn)
 
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
-	sp = (t_obj *) sphere();
+	sp = (t_obj *) sphere(0);
 	sp->material.pattern = pattern(white(), black(), STRIPE, identity());
 	sp->material.diffuse = 0;
 	sp->material.specular = 0;
@@ -36,7 +36,7 @@ void	test_gradient_pattern(t_tup p, t_color exp, char *tn)
 
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
-	sp = (t_obj *)sphere();
+	sp = (t_obj *)sphere(0);
 	sp->material.pattern = pattern(white(), black(), GRADIENT, identity());
 	sp->material.diffuse = 0;
 	sp->material.specular = 0;

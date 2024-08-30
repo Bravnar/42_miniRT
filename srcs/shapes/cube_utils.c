@@ -11,7 +11,7 @@ void	transform_cu(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_inter	local_intersect_cu(t_ray r, t_obj *cube)
+t_inter	*local_intersect_cu(t_ray r, t_obj *cube)
 {
 	t_ray	inv_ray;
 

@@ -40,6 +40,7 @@ SRCS= 	srcs/main.c \
 		srcs/raycasting/hit.c \
 		srcs/raycasting/ray_transform.c \
 		srcs/raycasting/intersect_utils.c \
+		srcs/raycasting/intersect_linked.c \
 		srcs/shading/normal.c \
 		srcs/shading/material.c \
 		srcs/shading/reflect.c \
@@ -55,8 +56,6 @@ SRCS= 	srcs/main.c \
 		srcs/shapes/plane_utils.c \
 		srcs/utils/display.c \
 		srcs/utils/display_2.c \
-		srcs/utils/memory.c \
-		srcs/utils/sort_inter.c \
 		srcs/parsing/ft_strtod.c \
 		srcs/parsing/ft_strtoi.c \
 		srcs/parsing/ambient/amb.c \
@@ -72,6 +71,7 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/objects/objects_utils.c \
 		srcs/world/world.c \
 		srcs/shadows/is_shadowed.c \
+		srcs/refraction/reflection.c \
 		srcs/test/equals.c \
 		srcs/test/lighting_test.c \
 		srcs/test/ray_test.c \
@@ -99,8 +99,8 @@ endif
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-#SANITIZE= -g3 -fsanitize=address
-SANITIZE= -g
+SANITIZE= -g3 -fsanitize=address
+#SANITIZE= -g
 
 # Color Variables
 RED=\033[0;31m

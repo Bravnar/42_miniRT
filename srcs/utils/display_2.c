@@ -1,20 +1,20 @@
 #include "main.h"
 
-void	print_inter(t_inter i)
+void	print_inter(t_inter **i)
 {
-	int	j;
+	t_inter *tmp;
 
-	if (i.count == 0)
+	if (i == NULL)
 	{
 		printf("No intersections\n");
 		return ;
 	}
 	printf("Intersections:\n");
-	j = 0;
-	while (j < i.count)
+	tmp = *i;
+	while (tmp)
 	{
-		printf("\t- t: %f\n", i.i[j].t);
-		j++;
+		printf("\t- t: %f\n", tmp->i.t);
+		tmp = tmp->next;
 	}
 }
 

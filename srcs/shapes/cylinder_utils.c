@@ -11,7 +11,7 @@ void	transform_cy(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_inter	local_intersect_cy(t_ray r, t_obj *cyl)
+t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 {
 	t_ray	inv_ray;
 
@@ -20,7 +20,7 @@ t_inter	local_intersect_cy(t_ray r, t_obj *cyl)
 	return (intersect(cyl));
 }
 
-t_cyl	*cylinder(void)
+t_cyl	*cylinder(int i)
 {
 	t_cyl	*cyl;
 
@@ -40,5 +40,6 @@ t_cyl	*cylinder(void)
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
+	cyl->shape.id = i;
 	return (cyl);
 }

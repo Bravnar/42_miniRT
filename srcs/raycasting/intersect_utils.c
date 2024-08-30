@@ -1,11 +1,16 @@
 #include "main.h"
 
-void	empty_inter(t_inter *inter)
+void free_inter_nodes(t_inter *inters)
 {
-	if (inter->count > 0)
+	t_inter *tmp;
+
+	if (!inters)
+		return;
+	while (inters)
 	{
-		inter->count = 0;
-		free(inter->i);
+		tmp = inters;
+		inters = inters->next;
+		free(tmp);
 	}
-	inter->i = NULL;
+	tmp = NULL;
 }

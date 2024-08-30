@@ -19,7 +19,7 @@ double	volume_cu(t_obj *shape)
 	return (cube->length * cube->width * cube->height);
 }
 
-t_cube	*cube_create(char **cube_line)
+t_cube	*cube_create(char **cube_line, int i)
 {
 	t_cube		*c;
 	t_pattern	pat;
@@ -42,6 +42,7 @@ t_cube	*cube_create(char **cube_line)
 	c->shape.transformation = identity();
 	c->shape.inverse_transformation = identity();
 	c->shape.next = NULL;
+	c->shape.id = i;
 	return (c);
 }
 
