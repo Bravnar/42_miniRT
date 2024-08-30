@@ -370,6 +370,7 @@ void			hit_test_battery(void);
 
 t_mrt	*initialize(char *filename);
 t_map	*create_scene(char *file_name);
+int		check_file_name(char *name);
 
 
 #endif

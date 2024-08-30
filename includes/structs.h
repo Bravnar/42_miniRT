@@ -9,6 +9,15 @@
 # include "cylinder.h"
 # include "plane.h"
 
+typedef enum e_type
+{
+	WINDOW,
+	AMBIENT,
+	CAMERA,
+	LIGHTS,
+	OBJECTS,
+}	t_type;
+
 typedef enum s_err
 {
 	NO_ERR,
@@ -101,6 +110,7 @@ typedef struct s_light
 
 typedef struct s_parse
 {
+
 	char			*line;
 	char			**line_split;
 	struct s_parse	*next;

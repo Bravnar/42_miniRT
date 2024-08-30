@@ -1,22 +1,38 @@
 #include "main.h"
 
-typedef enum e_type
+void	read_rt(char *filename, t_file *file)
 {
-	WINDOW,
-	AMBIENT,
-	CAMERA,
-	LIGHTS,
-	OBJECTS,
-}	t_type;
+	t_parse	*node;
+	char	*line;
+
+	file->fd = open(filename, O_RDONLY);
+	if (file->fd == -1)
+		err_handler(OPEN_FAILED);
+	line = get_next_line(file->fd);
+	while (line)
+	{
+		node = new_parse_node(line);
+		add_node(&file->parse, node);
+		free(line);
+		line = get_next_line(file->fd);
+	}
+	free(line);
+}
 
 t_file	parse_file(char *filename)
 {
 	t_file	file;
 
-	file.fd = open(filename)
+	if (!check_file_name(filename))
+		err_handler(WRONG_EXT);
+	read_rt(filename, &file);
+
+
+
+	return (file);
 }
 
-void	*search_file(t_file *file, t_type type)
+/* void	*search_file(t_file *file, t_type type)
 {
 	t_parse	*tmp;
 
@@ -36,7 +52,7 @@ void	*search_file(t_file *file, t_type type)
 		tmp = tmp->next;
 	}
 	return (NULL);
-}
+} */
 
 t_map	*create_map(char *filename)
 {
@@ -48,11 +64,12 @@ t_map	*create_map(char *filename)
 		return (NULL);
 	map = ft_calloc(1, sizeof(t_map));
 	map->file = parse_file(filename);
-	map->win = search_file(map->file, WINDOW);
-	map->amb = search_file(map->file, AMBIENT);
-	map->cam = search_file(map->file, CAMERA);
-	map->light = search_file(map->file, LIGHTS);
-	map->obj_list = search_file(map->file, OBJECTS);
+	// map->win = search_file(map->file, WINDOW);
+	// map->amb = search_file(map->file, AMBIENT);
+	// map->cam = search_file(map->file, CAMERA);
+	// map->light = search_file(map->file, LIGHTS);
+	// map->obj_list = search_file(map->file, OBJECTS);
+	return (map);
 }
 
 t_map	*get_map(void)
@@ -66,12 +83,15 @@ t_map	*get_map(void)
 
 t_mrt	*initialize(char *filename)
 {
+	printf("Entering initialize() ---------------:\n");
 	t_mrt	*mrt;
 
 	mrt = malloc(sizeof(t_mrt));
 	if (!mrt)
 		return (NULL);
 	mrt->map = create_map(filename);
-	init_mlx(&mrt->mlx);
+	/* init_mlx(&mrt->mlx);  TEMPORARY COMMENT OUT*/
+
+	printf("Exiting initialize() ----------------:\n");
 	return mrt;
 }

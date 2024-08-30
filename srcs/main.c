@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	mrt = initialize(av[1]);
-	mrt->i = 10;
-	
+	print_nodes(&mrt->map->file.parse);
+	free(mrt);
 	return (0);
 }
