@@ -11,21 +11,16 @@ t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 
 	trans = ray_transform(r, plane->inverse_transformation);
 	dot_prod = dot(plane->local_normal_at(plane, trans.point), trans.direction);
-	inter = new_inter(1, plane, -1);
+	inter = NULL;
 	if (!equal(dot_prod, 0))
 	{
 		to_orig = tuple_sub(plane->point, trans.point);
 		t = dot(to_orig, plane->local_normal_at(plane, r.point)) / dot_prod;
 		if (t >= 0)
-		{
-			remove_inter(&inter, inter);
-			add_inter_node(&inter, new_inter_node(intersection(t, plane)));
-		}
-		// else
-		// 	free_inter_nodes(inter);
+			inter = new_inter_node(intersection(t, plane));
 	}
-	// else
-	// 	free_inter_nodes(inter);
+	if (!inter)
+		return (NULL);
 	return (inter);
 }
 

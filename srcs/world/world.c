@@ -91,6 +91,11 @@ t_inter	*intersect_world(t_world w, t_ray r)
 	while (tmp)
 	{
 		obj_tmp = tmp->local_intersect(r, tmp);
+		if (!obj_tmp)
+		{
+			tmp = tmp->next;
+			continue ;
+		}
 		add_inter_nodes(&xs, &obj_tmp);
 		free_inter_nodes(obj_tmp);
 		tmp = tmp->next;

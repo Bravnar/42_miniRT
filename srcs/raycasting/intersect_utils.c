@@ -12,6 +12,7 @@ void	free_inter_nodes(t_inter *inters)
 		inters = inters->next;
 		free(tmp);
 	}
+	inters = NULL;
 	tmp = NULL;
 }
 

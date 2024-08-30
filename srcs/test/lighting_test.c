@@ -3,7 +3,9 @@
 void	test_lighting(t_tup views[2], t_color e, char *tn, bool in_shadow)
 {
 	t_color		result;
+	t_obj		*sp;
 
+	sp = (t_obj *)sphere(0);
 	result = lighting((t_obj *)sphere(0), point(0, 0, 0), views, in_shadow);
 	printf("--------------------------------------------\
 -----------------------\n");
@@ -17,6 +19,7 @@ void	test_lighting(t_tup views[2], t_color e, char *tn, bool in_shadow)
 		printf("Got:\t\t(%.8f, %.8f, %.8f)\n", result.r / 255,
 			result.g / 255, result.b / 255);
 	}
+	free(sp);
 	printf("\n");
 }
 

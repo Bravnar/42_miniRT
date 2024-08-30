@@ -25,6 +25,7 @@ void	test_stripe_pattern(t_tup p, t_color exp, char *tn)
 		printf("Got:\t\t(%.3f, %.3f, %.3f)\n", result.r / 255,
 			result.g / 255, result.b / 255);
 	}
+	free(sp);
 	printf("\n");
 }
 
@@ -53,6 +54,7 @@ void	test_gradient_pattern(t_tup p, t_color exp, char *tn)
 		printf("Got:\t\t(%.3f, %.3f, %.3f)\n", result.r / 255,
 			result.g / 255, result.b / 255);
 	}
+	free(sp);
 	printf("\n");
 }
 
