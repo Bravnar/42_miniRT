@@ -11,6 +11,7 @@
 
 typedef enum e_type
 {
+	NO_TYPE,
 	WINDOW,
 	AMBIENT,
 	CAMERA,
@@ -111,6 +112,7 @@ typedef struct s_light
 typedef struct s_parse
 {
 	t_type			type;
+	char			*id;
 	char			*line;
 	char			**line_split;
 	struct s_parse	*next;

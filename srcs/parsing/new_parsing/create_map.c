@@ -59,6 +59,29 @@ t_file	parse_file(char *filename)
 	return (NULL);
 } */
 
+void	*extract_info(t_parse **head, t_type type)
+{
+	t_parse	*tmp;
+
+	tmp = *head;
+	while (tmp)
+	{
+		if (type == WINDOW)
+			return (handle_window(tmp));
+		if (type == AMBIENT)
+			return (handle_ambient(tmp));
+		if (type == CAMERA)
+			return (handle_camera(tmp));
+		if (type == LIGHTS)
+			return (handle_lights(&tmp));
+		if (type == OBJECTS)
+			return (handle_objs(&tmp));
+		if (tmp->next)
+			tmp = tmp->next;
+	}
+	return (NULL);
+}
+
 t_map	*create_map(char *filename)
 {
 	static t_map	*map;
@@ -69,11 +92,11 @@ t_map	*create_map(char *filename)
 		return (NULL);
 	map = ft_calloc(1, sizeof(t_map));
 	map->file = parse_file(filename);
-	// map->win = search_file(map->file, WINDOW);
-	// map->amb = search_file(map->file, AMBIENT);
-	// map->cam = search_file(map->file, CAMERA);
-	// map->light = search_file(map->file, LIGHTS);
-	// map->obj_list = search_file(map->file, OBJECTS);
+	map->win = (t_rwin *)extract_info(&map->file.parse, WINDOW);
+	map->amb = extract_info(&map->file.parse, AMBIENT);
+	map->cam = extract_info(&map->file.parse, CAMERA);
+	map->light = extract_info(&map->file.parse, LIGHTS);
+	map->obj_list = extract_info(&map->file.parse, OBJECTS);
 	return (map);
 }
 
@@ -88,7 +111,6 @@ t_map	*get_map(void)
 
 t_mrt	*initialize(char *filename)
 {
-	printf("Entering initialize() ---------------:\n");
 	t_mrt	*mrt;
 
 	mrt = ft_calloc(1, sizeof(t_mrt));
@@ -96,7 +118,5 @@ t_mrt	*initialize(char *filename)
 		return (NULL);
 	mrt->map = create_map(filename);
 	/* init_mlx(&mrt->mlx);  TEMPORARY COMMENT OUT*/
-
-	printf("Exiting initialize() ----------------:\n");
 	return mrt;
 }

@@ -21,7 +21,6 @@ void	read_file(char *file_name, t_map *data)
 
 void	check_identifier(char *identifier)
 {
-	printf("identifier is %s\n", identifier);
 	if (ft_strisalpha(identifier))
 	{
 		if (!ft_strstr(GOOD_ID, identifier))

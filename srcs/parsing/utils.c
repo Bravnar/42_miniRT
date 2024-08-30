@@ -26,7 +26,6 @@ char **set_type_and_clean(char **tmp, t_type *type)
 	j = 0;
 	len = ft_arr_len(tmp);
 	set_type(type, tmp[0]);
-	printf("Len = %d\n", len);
 	ret = malloc(sizeof(char *) * len);
 	if (!ret)
 		return (NULL);
@@ -52,8 +51,8 @@ t_parse	*new_parse_node(char *line)
 	{
 		tmp = ft_megasplit(node->line, WHITESPACE);
 		node->line_split = set_type_and_clean(tmp, &node->type);
+		node->id = ft_strdup(tmp[0]);
 		ft_free_arr(tmp);
-		// node->line_split = ft_megasplit(node->line, WHITESPACE);
 	}
 	node->next = NULL;
 	return (node);
@@ -86,6 +85,7 @@ void	free_nodes(t_parse *list)
 		list = list->next;
 		free(tmp->line);
 		ft_free_arr(tmp->line_split);
+		free(tmp->id);
 		free(tmp);
 	}
 	tmp = NULL;
@@ -100,12 +100,9 @@ void	print_nodes(t_parse **head)
 	while (tmp && tmp->line_split)
 	{
 		i = -1;
+		printf("Type: [%s]\t", tmp->id);
 		while (tmp->line_split[++i])
-		{
-			if (!ft_strcmp(tmp->line_split[i], " "))
-				printf("Empty_line\n");
 			printf("[%s] ", tmp->line_split[i]);
-		}
 		printf("\n");
 		tmp = tmp->next;
 	}
