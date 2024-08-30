@@ -19,7 +19,25 @@ void	read_file(char *file_name, t_map *data)
 	free(line);
 }
 
-void	check_identifier(t_parse **head)
+void	check_identifier(char *identifier)
+{
+	printf("identifier is %s\n", identifier);
+	if (ft_strisalpha(identifier))
+	{
+		if (!ft_strstr(GOOD_ID, identifier))
+		{
+			printf(BOLD_WHITE" ---> %s\n"RESET, identifier);
+			err_handler(UKNOWN_ID);
+		}
+	}
+	else
+	{
+		printf(BOLD_WHITE" ---> %s\n"RESET, identifier);
+		err_handler(UKNOWN_ID);
+	}
+}
+
+/* void	check_identifier(t_parse **head)
 {
 	t_parse	*tmp;
 
@@ -38,7 +56,7 @@ void	check_identifier(t_parse **head)
 		}
 		tmp = tmp->next;
 	}
-}
+} */
 
 int	check_file_name(char *name)
 {

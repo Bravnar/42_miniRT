@@ -8,13 +8,16 @@ void	read_rt(char *filename, t_file *file)
 	file->fd = open(filename, O_RDONLY);
 	if (file->fd == -1)
 		err_handler(OPEN_FAILED);
-	line = get_next_line(file->fd);
+	// line = get_next_line(file->fd);
+	line = ft_strdup("");
 	while (line)
 	{
-		node = new_parse_node(line);
-		add_node(&file->parse, node);
 		free(line);
 		line = get_next_line(file->fd);
+		if (!ft_strcmp(line, "\n"))
+			continue ;
+		node = new_parse_node(line);
+		add_node(&file->parse, node);
 	}
 	free(line);
 }

@@ -29,7 +29,8 @@ t_obj			**get_scene_objs(void);
 
 /* read_rt_file.c */
 void			populate_scene_struct(char *file_name, t_map *scene);
-void			check_identifier(t_parse **head);
+// void			check_identifier(t_parse **head);
+void			check_identifier(char *identifier);
 void			read_file(char *file_name, t_map *data);
 void			print_scene_details(void);
 

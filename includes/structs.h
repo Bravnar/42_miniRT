@@ -113,7 +113,6 @@ typedef struct s_parse
 	t_type			type;
 	char			*line;
 	char			**line_split;
-	t_linked_parse	*lparse;
 	struct s_parse	*next;
 }	t_parse;
 

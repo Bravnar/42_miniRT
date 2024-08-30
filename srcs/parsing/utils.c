@@ -2,7 +2,17 @@
 
 void	set_type(t_type *type, char *identifier)
 {
-	
+	check_identifier(identifier);
+	if (!ft_strcmp(identifier, "R"))
+		*type = WINDOW;
+	else if (!ft_strcmp(identifier, "A"))
+		*type = AMBIENT;
+	else if (!ft_strcmp(identifier, "C"))
+		*type = CAMERA;
+	else if (!ft_strcmp(identifier, "L"))
+		*type = LIGHTS;
+	else if (ft_strstr(GOOD_ID, identifier))
+		*type = OBJECTS;
 }
 
 char **set_type_and_clean(char **tmp, t_type *type)
@@ -10,11 +20,23 @@ char **set_type_and_clean(char **tmp, t_type *type)
 	char	**ret;
 	int		len;
 	int		i;
+	int		j;
 
+	i = 1;
+	j = 0;
 	len = ft_arr_len(tmp);
-	set_type(type);
+	set_type(type, tmp[0]);
 	printf("Len = %d\n", len);
-	ret = malloc(sizeof(char *) * len - 1);	
+	ret = malloc(sizeof(char *) * len);
+	if (!ret)
+		return (NULL);
+	while (tmp[i])
+	{
+		ret[j] = ft_strdup(tmp[i++]);
+		j++;
+	}
+	ret[j] = NULL;
+	return (ret);
 }
 
 t_parse	*new_parse_node(char *line)
@@ -30,8 +52,8 @@ t_parse	*new_parse_node(char *line)
 	{
 		tmp = ft_megasplit(node->line, WHITESPACE);
 		node->line_split = set_type_and_clean(tmp, &node->type);
-		node->line_split = ft_megasplit(node->line, WHITESPACE);
-
+		ft_free_arr(tmp);
+		// node->line_split = ft_megasplit(node->line, WHITESPACE);
 	}
 	node->next = NULL;
 	return (node);
@@ -75,7 +97,7 @@ void	print_nodes(t_parse **head)
 	int		i;
 
 	tmp = *head;
-	while (tmp)
+	while (tmp && tmp->line_split)
 	{
 		i = -1;
 		while (tmp->line_split[++i])
