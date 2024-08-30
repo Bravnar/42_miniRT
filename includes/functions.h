@@ -113,8 +113,8 @@ void			handle_events(t_main *rt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 14:33:38 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/28 14:33:38 by hmorand          ###   ########.ch       */
+/*   Created: 2024/08/29 08:24:27 by hmorand           #+#    #+#             */
+/*   Updated: 2024/08/29 08:25:33 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,10 @@ void			add_inter_nodes(t_inter **head, t_inter **new_nodes);
 void			add_inter_node(t_inter **head, t_inter *new_node);
 void			free_inter_nodes(t_inter *inters);
 void			remove_inter(t_inter **head, t_inter *to_remove);
+void			append_inter_node(t_inter **head, t_inter *node);
+t_inter			*last_inter_node(t_inter **head);
+bool			in_inter(t_inter **xs, t_obj *shape);
+bool			equal_intersect(t_intersection a, t_intersection b);
 
 /* HITS */
 
@@ -336,6 +340,15 @@ bool			is_shadowed(t_world w, t_comps comps);
 
 t_color			reflected_color(t_world world, t_comps comps, int remaining);
 
+/* REFRACTION */
+
+void			set_n1(t_comps *comps, t_inter *tmp_xs,
+					t_intersection h, t_inter *containers);
+void			set_n1_n2(t_comps *comps, t_intersection h, t_inter **xs);
+t_ray			refract_ray(t_comps comps, double n_ratio,
+					double cos_i, double sin2_t);
+t_color			refracted_color(t_world world, t_comps comps, int remaining);
+double			schlick(t_comps comps);
 /* ************************************************************************** */
 /*                                                                            */
 /*                                 UTILS                                      */

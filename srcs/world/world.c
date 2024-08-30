@@ -15,10 +15,27 @@ t_color	color_at(t_world w, t_ray r, int remaining)
 	return (shade_hit(w, comps, remaining));
 }
 
+t_color	with_reflect(t_comps comps, t_color s, t_color refl, t_color refr)
+{
+	double	reflectance;
+
+	if (comps.obj->material.reflective > 0
+		&& comps.obj->material.transparency > 0)
+	{
+		reflectance = schlick(comps);
+		return (color_add(s, color_add(
+					color_scalarmult(reflectance, refl),
+					color_scalarmult(1 - reflectance, refl))));
+	}
+	else
+		return (color_add(s, color_add(refl, refr)));
+}
+
 t_color	shade_hit(t_world w, t_comps comps, int remaining)
 {
 	t_tup	views[2];
 	t_color	reflected;
+	t_color	refracted;
 	t_color	surface;
 	bool	shadowed;
 
@@ -29,6 +46,8 @@ t_color	shade_hit(t_world w, t_comps comps, int remaining)
 	shadowed = is_shadowed(w, comps);
 	surface = lighting(comps.obj, comps.point, views, shadowed);
 	reflected = reflected_color(w, comps, remaining);
+	//refracted = refracted_color(w, comps, remaining);
+	//return (with_reflect(comps, surface, reflected, refracted);
 	surface = lighting(comps.obj, comps.point, views, shadowed);
 	print_color(surface);
 	return (color_add(reflected, surface));
@@ -103,6 +122,6 @@ t_comps	prepare_comp(t_intersection h, t_ray r, t_inter *xs)
 			vector_scalar_mult(new.normalv, FLT_EPSILON));
 	new.under_point = tuple_sub(new.point,
 			vector_scalar_mult(new.normalv, FLT_EPSILON));
-	(void) xs;
+	set_n1_n2(&new, h, &xs);
 	return (new);
 }
