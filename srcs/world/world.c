@@ -1,38 +1,40 @@
 #include "main.h"
 
-t_color	color_at(t_world w, t_ray r)
+t_color	color_at(t_world w, t_ray r, int remaining)
 {
-	t_inter			inters;
+	t_inter			*inters;
 	t_intersection	h;
 	t_comps			comps;
 
 	inters = intersect_world(w, r);
-	h = hit(inters);
+	h = hit(&inters);
 	if (h.t == -1)
 		return (black());
-	comps = prepare_comp(h, r);
-	empty_inter(&inters);
-	return (shade_hit(w, comps));
+	comps = prepare_comp(h, r, inters);
+	free_inter_nodes(inters);
+	return (shade_hit(w, comps, remaining));
 }
 
-t_color	shade_hit(t_world w, t_comps comps)
+t_color	shade_hit(t_world w, t_comps comps, int remaining)
 {
 	t_tup	views[2];
+	t_color	reflected;
+	t_color	surface;
 	bool	shadowed;
 
 	t_color	tmp_color;
 
 	views[0] = comps.eyev;
 	views[1] = comps.normalv;
-	shadowed = is_shadowed(w, comps.over_point);
-	(void) w;
-	tmp_color = lighting(comps.obj, comps.point, views, shadowed);
-	print_color(tmp_color);
-	return (tmp_color);
-	// return (lighting(comps.obj, comps.point, views, shadowed));
+	shadowed = is_shadowed(w, comps);
+	surface = lighting(comps.obj, comps.point, views, shadowed);
+	reflected = reflected_color(w, comps, remaining);
+	surface = lighting(comps.obj, comps.point, views, shadowed);
+	print_color(surface);
+	return (color_add(reflected, surface));
 }
 
-t_inter	app_intersect(t_inter *xs, t_inter *new)
+/* t_inter	app_intersect(t_inter *xs, t_inter *new)
 {
 	t_inter	ret;
 	int		i;
@@ -59,28 +61,27 @@ t_inter	app_intersect(t_inter *xs, t_inter *new)
 	empty_inter(xs);
 	empty_inter(new);
 	return (ret);
-}
-
-t_inter	intersect_world(t_world w, t_ray r)
+} */
+t_inter	*intersect_world(t_world w, t_ray r)
 {
 	t_obj	*tmp;
-	t_inter	xs;
-	t_inter	obj_tmp;
+	t_inter	*xs;
+	t_inter	*obj_tmp;
 
-	xs.count = 0;
+	xs = NULL;
 	tmp = w.shapes;
-	obj_tmp.count = 0;
-	obj_tmp.i = NULL;
+	obj_tmp = NULL;
 	while (tmp)
 	{
 		obj_tmp = tmp->local_intersect(r, tmp);
-		xs = app_intersect(&xs, &obj_tmp);
+		add_inter_nodes(&xs, &obj_tmp);
+		free_inter_nodes(obj_tmp);
 		tmp = tmp->next;
 	}
-	return (sort_inter(xs));
+	return (xs);
 }
 
-t_comps	prepare_comp(t_intersection h, t_ray r)
+t_comps	prepare_comp(t_intersection h, t_ray r, t_inter *xs)
 {
 	t_comps	new;
 
@@ -90,6 +91,7 @@ t_comps	prepare_comp(t_intersection h, t_ray r)
 	new.point = position(r, new.t);
 	new.eyev = tuple_neg(r.direction);
 	new.normalv = new.obj->local_normal_at(new.obj, new.point);
+	new.reflectv = vector_reflect(r.direction, new.normalv);
 	if (dot(new.normalv, new.eyev) < 0)
 	{
 		new.is_inside = true;
@@ -97,8 +99,10 @@ t_comps	prepare_comp(t_intersection h, t_ray r)
 	}
 	else
 		new.is_inside = false;
-	new.over_point = tuple_add(
-			new.point,
+	new.over_point = tuple_add(new.point,
 			vector_scalar_mult(new.normalv, FLT_EPSILON));
+	new.under_point = tuple_sub(new.point,
+			vector_scalar_mult(new.normalv, FLT_EPSILON));
+	(void) xs;
 	return (new);
 }

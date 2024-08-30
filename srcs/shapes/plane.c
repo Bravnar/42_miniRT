@@ -18,7 +18,7 @@ void	transform_pl(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_plane	*plane_create(char **plane_line)
+t_plane	*plane_create(char **plane_line, int i)
 {
 	t_plane		*p;
 	t_pattern	pat;
@@ -34,13 +34,14 @@ t_plane	*plane_create(char **plane_line)
 	p->shape.local_intersect = local_intersect_pl;
 	p->shape.point = get_point(plane_line[1]);
 	p->shape.dir_vector = vector_norm(get_vector(plane_line[2]));
-	pat = pattern(get_color(plane_line[3]), white(), PLAIN);
+	pat = pattern(c("purple"), c("pink"), STRIPE, rotation_z_pat(45, "plane"));
 	p->shape.material = material(pat, 0.9, 0, 200);
 	p->shape.transformation = identity();
 	p->shape.inverse_transformation = identity();
 	p->shape.transform((t_obj *) p, translation_matrix(
 			p->shape.point.x, p->shape.point.y, p->shape.point.z));
 	p->shape.next = NULL;
+	p->shape.id = i;
 	return (p);
 }
 

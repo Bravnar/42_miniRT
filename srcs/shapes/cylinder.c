@@ -40,6 +40,7 @@ double	volume_cy(t_obj *shape)
 	return ((PI * pow(radius, 2)) * cyl->height);
 }
 
+
 t_tup	calculate_rotations(t_tup dir_vector)
 {
 	double	theta_x;
@@ -74,7 +75,7 @@ t_matrix	apply_transformation_cy(t_cyl *cyl)
 	return (transformation);
 }
 
-t_cyl	*cyl_create(char **cyl_line)
+t_cyl	*cyl_create(char **cyl_line, int i)
 {
 	t_cyl		*cyl;
 	t_pattern	pat;
@@ -90,7 +91,7 @@ t_cyl	*cyl_create(char **cyl_line)
 	cyl->shape.transform = transform_cy;
 	cyl->shape.local_intersect = local_intersect_cy;
 	cyl->shape.local_normal_at = local_normal_at_cy;
-	pat = pattern(get_color(cyl_line[5]), white(), PLAIN);
+	pat = pattern(get_color(cyl_line[5]), white(), PLAIN, identity());
 	cyl->shape.material = material(pat, 0.9, 0.9, 200);
 	cyl->shape.point = get_point(cyl_line[1]);
 	cyl->shape.dir_vector = get_vector(cyl_line[2]);
@@ -105,6 +106,7 @@ t_cyl	*cyl_create(char **cyl_line)
 	// 			cyl->diameter / 2,
 	// 			cyl->diameter / 2)));
 	cyl->shape.transform((t_obj *) cyl, apply_transformation_cy(cyl));
+	cyl->shape.id = i;
 	return (cyl);
 }
 

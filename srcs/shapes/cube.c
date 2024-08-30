@@ -19,7 +19,7 @@ double	volume_cu(t_obj *shape)
 	return (cube->length * cube->width * cube->height);
 }
 
-t_cube	*cube_create(char **cube_line)
+t_cube	*cube_create(char **cube_line, int i)
 {
 	t_cube		*c;
 	t_pattern	pat;
@@ -35,13 +35,14 @@ t_cube	*cube_create(char **cube_line)
 	c->shape.destroy = cube_destroy;
 	c->shape.transform = transform_cu;
 	c->shape.local_intersect = local_intersect_cu;
-	pat = pattern(get_color(cube_line[6]), white(), PLAIN);
+	pat = pattern(get_color(cube_line[6]), white(), PLAIN, identity());
 	c->shape.material = material(pat, 0.9, 0.9, 200);
 	c->shape.point = get_point(cube_line[1]);
 	c->shape.dir_vector = get_vector(cube_line[2]);
 	c->shape.transformation = identity();
 	c->shape.inverse_transformation = identity();
 	c->shape.next = NULL;
+	c->shape.id = i;
 	return (c);
 }
 

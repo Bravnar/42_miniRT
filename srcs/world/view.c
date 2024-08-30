@@ -14,7 +14,7 @@ void	render(t_view_cam cam, t_world w, t_main *rt)
 		while (++x < cam.hsize - 1)
 		{
 			new = ray_for_pixel(cam, x, y);
-			c = color_at(w, new);
+			c = color_at(w, new, 4);
 			add_hex_color(&c);
 			my_pixel(&rt->mlx, x, y, c.hex);
 		}

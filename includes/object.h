@@ -24,7 +24,6 @@ typedef struct s_color
 	double			r;
 	double			g;
 	double			b;
-	double			t;
 	unsigned int	hex;
 }	t_color;
 
@@ -34,13 +33,18 @@ typedef enum s_patt_type
 	STRIPE,
 	CHECKER,
 	GRADIENT,
-}	e_patt_type;
+}	t_patt_type;
+
+typedef struct s_obj	t_obj;
 
 typedef struct s_pattern
 {
 	t_color		colors[2];
-	e_patt_type	type;
-	t_color		(*color_at)(t_tup dir, t_tup point, struct s_pattern pat);
+	t_patt_type	type;
+	t_color		(*color_at)(t_obj *shape, t_tup point, struct s_pattern pat);
+	void		(*transform)(struct s_pattern *pat, t_matrix transformation);
+	t_matrix	transformation;
+	t_matrix	inverse_transformation;
 }	t_pattern;
 
 typedef struct s_material
@@ -49,6 +53,9 @@ typedef struct s_material
 	double		diffuse;
 	double		specular;
 	double		shininess;
+	double		reflective;
+	double		transparency;
+	double		refractive_index;
 	t_pattern	pattern;
 	t_color		color;
 }	t_material;
@@ -61,10 +68,16 @@ typedef struct s_intersection
 	double	t;
 }	t_intersection;
 
-typedef struct s_inter
+/* typedef struct s_inter
 {
 	int				count;
 	t_intersection	*i;
+}	t_inter; */
+
+typedef struct s_inter
+{
+	t_intersection	i;
+	struct s_inter	*next;
 }	t_inter;
 
 typedef struct s_ray
@@ -79,8 +92,9 @@ typedef struct s_obj
 	double			(*volume)(t_obj *shape);
 	void			(*destroy)(t_obj *shape);
 	void			(*transform)(t_obj *shape, t_matrix transform);
-	t_inter			(*local_intersect)(t_ray ray, t_obj *shape);
+	t_inter			*(*local_intersect)(t_ray ray, t_obj *shape);
 	t_tup			(*local_normal_at)(t_obj *shape, t_tup point);
+	int				id;
 	t_tup			point;
 	t_tup			dir_vector; 		//cube/cyllinder/cone/parallelogram
 	t_material		material;

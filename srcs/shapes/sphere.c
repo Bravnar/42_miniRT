@@ -29,7 +29,9 @@ void	transform_s(t_obj *sphere, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_sphere	*sphere_create(char **sphere_split)
+
+
+t_sphere	*sphere_create(char **sphere_split, int i)
 {
 	t_sphere	*sphere;
 	t_pattern	pat;
@@ -38,6 +40,7 @@ t_sphere	*sphere_create(char **sphere_split)
 	if (!sphere)
 		return (NULL);
 	sphere->diameter = ft_strtod(sphere_split[2]);
+	sphere->shape.id = i;
 	sphere->shape.get_name = get_name_s;
 	sphere->shape.volume = volume_s;
 	sphere->shape.destroy = sphere_destroy;
@@ -46,25 +49,18 @@ t_sphere	*sphere_create(char **sphere_split)
 	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
-	pat = pattern(get_color(sphere_split[3]), white(), PLAIN);
+	pat = pattern(get_color(sphere_split[3]), c("blue"), GRADIENT,
+			matrix_mult(rotation_z_pat(45, "sphere"),
+				scaling_matrix(0.25, 0.25, 0.25)));
 	sphere->shape.material = material(pat, 0.9, 0.9, 200);
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();
-
 	sphere->shape.transform((t_obj *) sphere,
-			matrix_mult(translation_matrix(sphere->shape.point.x,
-				sphere->shape.point.y,
-				sphere->shape.point.z),
+		matrix_mult(translation_matrix(sphere->shape.point.x,
+				sphere->shape.point.y, sphere->shape.point.z),
 			scaling_matrix(sphere->diameter / 2,
-				sphere->diameter / 2,
-				sphere->diameter / 2)));
-
-
-
-	/* sphere->shape.transform((t_obj *) sphere,
-		scaling_matrix(sphere->diameter / 2,
-			sphere->diameter / 2, sphere->diameter / 2)); */ // ISSUE HERE! APPLIES SCALING BEFORE TRANSFORMATION FIX LATER
+				sphere->diameter / 2, sphere->diameter / 2)));
 	return (sphere);
 }
 

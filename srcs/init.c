@@ -11,8 +11,8 @@ void	init_rect(t_rect *rect)
 
 void	init_mlx(t_mlx *mlx)
 {
-	mlx->win_x = 500;
-	mlx->win_y = 500;
+	mlx->win_x = 1000;
+	mlx->win_y = 1000;
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			mlx->win_x, mlx->win_y, "miniRT");

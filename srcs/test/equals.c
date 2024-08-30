@@ -4,8 +4,7 @@ bool	equal_color(t_color a, t_color b)
 {
 	return (equal(a.r, b.r) && \
 			equal(a.g, b.g) && \
-			equal(a.b, b.b) && \
-			equal(a.t * 255, b.t));
+			equal(a.b, b.b));
 }
 
 bool	equal_tuple(t_tup a, t_tup b)
@@ -32,20 +31,23 @@ bool	equal_matrix(t_matrix a, t_matrix b)
 	return (true);
 }
 
-bool	equal_inter(t_inter a, t_inter b)
+bool	equal_inter(t_inter **a, t_inter **b)
 {
-	int		i;
+	t_inter		*tmp_a;
+	t_inter		*tmp_b;
 
-	if (b.count == 0)
-		return (!a.count);
-	else if (a.count != b.count)
-		return (false);
-	i = 0;
-	while (i < a.count)
+	if (*b == NULL)
+		return (!*a);
+	tmp_a = *a;
+	tmp_b = *b;
+	while (tmp_a && tmp_b)
 	{
-		if (!equal(a.i[i].t, b.i[i].t))
+		if (!equal(tmp_a->i.t, tmp_b->i.t))
 			return (false);
-		i++;
+		tmp_a = tmp_a->next;
+		tmp_b = tmp_b->next;
 	}
+	if (tmp_a || tmp_b)
+		return (false);
 	return (true);
 }

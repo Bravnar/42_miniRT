@@ -15,9 +15,9 @@ void	test_cy(void)
 }
 
 // STAN TESTER MAIN
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_main  *rt;
+	t_main 	*rt;
 
 	if (ac < 2)
 		err_handler(NO_ARGS);
@@ -30,16 +30,12 @@ int main(int ac, char **av)
 		// test_cy();
 		// return (0);
 		print_color(get_scene()->light->intensity);
+		//tests();
 		test_scene_render(rt, av[1]);
 		free(rt);
 	}
-	else
-	{
-		lighting_test_battery();
-		ray_test_battery();
-		hit_test_battery();
-	}
 	// free(rt);
+
 	return (0);
 }
 

@@ -9,38 +9,38 @@ t_intersection	copy_intersection(t_intersection i)
 	return (new);
 }
 
-t_intersection	hit(t_inter inters)
+t_intersection	hit(t_inter **inters)
 {
-	int				i;
+	t_inter			*tmp;
 	t_intersection	h;
 
-	i = -1;
+	tmp = *inters;
 	h = intersection(-1, NULL);
-	if (inters.count == 0)
+	if (inters == NULL)
 		return (h);
-	while (++i < inters.count)
+	while (tmp)
 	{
-		if (inters.i[i].t > 0)
-			return (copy_intersection(inters.i[i]));
+		if (tmp->i.t > 0)
+			return (copy_intersection(tmp->i));
+		tmp = tmp->next;
 	}
 	return (h);
 }
 
-t_intersection	nhit(t_inter inters)
+t_intersection	nhit(t_inter **inters)
 {
-	int				i;
+	t_inter			*tmp;
 	t_intersection	h;
 
-	i = 0;
+	tmp = *inters;
 	h = intersection(-1, NULL);
-	while (i < inters.count)
+	if (inters == NULL)
+		return (h);
+	while (tmp)
 	{
-		if (inters.i[i].t >= 0)
-		{
-			h = copy_intersection(inters.i[i]);
-			return (h);
-		}
-		i++;
+		if (tmp->i.t > 0)
+			return (copy_intersection(tmp->i));
+		tmp = tmp->next;
 	}
 	return (h);
 }

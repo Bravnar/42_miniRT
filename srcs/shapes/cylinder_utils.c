@@ -11,24 +11,16 @@ void	transform_cy(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-t_inter	null_intersect(void)
-{
-	t_inter	ret;
-
-	ret.count = 0;
-	ret.i = NULL;
-	return (ret);
-}
-t_inter	local_intersect_cy(t_ray r, t_obj *cyl)
+t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 {
 	double	a;
 	double	b;
 	double	c;
-	t_inter	ret;
+	t_inter	*ret;
 	
 	t_ray	new_r;
 	new_r = ray_transform(r, cyl->inverse_transformation);
-	ret = null_intersect();
+	ret = NULL;
 	a = pow(new_r.direction.x, 2) + pow(new_r.direction.z, 2);
 	printf("a = %.2f\n", a);
 	if (equal(a, 0))
@@ -38,29 +30,20 @@ t_inter	local_intersect_cy(t_ray r, t_obj *cyl)
 	double	disc = pow(b, 2) - 4 * a * c;
 	if (disc < 0)
 		return (ret);
-	ret.i = malloc(sizeof(t_intersection) * 2);
-	if (!ret.i)
-		return (ret);
 	double t0 = (-b - sqrt(disc)) / (2 * a);
 	double t1 = (-b + sqrt(disc)) / (2 * a);
 	double	cyl_min = -2;
 	double	cyl_max = 2;
 	double y0 = new_r.point.y + t0 * new_r.direction.y;
 	if (cyl_min < y0 && y0 < cyl_max)
-	{
-		ret.count++;
-		ret.i[0] = intersection(t0, cyl);
-	}
+		add_inter_node(&ret, new_inter_node(intersection(t0, cyl));
 	double y1 = new_r.point.y + t1 * new_r.direction.y;
 	if (cyl_min < y1 && y1 < cyl_max)
-	{
-		ret.count++;
-		ret.i[1] = intersection(t1, cyl);
-	}
+    add_inter_node(&ret, new_inter_node(intersection(t1, cyl));
 	return (ret);
 }
 
-t_cyl	*cylinder(void)
+t_cyl	*cylinder(int i)
 {
 	t_cyl	*cyl;
 
@@ -80,5 +63,6 @@ t_cyl	*cylinder(void)
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
+	cyl->shape.id = i;
 	return (cyl);
 }

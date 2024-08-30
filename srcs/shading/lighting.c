@@ -6,8 +6,8 @@ t_color	compute_eff_color(t_obj *shape, t_tup p)
 	t_color	intensity;
 
 	intensity = get_scene()->light->intensity;
-	eff_color = color_blend(
-			shape->material.pattern.color_at(shape->dir_vector,
+	eff_color = color_product(
+			shape->material.pattern.color_at(shape,
 				p, shape->material.pattern), intensity);
 	return (eff_color);
 }
