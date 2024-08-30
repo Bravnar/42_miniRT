@@ -39,13 +39,18 @@ t_color	shade_hit(t_world w, t_comps comps, int remaining)
 	t_color	surface;
 	bool	shadowed;
 
+	t_color	tmp_color;
+
 	views[0] = comps.eyev;
 	views[1] = comps.normalv;
 	shadowed = is_shadowed(w, comps);
 	surface = lighting(comps.obj, comps.point, views, shadowed);
 	reflected = reflected_color(w, comps, remaining);
-	refracted = refracted_color(w, comps, remaining);
-	return (with_reflect(comps, surface, reflected, refracted));
+	//refracted = refracted_color(w, comps, remaining);
+	//return (with_reflect(comps, surface, reflected, refracted);
+	surface = lighting(comps.obj, comps.point, views, shadowed);
+	print_color(surface);
+	return (color_add(reflected, surface));
 }
 
 /* t_inter	app_intersect(t_inter *xs, t_inter *new)
