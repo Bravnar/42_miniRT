@@ -361,4 +361,15 @@ void			lighting_test_battery(void);
 void			ray_test_battery(void);
 void			hit_test_battery(void);
 
+
+
+
+
+/* NEW PARSING */
+
+
+t_mrt	*initialize(char *filename);
+t_map	*create_scene(char *file_name);
+
+
 #endif

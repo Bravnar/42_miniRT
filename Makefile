@@ -76,6 +76,7 @@ SRCS= 	srcs/main.c \
 		srcs/world/view_utils.c \
 		srcs/colors/pattern.c \
 		srcs/colors/plain_pattern.c \
+		srcs/parsing/new_parsing/create_map.c \
 
 CC= cc
 
