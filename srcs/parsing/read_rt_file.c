@@ -25,13 +25,13 @@ void	check_identifier(char *identifier)
 	{
 		if (!ft_strstr(GOOD_ID, identifier))
 		{
-			printf(BOLD_WHITE" ---> %s\n"RESET, identifier);
+			printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
 			err_handler(UKNOWN_ID);
 		}
 	}
 	else
 	{
-		printf(BOLD_WHITE" ---> %s\n"RESET, identifier);
+		printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
 		err_handler(UKNOWN_ID);
 	}
 }
@@ -76,7 +76,7 @@ void	populate_scene_struct(char *file_name, t_map *scene)
 	if (!check_file_name(file_name))
 		err_handler(WRONG_EXT);
 	read_file(file_name, scene);
-	check_count();
+	//check_count();
 	populate_rwin();
 	populate_amb();
 	populate_cam();

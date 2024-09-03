@@ -43,6 +43,7 @@ typedef enum s_err
 	WRONG_EXT,
 	OPEN_FAILED,
 	NO_ARGS,
+	INVALID_SEP,
 }	t_err;
 
 typedef struct s_mlx
@@ -115,15 +116,9 @@ typedef struct s_parse
 	char			*id;
 	char			*line;
 	char			**line_split;
+	int				count;
 	struct s_parse	*next;
 }	t_parse;
-
-typedef struct s_file
-{
-	int		fd;
-	t_parse	*parse;
-	bool	is_valid;
-}	t_file;
 
 typedef struct s_count
 {
@@ -137,13 +132,21 @@ typedef struct s_count
 	int	cu;
 }	t_count;
 
+typedef struct s_file
+{
+	int			fd;
+	t_parse		*parse;
+	t_count		count;
+	bool		is_valid;
+}	t_file;
+
+
 typedef struct s_map
 {
 	t_file		file;
 	t_rwin		win;
 	t_amb		amb;
 	t_cam		cam;
-	t_count		count;
 	t_light		*light;
 	t_obj		*obj_list;
 }	t_map;

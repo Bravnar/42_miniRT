@@ -51,4 +51,6 @@ void	err_handler(t_err code)
 		err_quit(M_WRONG_EXTENSION);
 	if (code == NO_ARGS)
 		err_quit(M_NO_ARGS);
+	if (code == INVALID_SEP)
+		err_quit(M_INVALID_SEP);
 }

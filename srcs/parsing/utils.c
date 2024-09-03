@@ -38,6 +38,23 @@ char **set_type_and_clean(char **tmp, t_type *type)
 	return (ret);
 }
 
+void	check_arr_extr(char **arr)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while(arr[i])
+	{
+		len = ft_strlen(arr[i]) - 1;
+		printf("first char %c, last char %c\n", arr[i][0], arr[i][len]);
+		if ((!ft_isdigit(arr[i][0] && arr[i][0] != '-')\
+			|| !ft_isdigit(arr[i][len])))
+				err_handler(INVALID_SEP);
+		i++;
+	}
+}
+
 t_parse	*new_parse_node(char *line)
 {
 	t_parse	*node;
@@ -52,6 +69,8 @@ t_parse	*new_parse_node(char *line)
 		tmp = ft_megasplit(node->line, WHITESPACE);
 		node->line_split = set_type_and_clean(tmp, &node->type);
 		node->id = ft_strdup(tmp[0]);
+		node->count = ft_arr_len(node->line_split);
+		check_arr_extr(node->line_split);
 		ft_free_arr(tmp);
 	}
 	node->next = NULL;
@@ -101,6 +120,7 @@ void	print_nodes(t_parse **head)
 	{
 		i = -1;
 		printf("Type: [%s]\t", tmp->id);
+		printf("Count: %d\t", tmp->count);
 		while (tmp->line_split[++i])
 			printf("[%s] ", tmp->line_split[i]);
 		printf("\n");

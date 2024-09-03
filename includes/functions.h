@@ -80,8 +80,7 @@ void			print_nodes(t_parse **head);
 /* validity.c */
 
 /* counter.c */
-void			check_count(void);
-void			count_identifier(t_parse **head);
+void			count_identifier(t_parse **head, t_file *file);
 
 /* ft_stdtod.c */
 double			ft_strtod(char *str);
@@ -372,6 +371,8 @@ void			hit_test_battery(void);
 t_mrt	*initialize(char *filename);
 t_map	*create_scene(char *file_name);
 int		check_file_name(char *name);
+t_map	*get_map(void);
+void	check_count(t_file *file);
 
 
 #endif
