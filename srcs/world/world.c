@@ -46,39 +46,9 @@ t_color	shade_hit(t_world w, t_comps comps, int remaining)
 	reflected = reflected_color(w, comps, remaining);
 	//refracted = refracted_color(w, comps, remaining);
 	//return (with_reflect(comps, surface, reflected, refracted);
-	surface = lighting(comps.obj, comps.point, views, shadowed);
-	// print_color(surface);
 	return (color_add(reflected, surface));
 }
 
-/* t_inter	app_intersect(t_inter *xs, t_inter *new)
-{
-	t_inter	ret;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	ret.count = xs->count + new->count;
-	if (!ret.count)
-		ret.i = NULL;
-	if (!ret.count)
-		return (ret);
-	ret.i = malloc(ret.count * sizeof(t_intersection));
-	if (!ret.i)
-	{
-		ret.count = 0;
-		return (ret);
-	}
-	while (j < xs->count)
-		ret.i[i++] = xs->i[j++];
-	j = 0;
-	while (j < new->count)
-		ret.i[i++] = new->i[j++];
-	empty_inter(xs);
-	empty_inter(new);
-	return (ret);
-} */
 t_inter	*intersect_world(t_world w, t_ray r)
 {
 	t_obj	*tmp;

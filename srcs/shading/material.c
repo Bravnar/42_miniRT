@@ -9,7 +9,7 @@ t_material	material(t_pattern p, double d, double s, double sh)
 	new_mat.specular = s;
 	new_mat.shininess = sh;
 	new_mat.pattern = p;
-	new_mat.reflective = 0.5;
+	new_mat.reflective = 0;
 	new_mat.refractive_index = 1.0;
 	new_mat.transparency = 0;
 	return (new_mat);

@@ -18,13 +18,13 @@ t_inter	*new_inter(int count, t_obj *shape, ...)
 
 double	discriminant(t_obj *shape, double *a, double *b)
 {
-	t_tup	sphere_to_ray;
+	t_tup	to_ray;
 	double	c;
 
-	sphere_to_ray = tuple_sub(shape->saved_ray.point, shape->point);
+	to_ray = tuple_sub(shape->saved_ray.point, shape->point);
 	*a = dot(shape->saved_ray.direction, shape->saved_ray.direction);
-	*b = 2 * dot(shape->saved_ray.direction, sphere_to_ray);
-	c = dot(sphere_to_ray, sphere_to_ray) - 1;
+	*b = 2 * dot(shape->saved_ray.direction, to_ray);
+	c = dot(to_ray, to_ray) - 1;
 	return (*b * *b - 4 * *a * c);
 }
 
@@ -66,9 +66,7 @@ t_inter	*intersect(t_obj *shape)
 
 	disc = discriminant(shape, &a, &b);
 	if (disc < 0)
-	{
 		return (NULL);
-	}
 	i = NULL;
 	add_inter_node(&i,
 		new_inter_node(intersection(

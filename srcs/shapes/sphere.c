@@ -29,8 +29,6 @@ void	transform_s(t_obj *sphere, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
-
-
 t_sphere	*sphere_create(char **sphere_split, int i)
 {
 	t_sphere	*sphere;
@@ -49,13 +47,12 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
-	pat = pattern(get_color(sphere_split[3]), c("blue"), GRADIENT,
-			matrix_mult(rotation_z_pat(45, "sphere"),
-				scaling_matrix(0.25, 0.25, 0.25)));
+	pat = pattern(white(), c("blue"), GRADIENT,
+			matrix_mult(rotation_z(0),
+				scaling_matrix(1, 1, 1)));
 	sphere->shape.material = material(pat, 0.9, 0.9, 200);
 	sphere->shape.material.refractive_index = 1.5;
 	sphere->shape.material.transparency = 0.9;
-	sphere->shape.material.reflective = 0.5;
 	sphere->shape.next = NULL;
 	sphere->shape.transformation = identity();
 	sphere->shape.inverse_transformation = identity();

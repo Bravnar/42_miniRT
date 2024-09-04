@@ -13,21 +13,16 @@ char	*get_name_cy(t_obj *shape)
 
 t_tup	local_normal_at_cy(t_obj *cyl, t_tup point)
 {
-	(void) cyl;
-	return (vector(point.x, 0, point.z));
-	// t_tup	center_to_point;
-	// double	proj_length;
-	// t_tup	projection;
-	// t_tup	closest_point;
-	// t_tup	normal;
+	double	dist;
+	t_cyl	*cyll;
 
-	// center_to_point = tuple_sub(point, cyl->point);
-	// proj_length = vector_dot(center_to_point, cyl->dir_vector);
-	// projection = vector_scalar_mult(cyl->dir_vector, proj_length);
-	// closest_point = tuple_add(cyl->point, projection);
-	// normal = tuple_sub(point, closest_point);
-
-	// return vector_norm(normal);
+	cyll = (t_cyl *) cyl;
+	dist = pow(point.x, 2) + pow(point.z, 2);
+	if (dist < 1 && point.z >= cyll->height / 2 - DBL_EPSILON)
+		return (vector(0, 1, 0));
+	if (dist < 1 && point.y >= -cyll->height / 2 + DBL_EPSILON)
+		return (vector(0, -1, 0));
+	return (vector_norm(vector(point.x, 0, point.z)));
 }
 
 double	volume_cy(t_obj *shape)
@@ -63,14 +58,14 @@ t_matrix	apply_transformation_cy(t_cyl *cyl)
 	t_tup		thetas;
 
 	scaling = scaling_matrix(cyl->diameter / 2,
-							cyl->diameter / 2,
-							cyl->diameter / 2);
+			cyl->diameter / 2,
+			cyl->diameter / 2);
 	thetas = calculate_rotations(cyl->shape.dir_vector);
 	rotation = matrix_mult(rotation_x(thetas.x), rotation_y(thetas.y));
 	rotation = matrix_mult(rotation, rotation_z(thetas.z));
 	translation = translation_matrix(cyl->shape.point.x,
-									cyl->shape.point.y,
-									cyl->shape.point.z);
+			cyl->shape.point.y,
+			cyl->shape.point.z);
 	transformation = matrix_mult(matrix_mult(translation, rotation), scaling);
 	return (transformation);
 }
@@ -98,13 +93,6 @@ t_cyl	*cyl_create(char **cyl_line, int i)
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
-	// cyl->shape.transform((t_obj *) cyl,
-	// 		matrix_mult(translation_matrix(cyl->shape.point.x,
-	// 			cyl->shape.point.y,
-	// 			cyl->shape.point.z),
-	// 		scaling_matrix(cyl->diameter / 2,
-	// 			cyl->diameter / 2,
-	// 			cyl->diameter / 2)));
 	cyl->shape.transform((t_obj *) cyl, apply_transformation_cy(cyl));
 	cyl->shape.id = i;
 	return (cyl);
