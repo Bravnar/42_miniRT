@@ -60,6 +60,7 @@ t_inter	*intersect_world(t_world w, t_ray r)
 	obj_tmp = NULL;
 	while (tmp)
 	{
+		tmp->saved_ray = ray_transform(r, tmp->inverse_transformation);
 		obj_tmp = tmp->local_intersect(r, tmp);
 		if (!obj_tmp)
 		{

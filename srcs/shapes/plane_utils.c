@@ -3,18 +3,17 @@
 
 t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 {
-	t_ray	trans;
 	t_tup	to_orig;
 	double	dot_prod;
 	double	t;
 	t_inter	*inter;
 
-	trans = ray_transform(r, plane->inverse_transformation);
-	dot_prod = dot(plane->local_normal_at(plane, trans.point), trans.direction);
+	dot_prod = dot(plane->local_normal_at(plane,
+				plane->saved_ray.point), plane->saved_ray.direction);
 	inter = NULL;
 	if (!equal(dot_prod, 0))
 	{
-		to_orig = tuple_sub(plane->point, trans.point);
+		to_orig = tuple_sub(plane->point, plane->saved_ray.point);
 		t = dot(to_orig, plane->local_normal_at(plane, r.point)) / dot_prod;
 		if (t >= 0)
 			inter = new_inter_node(intersection(t, plane));

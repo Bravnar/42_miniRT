@@ -2,10 +2,7 @@
 
 t_inter	*local_intersect_s(t_ray r, t_obj *sphere)
 {
-	t_ray	inv_ray;
-
-	inv_ray = ray_transform(r, sphere->inverse_transformation);
-	sphere->saved_ray = inv_ray;
+	(void) r;
 	return (intersect(sphere));
 }
 

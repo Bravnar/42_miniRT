@@ -13,8 +13,11 @@ char	*get_name_cy(t_obj *shape)
 
 t_tup	local_normal_at_cy(t_obj *cyl, t_tup point)
 {
-	double	dist;
-	t_cyl	*cyll;
+	double		dist;
+	t_cyl		*cyll;
+	t_tup		obj_space_point;
+	t_tup		normal_in_obj_space;
+	t_matrix	normal_transform_matrix;
 
 	cyll = (t_cyl *) cyl;
 	dist = pow(point.x, 2) + pow(point.z, 2);
@@ -22,7 +25,16 @@ t_tup	local_normal_at_cy(t_obj *cyl, t_tup point)
 		return (vector(0, 1, 0));
 	if (dist < 1 && point.y >= -cyll->height / 2 + DBL_EPSILON)
 		return (vector(0, -1, 0));
-	return (vector_norm(vector(point.x, 0, point.z)));
+	if (fabs(cyll->shape.dir_vector.x) < DBL_EPSILON \
+		&& fabs(cyll->shape.dir_vector.z) < DBL_EPSILON)
+		return (vector_norm(vector(point.x, 0, point.z)));
+	obj_space_point = matrix_mult_tup(
+			cyll->shape.inverse_transformation, point);
+	normal_in_obj_space = vector_norm(vector(
+				obj_space_point.x, 0, obj_space_point.z));
+	normal_transform_matrix = transpose(cyll->shape.inverse_transformation);
+	return (vector_norm(matrix_mult_tup(
+				normal_transform_matrix, normal_in_obj_space)));
 }
 
 double	volume_cy(t_obj *shape)
@@ -86,7 +98,9 @@ t_cyl	*cyl_create(char **cyl_line, int i)
 	cyl->shape.transform = transform_cy;
 	cyl->shape.local_intersect = local_intersect_cy;
 	cyl->shape.local_normal_at = local_normal_at_cy;
-	pat = pattern(get_color(cyl_line[5]), white(), PLAIN, identity());
+	pat = pattern(c("blue"), get_color(cyl_line[5]), PLAIN,
+				matrix_mult(rotation_z(0),
+				scaling_matrix(1, 1, 1)));
 	cyl->shape.material = material(pat, 0.9, 0.9, 200);
 	cyl->shape.point = get_point(cyl_line[1]);
 	cyl->shape.dir_vector = get_vector(cyl_line[2]);

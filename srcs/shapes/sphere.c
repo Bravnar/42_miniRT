@@ -47,7 +47,7 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = get_point(sphere_split[1]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
-	pat = pattern(white(), c("blue"), GRADIENT,
+	pat = pattern(white(), c("blue"), STRIPE,
 			matrix_mult(rotation_z(0),
 				scaling_matrix(1, 1, 1)));
 	sphere->shape.material = material(pat, 0.9, 0.9, 200);

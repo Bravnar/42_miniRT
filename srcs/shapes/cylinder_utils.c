@@ -19,12 +19,11 @@ double	discriminant_cyl(t_obj *cyl, double *a, double *b)
 
 	*a = pow(cyl->saved_ray.direction.x, 2) \
 		+ pow(cyl->saved_ray.direction.z, 2);
-	if (equal(*a, 0))
+	if (fabs(*a) < DBL_EPSILON)
 		return (-1);
 	*b = 2 * cyl->saved_ray.point.x * cyl->saved_ray.direction.x \
 		+ 2 * cyl->saved_ray.point.z * cyl->saved_ray.direction.z;
 	c = pow(cyl->saved_ray.point.x, 2) + pow(cyl->saved_ray.point.z, 2) - 1;
-
 	disc = pow(*b, 2) - 4 * *a * c;
 	return (disc);
 }
@@ -37,10 +36,11 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 	double	y;
 	t_inter	*ret;
 
-	cyl->saved_ray = ray_transform(r, cyl->inverse_transformation);
+	cyl->saved_ray = ray_new(r.point, vector_norm(r.direction));
+	cyl->saved_ray = ray_transform(cyl->saved_ray, cyl->inverse_transformation);
 	ret = NULL;
 	disc = discriminant_cyl(cyl, &ab[0], &ab[1]);
-	if (disc < 0)
+	if (disc < -DBL_EPSILON)
 		return (ret);
 	t = (-ab[1] - sqrt(disc)) / (2 * ab[0]);
 	y = cyl->saved_ray.point.y + t * cyl->saved_ray.direction.y;
@@ -54,6 +54,7 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 		add_inter_node(&ret, new_inter_node(intersection(t, cyl)));
 	return (ret);
 }
+
 
 t_cyl	*cylinder(int i)
 {
