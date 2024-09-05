@@ -142,9 +142,9 @@ void	print_scene_details(void)
 	t_amb	amb;
 	t_cam	cam;
 
-	res = get_scene()->win;
-	amb = get_scene()->amb;
-	cam = get_scene()->cam;
+	res = get_map()->win;
+	amb = get_map()->amb;
+	cam = get_map()->cam;
 	printf("Resolution: ---------------------------------------------:\n");
 	printf("\tResolution x: %d\n\tResolution y: %d\n", res.x, res.y);
 	printf("Ambient lighting: --------------:\n");
@@ -156,8 +156,8 @@ void	print_scene_details(void)
 	printf("\tCamera vector: [%f, %f, %f]\n",
 		cam.vector.x, cam.vector.y, cam.vector.z);
 	printf("\tCamera FOV: %d\n", cam.fov);
-	printf("Lights --------------------------------------------------:\n");
+	/* printf("Lights --------------------------------------------------:\n");
 	print_light_nodes(get_scene_light());
 	printf("Shapes ---------------------------------------------------:\n");
-	print_object_nodes(get_scene_objs());
+	print_object_nodes(get_scene_objs()); */
 }

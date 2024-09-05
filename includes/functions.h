@@ -375,10 +375,11 @@ t_map	*get_map(void);
 void	check_count(t_file *file);
 t_rwin	fetch_res(t_parse **head);
 t_amb	fetch_amb(t_parse **head);
-t_cam	fetch_cam(t_parse **head);
+t_cam	fetch_cam(t_parse **head, t_rwin res);
 t_light	*fetch_light(t_parse **head);
 t_color	color_split(char *color_str);
 void	err_template(char *msg, char *line);
+void	init_view(t_cam *cam);
 
 
 #endif

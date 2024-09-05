@@ -81,7 +81,7 @@ t_map	*create_map(char *filename)
 	map->file = parse_file(filename);
 	map->win = fetch_res(&map->file.parse);
 	map->amb = fetch_amb(&map->file.parse);
-	// map->cam = fetch_cam(&map->file);
+	map->cam = fetch_cam(&map->file.parse, map->win);
 	return (map);
 }
 
@@ -102,6 +102,6 @@ t_mrt	*initialize(char *filename)
 	if (!mrt)
 		return (NULL);
 	mrt->map = create_map(filename);
-	/* init_mlx(&mrt->mlx);  TEMPORARY COMMENT OUT*/
+	/* init_mlx(&mrt->mlx);  TEMPORARY COMMENT OUT */
 	return mrt;
 }
