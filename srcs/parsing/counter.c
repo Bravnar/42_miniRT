@@ -62,11 +62,11 @@ void	check_count(t_file *file)
 	if (file->count.a < 1 || \
 		file->count.c < 1 || \
 		file->count.l < 1)
-		err_handler(ACL_MISSING);
+		err_template(M_ACL_MISSING, NULL);
 	if (file->count.a > 1)
-		err_handler(TOO_MANY_A);
+		err_template(M_TOO_MANY_A, NULL);
 	if (file->count.c > 1)
-		err_handler(TOO_MANY_C);
+		err_template(M_TOO_MANY_C, NULL);
 	if (file->count.r > 1)
-		err_handler(TOO_MANY_R);
+		err_template(M_TOO_MANY_R, NULL);
 }

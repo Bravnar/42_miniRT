@@ -118,6 +118,7 @@ typedef struct s_parse
 	char			**line_split;
 	int				count;
 	struct s_parse	*next;
+	bool			is_bonus;
 }	t_parse;
 
 typedef struct s_count

@@ -1,5 +1,6 @@
 #include "main.h"
 
+/* NEW */
 void	set_type(t_type *type, char *identifier)
 {
 	check_identifier(identifier);
@@ -15,6 +16,7 @@ void	set_type(t_type *type, char *identifier)
 		*type = OBJECTS;
 }
 
+/* NEW */
 char **set_type_and_clean(char **tmp, t_type *type)
 {
 	char	**ret;
@@ -38,6 +40,7 @@ char **set_type_and_clean(char **tmp, t_type *type)
 	return (ret);
 }
 
+/* NEW */
 void	check_arr_extr(char **arr)
 {
 	int	i;
@@ -47,14 +50,14 @@ void	check_arr_extr(char **arr)
 	while(arr[i])
 	{
 		len = ft_strlen(arr[i]) - 1;
-		printf("first char %c, last char %c\n", arr[i][0], arr[i][len]);
-		if ((!ft_isdigit(arr[i][0] && arr[i][0] != '-')\
-			|| !ft_isdigit(arr[i][len])))
-				err_handler(INVALID_SEP);
+		if ((!ft_isalnum(arr[i][0]) && arr[i][0] != '-')\
+			|| !ft_isalnum(arr[i][len]))
+				err_template(M_INVALID_SEP, arr[i]);
 		i++;
 	}
 }
 
+/* NEW */
 t_parse	*new_parse_node(char *line)
 {
 	t_parse	*node;
@@ -77,6 +80,7 @@ t_parse	*new_parse_node(char *line)
 	return (node);
 }
 
+/* NEW */
 void	add_node(t_parse **parsed, t_parse *new_node)
 {
 	t_parse	*tmp;
@@ -92,6 +96,7 @@ void	add_node(t_parse **parsed, t_parse *new_node)
 	}
 }
 
+/* NEW */
 void	free_nodes(t_parse *list)
 {
 	t_parse	*tmp;
@@ -110,6 +115,7 @@ void	free_nodes(t_parse *list)
 	tmp = NULL;
 }
 
+/* NEW */
 void	print_nodes(t_parse **head)
 {
 	t_parse	*tmp;
@@ -121,6 +127,7 @@ void	print_nodes(t_parse **head)
 		i = -1;
 		printf("Type: [%s]\t", tmp->id);
 		printf("Count: %d\t", tmp->count);
+		printf("is_bonus [%d]\t", tmp->is_bonus);
 		while (tmp->line_split[++i])
 			printf("[%s] ", tmp->line_split[i]);
 		printf("\n");
@@ -128,6 +135,7 @@ void	print_nodes(t_parse **head)
 	}
 }
 
+/* OLD */
 void	print_scene_details(void)
 {
 	t_rwin	res;

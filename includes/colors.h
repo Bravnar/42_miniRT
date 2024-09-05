@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bravnar <bravnar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 10:41:43 by smuravye          #+#    #+#             */
-/*   Updated: 2024/07/23 15:00:33 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:55:23 by bravnar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define BOLD_MAGENTA "\x1B[1;35m"
 # define BOLD_CYAN    "\x1B[1;36m"
 # define BOLD_WHITE   "\x1B[1;37m"
+# define BOLD_ORANGE  "\x1B[38;5;214m"
 
 // Underline
 # define UNDERLINE    "\x1B[4m"

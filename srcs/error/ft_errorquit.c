@@ -1,5 +1,52 @@
 #include "main.h"
 
+/* NEW */
+char	*simple_replace(char *str, char what, char with)
+{
+	char *copy;
+	int	i;
+
+	i = 0;
+	copy = ft_strdup(str);
+	while (copy[i])
+	{
+		if (copy[i] == what)
+			copy[i] = with;
+		i++;
+	}
+	return (copy);
+}
+
+/* NEW */
+void	err_template(char *msg, char *line)
+{
+	char *e_line;
+
+	e_line = NULL;
+	if (line)
+		e_line = simple_replace(line, '\t', ' ');
+	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
+	ft_fprintf(2, BOLD_RED"ParseError\n\n"RESET);
+	if (e_line)
+	{
+		if (ft_strlen(e_line) > 20)
+		{
+			ft_fprintf(2, BOLD_WHITE"In line:\t"RESET);
+			ft_fprintf(2, "%s\n", e_line);
+		}
+		else
+		{
+			ft_fprintf(2, BOLD_WHITE"Error Location:\t"RESET);
+			ft_fprintf(2, "%s\n\n", e_line);
+		}
+		free(e_line);
+	}
+	ft_fprintf(2, BOLD_ORANGE"%s\n"RESET, msg);
+	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
+	exit(1);
+}
+
+/* OLD */
 void	err_quit(char *msg)
 {
 	ft_fprintf(2, BOLD_RED"Error:\t"RESET);
@@ -7,6 +54,7 @@ void	err_quit(char *msg)
 	exit(1);
 }
 
+/* OLD */
 void	err_handler(t_err code)
 {
 	if (code == ACL_MISSING)
@@ -48,7 +96,7 @@ void	err_handler(t_err code)
 	if (code == OPEN_FAILED)
 		err_quit(M_OPEN_FAILED);
 	if (code == WRONG_EXT)
-		err_quit(M_WRONG_EXTENSION);
+		err_quit(M_WRONG_EXT);
 	if (code == NO_ARGS)
 		err_quit(M_NO_ARGS);
 	if (code == INVALID_SEP)
