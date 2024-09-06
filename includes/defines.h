@@ -28,6 +28,9 @@
 #  define WIN_X_MAX 3840
 #  define WIN_Y_MAX 2160
 
+#  define WIN_X_DEFAULT 500
+#  define WIN_Y_DEFAULT 500
+
 # endif
 
 # define PI			(3.1416)
@@ -37,6 +40,8 @@
 
 # define GOOD_ID			"RACL.pl.sp.cy.cu"
 # define GOOD_ID_SINGLE		"RACL"
+
+#define ERRLINE "-------------------------------------------------------------"
 
 # define M_NO_ARGS			"No arguments provided, give path to .rt!"
 # define M_INVALID_ENTRY	"Invalid number entry, only INT or FLOAT"
@@ -49,15 +54,16 @@
 # define M_C_FOV_RANGE		"C: FOV out of range (0 / 180)"
 # define M_L_BRIGHT_RANGE	"L: Brightness out of range (0.0 / 1.0)"
 # define M_UKNOWN_ID		"Unknown identifier in file"
-# define M_R_OVER_PARAM		"Too many arguments in R"
-# define M_A_OVER_PARAM		"Too many arguments in A"
-# define M_C_OVER_PARAM		"Too many arguments in C"
-# define M_L_OVER_PARAM		"Too many arguments in L"
+# define M_R_OVER_PARAM		"Invalid argument count in R"
+# define M_A_OVER_PARAM		"Invalid argument count in A"
+# define M_C_OVER_PARAM		"Invalid argument count in C"
+# define M_L_OVER_PARAM		"Invalid argument count in L"
 # define M_SP_OVER_PARAM	"Too many arguments in sp"
 # define M_PL_OVER_PARAM	"Too many arguments in pl"
 # define M_PL_VECTOR_RANGE	"pl: vector out of range (-1.0 / 1.0)"
 # define M_CY_VECTOR_RANGE	"cy: vector out of range (-1.0 / 1.0)"
-# define M_WRONG_EXTENSION	"wrong file extension, expected '.rt'"
+# define M_WRONG_EXT		"wrong file extension, expected '.rt'"
 # define M_OPEN_FAILED		"failed to open file"
+# define M_INVALID_SEP		"number group separated! Remove unnecessary spaces."
 
 #endif

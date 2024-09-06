@@ -29,7 +29,8 @@ t_obj			**get_scene_objs(void);
 
 /* read_rt_file.c */
 void			populate_scene_struct(char *file_name, t_map *scene);
-void			check_identifier(t_parse **head);
+// void			check_identifier(t_parse **head);
+void			check_identifier(char *identifier);
 void			read_file(char *file_name, t_map *data);
 void			print_scene_details(void);
 
@@ -79,8 +80,7 @@ void			print_nodes(t_parse **head);
 /* validity.c */
 
 /* counter.c */
-void			check_count(void);
-void			count_identifier(t_parse **head);
+void			count_identifier(t_parse **head, t_file *file);
 
 /* ft_stdtod.c */
 double			ft_strtod(char *str);
@@ -389,5 +389,26 @@ void			ray_test_battery(void);
 void			hit_test_battery(void);
 void			pattern_test_battery(void);
 void			tests(void);
+
+
+
+
+
+/* NEW PARSING */
+
+
+t_mrt	*initialize(char *filename);
+t_map	*create_scene(char *file_name);
+int		check_file_name(char *name);
+t_map	*get_map(void);
+void	check_count(t_file *file);
+t_rwin	fetch_res(t_parse **head);
+t_amb	fetch_amb(t_parse **head);
+t_cam	fetch_cam(t_parse **head, t_rwin res);
+t_light	*fetch_light(t_parse **head);
+t_color	color_split(char *color_str);
+void	err_template(char *msg, char *line);
+void	init_view(t_cam *cam);
+
 
 #endif

@@ -1,42 +1,42 @@
 #include "main.h"
 
-static void	counter_single(char c)
+static void	counter_single(char c, t_file *file)
 {
 	if (c == 'R')
-		get_scene()->count.r++;
+		file->count.r++;
 	else if (c == 'A')
-		get_scene()->count.a++;
+		file->count.a++;
 	else if (c == 'C')
-		get_scene()->count.c++;
+		file->count.c++;
 	else if (c == 'L')
-		get_scene()->count.l++;
+		file->count.l++;
 }
 
-static void	counter_double(char *str)
+static void	counter_double(char *str, t_file *file)
 {
 	char	*tmp;
 
 	tmp = ft_strdup(str);
 	if (!ft_strcmp("pl", tmp))
-		get_scene()->count.pl++;
+		file->count.pl++;
 	if (!ft_strcmp("sp", tmp))
-		get_scene()->count.sp++;
+		file->count.sp++;
 	if (!ft_strcmp("cy", tmp))
-		get_scene()->count.cy++;
+		file->count.cy++;
 	if (!ft_strcmp("cu", tmp))
-		get_scene()->count.cu++;
+		file->count.cu++;
 	free(tmp);
 }
 
-static void	counter_breakdown(char *cptr)
+static void	counter_breakdown(char *cptr, t_file *file)
 {
 	if (ft_strchr(GOOD_ID_SINGLE, cptr[0]))
-		counter_single(cptr[0]);
+		counter_single(cptr[0], file);
 	else
-		counter_double(cptr);
+		counter_double(cptr, file);
 }
 
-void	count_identifier(t_parse **head)
+void	count_identifier(t_parse **head, t_file *file)
 {
 	t_parse	*tmp;
 	char	*cptr;
@@ -45,27 +45,28 @@ void	count_identifier(t_parse **head)
 	cptr = NULL;
 	while (tmp)
 	{
-		if (tmp->line_split && tmp->line_split[0])
+		if (tmp->id)
 		{
-			cptr = ft_strstr(GOOD_ID, tmp->line_split[0]);
+			cptr = ft_strstr(GOOD_ID, tmp->id);
 			if (cptr)
-				counter_breakdown(cptr);
+				counter_breakdown(cptr, file);
 		}
 		tmp = tmp->next;
 	}
 }
 
-void	check_count(void)
+void	check_count(t_file *file)
 {
-	count_identifier(&get_scene()->file.parse);
-	if (get_scene()->count.a < 1 || \
-		get_scene()->count.c < 1 || \
-		get_scene()->count.l < 1)
-		err_handler(ACL_MISSING);
-	if (get_scene()->count.a > 1)
-		err_handler(TOO_MANY_A);
-	if (get_scene()->count.c > 1)
-		err_handler(TOO_MANY_C);
-	if (get_scene()->count.r > 1)
-		err_handler(TOO_MANY_R);
+
+	count_identifier(&file->parse, file);
+	if (file->count.a < 1 || \
+		file->count.c < 1 || \
+		file->count.l < 1)
+		err_template(M_ACL_MISSING, NULL);
+	if (file->count.a > 1)
+		err_template(M_TOO_MANY_A, NULL);
+	if (file->count.c > 1)
+		err_template(M_TOO_MANY_C, NULL);
+	if (file->count.r > 1)
+		err_template(M_TOO_MANY_R, NULL);
 }

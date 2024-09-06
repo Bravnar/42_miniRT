@@ -7,7 +7,7 @@ void	read_file(char *file_name, t_map *data)
 
 	data->file.fd = open(file_name, O_RDONLY);
 	if (data->file.fd == -1)
-		err_handler(OPEN_FAILED);
+		err_template(M_OPEN_FAILED, NULL);
 	line = get_next_line(data->file.fd);
 	while (line)
 	{
@@ -19,7 +19,24 @@ void	read_file(char *file_name, t_map *data)
 	free(line);
 }
 
-void	check_identifier(t_parse **head)
+void	check_identifier(char *identifier)
+{
+	if (ft_strisalpha(identifier))
+	{
+		if (!ft_strstr(GOOD_ID, identifier))
+		{
+			printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
+			err_template(M_UKNOWN_ID, identifier);
+		}
+	}
+	else
+	{
+		printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
+		err_template(M_UKNOWN_ID, identifier);
+	}
+}
+
+/* void	check_identifier(t_parse **head)
 {
 	t_parse	*tmp;
 
@@ -38,7 +55,7 @@ void	check_identifier(t_parse **head)
 		}
 		tmp = tmp->next;
 	}
-}
+} */
 
 int	check_file_name(char *name)
 {
@@ -57,9 +74,9 @@ int	check_file_name(char *name)
 void	populate_scene_struct(char *file_name, t_map *scene)
 {
 	if (!check_file_name(file_name))
-		err_handler(WRONG_EXT);
+		err_template(M_WRONG_EXT, NULL);
 	read_file(file_name, scene);
-	check_count();
+	//check_count();
 	populate_rwin();
 	populate_amb();
 	populate_cam();
