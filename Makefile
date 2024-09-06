@@ -82,8 +82,6 @@ SRCS= 	srcs/main.c \
 		srcs/world/view.c \
 		srcs/testing_loop.c \
 		srcs/world/view_utils.c \
-		srcs/colors/pattern.c \
-		srcs/colors/plain_pattern.c \
 		srcs/parsing/new_parsing/create_map.c \
 		srcs/parsing/new_parsing/fetching_data.c \
 
