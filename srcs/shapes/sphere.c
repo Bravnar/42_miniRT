@@ -37,7 +37,7 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
 		return (NULL);
-	sphere->diameter = ft_strtod(sphere_split[2]);
+	sphere->diameter = ft_strtod(sphere_split[1]);
 	sphere->shape.id = i;
 	sphere->shape.get_name = get_name_s;
 	sphere->shape.volume = volume_s;
@@ -45,7 +45,7 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 	sphere->shape.transform = transform_s;
 	sphere->shape.local_intersect = local_intersect_s;
 	sphere->shape.local_normal_at = local_normal_at_s;
-	sphere->shape.point = get_point(sphere_split[1]);
+	sphere->shape.point = str_to_point(sphere_split[0]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
 	pat = pattern(white(), c("blue"), STRIPE,
 			matrix_mult(rotation_z(0),

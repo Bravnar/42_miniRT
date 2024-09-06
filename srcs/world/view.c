@@ -1,6 +1,6 @@
 #include "main.h"
 
-void	render(t_view_cam cam, t_world w, t_main *rt)
+void	render(t_view_cam cam, t_world w, t_mrt *rt)
 {
 	int		y;
 	int		x;

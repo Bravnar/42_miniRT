@@ -30,7 +30,7 @@ void	lighting_test_1(void)
 
 	light = new_light_node(point(0, 0, -10), 1,
 			color(255, 255, 255), color(255, 255, 255));
-	add_light_node_front(light, &get_scene()->light);
+	add_light_node_front(light, &get_map()->light);
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
 	test_lighting(views, color(1.9 * 255, 1.9 * 255, 1.9 * 255),
@@ -39,7 +39,7 @@ void	lighting_test_1(void)
 	views[1] = vector(0, 0, -1);
 	test_lighting(views, color(255, 255, 255),
 		"Eye between light and surface, eye offset 45 degrees", false);
-	remove_first_light(&get_scene()->light);
+	remove_first_light(&get_map()->light);
 }
 
 void	lighting_test_2(void)
@@ -49,7 +49,7 @@ void	lighting_test_2(void)
 
 	light = new_light_node(point(0, 10, -10), 1,
 			color(255, 255, 255), color(255, 255, 255));
-	add_light_node_front(light, &get_scene()->light);
+	add_light_node_front(light, &get_map()->light);
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
 	test_lighting(views, color(0.7363961 * 255,
@@ -60,15 +60,15 @@ void	lighting_test_2(void)
 	test_lighting(views,
 		color(1.6363961 * 255, 1.6363961 * 255, 1.6363961 * 255),
 		"Lighting with eye in the path of reflection", false);
-	remove_first_light(&get_scene()->light);
+	remove_first_light(&get_map()->light);
 	light = new_light_node(point(0, 0, 10), 1,
 			color(255, 255, 255), color(255, 255, 255));
-	add_light_node_front(light, &get_scene()->light);
+	add_light_node_front(light, &get_map()->light);
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
 	test_lighting(views, color(25.5, 25.5, 25.5),
 		"Lighting with light behind the surface", false);
-	remove_first_light(&get_scene()->light);
+	remove_first_light(&get_map()->light);
 }
 
 void	lighting_test_3(void)
@@ -78,20 +78,20 @@ void	lighting_test_3(void)
 
 	light = new_light_node(point(0, 0, -10), 1,
 			color(510, 510, 510), color(510, 510, 510));
-	add_light_node_front(light, &get_scene()->light);
+	add_light_node_front(light, &get_map()->light);
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
 	test_lighting(views, color(2.8 * 255, 2.8 * 255, 2.8 * 255),
 		"Lighting with intense light source", false);
-	remove_first_light(&get_scene()->light);
+	remove_first_light(&get_map()->light);
 	light = new_light_node(point(0, 0, -10), 1,
 			color(255, 255, 255), color(255, 255, 255));
-	add_light_node_front(light, &get_scene()->light);
+	add_light_node_front(light, &get_map()->light);
 	views[0] = vector(0, 0, -1);
 	views[1] = vector(0, 0, -1);
 	test_lighting(views, color(25.5, 25.5, 25.5),
 		"Lighting with shadows", true);
-	remove_first_light(&get_scene()->light);
+	remove_first_light(&get_map()->light);
 }
 
 void	lighting_test_battery(void)

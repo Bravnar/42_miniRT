@@ -18,7 +18,7 @@ t_world	create_world(void)
 {
 	t_world	w;
 
-	w.light = get_scene()->light;
-	w.shapes = get_scene()->obj_list;
+	w.light = get_map()->light;
+	w.shapes = get_map()->obj_list;
 	return (w);
 }

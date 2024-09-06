@@ -4,7 +4,7 @@ t_material	material(t_pattern p, double d, double s, double sh)
 {
 	t_material	new_mat;
 
-	new_mat.amb = get_scene()->amb.ratio;
+	new_mat.amb = get_map()->amb.ratio;
 	new_mat.diffuse = d;
 	new_mat.specular = s;
 	new_mat.shininess = sh;
