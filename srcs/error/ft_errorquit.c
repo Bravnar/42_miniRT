@@ -24,24 +24,22 @@ void	err_template(char *msg, char *line)
 
 	e_line = NULL;
 	if (line)
+	{
 		e_line = simple_replace(line, '\t', ' ');
+		e_line = ft_strtrim(e_line, "\n");
+	}
 	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
 	ft_fprintf(2, BOLD_RED"ParseError\n\n"RESET);
 	if (e_line)
 	{
-		if (ft_strlen(e_line) > 20)
-		{
+		if (ft_strlen(e_line) > 12)
 			ft_fprintf(2, BOLD_WHITE"In line:\t"RESET);
-			ft_fprintf(2, "%s\n", e_line);
-		}
 		else
-		{
 			ft_fprintf(2, BOLD_WHITE"Error Location:\t"RESET);
-			ft_fprintf(2, "%s\n\n", e_line);
-		}
+		ft_fprintf(2, "%s\n", e_line);
 		free(e_line);
 	}
-	ft_fprintf(2, BOLD_ORANGE"%s\n"RESET, msg);
+	ft_fprintf(2, BOLD_ORANGE"\n%s\n"RESET, msg);
 	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
 	exit(1);
 }
