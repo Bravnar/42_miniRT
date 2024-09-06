@@ -5,27 +5,28 @@
 
 # ifdef __APPLE__
 
-#  define ESC (53)
-#  define LEFT (123)
-#  define RIGHT (124)
-#  define UP (126)
-#  define DOWN (125)
-#  define Q_KEY (12)
-#  define WIN_X_MAX (3840)
-#  define WIN_Y_MAX (2160)
+#  define ESC 53
+#  define LEFT 123
+#  define RIGHT 124
+#  define UP 126
+#  define DOWN 125
+#  define Q_KEY 12
+#  define P_KEY 35
+#  define WIN_X_MAX 3840
+#  define WIN_Y_MAX 2160
 
 # else
 
-#  define ESC	(65307)
-#  define LEFT	(65361)
-#  define RIGHT	(65363)
-#  define UP	(65362)
-#  define DOWN	(65364)
-#  define Q_KEY	(113)
-#  define P_KEY (112)
+#  define ESC	65307
+#  define LEFT	65361
+#  define RIGHT	65363
+#  define UP	65362
+#  define DOWN	65364
+#  define Q_KEY	113
+#  define P_KEY 112
 
-#  define WIN_X_MAX (3840)
-#  define WIN_Y_MAX (2160)
+#  define WIN_X_MAX 3840
+#  define WIN_Y_MAX 2160
 
 #  define WIN_X_DEFAULT 500
 #  define WIN_Y_DEFAULT 500

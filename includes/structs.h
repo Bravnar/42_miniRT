@@ -192,8 +192,12 @@ typedef struct s_comps
 	t_tup	point;
 	t_tup	eyev;
 	t_tup	normalv;
+	t_tup	reflectv;
 	bool	is_inside;
 	t_tup	over_point;
+	t_tup	under_point;
+	double	n1;
+	double	n2;
 }	t_comps;
 
 typedef struct s_strtoi
