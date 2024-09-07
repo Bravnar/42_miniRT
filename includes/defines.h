@@ -14,6 +14,8 @@
 #  define P_KEY 35
 #  define WIN_X_MAX 3840
 #  define WIN_Y_MAX 2160
+# define WIN_X_DEFAULT 500
+# define WIN_Y_DEFAULT 500
 
 # else
 

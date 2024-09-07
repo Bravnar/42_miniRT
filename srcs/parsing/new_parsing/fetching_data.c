@@ -70,6 +70,7 @@ t_cam	fetch_cam(t_parse **head, t_rwin res)
 	t_cam	cam;
 
 	tmp = *head;
+	cam.point = point(0, 0, 0);
 	while (tmp)
 	{
 		if (tmp->type == CAMERA)
@@ -93,6 +94,7 @@ t_amb	fetch_amb(t_parse **head)
 	t_amb	amb;
 
 	tmp = *head;
+	amb.ratio = 0;
 	while (tmp)
 	{
 		if (tmp->type == AMBIENT)
