@@ -5,7 +5,7 @@
 
 void			draw_rectangle(t_main *rt); //TMP
 void			my_pixel(t_mlx *mlx, int x, int y, int color); //IMPORTANT
-void			redraw(t_main *rt, t_world w);
+void			redraw(t_mrt *rt, t_world w);
 
 /* INIT */
 
@@ -96,15 +96,17 @@ t_matrix		view_transform(t_tup from, t_tup to, t_tup up);
 t_view_cam		init_camera(double hsize, double vsize, double fov);
 void			print_view_cam(t_view_cam cam);
 t_ray			ray_for_pixel(t_view_cam cam, double px, double py);
-void			render(t_view_cam cam, t_world w, t_main *rt);
-void			test_scene_render(t_main *rt, char *file_name);
+// void			render(t_view_cam cam, t_world w, t_main *rt);
+void			render(t_view_cam cam, t_world w, t_mrt *mrt);
+void			test_scene_render(t_mrt *mrt, char *file_name);
+// void			test_scene_render(t_main *rt, char *file_name);
 void			calc_pixel_size(t_view_cam *cam);
 t_inter			app_intersect(t_inter *xs, t_inter *new);
 
 /* EVENT HANDLER */
 int				close_win(void *param);
-int				keyboard(int keycode, t_main *rt);
-void			handle_events(t_main *rt);
+int				keyboard(int keycode, t_mrt *rt);
+void			handle_events(t_mrt *mrt);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -405,10 +407,14 @@ void	check_count(t_file *file);
 t_rwin	fetch_res(t_parse **head);
 t_amb	fetch_amb(t_parse **head);
 t_cam	fetch_cam(t_parse **head, t_rwin res);
+t_obj	*fetch_objs(t_parse **head);
 t_light	*fetch_light(t_parse **head);
 t_color	color_split(char *color_str);
 void	err_template(char *msg, char *line);
 void	init_view(t_cam *cam);
+void	add_obj_node(t_obj **head, t_obj *new_node);
+t_tup	str_to_vector(char *str);
+t_tup	str_to_point(char *str);
 
 
 #endif

@@ -90,20 +90,20 @@ t_cyl	*cyl_create(char **cyl_line, int i)
 	cyl = malloc(sizeof(t_cyl));
 	if (!cyl)
 		return (NULL);
-	cyl->diameter = ft_strtod(cyl_line[3]);
-	cyl->height = ft_strtod(cyl_line[4]);
+	cyl->diameter = ft_strtod(cyl_line[2]);
+	cyl->height = ft_strtod(cyl_line[3]);
 	cyl->shape.get_name = get_name_cy;
 	cyl->shape.volume = volume_cy;
 	cyl->shape.destroy = cyl_destroy;
 	cyl->shape.transform = transform_cy;
 	cyl->shape.local_intersect = local_intersect_cy;
 	cyl->shape.local_normal_at = local_normal_at_cy;
-	pat = pattern(c("blue"), get_color(cyl_line[5]), PLAIN,
+	pat = pattern(c("blue"), color_split(cyl_line[4]), PLAIN,
 				matrix_mult(rotation_z(0),
 				scaling_matrix(1, 1, 1)));
 	cyl->shape.material = material(pat, 0.9, 0.9, 200);
-	cyl->shape.point = get_point(cyl_line[1]);
-	cyl->shape.dir_vector = get_vector(cyl_line[2]);
+	cyl->shape.point = str_to_point(cyl_line[0]);
+	cyl->shape.dir_vector = str_to_vector(cyl_line[1]);
 	cyl->shape.next = NULL;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();

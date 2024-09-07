@@ -1,6 +1,6 @@
 #include "main.h"
 
-void	redraw(t_main *rt, t_world w)
+void	redraw(t_mrt *rt, t_world w)
 {
 	if (rt->mlx.img_ptr != NULL)
 		mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
@@ -19,9 +19,9 @@ void	redraw(t_main *rt, t_world w)
 
 int	close_win(void *param)
 {
-	t_main	*rt;
+	t_mrt	*rt;
 
-	rt = (t_main *)param;
+	rt = (t_mrt *)param;
 	if (rt->mlx.win_ptr)
 	{
 		mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
@@ -32,7 +32,7 @@ int	close_win(void *param)
 	return (0);
 }
 
-int	keyboard(int keycode, t_main *rt)
+int	keyboard(int keycode, t_mrt *rt)
 {
 	t_world	w;
 
@@ -62,7 +62,7 @@ int	keyboard(int keycode, t_main *rt)
 	return (0);
 }
 
-void	handle_events(t_main *rt)
+void	handle_events(t_mrt *rt)
 {
 	mlx_hook(rt->mlx.win_ptr, 17, 0, close_win, rt);
 	mlx_hook(rt->mlx.win_ptr, 2, 1L << 0, keyboard, rt);

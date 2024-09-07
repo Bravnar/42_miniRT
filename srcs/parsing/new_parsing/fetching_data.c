@@ -137,3 +137,57 @@ t_rwin	fetch_res(t_parse **head)
 	}
 	return (res);
 }
+
+t_light	*fetch_light(t_parse **head)
+{
+	t_light	*l_head;
+	t_parse	*tmp;
+	t_light	*node;
+	t_color	rgb;
+	double	bright;
+
+	tmp = *head;
+	l_head = NULL;
+	while (tmp)
+	{
+		if (tmp->type == LIGHTS)
+		{
+			bright = ft_strtod(tmp->line_split[1]);
+			rgb = color_split(tmp->line_split[2]);
+			node = new_light_node(str_to_point(tmp->line_split[0]),
+					bright, rgb,
+					color_scalarmult(bright, rgb));
+			add_light_node(&l_head, node);
+		}
+		tmp = tmp->next;
+	}
+	return (l_head);
+}
+
+t_obj	*fetch_objs(t_parse **head)
+{
+	t_obj	*obj_list;
+	t_obj	*(*create_shape)(char **, int);
+	t_parse *tmp;
+	int		i;
+
+	i = 0;
+	obj_list = NULL;
+	tmp = *head;
+	while(tmp)
+	{
+		create_shape = NULL;
+		if (!ft_strcmp(tmp->id, "sp"))
+			create_shape = (t_obj *(*)(char **, int)) sphere_create;
+		else if (!ft_strcmp(tmp->id, "cy"))
+			create_shape = (t_obj *(*)(char **, int)) cyl_create;
+		else if (!ft_strcmp(tmp->id, "pl"))
+			create_shape = (t_obj *(*)(char **, int)) plane_create;
+		else if (!ft_strcmp(tmp->id, "cu"))
+			create_shape = (t_obj *(*)(char **, int)) cube_create;
+		if (create_shape)
+			add_obj_node(&obj_list, create_shape(tmp->line_split, i++));
+		tmp = tmp->next;
+	}
+	return (obj_list);
+}

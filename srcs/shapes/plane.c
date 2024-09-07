@@ -32,8 +32,8 @@ t_plane	*plane_create(char **plane_line, int i)
 	p->shape.local_normal_at = local_normal_at_pl;
 	p->shape.transform = transform_pl;
 	p->shape.local_intersect = local_intersect_pl;
-	p->shape.point = get_point(plane_line[1]);
-	p->shape.dir_vector = vector_norm(get_vector(plane_line[2]));
+	p->shape.point = str_to_point(plane_line[0]);
+	p->shape.dir_vector = vector_norm(str_to_vector(plane_line[1]));
 	pat = pattern(c("purple"), c("pink"), STRIPE, rotation_z_pat(45, "plane"));
 	p->shape.material = material(pat, 0.9, 0, 200);
 	p->shape.transformation = identity();

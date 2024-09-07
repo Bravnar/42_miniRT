@@ -19,7 +19,7 @@ t_color	specular(double ldn, t_material m, t_tup v[3])
 	double	factor;
 	double	reflect_dot_eye;
 
-	intensity = get_scene()->light->intensity;
+	intensity = get_map()->light->intensity;
 	if (ldn < 0)
 		return (black());
 	else

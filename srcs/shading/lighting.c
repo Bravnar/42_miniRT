@@ -5,7 +5,7 @@ t_color	compute_eff_color(t_obj *shape, t_tup p)
 	t_color	eff_color;
 	t_color	intensity;
 
-	intensity = get_scene()->light->intensity;
+	intensity = get_map()->light->intensity;
 	eff_color = color_product(
 			shape->material.pattern.color_at(shape,
 				p, shape->material.pattern), intensity);
@@ -14,7 +14,7 @@ t_color	compute_eff_color(t_obj *shape, t_tup p)
 
 t_tup	light_vector(t_tup point)
 {
-	return (vector_norm(tuple_sub(get_scene()->light->point, point)));
+	return (vector_norm(tuple_sub(get_map()->light->point, point)));
 }
 
 t_color	lighting(t_obj *shape, t_tup p, t_tup views[2], bool in_shadow)

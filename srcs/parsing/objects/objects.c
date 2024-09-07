@@ -47,7 +47,7 @@ t_tup	get_vector(char *str)
 	t_tup	n_vector;
 
 	vector_split = ft_split(str, ',');
-	n_vector = point(ft_strtod(vector_split[0]),
+	n_vector = vector(ft_strtod(vector_split[0]),
 			ft_strtod(vector_split[1]),
 			ft_strtod(vector_split[2]));
 	ft_free_arr(vector_split);
