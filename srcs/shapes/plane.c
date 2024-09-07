@@ -36,6 +36,7 @@ t_plane	*plane_create(char **plane_line, int i)
 	p->shape.dir_vector = vector_norm(str_to_vector(plane_line[1]));
 	pat = pattern(c("purple"), c("pink"), STRIPE, rotation_z_pat(45, "plane"));
 	p->shape.material = material(pat, 0.9, 0, 200);
+	p->shape.material.reflective = 0.3;
 	p->shape.transformation = identity();
 	p->shape.inverse_transformation = identity();
 	p->shape.transform((t_obj *) p, translation_matrix(

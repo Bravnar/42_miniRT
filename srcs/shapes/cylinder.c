@@ -15,26 +15,19 @@ t_tup	local_normal_at_cy(t_obj *cyl, t_tup point)
 {
 	double		dist;
 	t_cyl		*cyll;
-	t_tup		obj_space_point;
-	t_tup		normal_in_obj_space;
-	t_matrix	normal_transform_matrix;
+	t_tup		normal;
 
 	cyll = (t_cyl *) cyl;
 	dist = pow(point.x, 2) + pow(point.z, 2);
-	if (dist < 1 && point.z >= cyll->height / 2 - DBL_EPSILON)
-		return (vector(0, 1, 0));
-	if (dist < 1 && point.y >= -cyll->height / 2 + DBL_EPSILON)
-		return (vector(0, -1, 0));
-	if (fabs(cyll->shape.dir_vector.x) < DBL_EPSILON \
-		&& fabs(cyll->shape.dir_vector.z) < DBL_EPSILON)
-		return (vector_norm(vector(point.x, 0, point.z)));
-	obj_space_point = matrix_mult_tup(
-			cyll->shape.inverse_transformation, point);
-	normal_in_obj_space = vector_norm(vector(
-				obj_space_point.x, 0, obj_space_point.z));
-	normal_transform_matrix = transpose(cyll->shape.inverse_transformation);
-	return (vector_norm(matrix_mult_tup(
-				normal_transform_matrix, normal_in_obj_space)));
+	if (dist < 1 && point.y >= cyll->max - EPSILON)
+		normal = vector(0, 1, 0);
+	else if (dist < 1 && point.y <= cyll->min + EPSILON)
+		normal = vector(0, -1, 0);
+	else
+		normal = vector_norm(vector(point.x, 0, point.z));
+	if (cyl->material.pattern.noise)
+		normal = perturb_normal(cyl, point, normal, cyl->material.pattern);
+	return (normal);
 }
 
 double	volume_cy(t_obj *shape)
@@ -86,29 +79,34 @@ t_cyl	*cyl_create(char **cyl_line, int i)
 {
 	t_cyl		*cyl;
 	t_pattern	pat;
+	t_matrix	cyl_transform;
 
 	cyl = malloc(sizeof(t_cyl));
 	if (!cyl)
 		return (NULL);
 	cyl->diameter = ft_strtod(cyl_line[2]);
 	cyl->height = ft_strtod(cyl_line[3]);
+	cyl->max = cyl->height / 2;
+	cyl->min = -cyl->height / 2;
 	cyl->shape.get_name = get_name_cy;
 	cyl->shape.volume = volume_cy;
 	cyl->shape.destroy = cyl_destroy;
 	cyl->shape.transform = transform_cy;
 	cyl->shape.local_intersect = local_intersect_cy;
 	cyl->shape.local_normal_at = local_normal_at_cy;
-	pat = pattern(c("blue"), color_split(cyl_line[4]), PLAIN,
-				matrix_mult(rotation_z(0),
-				scaling_matrix(1, 1, 1)));
-	cyl->shape.material = material(pat, 0.9, 0.9, 200);
 	cyl->shape.point = str_to_point(cyl_line[0]);
 	cyl->shape.dir_vector = str_to_vector(cyl_line[1]);
 	cyl->shape.next = NULL;
+	cyl_transform = apply_transformation_cy(cyl);
+	pat = pattern(c("blue"), color_split(cyl_line[4]), PLAIN,
+					  cyl_transform);
+	cyl->shape.material = material(pat, 0.9, 0.9, 200);
+	cyl->shape.material.reflective = 0;
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
-	cyl->shape.transform((t_obj *) cyl, apply_transformation_cy(cyl));
+	cyl->shape.transform((t_obj *) cyl, cyl_transform);
 	cyl->shape.id = i;
+	cyl->closed = true;
 	return (cyl);
 }
 
