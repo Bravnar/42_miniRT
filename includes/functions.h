@@ -115,8 +115,8 @@ void			handle_events(t_mrt *mrt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 08:24:27 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/29 08:25:33 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/07 18:13:26 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/07 18:13:42 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ t_color			plain_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			stripe_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			gradient_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
+t_tup			perturb_normal(t_obj *obj, t_tup p, t_tup normal, t_pattern pat);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -197,7 +198,7 @@ t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
 
 /* MATRICES OPERATIONS */
 
-bool			matrix_compare(t_matrix A, t_matrix B);
+bool matrix_compare(t_matrix A, t_matrix B);
 t_matrix		matrix_mult(t_matrix A, t_matrix B);
 t_column		matrix_mult_col(t_matrix A, t_column b);
 t_tup			matrix_mult_tup(t_matrix A, t_tup b);
