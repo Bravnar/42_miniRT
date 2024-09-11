@@ -22,6 +22,7 @@ SRCS= 	srcs/main.c \
 		srcs/colors/patterns/plain.c \
 		srcs/colors/patterns/stripe.c \
 		srcs/colors/patterns/gradient.c \
+		srcs/colors/patterns/bump.c \
 		srcs/init/init_new.c \
 		srcs/parsing/read_rt_file.c \
 		srcs/parsing/utils.c \
@@ -50,6 +51,7 @@ SRCS= 	srcs/main.c \
 		srcs/shapes/cube_utils.c \
 		srcs/shapes/cylinder.c \
 		srcs/shapes/cylinder_utils.c \
+		srcs/shapes/cylinder_cap.c \
 		srcs/shapes/sphere.c \
 		srcs/shapes/sphere_utils.c \
 		srcs/shapes/plane.c \

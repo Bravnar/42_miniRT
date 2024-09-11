@@ -40,18 +40,19 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 	cyl->saved_ray = ray_transform(cyl->saved_ray, cyl->inverse_transformation);
 	ret = NULL;
 	disc = discriminant_cyl(cyl, &ab[0], &ab[1]);
-	if (disc < -DBL_EPSILON)
+	if (disc < 0)
 		return (ret);
 	t = (-ab[1] - sqrt(disc)) / (2 * ab[0]);
 	y = cyl->saved_ray.point.y + t * cyl->saved_ray.direction.y;
-	if ((-((t_cyl *)cyl)->height / 2) < y \
-		&& y < (((t_cyl *)cyl)->height) / 2)
+	if (((t_cyl *)cyl)->min < y \
+		&& y < ((t_cyl *)cyl)->max)
 		add_inter_node(&ret, new_inter_node(intersection(t, cyl)));
 	t = (-ab[1] + sqrt(disc)) / (2 * ab[0]);
 	y = cyl->saved_ray.point.y + t * cyl->saved_ray.direction.y;
-	if ((-((t_cyl *)cyl)->height / 2 < y \
-		&& y < (((t_cyl *)cyl)->height) / 2))
+	if ((((t_cyl *)cyl)->min < y \
+		&& y < ((t_cyl *)cyl)->max))
 		add_inter_node(&ret, new_inter_node(intersection(t, cyl)));
+	intersect_caps(cyl, cyl->saved_ray, ret);
 	return (ret);
 }
 
@@ -77,5 +78,8 @@ t_cyl	*cylinder(int i)
 	cyl->shape.transformation = identity();
 	cyl->shape.inverse_transformation = identity();
 	cyl->shape.id = i;
+	cyl->closed = true;
+	cyl->max = DBL_MAX;
+	cyl->min = DBL_MIN;
 	return (cyl);
 }

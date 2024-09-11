@@ -45,6 +45,8 @@ typedef struct s_pattern
 	void		(*transform)(struct s_pattern *pat, t_matrix transformation);
 	t_matrix	transformation;
 	t_matrix	inverse_transformation;
+	double		noise;
+	double		scale;
 }	t_pattern;
 
 typedef struct s_material

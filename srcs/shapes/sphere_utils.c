@@ -8,7 +8,12 @@ t_inter	*local_intersect_s(t_ray r, t_obj *sphere)
 
 t_tup	local_normal_at_s(t_obj *sphere, t_tup point)
 {
-	return (normal_at(sphere, point));
+	t_tup	normal;
+
+	normal = normal_at(sphere, point);
+	if (sphere->material.pattern.noise)
+		normal = perturb_normal(sphere, point, normal, sphere->material.pattern);
+	return (normal);
 }
 
 t_sphere	*sphere(int i)
