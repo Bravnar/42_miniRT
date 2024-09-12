@@ -4,18 +4,19 @@
 /* PLEASE KEEP THIS TINY MAIN SOMEWHERE AS A COMMENT
    WHEN MERGING OBV KEEP THE ORIGINAL :) */
 
-/* int	main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_mrt	*mrt;
 
+	#pragma
 	if (ac != 2)
 		return (1);
 	mrt = initialize(av[1]);
 	print_scene_details();
 	free(mrt);
 	return (0);
-} */
-
+}
+/* 
 void	test_cy(void)
 {
 	t_obj	*cyl;
@@ -27,10 +28,10 @@ void	test_cy(void)
 	t_ray r = ray_new(point(0, 1.5, -2), direction);
 	t_inter	*xs = cyl->local_intersect(r, cyl);
 	print_inter(&xs);
-}
+} */
 
 // STAN TESTER MAIN
-int	main(int ac, char **av)
+/* int	main(int ac, char **av)
 {
 	t_mrt	*mrt;
 
@@ -50,7 +51,7 @@ int	main(int ac, char **av)
 		free(mrt);
 	}
   return (0);
-}
+} */
  
 
 

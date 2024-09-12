@@ -3,6 +3,8 @@
 
 # define EPSILON	(0.00001)
 
+# define BONUS 0
+
 # ifdef __APPLE__
 
 #  define ESC 53
