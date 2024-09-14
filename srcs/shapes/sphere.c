@@ -47,7 +47,7 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 	sphere->shape.material = material(pat, 0.9, 0.9, 200);
 	sphere->shape.material.refractive_index = 1.5;
 	sphere->shape.material.reflective = 0;
-	sphere->shape.material.transparency = 0.6;
+	sphere->shape.material.transparency = 0.95;
 	sphere->shape.transform((t_obj *) sphere,
 		matrix_mult(translation_matrix(sphere->shape.point.x,
 				sphere->shape.point.y, sphere->shape.point.z),

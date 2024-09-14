@@ -17,7 +17,7 @@ t_pattern	pattern(t_color a, t_color b, t_patt_type type, t_matrix trans)
 	pat.transformation = identity();
 	pat.inverse_transformation = identity();
 	pat.transform = transform;
-	pat.noise = 0.1;
+	pat.noise = 0;
 	pat.scale = 5;
 	pat.transform(&pat, trans);
 	if (type == PLAIN)

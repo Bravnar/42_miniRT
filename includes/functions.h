@@ -91,6 +91,7 @@ t_inter			*intersect_world(t_world w, t_ray r);
 t_comps			prepare_comp(t_intersection h, t_ray r, t_inter *xs);
 t_color			shade_hit(t_world w, t_comps comps, int remaining);
 t_color			color_at(t_world w, t_ray r, int remaining);
+t_color			iterative_color_at(t_world w, t_ray r, int remaining);
 
 t_matrix		view_transform(t_tup from, t_tup to, t_tup up);
 t_view_cam		init_camera(double hsize, double vsize, double fov);
@@ -115,8 +116,8 @@ void			handle_events(t_mrt *mrt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 18:13:26 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/07 18:13:42 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/14 12:23:43 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/14 12:23:55 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +181,7 @@ t_color			color_blend(t_color c1, t_color c2);
 
 t_color			black(void);
 t_color			white(void);
-t_color 		c(char *name);
+t_color			c(char *name);
 
 /* PATTERNS */
 
@@ -188,7 +189,8 @@ t_color			plain_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			stripe_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			gradient_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
-t_tup			perturb_normal(t_obj *obj, t_tup p, t_tup normal, t_pattern pat);
+t_tup			perturb_normal(t_obj *obj, t_tup p,
+					t_tup normal, t_pattern pat);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -198,7 +200,7 @@ t_tup			perturb_normal(t_obj *obj, t_tup p, t_tup normal, t_pattern pat);
 
 /* MATRICES OPERATIONS */
 
-bool matrix_compare(t_matrix A, t_matrix B);
+bool			matrix_compare(t_matrix A, t_matrix B);
 t_matrix		matrix_mult(t_matrix A, t_matrix B);
 t_column		matrix_mult_col(t_matrix A, t_column b);
 t_tup			matrix_mult_tup(t_matrix A, t_tup b);
@@ -317,7 +319,9 @@ t_tup			vector_reflect(t_tup in, t_tup normal);
 
 t_material		material(t_pattern p, double d, double s, double sh);
 t_material		mat_default(void);
-t_color			lighting(t_obj *shape, t_tup p, t_tup views[2], bool in_shadow);
+t_tup			light_vector(t_tup point);
+t_color			lighting(t_obj *shape, t_tup p, t_tup views[2],
+					double shadow_intensity);
 
 /* vs[0] = eye_view, vs[1] = normal_view */
 
@@ -334,6 +338,7 @@ t_color			specular(double ldn, t_material m, t_tup v[3]);
 /* ************************************************************************** */
 
 bool			is_shadowed(t_world w, t_comps comps);
+double			calculate_shadow_intensity(t_world world, t_tup point);
 
 /* ************************************************************************** */
 /*                                                                            */

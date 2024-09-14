@@ -17,7 +17,7 @@ t_tup	light_vector(t_tup point)
 	return (vector_norm(tuple_sub(get_map()->light->point, point)));
 }
 
-t_color	lighting(t_obj *shape, t_tup p, t_tup views[2], bool in_shadow)
+t_color	lighting(t_obj *shape, t_tup p, t_tup views[2], double shadow_intensity)
 {
 	t_color	eff_color;
 	t_color	diff;
@@ -35,8 +35,8 @@ t_color	lighting(t_obj *shape, t_tup p, t_tup views[2], bool in_shadow)
 	light_dot_normal = dot(v[0], views[1]);
 	diff = diffuse(light_dot_normal, shape->material, eff_color);
 	spec = specular(light_dot_normal, shape->material, v);
-	if (in_shadow)
-		return (ambient(eff_color, shape->material));
+	diff = color_scalarmult(shadow_intensity, diff);
+	spec = color_scalarmult(shadow_intensity, spec);
 	return (color_add(ambient(eff_color, shape->material),
 			color_add(diff, spec)));
 }
