@@ -37,14 +37,8 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
 		return (NULL);
+	sphere_set_up(sphere, i);
 	sphere->diameter = ft_strtod(sphere_split[1]);
-	sphere->shape.id = i;
-	sphere->shape.get_name = get_name_s;
-	sphere->shape.volume = volume_s;
-	sphere->shape.destroy = sphere_destroy;
-	sphere->shape.transform = transform_s;
-	sphere->shape.local_intersect = local_intersect_s;
-	sphere->shape.local_normal_at = local_normal_at_s;
 	sphere->shape.point = str_to_point(sphere_split[0]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
 	pat = pattern(white(), c("blue"), GRADIENT,
@@ -52,11 +46,8 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 				scaling_matrix(1, 1, 1)));
 	sphere->shape.material = material(pat, 0.9, 0.9, 200);
 	sphere->shape.material.refractive_index = 1.5;
-	sphere->shape.material.reflective = 0.5;
-	sphere->shape.material.transparency = 0.9;
-	sphere->shape.next = NULL;
-	sphere->shape.transformation = identity();
-	sphere->shape.inverse_transformation = identity();
+	sphere->shape.material.reflective = 0;
+	sphere->shape.material.transparency = 0.6;
 	sphere->shape.transform((t_obj *) sphere,
 		matrix_mult(translation_matrix(sphere->shape.point.x,
 				sphere->shape.point.y, sphere->shape.point.z),
