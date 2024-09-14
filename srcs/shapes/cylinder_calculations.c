@@ -61,7 +61,7 @@ bool	check_cap(t_ray r, double t)
 	return (result < 1 || equal(result, 1));
 }
 
-void	intersect_caps(t_obj *obj, t_ray r, t_inter *inter)
+void	intersect_caps(t_obj *obj, t_ray r, t_inter **inter)
 {
 	t_cyl	*cyl;
 	double	t;
@@ -71,8 +71,12 @@ void	intersect_caps(t_obj *obj, t_ray r, t_inter *inter)
 		return ;
 	t = (cyl->min - r.point.y) / r.direction.y;
 	if (check_cap(r, t))
-		add_inter_node(&inter, new_inter_node(intersection(t, obj)));
+	{
+		add_inter_node(inter, new_inter_node(intersection(t, obj)));
+	}
 	t = (cyl->max - r.point.y) / r.direction.y;
 	if (check_cap(r, t))
-		add_inter_node(&inter, new_inter_node(intersection(t, obj)));
+	{
+		add_inter_node(inter, new_inter_node(intersection(t, obj)));
+	}
 }

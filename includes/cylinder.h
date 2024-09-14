@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 11:59:31 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/14 12:00:32 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/14 13:14:55 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/14 13:14:55 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ t_tup		calculate_rotations(t_tup dir_vector);
 double		discriminant_cyl(t_obj *cyl, double *a, double *b);
 t_matrix	apply_transformation_cy(t_cyl *cyl);
 void		transform_cy(t_obj *shape, t_matrix transformation);
-void		intersect_caps(t_obj *obj, t_ray r, t_inter *inter);
+void		intersect_caps(t_obj *obj, t_ray r, t_inter **inter);
 
 #endif

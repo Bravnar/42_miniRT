@@ -14,22 +14,20 @@ double	calculate_shadow_intensity(t_world world, t_tup point)
 	t_ray	shadow_ray;
 	t_inter	*shadow_intersections;
 	double	shadow_intensity;
-	t_inter	*current;
+	double distance_to_light;
+	t_inter *current;
 
 	shadow_ray = ray_new(point, light_vector(point));
 	shadow_intersections = intersect_world(world, shadow_ray);
 	shadow_intensity = 1.0;
 	current = shadow_intersections;
-	double distance_to_light = vector_mag(tuple_sub(world.light->point, point));
-	while (current != NULL)
+	distance_to_light = vector_mag(tuple_sub(world.light->point, point));
+	while (current != NULL && !equal(shadow_intensity, 0.0))
 	{
 		if (current->i.t > 0 && current->i.t < distance_to_light)
 		{
 			if (current->i.shape->material.transparency == 0)
-			{
 				shadow_intensity = 0;
-				break ;
-			}
 			else
 				shadow_intensity *= current->i.shape->material.transparency;
 		}

@@ -55,7 +55,7 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 	if ((((t_cyl *)cyl)->min < y \
 		&& y < ((t_cyl *)cyl)->max))
 		add_inter_node(&ret, new_inter_node(intersection(t, cyl)));
-	intersect_caps(cyl, cyl->saved_ray, ret);
+	intersect_caps(cyl, cyl->saved_ray, &ret);
 	return (ret);
 }
 
