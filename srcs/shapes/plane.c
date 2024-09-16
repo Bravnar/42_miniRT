@@ -32,20 +32,44 @@ void	plane_set_up(t_plane *plane, int i)
 	plane->shape.id = i;
 }
 
+void	pat_mat_pl(char **plane_split, t_plane *plane)
+{
+	t_pattern	pat;
+	t_color		prim;
+	t_color		sec;
+
+	prim = color_split(plane_split[2]);
+	if (!RT_BONUS)
+	{
+		pat = pat_default(prim);
+		plane->shape.material = material(pat, 0.9, 0.9, 200);
+		plane->shape.material.refractive_index = 0;
+		plane->shape.material.reflective = 0;
+		plane->shape.material.transparency = 0;
+	}
+	else
+	{
+		sec = color_split(plane_split[4]);
+		pat = pattern(prim, sec, range_int(plane_split[3], 0, 3),
+			matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
+		plane->shape.material = material (pat, 0.9, 0.9, 200);
+		plane->shape.material.refractive_index = range_double(plane_split[6], 0.0, 5.0);
+		plane->shape.material.reflective = range_double(plane_split[5], 0.0, 1.0);
+		plane->shape.material.transparency = range_double(plane_split[7], 0.0, 1.0);
+	}
+}
+
 t_plane	*plane_create(char **plane_line, int i)
 {
 	t_plane		*p;
-	t_pattern	pat;
 
 	p = malloc(sizeof(t_plane));
 	if (!p)
 		return (NULL);
 	plane_set_up(p, i);
-	pat = pattern(c("purple"), c("pink"), STRIPE, rotation_z_pat(45, "plane"));
-	p->shape.material = material(pat, 0.9, 0, 200);
+	pat_mat_pl(plane_line, p);
 	p->shape.point = str_to_point(plane_line[0]);
 	p->shape.dir_vector = vector_norm(str_to_vector(plane_line[1]));
-	p->shape.material.reflective = 0;
 	p->shape.transform((t_obj *) p, translation_matrix(
 			p->shape.point.x, p->shape.point.y, p->shape.point.z));
 	return (p);

@@ -24,7 +24,15 @@ t_file	parse_file(char *filename)
 		err_template(M_WRONG_EXT, filename);
 	ft_bzero(&file.count, sizeof(t_count));
 	read_rt(filename, &file);
-	check_count(&file);
-	check_params(&file);
+	if (!RT_BONUS)
+	{
+		check_count(&file);
+		check_params(&file);
+	}
+	else
+	{
+		check_count_bonus(&file);
+		check_params_bonus(&file);
+	}
 	return (file);
 }

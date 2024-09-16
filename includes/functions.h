@@ -5,6 +5,11 @@
 /*				PARSING														  */
 /* -------------------------------------------------------------------------- */
 
+/* ------------ BONUS --------------------------------------------------------*/
+
+/* PARSING_COUNTER_BONUS.c */
+void	check_count_bonus(t_file *file);
+
 /* ------------ CONVERTERS ---------------------------------------------------*/
 
 /* FT_RT_ATOI.C */
@@ -43,6 +48,8 @@ t_rwin	fetch_res(t_parse **head);
 t_tup	str_to_vector(char *str);
 t_tup	str_to_point(char *str);
 t_color	color_split(char *color_str);
+int		range_int(char *line, int lower, int upper);
+double	range_double(char *line, double lower, double upper);
 
 /* ------------ FILE_HANDLE --------------------------------------------------*/
 
@@ -61,6 +68,8 @@ t_map	*get_map(void);
 /* PARSING_PARAMS.C */
 void	check_obj_params(t_parse *tmp);
 void	check_params(t_file *file);
+void	check_params_bonus(t_file *file);
+void	check_obj_params_bonus(t_parse *tmp);
 
 /* PARSING_PRINTS.C */
 void	print_nodes(t_parse **head);
@@ -273,6 +282,7 @@ t_color			c(char *name);
 t_color			plain_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			stripe_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			gradient_pattern(t_obj *shape, t_tup point, t_pattern pat);
+t_pattern		pat_default(t_color a);
 t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
 t_tup			perturb_normal(t_obj *obj, t_tup p,
 					t_tup normal, t_pattern pat);
@@ -376,6 +386,8 @@ void			append_inter_node(t_inter **head, t_inter *node);
 t_inter			*last_inter_node(t_inter **head);
 bool			in_inter(t_inter **xs, t_obj *shape);
 bool			equal_intersect(t_intersection a, t_intersection b);
+t_color			with_reflect(t_comps comps, t_color s, t_color refl, t_color refr);
+t_color			iterative_shade_hit_multi(t_world w, t_comps comps, int remaining);
 
 /* HITS */
 

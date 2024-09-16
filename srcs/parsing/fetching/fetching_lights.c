@@ -60,7 +60,10 @@ t_light	*fetch_light(t_parse **head)
 		if (tmp->type == LIGHTS)
 		{
 			bright = ft_strtod(tmp->line_split[1]);
-			rgb = color_split(tmp->line_split[2]);
+			if (RT_BONUS)
+				rgb = color_split(tmp->line_split[2]);
+			else
+				rgb = white();
 			node = new_light_node(str_to_point(tmp->line_split[0]),
 					bright, rgb,
 					color_scalarmult(bright, rgb));

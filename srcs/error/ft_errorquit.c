@@ -18,6 +18,8 @@ char	*simple_replace(char *str, char what, char with)
 }
 
 /* NEW */
+
+
 void	err_template(char *msg, char *line)
 {
 	char *e_line;

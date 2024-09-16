@@ -57,7 +57,6 @@ void	count_identifier(t_parse **head, t_file *file)
 
 void	check_count(t_file *file)
 {
-
 	count_identifier(&file->parse, file);
 	if (file->count.a < 1 || \
 		file->count.c < 1 || \
@@ -69,4 +68,6 @@ void	check_count(t_file *file)
 		err_template(M_TOO_MANY_C, NULL);
 	if (file->count.r > 1)
 		err_template(M_TOO_MANY_R, NULL);
+	if (file->count.l > 1)
+		err_template(M_TOO_MANY_L, NULL);
 }
