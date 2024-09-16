@@ -18,6 +18,20 @@ void	transform_pl(t_obj *shape, t_matrix transformation)
 			inverse(transformation, 4));
 }
 
+void	plane_set_up(t_plane *plane, int i)
+{
+	plane->shape.transformation = identity();
+	plane->shape.inverse_transformation = identity();
+	plane->shape.get_name = get_name_pl;
+	plane->shape.volume = 0;
+	plane->shape.destroy = plane_destroy;
+	plane->shape.local_normal_at = local_normal_at_pl;
+	plane->shape.transform = transform_pl;
+	plane->shape.local_intersect = local_intersect_pl;
+	plane->shape.next = NULL;
+	plane->shape.id = i;
+}
+
 t_plane	*plane_create(char **plane_line, int i)
 {
 	t_plane		*p;
@@ -26,23 +40,14 @@ t_plane	*plane_create(char **plane_line, int i)
 	p = malloc(sizeof(t_plane));
 	if (!p)
 		return (NULL);
-	p->shape.get_name = get_name_pl;
-	p->shape.volume = 0;
-	p->shape.destroy = plane_destroy;
-	p->shape.local_normal_at = local_normal_at_pl;
-	p->shape.transform = transform_pl;
-	p->shape.local_intersect = local_intersect_pl;
-	p->shape.point = str_to_point(plane_line[0]);
-	p->shape.dir_vector = vector_norm(str_to_vector(plane_line[1]));
+	plane_set_up(p, i);
 	pat = pattern(c("purple"), c("pink"), STRIPE, rotation_z_pat(45, "plane"));
 	p->shape.material = material(pat, 0.9, 0, 200);
-	p->shape.material.reflective = 0.3;
-	p->shape.transformation = identity();
-	p->shape.inverse_transformation = identity();
+	p->shape.point = str_to_point(plane_line[0]);
+	p->shape.dir_vector = vector_norm(str_to_vector(plane_line[1]));
+	p->shape.material.reflective = 0;
 	p->shape.transform((t_obj *) p, translation_matrix(
 			p->shape.point.x, p->shape.point.y, p->shape.point.z));
-	p->shape.next = NULL;
-	p->shape.id = i;
 	return (p);
 }
 

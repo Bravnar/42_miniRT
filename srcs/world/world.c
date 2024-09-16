@@ -1,23 +1,9 @@
 #include "main.h"
 
-t_color	color_at(t_world w, t_ray r, int remaining)
-{
-	t_inter			*inters;
-	t_intersection	h;
-	t_comps			comps;
-
-	inters = intersect_world(w, r);
-	h = hit(&inters);
-	if (h.t == -1)
-		return (black());
-	comps = prepare_comp(h, r, inters);
-	free_inter_nodes(inters);
-	return (shade_hit(w, comps, remaining));
-}
-
 t_color	with_reflect(t_comps comps, t_color s, t_color refl, t_color refr)
 {
 	double	reflectance;
+	double	blend_factor;
 
 	if (comps.obj->material.reflective > 0
 		&& comps.obj->material.transparency > 0)
@@ -25,29 +11,57 @@ t_color	with_reflect(t_comps comps, t_color s, t_color refl, t_color refr)
 		reflectance = schlick(comps);
 		return (color_add(s, color_add(
 					color_scalarmult(reflectance, refl),
-					color_scalarmult(1 - reflectance, refl))));
+					color_scalarmult(1 - reflectance, refr))));
 	}
 	else
-		return (color_add(s, color_add(refl, refr)));
+	{
+		blend_factor = fmax(comps.obj->material.reflective,
+				comps.obj->material.transparency);
+		return (color_add(
+				color_scalarmult(1 - blend_factor, s),
+				color_scalarmult(blend_factor, color_add(refl, refr))));
+	}
 }
 
-t_color	shade_hit(t_world w, t_comps comps, int remaining)
+t_color	iterative_shade_hit(t_world w, t_comps comps, int remaining)
 {
 	t_tup	views[2];
-	t_color	reflected;
-	// t_color	refracted;
 	t_color	surface;
-	bool	shadowed;
+	t_color	reflected;
+	t_color	refracted;
+	double	shadow_intensity;
 
 	views[0] = comps.eyev;
 	views[1] = comps.normalv;
-	shadowed = is_shadowed(w, comps);
-	surface = lighting(comps.obj, comps.point, views, shadowed);
+	shadow_intensity = calculate_shadow_intensity(w, comps.over_point);
+	surface = lighting(comps.obj, comps.point, views, shadow_intensity);
 	reflected = reflected_color(w, comps, remaining);
-	//refracted = refracted_color(w, comps, remaining);
-	//return (with_reflect(comps, surface, reflected, refracted);
-	return (color_add(reflected, surface));
+	refracted = refracted_color(w, comps, remaining);
+	return (with_reflect(comps, surface, reflected, refracted));
 }
+
+
+t_color	iterative_color_at(t_world w, t_ray r, int remaining)
+{
+	t_inter			*inters;
+	t_intersection	h;
+	t_comps			comps;
+	t_color			color;
+
+	inters = intersect_world(w, r);
+	h = hit(&inters);
+	if (h.t == -1)
+	{
+		free_inter_nodes(inters);
+		return (black());
+	}
+	comps = prepare_comp(h, r, inters);
+	free_inter_nodes(inters);
+	color = iterative_shade_hit(w, comps, remaining);
+	return (color);
+}
+
+
 
 t_inter	*intersect_world(t_world w, t_ray r)
 {
@@ -99,3 +113,35 @@ t_comps	prepare_comp(t_intersection h, t_ray r, t_inter *xs)
 	set_n1_n2(&new, h, &xs);
 	return (new);
 }
+
+/* t_color shade_hit(t_world w, t_comps comps, int remaining)
+{
+	t_tup views[2];
+	t_color reflected;
+	t_color refracted;
+	t_color surface;
+	bool shadowed;
+
+	views[0] = comps.eyev;
+	views[1] = comps.normalv;
+	shadowed = is_shadowed(w, comps);
+	surface = lighting(comps.obj, comps.point, views, shadowed);
+	reflected = reflected_color(w, comps, remaining);
+	refracted = refracted_color(w, comps, remaining);
+	return (with_reflect(comps, surface, reflected, refracted));
+}
+
+t_color	color_at(t_world w, t_ray r, int remaining)
+{
+	t_inter			*inters;
+	t_intersection	h;
+	t_comps			comps;
+
+	inters = intersect_world(w, r);
+	h = hit(&inters);
+	if (h.t == -1)
+		return (black());
+	comps = prepare_comp(h, r, inters);
+	free_inter_nodes(inters);
+	return (shade_hit(w, comps, remaining));
+} */

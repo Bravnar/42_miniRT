@@ -51,7 +51,7 @@ SRCS= 	srcs/main.c \
 		srcs/shapes/cube_utils.c \
 		srcs/shapes/cylinder.c \
 		srcs/shapes/cylinder_utils.c \
-		srcs/shapes/cylinder_cap.c \
+		srcs/shapes/cylinder_calculations.c \
 		srcs/shapes/sphere.c \
 		srcs/shapes/sphere_utils.c \
 		srcs/shapes/plane.c \
@@ -105,8 +105,8 @@ endif
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-# SANITIZE= -g3 -fsanitize=address
-SANITIZE= -g
+SANITIZE= -g3 -fsanitize=address
+#SANITIZE= -g
 
 # Color Variables
 RED=\033[0;31m

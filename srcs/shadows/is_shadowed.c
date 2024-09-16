@@ -9,6 +9,34 @@ t_ray	shadow_ray(t_comps comps, t_tup direction)
 	return (ray_new(offset_point, direction));
 }
 
+double	calculate_shadow_intensity(t_world world, t_tup point)
+{
+	t_ray	shadow_ray;
+	t_inter	*shadow_intersections;
+	double	shadow_intensity;
+	double distance_to_light;
+	t_inter *current;
+
+	shadow_ray = ray_new(point, light_vector(point));
+	shadow_intersections = intersect_world(world, shadow_ray);
+	shadow_intensity = 1.0;
+	current = shadow_intersections;
+	distance_to_light = vector_mag(tuple_sub(world.light->point, point));
+	while (current != NULL && !equal(shadow_intensity, 0.0))
+	{
+		if (current->i.t > 0 && current->i.t < distance_to_light)
+		{
+			if (current->i.shape->material.transparency == 0)
+				shadow_intensity = 0;
+			else
+				shadow_intensity *= current->i.shape->material.transparency;
+		}
+		current = current->next;
+	}
+	free_inter_nodes(shadow_intersections);
+	return (shadow_intensity);
+}
+
 bool	is_shadowed(t_world w, t_comps comps)
 {
 	t_tup			v;

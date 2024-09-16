@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 {
 	t_tup	to_orig;
@@ -22,7 +21,6 @@ t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 		return (NULL);
 	return (inter);
 }
-
 
 t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
