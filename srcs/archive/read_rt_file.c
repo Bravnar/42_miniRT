@@ -19,23 +19,6 @@ void	read_file(char *file_name, t_map *data)
 	free(line);
 }
 
-void	check_identifier(char *identifier)
-{
-	if (ft_strisalpha(identifier))
-	{
-		if (!ft_strstr(GOOD_ID, identifier))
-		{
-			printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
-			err_template(M_UKNOWN_ID, identifier);
-		}
-	}
-	else
-	{
-		printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
-		err_template(M_UKNOWN_ID, identifier);
-	}
-}
-
 /* void	check_identifier(t_parse **head)
 {
 	t_parse	*tmp;
@@ -56,20 +39,6 @@ void	check_identifier(char *identifier)
 		tmp = tmp->next;
 	}
 } */
-
-int	check_file_name(char *name)
-{
-	size_t	length;
-	char	*tested_string;
-
-	length = ft_strlen(name);
-	tested_string = ft_strstr(name + length - 3, ".rt");
-	if (ft_strlen(tested_string) > 3)
-		return (0);
-	if (!tested_string)
-		return (0);
-	return (1);
-}
 
 void	populate_scene_struct(char *file_name, t_map *scene)
 {

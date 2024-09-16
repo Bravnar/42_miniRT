@@ -17,7 +17,7 @@ static int	count_digits(int numb)
 	return (i);
 }
 
-double	handle_after(char *str, int sign)
+static double	handle_after(char *str, int sign)
 {
 	double	result;
 	double	original;
@@ -34,7 +34,7 @@ double	handle_after(char *str, int sign)
 	return (result * sign);
 }
 
-void	check_sign(char **str, int *sign)
+static void	check_sign(char **str, int *sign)
 {
 	if (**str == '-' || **str == '+')
 	{
@@ -44,7 +44,7 @@ void	check_sign(char **str, int *sign)
 	}
 }
 
-int	check_num(char *str, int *sign)
+static int	check_num(char *str, int *sign)
 {
 	int	i;
 	int	dot_count;

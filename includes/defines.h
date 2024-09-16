@@ -3,6 +3,10 @@
 
 # define EPSILON	(0.00001)
 
+# ifndef RT_BONUS
+#  define RT_BONUS 0
+# endif
+
 # ifdef __APPLE__
 
 #  define ESC 53

@@ -45,20 +45,28 @@ void	free_light_nodes(t_light *light)
 	tmp = NULL;
 }
 
-void	print_light_nodes(t_light **head)
+t_light	*fetch_light(t_parse **head)
 {
-	t_light	*tmp;
-	int		i;
+	t_light	*l_head;
+	t_parse	*tmp;
+	t_light	*node;
+	t_color	rgb;
+	double	bright;
 
 	tmp = *head;
-	i = 1;
+	l_head = NULL;
 	while (tmp)
 	{
-		printf("\tLight %d:\n", i++);
-		printf("\t\tPoint: %f, %f, %f\n", tmp->point.x, tmp->point.y,
-			tmp->point.z);
-		printf("\t\tBrightness: %f\n", tmp->bright);
-		printf("\t\tColor: %f, %f, %f\n", tmp->rgb.r, tmp->rgb.g, tmp->rgb.b);
+		if (tmp->type == LIGHTS)
+		{
+			bright = ft_strtod(tmp->line_split[1]);
+			rgb = color_split(tmp->line_split[2]);
+			node = new_light_node(str_to_point(tmp->line_split[0]),
+					bright, rgb,
+					color_scalarmult(bright, rgb));
+			add_light_node(&l_head, node);
+		}
 		tmp = tmp->next;
 	}
+	return (l_head);
 }

@@ -542,3 +542,16 @@ void	populate_shapes(void)
 		tmp = tmp->next;
 	}
 }
+
+void	test_cy(void)
+{
+	t_obj	*cyl;
+
+	t_world	w;
+	w = create_world();
+	cyl = w.shapes;
+	t_tup direction = vector_norm(vector(0, 0, 1));
+	t_ray r = ray_new(point(0, 1.5, -2), direction);
+	t_inter	*xs = cyl->local_intersect(r, cyl);
+	print_inter(&xs);
+}

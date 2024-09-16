@@ -1,20 +1,5 @@
 #include "main.h"
 
-void	add_obj_node(t_obj **head, t_obj *new_node)
-{
-	t_obj	*tmp;
-
-	if (!*head)
-		*head = new_node;
-	else
-	{
-		tmp = *head;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_node;
-	}
-}
-
 t_color	get_color(char *str)
 {
 	char	**rgb_split;
