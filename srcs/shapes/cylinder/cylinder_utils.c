@@ -24,6 +24,7 @@ void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
 		cyl->shape.material.refractive_index = range_double(cyl_split[8], 0.0, 5.0);
 		cyl->shape.material.reflective = range_double(cyl_split[7], 0.0, 1.0);
 		cyl->shape.material.transparency = range_double(cyl_split[9], 0.0, 1.0);
+		cyl->shape.material.pattern.scale = range_double(cyl_split[10], 0, 20);
 	}
 }
 

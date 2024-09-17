@@ -53,6 +53,7 @@ void	pat_mat_sp(char **sphere_split, t_sphere *sphere)
 		sphere->shape.material.refractive_index = range_double(sphere_split[6], 0.0, 5.0);
 		sphere->shape.material.reflective = range_double(sphere_split[5], 0.0, 1.0);
 		sphere->shape.material.transparency = range_double(sphere_split[7], 0.0, 1.0);
+		sphere->shape.material.pattern.scale = range_double(sphere_split[8], 0, 20);
 	}
 }
 

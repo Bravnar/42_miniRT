@@ -24,9 +24,13 @@ t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 
 t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
-	(void) point;
-	return (vector_norm(
-			matrix_mult_tup(plane->transformation, plane->dir_vector)));
+	t_tup	normal;
+	normal = vector_norm(
+			matrix_mult_tup(plane->transformation, plane->dir_vector));
+	if (plane->material.pattern.noise)
+		normal = perturb_normal(plane, point, normal,
+				plane->material.pattern);
+	return (normal);
 }
 
 t_plane	*plane(int i)

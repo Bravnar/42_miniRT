@@ -56,6 +56,7 @@ void	pat_mat_pl(char **plane_split, t_plane *plane)
 		plane->shape.material.refractive_index = range_double(plane_split[6], 0.0, 5.0);
 		plane->shape.material.reflective = range_double(plane_split[5], 0.0, 1.0);
 		plane->shape.material.transparency = range_double(plane_split[7], 0.0, 1.0);
+		plane->shape.material.pattern.scale = range_double(plane_split[8], 0, 20);
 	}
 }
 
