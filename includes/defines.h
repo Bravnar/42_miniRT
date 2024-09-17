@@ -3,6 +3,10 @@
 
 # define EPSILON	(0.00001)
 
+# ifndef RT_BONUS
+#  define RT_BONUS 0
+# endif
+
 # ifdef __APPLE__
 
 #  define ESC 53
@@ -51,6 +55,7 @@
 # define M_TOO_MANY_R		"Too many R-parameters"
 # define M_TOO_MANY_A		"Too many A-parameters"
 # define M_TOO_MANY_C		"Too many C-parameters"
+# define M_TOO_MANY_L		"Too many L-parameters (non-bonus)"
 # define M_A_RATIO_RANGE	"A: ratio out of range (0.0 / 1.0)"
 # define M_C_VECTOR_RANGE	"C: vector out of range (-1.0 / 1.0)"
 # define M_C_FOV_RANGE		"C: FOV out of range (0 / 180)"
@@ -67,5 +72,9 @@
 # define M_WRONG_EXT		"wrong file extension, expected '.rt'"
 # define M_OPEN_FAILED		"failed to open file"
 # define M_INVALID_SEP		"number group separated! Remove unnecessary spaces."
+# define M_PL_PARAMETERS	"PLANE: wrong param number, refer to template.rt"
+# define M_SP_PARAMETERS	"SPHERE: wrong param number, refer to template.rt"
+# define M_CY_PARAMETERS	"CYLINDER: wrong param number, refer to template.rt"
+# define M_CU_PARAMETERS	"CUBE: wrong param number, refer to template.rt"
 
 #endif

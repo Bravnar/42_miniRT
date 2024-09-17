@@ -1,0 +1,9 @@
+						STANDARD																					|			BONUS				
+R	[x]				[y]																								|
+A	[ratio]_[0:1]	[rgb_prim]_[r,g,b 0:255]																		|
+C	[point]_[x,y,z]	[vector]_[x,y,z -1:1]		[fov]_[0:180]														|
+L	[point]_[x,y,z]	[brightness]_[0:1]																				| [rgb_prim]_[r,g,b 0:255]
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+pl	[point]_[x,y,z]	[vector]_[x,y,z -1:1]		[rgb_prim]_[r,g,b 0:255]											| [pat]_[0:3] [rgb_sec]_[r,g,b 0:255] [reflect]_[0:1] [refract_index]_[0:5] [transp]_[0:1] [noise]_[1:20]
+sp	[point]_[x,y,z]	[diameter]					[rgb_prim]_[r,g,b 0:255]											| [pat]_[0:3] [rgb_sec]_[r,g,b 0:255] [reflect]_[0:1] [refract_index]_[0:5] [transp]_[0:1] [noise]_[1:20]
+cy	[point]_[x,y,z]	[vector]_[x,y,z -1:1]		[diameter]					[height]	[rgb_prim]_[r,g,b 0:255]	| [pat]_[0:3] [rgb_sec]_[r,g,b 0:255] [reflect]_[0:1] [refract_index]_[0:5] [transp]_[0:1] [noise]_[1:20]

@@ -1,6 +1,100 @@
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
+/* -------------------------------------------------------------------------- */
+/*				PARSING														  */
+/* -------------------------------------------------------------------------- */
+
+/* ------------ BONUS --------------------------------------------------------*/
+
+/* PARSING_COUNTER_BONUS.c */
+void	check_count_bonus(t_file *file);
+
+/* ------------ CONVERTERS ---------------------------------------------------*/
+
+/* FT_RT_ATOI.C */
+int		ft_rt_atoi(const char *nptr);
+
+/* FT_STRTOD.C */
+double	ft_strtod(char *str);
+
+/* FT_STRTOI.C */
+int		ft_strtoi(const char *nptr, char **endptr);
+
+/* ------------ FETCHING -----------------------------------------------------*/
+
+/* FETCHING_AMB.C */
+t_amb	fetch_amb(t_parse **head);
+
+/* FETCHING_CAM.C */
+void	set_view_cam(t_cam *cam, t_rwin res);
+t_cam	fetch_cam(t_parse **head, t_rwin res);
+
+/* FETCHING_LIGHTS.C */
+t_light	*new_light_node(t_tup point, double bright, t_color rgb, t_color i);
+void	add_light_node(t_light **head, t_light *new_node);
+void	free_light_nodes(t_light *light);
+t_light	*fetch_light(t_parse **head);
+
+/* FETCHING_OBJS.C */
+void	add_obj_node(t_obj **head, t_obj *new_node);
+t_obj	*fetch_objs(t_parse **head);
+
+/* FETCHING_RES.C */
+void	check_res_limits(t_rwin res, char *line);
+t_rwin	fetch_res(t_parse **head);
+
+/* FETCHING_UTILS.C */
+t_tup	str_to_vector(char *str);
+t_tup	str_to_point(char *str);
+t_color	color_split(char *color_str);
+int		range_int(char *line, int lower, int upper);
+double	range_double(char *line, double lower, double upper);
+
+/* ------------ FILE_HANDLE --------------------------------------------------*/
+
+/* PARSING_COUNTER.C */
+void	count_identifier(t_parse **head, t_file *file);
+void	check_count(t_file *file);
+
+/* PARSING_MAIN.C */
+int		check_file_name(char *name);
+t_file	parse_file(char *filename);
+
+/* PARSING_MAP_MAKER.C */
+t_map	*create_map(char *filename);
+t_map	*get_map(void);
+
+/* PARSING_PARAMS.C */
+void	check_obj_params(t_parse *tmp);
+void	check_params(t_file *file);
+void	check_params_bonus(t_file *file);
+void	check_obj_params_bonus(t_parse *tmp);
+
+/* PARSING_PRINTS.C */
+void	print_nodes(t_parse **head);
+void	print_scene_details(void);
+
+/* PARSING_READ_FILE.C */
+void	check_identifier(char *identifier);
+void	read_rt(char *filename, t_file *file);
+
+/* PARSING_UTILS_LL_LISTS.C */
+t_parse	*new_parse_node(char *line);
+void	add_node(t_parse **parsed, t_parse *new_node);
+void	free_nodes(t_parse *list);
+
+/* PARSING_UTILS.C */
+void	set_type(t_type *type, char *identifier);
+char **set_type_and_clean(char **tmp, t_type *type);
+void	check_arr_extr(char **arr);
+
+/* ------------ INITIALIZATION -----------------------------------------------*/
+
+/* MAIN_INIT.C */
+t_mrt	*initialize(char *filename);
+
+
 /* MLX UTILS */
 
 void			draw_rectangle(t_main *rt); //TMP
@@ -99,7 +193,8 @@ void			print_view_cam(t_view_cam cam);
 t_ray			ray_for_pixel(t_view_cam cam, double px, double py);
 // void			render(t_view_cam cam, t_world w, t_main *rt);
 void			render(t_view_cam cam, t_world w, t_mrt *mrt);
-void			test_scene_render(t_mrt *mrt, char *file_name);
+void			gameplay_loop(t_view_cam view, t_world w, t_mrt *mrt);
+void			setup_loop(t_mrt *mrt);
 // void			test_scene_render(t_main *rt, char *file_name);
 void			calc_pixel_size(t_view_cam *cam);
 t_inter			app_intersect(t_inter *xs, t_inter *new);
@@ -188,6 +283,8 @@ t_color			c(char *name);
 t_color			plain_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			stripe_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			gradient_pattern(t_obj *shape, t_tup point, t_pattern pat);
+t_pattern		pat_default(t_color a);
+void			pat_mat_cy(char **cyl_split, t_cyl *cyl);
 t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
 t_tup			perturb_normal(t_obj *obj, t_tup p,
 					t_tup normal, t_pattern pat);
@@ -291,6 +388,8 @@ void			append_inter_node(t_inter **head, t_inter *node);
 t_inter			*last_inter_node(t_inter **head);
 bool			in_inter(t_inter **xs, t_obj *shape);
 bool			equal_intersect(t_intersection a, t_intersection b);
+t_color			with_reflect(t_comps comps, t_color s, t_color refl, t_color refr);
+t_color			iterative_shade_hit_multi(t_world w, t_comps comps, int remaining);
 
 /* HITS */
 
@@ -404,23 +503,9 @@ void			tests(void);
 
 /* NEW PARSING */
 
-
-t_mrt	*initialize(char *filename);
 t_map	*create_scene(char *file_name);
-int		check_file_name(char *name);
-t_map	*get_map(void);
-void	check_count(t_file *file);
-t_rwin	fetch_res(t_parse **head);
-t_amb	fetch_amb(t_parse **head);
-t_cam	fetch_cam(t_parse **head, t_rwin res);
-t_obj	*fetch_objs(t_parse **head);
-t_light	*fetch_light(t_parse **head);
-t_color	color_split(char *color_str);
 void	err_template(char *msg, char *line);
 void	init_view(t_cam *cam);
-void	add_obj_node(t_obj **head, t_obj *new_node);
-t_tup	str_to_vector(char *str);
-t_tup	str_to_point(char *str);
 
 
 #endif

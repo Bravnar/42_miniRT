@@ -1,5 +1,7 @@
 NAME= miniRT
 
+NAME_BONUS= miniRT_bonus
+
 MAKEFLAGS= --no-print-directory
 
 INCLUDES = includes
@@ -24,8 +26,6 @@ SRCS= 	srcs/main.c \
 		srcs/colors/patterns/gradient.c \
 		srcs/colors/patterns/bump.c \
 		srcs/init/init_new.c \
-		srcs/parsing/read_rt_file.c \
-		srcs/parsing/utils.c \
 		srcs/matrices/basics/matrices_operations.c \
 		srcs/matrices/basics/identity.c \
 		srcs/matrices/basics/transpose.c \
@@ -47,30 +47,19 @@ SRCS= 	srcs/main.c \
 		srcs/shading/reflect.c \
 		srcs/shading/lighting.c \
 		srcs/shading/lighting_utils.c \
-		srcs/shapes/cube.c \
-		srcs/shapes/cube_utils.c \
-		srcs/shapes/cylinder.c \
-		srcs/shapes/cylinder_utils.c \
-		srcs/shapes/cylinder_calculations.c \
-		srcs/shapes/sphere.c \
-		srcs/shapes/sphere_utils.c \
-		srcs/shapes/plane.c \
-		srcs/shapes/plane_utils.c \
+		srcs/shapes/cube/cube.c \
+		srcs/shapes/cube/cube_utils.c \
+		srcs/shapes/cylinder/cylinder.c \
+		srcs/shapes/cylinder/cylinder_utils.c \
+		srcs/shapes/cylinder/cylinder_calculations.c \
+		srcs/shapes/sphere/sphere.c \
+		srcs/shapes/sphere/sphere_utils.c \
+		srcs/shapes/plane/plane.c \
+		srcs/shapes/plane/plane_utils.c \
 		srcs/utils/display.c \
 		srcs/utils/display_2.c \
-		srcs/parsing/ft_strtod.c \
-		srcs/parsing/ft_strtoi.c \
-		srcs/parsing/ambient/amb.c \
-		srcs/parsing/camera/cam.c \
-		srcs/parsing/resolution/res.c \
 		srcs/error/ft_errorquit.c \
-		srcs/parsing/counter.c \
-		srcs/parsing/light/light_utils.c \
-		srcs/parsing/light/light.c \
-		srcs/parsing/objects/objects.c \
-		srcs/parsing/objects/objects_utils.c \
 		srcs/init/scene_getters.c \
-		srcs/parsing/objects/objects_utils.c \
 		srcs/world/world.c \
 		srcs/shadows/is_shadowed.c \
 		srcs/refraction/reflection.c \
@@ -82,15 +71,34 @@ SRCS= 	srcs/main.c \
 		srcs/test/patterns_test.c \
 		srcs/test/test_main.c \
 		srcs/world/view.c \
-		srcs/testing_loop.c \
+		srcs/scene_render.c \
 		srcs/world/view_utils.c \
-		srcs/parsing/new_parsing/create_map.c \
-		srcs/parsing/new_parsing/fetching_data.c \
-
+		srcs/parsing/converters/ft_rt_atoi.c \
+		srcs/parsing/converters/ft_strtod.c \
+		srcs/parsing/converters/ft_strtoi.c \
+		srcs/parsing/fetching/fetching_amb.c \
+		srcs/parsing/fetching/fetching_cam.c \
+		srcs/parsing/fetching/fetching_lights_utils.c \
+		srcs/parsing/fetching/fetching_lights.c \
+		srcs/parsing/fetching/fetching_objs.c \
+		srcs/parsing/fetching/fetching_res.c \
+		srcs/parsing/fetching/fetching_utils.c \
+		srcs/parsing/file_handle/parsing_counter.c \
+		srcs/parsing/file_handle/parsing_main.c \
+		srcs/parsing/file_handle/parsing_map_maker.c \
+		srcs/parsing/file_handle/parsing_params.c \
+		srcs/parsing/file_handle/parsing_prints.c \
+		srcs/parsing/file_handle/parsing_read_file.c \
+		srcs/parsing/file_handle/parsing_utils_llists.c \
+		srcs/parsing/file_handle/parsing_utils.c \
+		srcs/parsing/initialization/main_init.c \
+		srcs/parsing/bonus/parsing_counter_bonus.c \
+		srcs/world/multiple_lights.c \
 
 CC= cc
 
 CFLAGS= -Wall -Wextra -Werror -I$(INCLUDES)
+CFLAGS_BONUS = -Wall -Wextra -Werror -I$(INCLUDES) -D RT_BONUS=1
 
 UNAME_S := $(shell uname -s)
 
@@ -105,8 +113,8 @@ endif
 LIBFT = 	lib
 LIBFT_LIB = $(LIBFT)/my_lib.a
 
-SANITIZE= -g3 -fsanitize=address
-#SANITIZE= -g
+#SANITIZE= -g3 -fsanitize=address
+SANITIZE= -g
 
 # Color Variables
 RED=\033[0;31m
@@ -118,9 +126,11 @@ CYAN=\033[0;36m
 WHITE=\033[0;37m
 RESET=\033[0m
 
-.PHONY: all clean fclean re libft header
+.PHONY: all clean fclean re libft header re
 
 all: $(NAME)
+
+bonus: $(NAME_BONUS)
 
 header:
 		@echo "$(CYAN) _______  __    __   __         .______        ___      .__   __.   _______  _______ .______          _______.";
@@ -132,6 +142,7 @@ header:
 
 
 $(NAME) : $(SRCS)
+			@rm -f $(NAME_BONUS)
 			@$(MAKE) header
 			@echo "\n\nCompiling LIBFT: (loading bar - courtesy of rrouille)\n"
 			@make -C $(LIBFT) all
@@ -142,10 +153,21 @@ $(NAME) : $(SRCS)
 			@echo "$(GREEN)|           MINIRT_COMPILED          |$(RESET)"
 			@echo "$(YELLOW)o------------------------------------o\n$(RESET)"
 
+$(NAME_BONUS) : $(SRCS)
+			@rm -f $(NAME)
+			@$(MAKE) header
+			@echo "$(MAGENTA)\nWITH BONUS$(RESET)"
+			@echo "\n\nCompiling LIBFT: (loading bar - courtesy of rrouille)\n"
+			@make -C $(LIBFT) all
+			@echo "\n\nCompiling MINILIBX: (loading bar - courtesy of rrouille)\n"
+			@make -C $(MINILIBX_DIR) all
+			@$(CC) $(CFLAGS_BONUS) -o $@ $^ $(LIBFT_LIB) -L$(LIBFT) -L$(MINILIBX_DIR) -lmlx $(MINILIBX_FLAGS) $(SANITIZE)
+			@echo "$(YELLOW)\no------------------------------------o$(RESET)"
+			@echo "$(GREEN)|           MINIRT_COMPILED          |$(RESET)"
+			@echo "$(YELLOW)o------------------------------------o\n$(RESET)"
 clean:
-	@$(MAKE) header
 	@echo "${RED}\nCleaning up...${RESET}"
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME_BONUS)
 	@make -C $(MINILIBX_DIR) clean
 	@echo "${GREEN}Cleanup done.${RESET}"
 
