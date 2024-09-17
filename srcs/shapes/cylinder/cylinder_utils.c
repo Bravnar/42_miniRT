@@ -18,7 +18,7 @@ void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
 	else
 	{
 		sec = color_split(cyl_split[6]);
-		pat = pattern(prim, sec, range_int(cyl_split[3], 0, 3),
+		pat = pattern(prim, sec, range_int(cyl_split[5], 0, 3),
 			matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
 		cyl->shape.material = material(pat, 0.9, 0.9, 200);
 		cyl->shape.material.refractive_index = range_double(cyl_split[8], 0.0, 5.0);
