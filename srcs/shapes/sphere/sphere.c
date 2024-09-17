@@ -59,7 +59,6 @@ void	pat_mat_sp(char **sphere_split, t_sphere *sphere)
 t_sphere	*sphere_create(char **sphere_split, int i)
 {
 	t_sphere	*sphere;
-	// t_pattern	pat;
 
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)

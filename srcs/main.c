@@ -10,12 +10,10 @@ int	main(int ac, char **av)
 	{
 		mrt = initialize(av[1]);
 		if (!mrt)
-		// clean everything that needs to be cleaned
 			exit(1);
-		test_scene_render(mrt, av[1]);
+		setup_loop(mrt);
 		free(mrt);
 	}
-	// clean everything that needs to be cleaned
 	return (0);
 }
  

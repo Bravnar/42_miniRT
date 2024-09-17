@@ -71,7 +71,7 @@ SRCS= 	srcs/main.c \
 		srcs/test/patterns_test.c \
 		srcs/test/test_main.c \
 		srcs/world/view.c \
-		srcs/testing_loop.c \
+		srcs/scene_render.c \
 		srcs/world/view_utils.c \
 		srcs/parsing/converters/ft_rt_atoi.c \
 		srcs/parsing/converters/ft_strtod.c \
