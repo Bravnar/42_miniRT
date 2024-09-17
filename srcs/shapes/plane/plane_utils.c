@@ -27,7 +27,7 @@ t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 	t_tup	normal;
 	normal = vector_norm(
 			matrix_mult_tup(plane->transformation, plane->dir_vector));
-	if (plane->material.pattern.noise)
+	if (plane->material.pattern.scale)
 		normal = perturb_normal(plane, point, normal,
 				plane->material.pattern);
 	return (normal);

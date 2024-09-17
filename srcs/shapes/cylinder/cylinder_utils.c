@@ -30,33 +30,38 @@ void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
 
 void	transform_cy(t_obj *shape, t_matrix transformation)
 {
-	t_cyl	*cyl;
-
-	cyl = (t_cyl *) shape;
-	cyl->shape.transformation = matrix_mult(cyl->shape.transformation,
-			transformation);
-	cyl->shape.inverse_transformation = matrix_mult(
-			cyl->shape.inverse_transformation,
-			inverse(transformation, 4));
+	shape->transformation = matrix_mult(transformation, shape->transformation);
+	shape->inverse_transformation = inverse(shape->transformation, 4);
 }
 
-t_tup	local_normal_at_cy(t_obj *cyl, t_tup point)
+t_tup world_to_object(t_obj *obj, t_tup world_point)
 {
-	double		dist;
-	t_cyl		*cyll;
-	t_tup		normal;
+    return matrix_mult_tup(obj->inverse_transformation, world_point);
+}
 
-	cyll = (t_cyl *) cyl;
-	dist = pow(point.x, 2) + pow(point.z, 2);
-	if (dist < 1 && point.y >= cyll->max - EPSILON)
-		normal = vector(0, 1, 0);
-	else if (dist < 1 && point.y <= cyll->min + EPSILON)
-		normal = vector(0, -1, 0);
-	else
-		normal = vector_norm(vector(point.x, 0, point.z));
-	if (cyl->material.pattern.noise)
-		normal = perturb_normal(cyl, point, normal, cyl->material.pattern);
-	return (normal);
+t_tup object_to_world(t_obj *obj, t_tup object_point)
+{
+    return matrix_mult_tup(obj->transformation, object_point);
+}
+
+t_tup local_normal_at_cy(t_obj *cyl, t_tup world_point) {
+    t_tup local_point = matrix_mult_tup(cyl->inverse_transformation, world_point);
+    t_tup local_normal;
+    t_cyl *cyll = (t_cyl *)cyl;
+    double dist = pow(local_point.x, 2) + pow(local_point.z, 2);
+
+    if (dist < 1 && local_point.y >= cyll->max - EPSILON) {
+        local_normal = vector(0, 1, 0);
+    } else if (dist < 1 && local_point.y <= cyll->min + EPSILON) {
+        local_normal = vector(0, -1, 0);
+    } else {
+        local_normal = vector(local_point.x, 0, local_point.z);
+    }
+
+    // Transform normal back to world space
+    t_tup world_normal = matrix_mult_tup(transpose(cyl->inverse_transformation), local_normal);
+    world_normal.w = 0; // Ensure it's a vector, not a point
+    return vector_norm(world_normal);
 }
 
 t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
@@ -67,8 +72,7 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 	double	y;
 	t_inter	*ret;
 
-	cyl->saved_ray = ray_new(r.point, vector_norm(r.direction));
-	cyl->saved_ray = ray_transform(cyl->saved_ray, cyl->inverse_transformation);
+	cyl->saved_ray = ray_transform(r, cyl->inverse_transformation);
 	ret = NULL;
 	disc = discriminant_cyl(cyl, &ab[0], &ab[1]);
 	if (disc < 0)

@@ -11,7 +11,7 @@ t_tup	local_normal_at_s(t_obj *sphere, t_tup point)
 	t_tup	normal;
 
 	normal = normal_at(sphere, point);
-	if (sphere->material.pattern.noise)
+	if (sphere->material.pattern.scale > 1)
 		normal = perturb_normal(sphere, point, normal,
 				sphere->material.pattern);
 	return (normal);
