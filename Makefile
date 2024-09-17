@@ -47,15 +47,15 @@ SRCS= 	srcs/main.c \
 		srcs/shading/reflect.c \
 		srcs/shading/lighting.c \
 		srcs/shading/lighting_utils.c \
-		srcs/shapes/cube.c \
-		srcs/shapes/cube_utils.c \
-		srcs/shapes/cylinder.c \
-		srcs/shapes/cylinder_utils.c \
-		srcs/shapes/cylinder_calculations.c \
-		srcs/shapes/sphere.c \
-		srcs/shapes/sphere_utils.c \
-		srcs/shapes/plane.c \
-		srcs/shapes/plane_utils.c \
+		srcs/shapes/cube/cube.c \
+		srcs/shapes/cube/cube_utils.c \
+		srcs/shapes/cylinder/cylinder.c \
+		srcs/shapes/cylinder/cylinder_utils.c \
+		srcs/shapes/cylinder/cylinder_calculations.c \
+		srcs/shapes/sphere/sphere.c \
+		srcs/shapes/sphere/sphere_utils.c \
+		srcs/shapes/plane/plane.c \
+		srcs/shapes/plane/plane_utils.c \
 		srcs/utils/display.c \
 		srcs/utils/display_2.c \
 		srcs/error/ft_errorquit.c \

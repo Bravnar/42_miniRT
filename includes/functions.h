@@ -283,6 +283,7 @@ t_color			plain_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			stripe_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_color			gradient_pattern(t_obj *shape, t_tup point, t_pattern pat);
 t_pattern		pat_default(t_color a);
+void			pat_mat_cy(char **cyl_split, t_cyl *cyl);
 t_pattern		pattern(t_color a, t_color b, t_patt_type type, t_matrix trans);
 t_tup			perturb_normal(t_obj *obj, t_tup p,
 					t_tup normal, t_pattern pat);
@@ -504,5 +505,6 @@ void			tests(void);
 t_map	*create_scene(char *file_name);
 void	err_template(char *msg, char *line);
 void	init_view(t_cam *cam);
+
 
 #endif

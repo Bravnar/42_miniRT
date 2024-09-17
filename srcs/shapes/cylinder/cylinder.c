@@ -39,7 +39,6 @@ void	cyl_set_up(t_cyl *cyl, int i)
 t_cyl	*cyl_create(char **cyl_line, int i)
 {
 	t_cyl		*cyl;
-	t_pattern	pat;
 	t_matrix	cyl_transform;
 
 	cyl = malloc(sizeof(t_cyl));
@@ -53,10 +52,7 @@ t_cyl	*cyl_create(char **cyl_line, int i)
 	cyl->shape.point = str_to_point(cyl_line[0]);
 	cyl->shape.dir_vector = str_to_vector(cyl_line[1]);
 	cyl_transform = apply_transformation_cy(cyl);
-	pat = pattern(c("blue"), color_split(cyl_line[4]), PLAIN,
-			cyl_transform);
-	cyl->shape.material = material(pat, 0.9, 0.9, 200);
-	cyl->shape.material.reflective = 0;
+	pat_mat_cy(cyl_line, cyl);
 	cyl->shape.transform((t_obj *) cyl, cyl_transform);
 	return (cyl);
 }
