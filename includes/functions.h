@@ -508,4 +508,10 @@ void	err_template(char *msg, char *line);
 void	init_view(t_cam *cam);
 
 
+/* BONUS */
+void	setup_loop_bonus(t_mrt *mrt);
+void	gameplay_loop_bonus(t_view_cam view, t_world w, t_mrt *mrt);
+void	render_bonus(t_view_cam cam, t_world w, t_mrt *rt);
+void	*render_section(void *arg);
+
 #endif

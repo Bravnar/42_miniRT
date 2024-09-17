@@ -233,10 +233,20 @@ typedef struct s_cam_ray
 	t_tup	pixel;
 }	t_cam_ray;
 
+/* typedef struct s_mrt
+{
+	t_mlx	mlx;
+	t_map	*map;
+}	t_mrt; */
+
+#include <pthread.h>
+
 typedef struct s_mrt
 {
 	t_mlx	mlx;
 	t_map	*map;
+	pthread_mutex_t	mlx_mutex;
+
 }	t_mrt;
 
 #endif

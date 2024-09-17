@@ -11,7 +11,7 @@ int	main(int ac, char **av)
 		mrt = initialize(av[1]);
 		if (!mrt)
 			exit(1);
-		setup_loop(mrt);
+		setup_loop_bonus(mrt);
 		free(mrt);
 	}
 	return (0);
