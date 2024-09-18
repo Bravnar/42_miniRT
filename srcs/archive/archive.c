@@ -1,3 +1,5 @@
+#include "main.h"
+
 void	draw_circle(t_main *rt, t_obj *obj, int to_shear);
 
 void	iterate_through_obj(t_obj **head, t_main *rt)
@@ -7,7 +9,7 @@ void	iterate_through_obj(t_obj **head, t_main *rt)
 
 	i = 0;
 	tmp = *head;
-	while(tmp)
+	while (tmp)
 	{
 		if (i == 7)
 			draw_circle(rt, tmp, 1);
@@ -22,8 +24,6 @@ void	game_loop(t_main *rt)
 {
 	init_mlx(&rt->mlx);
 	iterate_through_obj(get_scene_objs(), rt);
-	// draw_circle(rt);
-	// draw_rectangle(rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
 }
@@ -31,28 +31,27 @@ void	game_loop(t_main *rt)
 void	draw_projectile(t_main *rt)
 {
 	t_env	environment;
-	t_proj	projectile;
+	t_proj	pr;
 	t_color	col;
 	t_tup	velocity;
 	t_tup	start;
 
 	start = point(0.0, 1.0, 0.0);
 	velocity = vector_scalar_mult(vector_norm(vector(1, 1.8, 0)), 11.25);
-	projectile = proj_new(start, velocity);
+	pr = proj_new(start, velocity);
 	environment = env_new(vector(0.0, -0.1, 0), vector(-0.01, 0, 0));
 	col = color(255, 0, 0);
-	add_hex_color(&col);
-	//init_mlx(&rt->mlx);
-	while (projectile.position.x < 900)
+	while (pr.position.x < 900)
 	{
-		my_pixel(&rt->mlx, projectile.position.x, 550 - projectile.position.y, col.hex);
-		my_pixel(&rt->mlx, projectile.position.x, projectile.position.y, 0x00ff00);
-		my_pixel(&rt->mlx, projectile.position.x, (projectile.position.y*0.5), 0x0000ff);
-		my_pixel(&rt->mlx, projectile.position.x, (550 - projectile.position.y) * 0.5, 0xffffff);
-		projectile = tick(environment, projectile);
+		my_pixel(&rt->mlx, pr.position.x, 550 - pr.position.y, col.hex);
+		my_pixel(&rt->mlx, pr.position.x, pr.position.y, 0x00ff00);
+		my_pixel(&rt->mlx, pr.position.x, (pr.position.y * 0.5), 0x0000ff);
+		my_pixel(&rt->mlx, pr.position.x,
+			(550 - pr.position.y) * 0.5, 0xffffff);
+		pr = tick(environment, pr);
 	}
 	mlx_put_image_to_window \
-			 (rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
+			(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
 }
@@ -65,7 +64,7 @@ void	draw_watch(t_main *rt)
 	t_proj	temp;
 	int		i;
 
-	environment = env_new(vector(0, 0, 0), vector(0, 0 ,0));
+	environment = env_new(vector(0, 0, 0), vector(0, 0, 0));
 	velocity = vector_scalar_mult(vector_norm(vector(1, 0, 0)), 150);
 	projectile = proj_new(point(0, 0, 0), velocity);
 	init_mlx(&rt->mlx);
@@ -73,13 +72,14 @@ void	draw_watch(t_main *rt)
 	while (i < 3600)
 	{
 		temp = tick(environment, projectile);
-		my_pixel(&rt->mlx, temp.position.x + 450, 550 - temp.position.y - 275, 0x00ff00);
-		velocity = scale(rotate(velocity, 0.1, 'z'), 1-1/3600, 0, 0);
+		my_pixel(&rt->mlx, temp.position.x + 450,
+			550 - temp.position.y - 275, 0x00ff00);
+		velocity = scale(rotate(velocity, 0.1, 'z'), 1 - 1 / 3600, 0, 0);
 		projectile = proj_new(point(0, 0, 0), velocity);
 		i++;
 	}
 	mlx_put_image_to_window \
-			 (rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
+			(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
 }
@@ -100,7 +100,7 @@ t_obj	*search_obj_list(char *type)
 	return (target);
 }
 
-t_color	color_at_hit(t_intersection hit, t_ray ray)
+/* t_color	color_at_hit(t_intersection hit, t_ray ray)
 {
 	t_color	col;
 	t_tup	point;
@@ -112,9 +112,9 @@ t_color	color_at_hit(t_intersection hit, t_ray ray)
 	col = lighting(hit.shape->material, point, vs, false);
 	add_hex_color(&col);
 	return (col);
-}
+} */
 
-void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
+/* void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 {
 	int		y;
 	int		x;
@@ -150,7 +150,9 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 		while (++x < pixels)
 		{
 			world_x = -half + pixel_size * x;
-			ray = ray_new(get_scene_cam()->point, vector_norm(tuple_sub(point(world_x, world_y, wall_z), get_scene_cam()->point)));
+			ray = ray_new(get_scene_cam()->point,
+					vector_norm(tuple_sub(point(world_x, world_y, wall_z),
+							get_scene_cam()->point)));
 			inter = sphere->local_intersect(ray, sphere);
 			if (inter.count)
 			{
@@ -165,8 +167,9 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 			}
 		}
 	}
-	mlx_put_image_to_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
-}
+	mlx_put_image_to_window(rt->mlx.mlx_ptr,
+			rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
+} */
 
 // int	main(void)
 // {
@@ -183,7 +186,6 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 	//draw_projectile(rt);
 
 	free(rt); */
-
 
 	/* t_matrix A = {{
 		{1, 2, 3, 4},
@@ -287,7 +289,7 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 	printf("Elapsed time: %lf seconds\n", elapsed_time);
 	printf("Non-triangular matrix: %d\n", is_triangular(F, 4));*/
 
- 	/* t_ray	ray;
+	/*t_ray	ray;
 
 	ray = ray_new(point(1, 2, 3), vector(0, 1, 0));
 	print_tuple(position(ray, 0));
@@ -297,8 +299,10 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 
 	t_obj *sphere = (t_obj *)sphere_create(2);
 	sphere->transform(sphere, scaling_matrix(2,2,2));
-	printf("Determinant transformation: %f\n",determinant(sphere->transformation, 4));
-	t_inter i = intersect_sphere(ray_new(point(0, 0, -5), vector(0, 0, 1)), sphere);
+	printf("Determinant transformation: %f\n",
+		determinant(sphere->transformation, 4));
+	t_inter i = intersect_sphere(ray_new(
+					point(0, 0, -5), vector(0, 0, 1)), sphere);
 	if (i.count)
 		printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 			i.count, i.i[0].t, i.i[1].t);
@@ -313,7 +317,8 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 	i = intersect_sphere(ray_new(point(0, 0, 0), vector(0, 0, 1)), sphere);
 	printf("Intersect count: %d\nIntersect 1: %f\nIntersect 2: %f\n",
 		i.count, i.i[0].t, i.i[1].t);
-	t_inter inters = intersections(4, intersection(-1, sphere), intersection(1, sphere),
+	t_inter inters = intersections(4,
+		intersection(-1, sphere), intersection(1, sphere),
 			intersection(-3, sphere), intersection(-2, sphere));
 	t_intersection h = hit(inters);
 	printf("Hit t: %f\n", h.t);
@@ -326,11 +331,10 @@ void	draw_circle(t_main *rt, t_obj *obj, int to_shear)
 	printf("Ray after scaling\n");
 	print_ray(r2); */
 
-
 // 	return 0;
 // }
 
-void	test_gameloop(t_main *rt)
+/* void	test_gameloop(t_main *rt)
 {
 	t_world		w;
 	t_view_cam	cam;
@@ -356,13 +360,13 @@ void	test_gameloop(t_main *rt)
 	left_wall->transform(left_wall, matrix_mult(translation_matrix(0, 0, 5),
 												matrix_mult(rotation_y(-45),
 												matrix_mult(rotation_x(90),
-												scaling_matrix(100, 0.01, 100)))));
+											scaling_matrix(100, 0.01, 100)))));
 	left_wall->material = floor->material;
 	right_wall = w.shapes->next->next;
 	right_wall->transform(right_wall, matrix_mult(translation_matrix(0, 0, 5),
 												matrix_mult(rotation_y(45),
 												matrix_mult(rotation_x(90),
-												scaling_matrix(100, 0.01, 100)))));
+											scaling_matrix(100, 0.01, 100)))));
 	right_wall->material = floor->material;
 	middle = w.shapes->next->next->next;
 	middle->transform(middle, translation_matrix(-0.5, 1, 0.5));
@@ -387,7 +391,7 @@ void	test_gameloop(t_main *rt)
 	render(cam, w, rt);
 	handle_events(rt);
 	mlx_loop(rt->mlx.mlx_ptr);
-}
+} */
 
 	/*
 	printf("Creating world -------------------------------------------:\n");
@@ -404,9 +408,9 @@ void	test_gameloop(t_main *rt)
 		printf("xs[%d].t = %f\n", i, xs.i[i].t);
 	w.shapes->material.diffuse = 0.7;
 	w.shapes->material.specular = 0.2;
-	w.shapes->next->material.diffuse = 0.9; // 0.7 for sphere00 | 0.9 for sphere01
-	w.shapes->next->material.specular = 0.9; // 0.2 for sphere00 | 0.9 for sphere01
-	t_intersection test = intersection(4, w.shapes); // 4, w.shapes | 0.6m w.shapes->next
+	w.shapes->next->material.diffuse = 0.9;
+	w.shapes->next->material.specular = 0.9;
+	t_intersection test = intersection(4, w.shapes);
 	// t_intersection test = hit(xs);
 	printf("test result: %f\n", test.t);
 
@@ -445,7 +449,8 @@ void	test_gameloop(t_main *rt)
 	t_matrix	ret = view_transform(from, to, up);
 	print_matrix(ret, 4);
 
-	printf("\nTest: A view transformation matrix looking in positive z direction\n");
+	printf("\nTest: A view \
+transformation matrix looking in positive z direction\n");
 	from = point(0, 0, 0);
 	to = point(0, 0, 1);
 	up = vector(0, 1, 0);
@@ -487,7 +492,8 @@ void	test_gameloop(t_main *rt)
 	print_ray(cam_r);
 	printf("\nTest 3 ----------------------------------------------------:\n");
 	cam = init_camera(201, 101, PI/2);
-	cam.transf_matrix = matrix_mult(rotation_y(45), translation_matrix(0, -2, 5));
+	cam.transf_matrix = matrix_mult(rotation_y(45),
+			translation_matrix(0, -2, 5));
 	cam_r = ray_for_pixel(cam, 100, 5);
 	print_ray(cam_r);
 
@@ -503,46 +509,7 @@ void	test_gameloop(t_main *rt)
 	free(xs.i);*/
 	//game_loop(rt);
 
-// REDUNDANT INIT_CAMERA
-
-t_view_cam	init_camera(double hsize, double vsize, double fov)
-{
-	t_view_cam	camera;
-
-	camera.hsize = hsize;
-	camera.vsize = vsize;
-	camera.fov = fov;
-	calc_pixel_size(&camera);
-	camera.transf_matrix = identity();
-	return (camera);
-}
-
-// OLD POPULATE SHAPES
-
-void	populate_shapes(void)
-{
-	t_parse	*tmp;
-	t_obj	*(*create_shape)(char **);
-
-	tmp = get_scene()->file.parse;
-	while (tmp)
-	{
-		create_shape = NULL;
-		if (!ft_strcmp(tmp->line_split[0], "sp"))
-			create_shape = (t_obj *(*)(char **))sphere_create;
-		else if (!ft_strcmp(tmp->line_split[0], "cy"))
-			create_shape = (t_obj *(*)(char **))cyl_create;
-		else if (!ft_strcmp(tmp->line_split[0], "pl"))
-			create_shape = (t_obj *(*)(char **))plane_create;
-		else if (!ft_strcmp(tmp->line_split[0], "cu"))
-			create_shape = (t_obj *(*)(char **))cube_create;
-
-		if (create_shape)
-			add_obj_node(&get_scene()->obj_list, create_shape(tmp->line_split));
-		tmp = tmp->next;
-	}
-}
-
+/*
 void	test_cy(void)
 {
 	t_obj	*cyl;
@@ -555,3 +522,4 @@ void	test_cy(void)
 	t_inter	*xs = cyl->local_intersect(r, cyl);
 	print_inter(&xs);
 }
+ */

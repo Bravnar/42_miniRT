@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   functions.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 11:05:23 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
@@ -8,92 +20,93 @@
 /* ------------ BONUS --------------------------------------------------------*/
 
 /* PARSING_COUNTER_BONUS.c */
-void	check_count_bonus(t_file *file);
+void			check_count_bonus(t_file *file);
 
 /* ------------ CONVERTERS ---------------------------------------------------*/
 
 /* FT_RT_ATOI.C */
-int		ft_rt_atoi(const char *nptr);
+int				ft_rt_atoi(const char *nptr);
 
 /* FT_STRTOD.C */
-double	ft_strtod(char *str);
+double			ft_strtod(char *str);
 
 /* FT_STRTOI.C */
-int		ft_strtoi(const char *nptr, char **endptr);
+int				ft_strtoi(const char *nptr, char **endptr);
 
 /* ------------ FETCHING -----------------------------------------------------*/
 
 /* FETCHING_AMB.C */
-t_amb	fetch_amb(t_parse **head);
+t_amb			fetch_amb(t_parse **head);
 
 /* FETCHING_CAM.C */
-void	set_view_cam(t_cam *cam, t_rwin res);
-t_cam	fetch_cam(t_parse **head, t_rwin res);
+void			set_view_cam(t_cam *cam, t_rwin res);
+t_cam			fetch_cam(t_parse **head, t_rwin res);
 
 /* FETCHING_LIGHTS.C */
-t_light	*new_light_node(t_tup point, double bright, t_color rgb, t_color i);
-void	add_light_node(t_light **head, t_light *new_node);
-void	free_light_nodes(t_light *light);
-t_light	*fetch_light(t_parse **head);
+t_light			*new_light_node(t_tup point, double bright,
+					t_color rgb, t_color i);
+void			add_light_node(t_light **head, t_light *new_node);
+void			free_light_nodes(t_light *light);
+t_light			*fetch_light(t_parse **head);
 
 /* FETCHING_OBJS.C */
-void	add_obj_node(t_obj **head, t_obj *new_node);
-t_obj	*fetch_objs(t_parse **head);
+void			add_obj_node(t_obj **head, t_obj *new_node);
+t_obj			*fetch_objs(t_parse **head);
 
 /* FETCHING_RES.C */
-void	check_res_limits(t_rwin res, char *line);
-t_rwin	fetch_res(t_parse **head);
+void			check_res_limits(t_rwin res, char *line);
+t_rwin			fetch_res(t_parse **head);
 
 /* FETCHING_UTILS.C */
-t_tup	str_to_vector(char *str);
-t_tup	str_to_point(char *str);
-t_color	color_split(char *color_str);
-int		range_int(char *line, int lower, int upper);
-double	range_double(char *line, double lower, double upper);
+t_tup			str_to_vector(char *str);
+t_tup			str_to_point(char *str);
+t_color			color_split(char *color_str);
+int				range_int(char *line, int lower, int upper);
+double			range_double(char *line, double lower, double upper);
 
 /* ------------ FILE_HANDLE --------------------------------------------------*/
 
 /* PARSING_COUNTER.C */
-void	count_identifier(t_parse **head, t_file *file);
-void	check_count(t_file *file);
+void			count_identifier(t_parse **head, t_file *file);
+void			check_count(t_file *file);
 
 /* PARSING_MAIN.C */
-int		check_file_name(char *name);
-t_file	parse_file(char *filename);
+int				check_file_name(char *name);
+t_file			parse_file(char *filename);
 
 /* PARSING_MAP_MAKER.C */
-t_map	*create_map(char *filename);
-t_map	*get_map(void);
+t_map			*create_map(char *filename);
+t_map			*get_map(void);
 
 /* PARSING_PARAMS.C */
-void	check_obj_params(t_parse *tmp);
-void	check_params(t_file *file);
-void	check_params_bonus(t_file *file);
-void	check_obj_params_bonus(t_parse *tmp);
+void			check_obj_params(t_parse *tmp);
+void			check_params(t_file *file);
+void			check_params_bonus(t_file *file);
+void			check_obj_params_bonus(t_parse *tmp);
 
 /* PARSING_PRINTS.C */
-void	print_nodes(t_parse **head);
-void	print_scene_details(void);
+void			print_nodes(t_parse **head);
+void			print_shape_specs(t_obj *tmp, char *name);
+void			print_scene_details(void);
 
 /* PARSING_READ_FILE.C */
-void	check_identifier(char *identifier);
-void	read_rt(char *filename, t_file *file);
+void			check_identifier(char *identifier);
+void			read_rt(char *filename, t_file *file);
 
 /* PARSING_UTILS_LL_LISTS.C */
-t_parse	*new_parse_node(char *line);
-void	add_node(t_parse **parsed, t_parse *new_node);
-void	free_nodes(t_parse *list);
+t_parse			*new_parse_node(char *line);
+void			add_node(t_parse **parsed, t_parse *new_node);
+void			free_nodes(t_parse *list);
 
 /* PARSING_UTILS.C */
-void	set_type(t_type *type, char *identifier);
-char **set_type_and_clean(char **tmp, t_type *type);
-void	check_arr_extr(char **arr);
+void			set_type(t_type *type, char *identifier);
+char			**set_type_and_clean(char **tmp, t_type *type);
+void			check_arr_extr(char **arr);
 
 /* ------------ INITIALIZATION -----------------------------------------------*/
 
 /* MAIN_INIT.C */
-t_mrt	*initialize(char *filename);
-
+t_mrt			*initialize(char *filename);
 
 /* MLX UTILS */
 
@@ -109,6 +122,10 @@ void			init_rect(t_rect *rect);
 // t_main	*init_all(void);
 t_map			*get_scene(void);
 t_main			*init_all(char *file_name);
+void			init_rwin(t_rwin *win);
+void			init_amb(t_amb *amb);
+void			init_cam(t_cam *cam);
+void			init_light(t_light *light);
 t_obj			*search_obj_list(char *type);
 // t_main	*init_main(void);
 // void	init_mlx(t_mlx  *mlx);
@@ -206,13 +223,7 @@ void			handle_events(t_mrt *mrt);
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 12:23:43 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/14 12:23:55 by hmorand          ###   ########.ch       */
+/*                           VECTORS & TUPLES                                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,7 +380,6 @@ t_tup			position(t_ray ray, double t);
 
 /* INTERSECTIONS */
 
-
 double			discriminant(t_obj *sphere, double *a, double *b);
 t_inter			*intersect(t_obj *shape);
 t_inter			*new_inter(int count, t_obj *shape, ...);
@@ -388,8 +398,10 @@ void			append_inter_node(t_inter **head, t_inter *node);
 t_inter			*last_inter_node(t_inter **head);
 bool			in_inter(t_inter **xs, t_obj *shape);
 bool			equal_intersect(t_intersection a, t_intersection b);
-t_color			with_reflect(t_comps comps, t_color s, t_color refl, t_color refr);
-t_color			iterative_shade_hit_multi(t_world w, t_comps comps, int remaining);
+t_color			with_reflect(t_comps comps, t_color s,
+					t_color refl, t_color refr);
+t_color			iterative_shade_hit_multi(t_world w,
+					t_comps comps, int remaining);
 
 /* HITS */
 
@@ -497,15 +509,10 @@ void			hit_test_battery(void);
 void			pattern_test_battery(void);
 void			tests(void);
 
-
-
-
-
 /* NEW PARSING */
 
-t_map	*create_scene(char *file_name);
-void	err_template(char *msg, char *line);
-void	init_view(t_cam *cam);
-
+t_map			*create_scene(char *file_name);
+void			err_template(char *msg, char *line);
+void			init_view(t_cam *cam);
 
 #endif

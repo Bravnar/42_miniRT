@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cylinder_calculations.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 09:46:14 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
-t_tup	calculate_rotations(t_tup dir_vector)
+/* t_tup	calculate_rotations(t_tup dir_vector)
 {
 	double	theta_x;
 	double	theta_y;
@@ -10,57 +22,55 @@ t_tup	calculate_rotations(t_tup dir_vector)
 	theta_y = atan2(dir_vector.y, dir_vector.z) * (180 / PI);
 	theta_z = atan2(dir_vector.x, dir_vector.y) * (180 / PI);
 	return (point(theta_x, theta_y, theta_z));
-}
+} */
 
-t_matrix rotation_axis_angle(t_tup axis, double angle) {
-    axis = vector_norm(axis);
-    double x = axis.x;
-    double y = axis.y;
-    double z = axis.z;
-    double cos_theta = cos(angle);
-    double sin_theta = sin(angle);
-    double one_minus_cos = 1 - cos_theta;
-
-    t_matrix rotation = identity();
-
-    rotation.m[0][0] = cos_theta + x * x * one_minus_cos;
-    rotation.m[0][1] = x * y * one_minus_cos - z * sin_theta;
-    rotation.m[0][2] = x * z * one_minus_cos + y * sin_theta;
-
-    rotation.m[1][0] = y * x * one_minus_cos + z * sin_theta;
-    rotation.m[1][1] = cos_theta + y * y * one_minus_cos;
-    rotation.m[1][2] = y * z * one_minus_cos - x * sin_theta;
-
-    rotation.m[2][0] = z * x * one_minus_cos - y * sin_theta;
-    rotation.m[2][1] = z * y * one_minus_cos + x * sin_theta;
-    rotation.m[2][2] = cos_theta + z * z * one_minus_cos;
-
-    return rotation;
-}
-
-t_matrix apply_transformation_cy(t_cyl *cyl)
+t_matrix	rotation_axis_angle(t_tup axis, double angle)
 {
-    t_matrix scaling = scaling_matrix(cyl->diameter / 2, cyl->height / 2, cyl->diameter / 2);
-    t_matrix rotation;
-    t_matrix translation = translation_matrix(cyl->shape.point.x, cyl->shape.point.y, cyl->shape.point.z);
+	double		cos_theta;
+	double		sin_theta;
+	double		one_minus_cos;
+	t_matrix	rotation;
 
-    t_tup default_dir = vector(0, 1, 0); // Default up direction
-    t_tup desired_dir = vector_norm(cyl->shape.dir_vector);
+	axis = vector_norm(axis);
+	cos_theta = cos(angle);
+	sin_theta = sin(angle);
+	one_minus_cos = 1 - cos_theta;
+	rotation = identity();
+	rotation.m[0][0] = cos_theta + axis.x * axis.x * one_minus_cos;
+	rotation.m[0][1] = axis.x * axis.y * one_minus_cos - axis.z * sin_theta;
+	rotation.m[0][2] = axis.x * axis.z * one_minus_cos + axis.y * sin_theta;
+	rotation.m[1][0] = axis.y * axis.x * one_minus_cos + axis.z * sin_theta;
+	rotation.m[1][1] = cos_theta + axis.y * axis.y * one_minus_cos;
+	rotation.m[1][2] = axis.y * axis.z * one_minus_cos - axis.x * sin_theta;
+	rotation.m[2][0] = axis.z * axis.x * one_minus_cos - axis.y * sin_theta;
+	rotation.m[2][1] = axis.z * axis.y * one_minus_cos + axis.x * sin_theta;
+	rotation.m[2][2] = cos_theta + axis.z * axis.z * one_minus_cos;
+	return (rotation);
+}
 
-    // Check if the default direction and desired direction are the same or opposite
-    if (equal_tuple(default_dir, desired_dir)) {
-        rotation = identity();
-    } else if (equal_tuple(default_dir, tuple_neg(desired_dir))) {
-        // 180-degree rotation around any perpendicular axis
-        rotation = rotation_x(PI); // Or rotation around any axis perpendicular to default_dir
-    } else {
-        t_tup rotation_axis = vector_cross(default_dir, desired_dir);
-        double rotation_angle = acos(vector_dot(default_dir, desired_dir));
-        rotation = rotation_axis_angle(rotation_axis, rotation_angle);
-    }
+t_matrix	apply_transformation_cy(t_cyl *cyl)
+{
+	t_matrix	scaling;
+	t_matrix	rotation;
+	t_matrix	translation;
+	t_tup		desired_dir;
 
-    t_matrix transformation = matrix_mult(matrix_mult(translation, rotation), scaling);
-    return transformation;
+	desired_dir = vector_norm(cyl->shape.dir_vector);
+	scaling = scaling_matrix(cyl->diameter / 2,
+			cyl->height / 2, cyl->diameter / 2);
+	translation = translation_matrix(cyl->shape.point.x,
+			cyl->shape.point.y, cyl->shape.point.z);
+	if (equal_tuple(vector(0, 1, 0), desired_dir))
+		rotation = identity();
+	else if (equal_tuple(vector(0, 1, 0), tuple_neg(desired_dir)))
+		rotation = rotation_x(PI);
+	else
+	{
+		rotation = rotation_axis_angle(
+				vector_cross(vector(0, 1, 0), desired_dir),
+				acos(vector_dot(vector(0, 1, 0), desired_dir)));
+	}
+	return (matrix_mult(matrix_mult(translation, rotation), scaling));
 }
 
 double	discriminant_cyl(t_obj *cyl, double *a, double *b)

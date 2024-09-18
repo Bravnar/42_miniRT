@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reflection.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 10:02:23 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_color	reflected_color(t_world world, t_comps comps, int remaining)
@@ -34,7 +46,8 @@ t_color	reflected_color(t_world world, t_comps comps, int remaining)
 	reflectance = comps.obj->material.reflective;
 	for (int i = 0; i < 5 && remaining > 0; i++)
 	{
-		color = color_add(color, color_scalarmult(reflectance, color_at(world, reflect_ray, remaining - 1)));
+		color = color_add(color, color_scalarmult(reflectance,
+				color_at(world, reflect_ray, remaining - 1)));
 		remaining--;
 		reflectance *= comps.obj->material.reflective;
 	}

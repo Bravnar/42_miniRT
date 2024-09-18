@@ -98,7 +98,7 @@ typedef struct s_obj
 	t_tup			(*local_normal_at)(t_obj *shape, t_tup point);
 	int				id;
 	t_tup			point;
-	t_tup			dir_vector; 		//cube/cyllinder/cone/parallelogram
+	t_tup			dir_vector;		//cube/cyllinder/cone/parallelogram
 	t_material		material;
 	t_matrix		transformation;
 	t_matrix		inverse_transformation;

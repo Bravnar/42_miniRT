@@ -45,7 +45,6 @@ void	populate_scene_struct(char *file_name, t_map *scene)
 	if (!check_file_name(file_name))
 		err_template(M_WRONG_EXT, NULL);
 	read_file(file_name, scene);
-	//check_count();
 	populate_rwin();
 	populate_amb();
 	populate_cam();

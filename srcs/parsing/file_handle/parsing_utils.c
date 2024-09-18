@@ -15,7 +15,7 @@ void	set_type(t_type *type, char *identifier)
 		*type = OBJECTS;
 }
 
-char **set_type_and_clean(char **tmp, t_type *type)
+char	**set_type_and_clean(char **tmp, t_type *type)
 {
 	char	**ret;
 	int		len;
@@ -44,12 +44,12 @@ void	check_arr_extr(char **arr)
 	int	len;
 
 	i = 0;
-	while(arr[i])
+	while (arr[i])
 	{
 		len = ft_strlen(arr[i]) - 1;
-		if ((!ft_isalnum(arr[i][0]) && arr[i][0] != '-')\
+		if ((!ft_isalnum(arr[i][0]) && arr[i][0] != '-') \
 			|| !ft_isalnum(arr[i][len]))
-				err_template(M_INVALID_SEP, arr[i]);
+			err_template(M_INVALID_SEP, arr[i]);
 		i++;
 	}
 }

@@ -12,7 +12,7 @@ void	check_obj_params(t_parse *tmp)
 
 void	check_params(t_file *file)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 
 	tmp = file->parse;
 	while (tmp)
@@ -43,7 +43,7 @@ void	check_obj_params_bonus(t_parse *tmp)
 
 void	check_params_bonus(t_file *file)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 
 	tmp = file->parse;
 	while (tmp)

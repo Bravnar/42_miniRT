@@ -37,10 +37,10 @@ t_tup	str_to_point(char *str)
 t_color	color_split(char *color_str)
 {
 	t_color	ret;
-	char **color_split;
-	int	r;
-	int	g;
-	int	b;
+	char	**color_split;
+	int		r;
+	int		g;
+	int		b;
 
 	color_split = ft_split(color_str, ',');
 	r = range_double(color_split[0], 0.0, 255.0);
