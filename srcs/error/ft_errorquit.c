@@ -3,8 +3,8 @@
 /* NEW */
 char	*simple_replace(char *str, char what, char with)
 {
-	char *copy;
-	int	i;
+	char	*copy;
+	int		i;
 
 	i = 0;
 	copy = ft_strdup(str);
@@ -19,10 +19,9 @@ char	*simple_replace(char *str, char what, char with)
 
 /* NEW */
 
-
 void	err_template(char *msg, char *line)
 {
-	char *e_line;
+	char	*e_line;
 
 	e_line = NULL;
 	if (line)
@@ -54,7 +53,7 @@ void	err_quit(char *msg)
 	exit(1);
 }
 
-/* OLD */
+// OLD
 void	err_handler(t_err code)
 {
 	if (code == ACL_MISSING)

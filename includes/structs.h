@@ -141,7 +141,6 @@ typedef struct s_file
 	bool		is_valid;
 }	t_file;
 
-
 typedef struct s_map
 {
 	t_file		file;

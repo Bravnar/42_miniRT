@@ -40,7 +40,6 @@ t_color	iterative_shade_hit(t_world w, t_comps comps, int remaining)
 	return (with_reflect(comps, surface, reflected, refracted));
 }
 
-
 t_color	iterative_color_at(t_world w, t_ray r, int remaining)
 {
 	t_inter			*inters;
@@ -58,14 +57,12 @@ t_color	iterative_color_at(t_world w, t_ray r, int remaining)
 	comps = prepare_comp(h, r, inters);
 	free_inter_nodes(inters);
 	color = iterative_shade_hit(w, comps, remaining);
+	return (color);
+}
 	/* if (!RT_BONUS)
 		color = iterative_shade_hit(w, comps, remaining);
 	else
 		color = iterative_shade_hit_multi(w, comps, remaining); */
-	return (color);
-}
-
-
 
 t_inter	*intersect_world(t_world w, t_ray r)
 {

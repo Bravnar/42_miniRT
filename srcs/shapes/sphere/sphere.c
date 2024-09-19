@@ -1,9 +1,16 @@
-#include "main.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 09:56:33 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/* ********************************* */
-/* SPHERE STRUCT CREATION            */
-/* To be called during map reading   */
-/* ********************************* */
+#include "main.h"
 
 char	*get_name_s(t_obj *sphere)
 {
@@ -21,39 +28,32 @@ double	volume_s(t_obj *sphere)
 	return ((4.0 / 3.0) * PI * pow(radius, 3));
 }
 
-void	transform_s(t_obj *sphere, t_matrix transformation)
-{
-	sphere->transformation = matrix_mult(sphere->transformation,
-			transformation);
-	sphere->inverse_transformation = matrix_mult(sphere->inverse_transformation,
-			inverse(transformation, 4));
-}
-
-void	pat_mat_sp(char **sphere_split, t_sphere *sphere)
+void	pat_mat_sp(char **sp_split, t_sphere *sp)
 {
 	t_pattern	pat;
 	t_color		prim;
 	t_color		sec;
 
-	prim = color_split(sphere_split[2]);
+	prim = color_split(sp_split[2]);
 	if (!RT_BONUS)
 	{
 		pat = pat_default(prim);
-		sphere->shape.material = material(pat, 0.9, 0.9, 200);
-		sphere->shape.material.refractive_index = 0;
-		sphere->shape.material.reflective = 0;
-		sphere->shape.material.transparency = 0;
+		sp->shape.material = material(pat, 0.9, 0.9, 200);
+		sp->shape.material.refractive_index = 0;
+		sp->shape.material.reflective = 0;
+		sp->shape.material.transparency = 0;
 	}
 	else
 	{
-		sec = color_split(sphere_split[4]);
-		pat = pattern(prim, sec, range_int(sphere_split[3], 0, 3),
-			matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
-		sphere->shape.material = material (pat, 0.9, 0.9, 200);
-		sphere->shape.material.refractive_index = range_double(sphere_split[6], 0.0, 5.0);
-		sphere->shape.material.reflective = range_double(sphere_split[5], 0.0, 1.0);
-		sphere->shape.material.transparency = range_double(sphere_split[7], 0.0, 1.0);
-		sphere->shape.material.pattern.scale = range_double(sphere_split[8], 0, 20);
+		sec = color_split(sp_split[4]);
+		pat = pattern(prim, sec, range_int(sp_split[3], 0, 3),
+				matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
+		sp->shape.material = material (pat, 0.9, 0.9, 200);
+		sp->shape.material.refractive_index = range_double(
+				sp_split[6], 0.0, 5.0);
+		sp->shape.material.reflective = range_double(sp_split[5], 0.0, 1.0);
+		sp->shape.material.transparency = range_double(sp_split[7], 0.0, 1.0);
+		sp->shape.material.pattern.scale = range_double(sp_split[8], 0, 20);
 	}
 }
 

@@ -60,6 +60,7 @@ SRCS= 	srcs/main.c \
 		srcs/utils/display_2.c \
 		srcs/error/ft_errorquit.c \
 		srcs/init/scene_getters.c \
+		srcs/init/init_utils.c \
 		srcs/world/world.c \
 		srcs/shadows/is_shadowed.c \
 		srcs/refraction/reflection.c \

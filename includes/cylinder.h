@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 13:14:55 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/14 13:14:55 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/18 09:43:12 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/18 09:43:12 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_cyl
 }	t_cyl;
 
 t_cyl		*cyl_create(char **cyl_line, int i);
-t_cyl		*cylinder(int i);
+/* t_cyl		*cylinder(int i); */
 void		cyl_set_up(t_cyl *cyl, int i);
 void		cyl_destroy(t_obj *shape);
 char		*get_name_cy(t_obj *shape);

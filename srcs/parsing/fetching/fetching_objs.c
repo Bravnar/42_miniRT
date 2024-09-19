@@ -19,13 +19,13 @@ t_obj	*fetch_objs(t_parse **head)
 {
 	t_obj	*obj_list;
 	t_obj	*(*create_shape)(char **, int);
-	t_parse *tmp;
+	t_parse	*tmp;
 	int		i;
 
 	i = 0;
 	obj_list = NULL;
 	tmp = *head;
-	while(tmp)
+	while (tmp)
 	{
 		create_shape = NULL;
 		if (!ft_strcmp(tmp->id, "sp"))

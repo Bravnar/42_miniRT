@@ -9,5 +9,5 @@ t_mrt	*initialize(char *filename)
 		return (NULL);
 	mrt->map = create_map(filename);
 	init_mlx(&mrt->mlx);
-	return mrt;
+	return (mrt);
 }

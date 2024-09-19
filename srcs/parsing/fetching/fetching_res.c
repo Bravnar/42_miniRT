@@ -10,7 +10,7 @@ void	check_res_limits(t_rwin res, char *line)
 
 t_rwin	fetch_res(t_parse **head)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 	t_rwin	res;
 
 	tmp = *head;

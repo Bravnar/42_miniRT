@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bump.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 10:36:25 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 // Simple hash function
@@ -50,10 +62,8 @@ t_tup	perturb_normal(t_obj *obj, t_tup p, t_tup normal, t_pattern pat)
 				p.y * pat.scale, p.z * pat.scale));
 	noise.z = simple_noise(point(p.x * pat.scale,
 				(p.y + 0.0001) * pat.scale, p.z * pat.scale));
-
 	offset = vector((noise.y - noise.x) / 0.0001,
 			(noise.z - noise.x) / 0.0001, 0);
-
 	return (vector_norm(tuple_add(normal,
 				vector_scalar_mult(offset, pat.noise))));
 }

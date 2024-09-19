@@ -15,7 +15,7 @@ void	set_view_cam(t_cam *cam, t_rwin res)
 
 t_cam	fetch_cam(t_parse **head, t_rwin res)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 	t_cam	cam;
 
 	tmp = *head;

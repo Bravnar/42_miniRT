@@ -1,21 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   plane.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 09:53:39 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 char	*get_name_pl(t_obj *shape)
 {
 	(void) shape;
 	return ("Plane");
-}
-
-void	transform_pl(t_obj *shape, t_matrix transformation)
-{
-	t_plane	*plane;
-
-	plane = (t_plane *) shape;
-	plane->shape.transformation = matrix_mult(plane->shape.transformation,
-			transformation);
-	plane->shape.transformation = matrix_mult(
-			plane->shape.inverse_transformation,
-			inverse(transformation, 4));
 }
 
 void	plane_set_up(t_plane *plane, int i)
@@ -32,31 +32,32 @@ void	plane_set_up(t_plane *plane, int i)
 	plane->shape.id = i;
 }
 
-void	pat_mat_pl(char **plane_split, t_plane *plane)
+void	pat_mat_pl(char **p_split, t_plane *pl)
 {
 	t_pattern	pat;
 	t_color		prim;
 	t_color		sec;
 
-	prim = color_split(plane_split[2]);
+	prim = color_split(p_split[2]);
 	if (!RT_BONUS)
 	{
 		pat = pat_default(prim);
-		plane->shape.material = material(pat, 0.9, 0.9, 200);
-		plane->shape.material.refractive_index = 0;
-		plane->shape.material.reflective = 0;
-		plane->shape.material.transparency = 0;
+		pl->shape.material = material(pat, 0.9, 0.9, 200);
+		pl->shape.material.refractive_index = 0;
+		pl->shape.material.reflective = 0;
+		pl->shape.material.transparency = 0;
 	}
 	else
 	{
-		sec = color_split(plane_split[4]);
-		pat = pattern(prim, sec, range_int(plane_split[3], 0, 3),
-			matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
-		plane->shape.material = material (pat, 0.9, 0.9, 200);
-		plane->shape.material.refractive_index = range_double(plane_split[6], 0.0, 5.0);
-		plane->shape.material.reflective = range_double(plane_split[5], 0.0, 1.0);
-		plane->shape.material.transparency = range_double(plane_split[7], 0.0, 1.0);
-		plane->shape.material.pattern.scale = range_double(plane_split[8], 0, 20);
+		sec = color_split(p_split[4]);
+		pat = pattern(prim, sec, range_int(p_split[3], 0, 3),
+				matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
+		pl->shape.material = material (pat, 0.9, 0.9, 200);
+		pl->shape.material.refractive_index = range_double(
+				p_split[6], 0.0, 5.0);
+		pl->shape.material.reflective = range_double(p_split[5], 0.0, 1.0);
+		pl->shape.material.transparency = range_double(p_split[7], 0.0, 1.0);
+		pl->shape.material.pattern.scale = range_double(p_split[8], 0, 20);
 	}
 }
 

@@ -2,7 +2,7 @@
 
 t_amb	fetch_amb(t_parse **head)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 	t_amb	amb;
 
 	tmp = *head;

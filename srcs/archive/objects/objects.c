@@ -59,7 +59,8 @@ void	populate_shapes(void)
 		else if (!ft_strcmp(tmp->line_split[0], "cu"))
 			create_shape = (t_obj *(*)(char **, int)) cube_create;
 		if (create_shape)
-			add_obj_node(&get_scene()->obj_list, create_shape(tmp->line_split, i++));
+			add_obj_node(&get_scene()->obj_list,
+				create_shape(tmp->line_split, i++));
 		tmp = tmp->next;
 	}
 }

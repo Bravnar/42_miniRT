@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   refraction.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 10:02:53 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	set_n1(t_comps *comps, t_inter *tmp_xs,
@@ -51,7 +63,6 @@ t_ray	refract_ray(t_comps comps, double n_ratio,
 			vector_scalar_mult(comps.eyev, n_ratio));
 	return (ray_new(comps.under_point, vector_norm(direction)));
 }
-
 
 t_color	refracted_color(t_world world, t_comps comps, int remaining)
 {
