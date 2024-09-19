@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   object.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:47:41 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:53:07 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef OBJECT_H
 # define OBJECT_H
 
@@ -70,12 +82,6 @@ typedef struct s_intersection
 	double	t;
 }	t_intersection;
 
-/* typedef struct s_inter
-{
-	int				count;
-	t_intersection	*i;
-}	t_inter; */
-
 typedef struct s_inter
 {
 	t_intersection	i;
@@ -98,7 +104,7 @@ typedef struct s_obj
 	t_tup			(*local_normal_at)(t_obj *shape, t_tup point);
 	int				id;
 	t_tup			point;
-	t_tup			dir_vector;		//cube/cyllinder/cone/parallelogram
+	t_tup			dir_vector;
 	t_material		material;
 	t_matrix		transformation;
 	t_matrix		inverse_transformation;

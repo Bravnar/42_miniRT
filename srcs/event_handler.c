@@ -1,21 +1,16 @@
-#include "main.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:31:28 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:31:30 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	redraw(t_mrt *rt, t_world w)
-{
-	if (rt->mlx.img_ptr != NULL)
-		mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
-	rt->mlx.img_ptr = \
-		mlx_new_image(rt->mlx.mlx_ptr, rt->mlx.win_x, rt->mlx.win_y);
-	rt->mlx.img_data = \
-		mlx_get_data_addr(rt->mlx.img_ptr, &rt->mlx.bits_per_pixel, \
-		&rt->mlx.size_line, &rt->mlx.endian);
-	rt->map->cam.view.transf_matrix = view_transform(get_scene_cam()->point,
-			get_scene_cam()->vector,
-			point(0, 1, 0));
-	render(get_scene_cam()->view, w, rt);
-	mlx_put_image_to_window \
-			(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
-}
+#include "main.h"
 
 int	close_win(void *param)
 {
@@ -30,6 +25,50 @@ int	close_win(void *param)
 		exit(0);
 	}
 	return (0);
+}
+
+void	do_unlocked(int keycode, t_mrt *rt, t_world w)
+{
+	if (keycode == LEFT)
+	{
+		get_map()->cam.point.x -= 3.0;
+		get_map()->cam.point.z += 2.0;
+		get_map()->cam.vector.x += 0.2;
+		get_map()->cam.vector.z -= 0.2;
+	}
+	else if (keycode == RIGHT)
+	{
+		get_map()->cam.point.x += 3.0;
+		get_map()->cam.point.z += 2.0;
+		get_map()->cam.vector.x -= 0.2;
+		get_map()->cam.vector.z -= 0.2;
+	}
+	else if (keycode == DOWN)
+		get_map()->cam.point.y -= 2.0;
+	else if (keycode == UP)
+		get_map()->cam.point.y += 2.0;
+	redraw(rt, w);
+}
+
+void	do_keys(int keycode, t_mrt *rt, t_world w)
+{
+	if (keycode == U_KEY)
+		rt->is_unlocked = !rt->is_unlocked;
+	printf("Is unlocked: %d\n", rt->is_unlocked);
+	if (!rt->is_unlocked)
+	{
+		if (keycode == LEFT)
+			printf("Pressing LEFT\n");
+		else if (keycode == RIGHT)
+			printf("Pressing RIGHT\n");
+		else if (keycode == DOWN)
+			printf("Pressing DOWN\n");
+		else if (keycode == UP)
+			printf("Pressing UP\n");
+	}
+	else if (rt->is_unlocked && (keycode == LEFT || \
+		keycode == RIGHT || keycode == UP || keycode == DOWN))
+		do_unlocked(keycode, rt, w);
 }
 
 int	keyboard(int keycode, t_mrt *rt)
@@ -49,16 +88,7 @@ int	keyboard(int keycode, t_mrt *rt)
 			exit(0);
 		}
 	}
-	if (keycode == LEFT)
-		printf("Pressing LEFT\n");
-	else if (keycode == RIGHT)
-		printf("Pressing RIGHT\n");
-	else if (keycode == DOWN)
-		printf("Pressing DOWN\n");
-	else if (keycode == UP)
-		printf("Pressing UP\n");
-	else if (keycode == P_KEY)
-		print_scene_details();
+	do_keys(keycode, rt, w);
 	return (0);
 }
 

@@ -1,4 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 09:19:16 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 09:34:11 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
+
+void	redraw(t_mrt *rt, t_world w)
+{
+	if (rt->mlx.img_ptr != NULL)
+		mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
+	rt->mlx.img_ptr = \
+		mlx_new_image(rt->mlx.mlx_ptr, rt->mlx.win_x, rt->mlx.win_y);
+	rt->mlx.img_data = \
+		mlx_get_data_addr(rt->mlx.img_ptr, &rt->mlx.bits_per_pixel, \
+		&rt->mlx.size_line, &rt->mlx.endian);
+	rt->map->cam.view.transf_matrix = view_transform(get_scene_cam()->point,
+			get_scene_cam()->vector,
+			point(0, 1, 0));
+	render(get_scene_cam()->view, w, rt);
+	mlx_put_image_to_window \
+			(rt->mlx.mlx_ptr, rt->mlx.win_ptr, rt->mlx.img_ptr, 0, 0);
+}
 
 void	my_pixel(t_mlx *mlx, int x, int y, int color)
 {

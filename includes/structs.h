@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:55:29 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:55:33 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
@@ -156,10 +168,6 @@ typedef struct s_main
 	t_mlx	mlx;
 	t_rect	rect;
 	t_map	*data;
-	//t_world	world;
-	//view?
-	//mouse?
-	//kb?
 }	t_main;
 
 typedef struct s_projectile
@@ -236,6 +244,7 @@ typedef struct s_mrt
 {
 	t_mlx	mlx;
 	t_map	*map;
+	int		is_unlocked;
 }	t_mrt;
 
 #endif

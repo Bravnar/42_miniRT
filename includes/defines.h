@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:49:29 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:49:30 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -16,6 +28,7 @@
 #  define DOWN 125
 #  define Q_KEY 12
 #  define P_KEY 35
+#  define U_KEY 32
 #  define WIN_X_MAX 3840
 #  define WIN_Y_MAX 2160
 #  define WIN_X_DEFAULT 500
@@ -30,6 +43,7 @@
 #  define DOWN	65364
 #  define Q_KEY	113
 #  define P_KEY 112
+#  define U_KEY 117
 
 #  define WIN_X_MAX 3840
 #  define WIN_Y_MAX 2160
