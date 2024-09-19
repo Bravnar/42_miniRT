@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:49:50 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 11:49:56 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 12:56:09 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ t_map			*create_map(char *filename);
 t_map			*get_map(void);
 
 /* PARSING_PARAMS.C */
-void			check_obj_params(t_parse *tmp);
+void			check_obj_params(t_parse *tmp, t_file *file);
 void			check_params(t_file *file);
 void			check_params_bonus(t_file *file);
-void			check_obj_params_bonus(t_parse *tmp);
+void			check_obj_params_bonus(t_parse *tmp, t_file *file);
 void			free_obj_nodes(t_obj *obj);
 
 /* PARSING_PRINTS.C */
@@ -91,7 +91,6 @@ void			print_shape_specs(t_obj *tmp, char *name);
 void			print_scene_details(void);
 
 /* PARSING_READ_FILE.C */
-void			check_identifier(char *identifier);
 void			read_rt(char *filename, t_file *file);
 
 /* PARSING_UTILS_LL_LISTS.C */
@@ -518,7 +517,8 @@ void			tests(void);
 /* NEW PARSING */
 
 t_map			*create_scene(char *file_name);
-void			err_template(char *msg, char *line);
+void			err_template(char *msg, char *line, t_file *file);
 void			init_view(t_cam *cam);
+t_mrt			*get_mrt(void);
 
 #endif

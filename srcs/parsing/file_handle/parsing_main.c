@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:46:03 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:46:04 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:10:40 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_file	parse_file(char *filename)
 	file.fd = -1;
 	file.parse = NULL;
 	if (!check_file_name(filename))
-		err_template(M_WRONG_EXT, filename);
+		err_template(M_WRONG_EXT, filename, NULL);
 	ft_bzero(&file.count, sizeof(t_count));
 	read_rt(filename, &file);
 	if (!RT_BONUS)

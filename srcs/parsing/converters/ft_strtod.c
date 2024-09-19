@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:44:42 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:44:43 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:09:05 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ double	ft_strtod(char *str)
 	ft_bzero(&stod, sizeof(stod));
 	stod.sign = 1;
 	if (!check_num(str, &stod.sign))
-		err_template(M_INVALID_ENTRY, str);
+		err_template(M_INVALID_ENTRY, str, NULL);
 	if (!ft_strchr(str, '.'))
 		return ((double)ft_strtoi(str, &endptr));
 	stod.split = ft_split(str, '.');

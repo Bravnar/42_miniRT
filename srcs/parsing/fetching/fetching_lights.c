@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:45:13 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:45:14 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:02:34 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_light	*fetch_light(t_parse **head)
 	{
 		if (tmp->type == LIGHTS)
 		{
-			bright = ft_strtod(tmp->line_split[1]);
+			bright = range_double(tmp->line_split[1], 0, 1);
 			if (RT_BONUS)
 				rgb = color_split(tmp->line_split[2]);
 			else

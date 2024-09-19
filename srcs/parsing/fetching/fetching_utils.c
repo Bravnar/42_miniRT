@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:42:20 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:42:23 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:15:08 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ double	range_double(char *line, double lower, double upper)
 		ft_fprintf(2, BOLD_RED"RangeError\n\n"RESET);
 		ft_fprintf(2, "%s , is out of range\n", line);
 		printf("lower limit: %.2f, upper limit: %.2f\n", lower, upper);
-		err_template("Parameter out of specified range", line);
+		err_template("Parameter out of specified range", line, NULL);
 	}
 	return (number);
 }
@@ -82,7 +82,11 @@ int	range_int(char *line, int lower, int upper)
 		ft_fprintf(2, BOLD_RED"RangeError\n\n"RESET);
 		ft_fprintf(2, "%s , is out of range\n", line);
 		printf("lower limit: %d, upper limit: %d\n", lower, upper);
-		err_template("Parameter out of specified range", line);
+		err_template("Parameter out of specified range", line, NULL);
 	}
 	return (number);
 }
+
+
+// void	check_arr_extr(char **arr)
+
