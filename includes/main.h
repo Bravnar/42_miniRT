@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:12:58 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/18 11:12:58 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 16:37:52 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <math.h>
 # include <stdbool.h>
 # include <time.h>
-# include <float.h>
 # include <errno.h>
 # include <limits.h>
 

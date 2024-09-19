@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:45:11 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:45:11 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 17:04:44 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@
 
 # define M_NO_ARGS			"No arguments provided, give path to .rt!"
 # define M_INVALID_ENTRY	"Invalid number entry, only INT or FLOAT"
-# define M_ACL_MISSING		"Missing key parameters (A, C, L)" //conditional jump error
-# define M_TOO_MANY_R		"Too many R-parameters" //conditional jump error
-# define M_TOO_MANY_A		"Too many A-parameters" //conditional jump error
-# define M_TOO_MANY_C		"Too many C-parameters" //conditional jump error
-# define M_TOO_MANY_L		"Too many L-parameters (non-bonus)" //conditional jump error
+# define M_ACL_MISSING		"Missing key parameters (A, C, L)"
+# define M_TOO_MANY_R		"Too many R-parameters"
+# define M_TOO_MANY_A		"Too many A-parameters"
+# define M_TOO_MANY_C		"Too many C-parameters"
+# define M_TOO_MANY_L		"Too many L-parameters (non-bonus)"
 # define M_A_RATIO_RANGE	"A: ratio out of range (0.0 / 1.0)"
 # define M_C_VECTOR_RANGE	"C: vector out of range (-1.0 / 1.0)"
 # define M_C_FOV_RANGE		"C: FOV out of range (0 / 180)"
-# define M_L_BRIGHT_RANGE	"L: Brightness out of range (0.0 / 1.0)"
+# define M_L_BRIGHT_RANGE	"L: Brightness out of range (0.0 / 1.0)" // when light over range nothing shows
 # define M_UKNOWN_ID		"Unknown identifier in file"
 # define M_R_OVER_PARAM		"Invalid argument count in R"
 # define M_A_OVER_PARAM		"Invalid argument count in A"
@@ -83,12 +83,15 @@
 # define M_PL_OVER_PARAM	"Too many arguments in pl"
 # define M_PL_VECTOR_RANGE	"pl: vector out of range (-1.0 / 1.0)"
 # define M_CY_VECTOR_RANGE	"cy: vector out of range (-1.0 / 1.0)"
-# define M_WRONG_EXT		"wrong file extension, expected '.rt'"
-# define M_OPEN_FAILED		"failed to open file"
+# define M_WRONG_EXT		"wrong file extension, expected '.rt'" //invalid free
+# define M_OPEN_FAILED		"failed to open file" //invalid free
 # define M_INVALID_SEP		"number group separated! Remove unnecessary spaces."
-# define M_PL_PARAMETERS	"PLANE: wrong param number, refer to template.rt"
-# define M_SP_PARAMETERS	"SPHERE: wrong param number, refer to template.rt"
-# define M_CY_PARAMETERS	"CYLINDER: wrong param number, refer to template.rt"
-# define M_CU_PARAMETERS	"CUBE: wrong param number, refer to template.rt"
+# define M_PL_PARAMETERS	"PLANE: wrong param number, refer to template.rt" // too many frees
+# define M_SP_PARAMETERS	"SPHERE: wrong param number, refer to template.rt" // too many frees
+# define M_CY_PARAMETERS	"CYLINDER: wrong param number, refer to template.rt" // too many frees
+# define M_CU_PARAMETERS	"CUBE: wrong param number, refer to template.rt" // too many frees
+
+// for INT float error in A, invalid free()
+// for INT FLOAT error in C, L or "triplets", not enough frees
 
 #endif

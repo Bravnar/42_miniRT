@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errorquit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:18:09 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:18:09 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 16:58:16 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	err_template(char *msg, char *line, t_file *file)
 	{
 		e_line = simple_replace(line, '\t', ' ');
 		e_line_trim = ft_strtrim(e_line, "\n");
-		if (e_line_trim)
-			err_location(e_line_trim);
 		free(e_line);
 	}
 	free_str(line);
 	ft_fprintf(2, BOLD_RED"%s\nParseError\n\n"RESET, ERRLINE);
+	if (e_line_trim)
+		err_location(e_line_trim);
 	ft_fprintf(2, BOLD_ORANGE"\n%s\n"RESET, msg);
 	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
 	if (file)

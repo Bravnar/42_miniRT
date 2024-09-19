@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:34:32 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 12:07:30 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:20:14 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_mrt	*mrt;
 
 	if (ac < 2)
-		err_template(M_NO_ARGS, av[0], NULL);
+		err_template(M_NO_ARGS, ft_strdup(av[0]), NULL);
 	if (ac == 2)
 	{
 		if (!check_file_name(av[1]))

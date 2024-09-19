@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_calculations.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:46:14 by hmorand          ###   ########.ch       */
+/*   Created: 2017/09/20 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 16:39:17 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ double	discriminant_cyl(t_obj *cyl, double *a, double *b)
 
 	*a = pow(cyl->saved_ray.direction.x, 2) \
 		+ pow(cyl->saved_ray.direction.z, 2);
-	if (fabs(*a) < DBL_EPSILON)
+	if (fabs(*a) < EPSILON)
 		return (-1);
 	*b = 2 * cyl->saved_ray.point.x * cyl->saved_ray.direction.x \
 		+ 2 * cyl->saved_ray.point.z * cyl->saved_ray.direction.z;

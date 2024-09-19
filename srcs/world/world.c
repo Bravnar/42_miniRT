@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:43:32 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:43:33 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:38:56 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ t_comps	prepare_comp(t_intersection h, t_ray r, t_inter *xs)
 	else
 		new.is_inside = false;
 	new.over_point = tuple_add(new.point,
-			vector_scalar_mult(new.normalv, FLT_EPSILON));
+			vector_scalar_mult(new.normalv, EPSILON));
 	new.under_point = tuple_sub(new.point,
-			vector_scalar_mult(new.normalv, FLT_EPSILON));
+			vector_scalar_mult(new.normalv, EPSILON));
 	set_n1_n2(&new, h, &xs);
 	return (new);
 }
