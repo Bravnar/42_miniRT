@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:48:36 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:48:41 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:14:29 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:14:29 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,21 @@ void	check_identifier(char *identifier)
 void	read_rt(char *filename, t_file *file)
 {
 	t_parse	*node;
+	int		i;
 	char	*line;
 
 	file->fd = open(filename, O_RDONLY);
 	if (file->fd == -1)
 		err_template(M_OPEN_FAILED, filename, file);
-	line = ft_strdup("");
-	while (line)
+	i = 0;
+	while (i == 0 || line)
 	{
-		free(line);
 		line = get_next_line(file->fd);
 		if (!ft_strcmp(line, "\n"))
 			continue ;
 		node = new_parse_node(line, file);
 		add_node(&file->parse, node);
+		i++;
 	}
-	free(line);
+	free_str(line);
 }

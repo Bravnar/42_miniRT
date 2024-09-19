@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:50:01 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:50:16 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 14:31:04 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 14:31:07 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void			free_nodes(t_parse *list);
 /* PARSING_UTILS.C */
 void			set_type(t_type *type, char *identifier);
 char			**set_type_and_clean(char **tmp, t_type *type);
-void			check_arr_extr(char **arr, t_file *file);
+void			check_arr_extr(char **arr, t_file *file, char **tmp, t_parse *node);
 
 /* ------------ INITIALIZATION -----------------------------------------------*/
 
@@ -498,6 +498,7 @@ void			print_intersection(t_intersection i);
 
 void			free_rt(t_mrt *mrt);
 void			free_map(t_map *map);
+void			free_str(char *str);
 
 /* EQUALS */
 

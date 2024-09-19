@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:46:42 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:46:42 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:07:53 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:07:53 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,27 @@ double	range_double(char *line, double lower, double upper, t_file *file)
 {
 	double	number;
 
+	(void) file;
 	number = ft_strtod(line);
-	if (number < lower || number > upper)
+	if (number < lower)
 	{
-		ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
-		ft_fprintf(2, BOLD_RED"RangeError\n\n"RESET);
-		ft_fprintf(2, "%s , is out of range\n", line);
-		printf("lower limit: %.2f, upper limit: %.2f\n", lower, upper);
-		err_template("Parameter out of specified range", line, file);
+		ft_fprintf(2, BOLD_ORANGE"%s\n"RESET, ERRLINE);
+		ft_fprintf(2, BOLD_ORANGE"RangeWarning\n\n"RESET);
+		ft_fprintf(2, "%s is below lower limit\n", line);
+		printf("lower limit: %.2f\n", lower);
+		printf(BOLD_YELLOW"Value has been capped to lower limit\n"RESET);
+		ft_fprintf(2, BOLD_ORANGE"%s\n"RESET, ERRLINE);
+		return (lower);
+	}
+	if (number > upper)
+	{
+		ft_fprintf(2, BOLD_ORANGE"%s\n"RESET, ERRLINE);
+		ft_fprintf(2, BOLD_ORANGE"RangeWarning\n\n"RESET);
+		ft_fprintf(2, "%s is above upper limit\n", line);
+		printf("upper limit: %.2f\n", upper);
+		printf(BOLD_YELLOW"Value has been capped to upper limit\n"RESET);
+		ft_fprintf(2, BOLD_ORANGE"%s\n"RESET, ERRLINE);
+		return (lower);
 	}
 	return (number);
 }

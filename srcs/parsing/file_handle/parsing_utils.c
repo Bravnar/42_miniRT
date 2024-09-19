@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:49:43 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:49:50 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 14:46:31 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 14:47:22 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,25 @@ char	**set_type_and_clean(char **tmp, t_type *type)
 	return (ret);
 }
 
-void	check_arr_extr(char **arr, t_file *file)
+void	check_arr_extr(char **arr, t_file *file, char **tmp , t_parse *node)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
+	char	*copy;
 
 	i = 0;
+	copy = NULL;
 	while (arr[i])
 	{
 		len = ft_strlen(arr[i]) - 1;
 		if ((!ft_isalnum(arr[i][0]) && arr[i][0] != '-') \
 			|| !ft_isalnum(arr[i][len]))
-			err_template(M_INVALID_SEP, arr[i], file);
+		{
+			copy = ft_strdup(arr[i]);
+			free_nodes(node);
+			ft_free_arr(tmp);
+			err_template(M_INVALID_SEP, copy, file);
+		}
 		i++;
 	}
 }

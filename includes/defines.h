@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:49:29 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 13:08:10 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 15:11:38 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:11:53 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@
 # define M_TOO_MANY_A		"Too many A-parameters" //conditional jump error
 # define M_TOO_MANY_C		"Too many C-parameters" //conditional jump error
 # define M_TOO_MANY_L		"Too many L-parameters (non-bonus)" //conditional jump error
-# define M_A_RATIO_RANGE	"A: ratio out of range (0.0 / 1.0)" 
-# define M_C_VECTOR_RANGE	"C: vector out of range (-1.0 / 1.0)" //still reachable
-# define M_C_FOV_RANGE		"C: FOV out of range (0 / 180)" 
+# define M_A_RATIO_RANGE	"A: ratio out of range (0.0 / 1.0)"
+# define M_C_VECTOR_RANGE	"C: vector out of range (-1.0 / 1.0)"
+# define M_C_FOV_RANGE		"C: FOV out of range (0 / 180)"
 # define M_L_BRIGHT_RANGE	"L: Brightness out of range (0.0 / 1.0)"
 # define M_UKNOWN_ID		"Unknown identifier in file" //big still reachable
-# define M_R_OVER_PARAM		"Invalid argument count in R" 
+# define M_R_OVER_PARAM		"Invalid argument count in R"
 # define M_A_OVER_PARAM		"Invalid argument count in A"
 # define M_C_OVER_PARAM		"Invalid argument count in C"
 # define M_L_OVER_PARAM		"Invalid argument count in L"
-# define M_SP_OVER_PARAM	"Too many arguments in sp" 
-# define M_PL_OVER_PARAM	"Too many arguments in pl" 
-# define M_PL_VECTOR_RANGE	"pl: vector out of range (-1.0 / 1.0)" //big still reachable
-# define M_CY_VECTOR_RANGE	"cy: vector out of range (-1.0 / 1.0)" //big still reachable
-# define M_WRONG_EXT		"wrong file extension, expected '.rt'" 
+# define M_SP_OVER_PARAM	"Too many arguments in sp"
+# define M_PL_OVER_PARAM	"Too many arguments in pl"
+# define M_PL_VECTOR_RANGE	"pl: vector out of range (-1.0 / 1.0)"
+# define M_CY_VECTOR_RANGE	"cy: vector out of range (-1.0 / 1.0)"
+# define M_WRONG_EXT		"wrong file extension, expected '.rt'"
 # define M_OPEN_FAILED		"failed to open file"
-# define M_INVALID_SEP		"number group separated! Remove unnecessary spaces." //huge still reachable
+# define M_INVALID_SEP		"number group separated! Remove unnecessary spaces."
 # define M_PL_PARAMETERS	"PLANE: wrong param number, refer to template.rt"
 # define M_SP_PARAMETERS	"SPHERE: wrong param number, refer to template.rt"
 # define M_CY_PARAMETERS	"CYLINDER: wrong param number, refer to template.rt"

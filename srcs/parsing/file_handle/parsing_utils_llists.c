@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:49:08 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:49:13 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:10:01 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:10:01 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ t_parse	*new_parse_node(char *line, t_file *file)
 	if (!node)
 		return (NULL);
 	node->line = ft_strdup(line);
+	free_str(line);
 	if (line)
 	{
 		tmp = ft_megasplit(node->line, WHITESPACE);
 		node->line_split = set_type_and_clean(tmp, &node->type);
 		node->id = ft_strdup(tmp[0]);
 		node->count = ft_arr_len(node->line_split);
-		check_arr_extr(node->line_split, file);
+		node->next = NULL;
+		check_arr_extr(node->line_split, file, tmp, node);
 		ft_free_arr(tmp);
 	}
 	node->next = NULL;
