@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:46:26 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 12:47:25 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 13:49:43 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 13:49:50 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**set_type_and_clean(char **tmp, t_type *type)
 	return (ret);
 }
 
-void	check_arr_extr(char **arr)
+void	check_arr_extr(char **arr, t_file *file)
 {
 	int	i;
 	int	len;
@@ -60,7 +60,7 @@ void	check_arr_extr(char **arr)
 		len = ft_strlen(arr[i]) - 1;
 		if ((!ft_isalnum(arr[i][0]) && arr[i][0] != '-') \
 			|| !ft_isalnum(arr[i][len]))
-			err_template(M_INVALID_SEP, arr[i], NULL);
+			err_template(M_INVALID_SEP, arr[i], file);
 		i++;
 	}
 }

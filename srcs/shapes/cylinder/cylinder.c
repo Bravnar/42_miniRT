@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:45:46 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 13:42:27 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 13:42:27 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_cyl	*cyl_create(char **cyl_line, int i)
 	cyl->height = ft_strtod(cyl_line[3]);
 	cyl->max = cyl->height / 2;
 	cyl->min = -cyl->height / 2;
-	cyl->shape.point = str_to_point(cyl_line[0]);
-	cyl->shape.dir_vector = str_to_vector(cyl_line[1]);
+	cyl->shape.point = str_to_point(cyl_line[0], NULL);
+	cyl->shape.dir_vector = str_to_vector(cyl_line[1], NULL);
 	cyl_transform = apply_transformation_cy(cyl);
 	pat_mat_cy(cyl_line, cyl);
 	cyl->shape.transform((t_obj *) cyl, cyl_transform);

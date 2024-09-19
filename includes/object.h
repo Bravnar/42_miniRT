@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:47:41 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:53:07 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 14:13:42 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 14:15:43 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 

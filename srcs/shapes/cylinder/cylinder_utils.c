@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 18/09/2024 09:26:44 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:45:27 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 13:39:53 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 13:39:53 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
 				matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
 		cyl->shape.material = material(pat, 0.9, 0.9, 200);
 		cyl->shape.material.refractive_index = range_double(
-				cyl_split[8], 0.0, 5.0);
-		cyl->shape.material.reflective = range_double(cyl_split[7], 0.0, 1.0);
-		cyl->shape.material.transparency = range_double(cyl_split[9], 0.0, 1.0);
-		cyl->shape.material.pattern.scale = range_double(cyl_split[10], 0, 20);
+				cyl_split[8], 0.0, 5.0, 0);
+		cyl->shape.material.reflective = range_double(cyl_split[7], 0.0, 1.0, 0);
+		cyl->shape.material.transparency = range_double(cyl_split[9], 0.0, 1.0, 0);
+		cyl->shape.material.pattern.scale = range_double(cyl_split[10], 0, 20, 0);
 	}
 }
 

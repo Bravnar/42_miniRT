@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:49:50 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 12:56:09 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 13:50:01 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 13:50:16 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ t_amb			fetch_amb(t_parse **head);
 
 /* FETCHING_CAM.C */
 void			set_view_cam(t_cam *cam, t_rwin res);
-t_cam			fetch_cam(t_parse **head, t_rwin res);
+t_cam			fetch_cam(t_parse **head, t_rwin res, t_file *file);
 
 /* FETCHING_LIGHTS.C */
 t_light			*new_light_node(t_tup point, double bright,
 					t_color rgb, t_color i);
 void			add_light_node(t_light **head, t_light *new_node);
 void			free_light_nodes(t_light *light);
-t_light			*fetch_light(t_parse **head);
+t_light			*fetch_light(t_parse **head, t_file *file);
 
 /* FETCHING_OBJS.C */
 void			add_obj_node(t_obj **head, t_obj *new_node);
@@ -58,11 +58,11 @@ void			check_res_limits(t_rwin res, char *line);
 t_rwin			fetch_res(t_parse **head);
 
 /* FETCHING_UTILS.C */
-t_tup			str_to_vector(char *str);
-t_tup			str_to_point(char *str);
+t_tup			str_to_vector(char *str, t_file *file);
+t_tup			str_to_point(char *str, t_file *file);
 t_color			color_split(char *color_str);
 int				range_int(char *line, int lower, int upper);
-double			range_double(char *line, double lower, double upper);
+double			range_double(char *line, double lower, double upper, t_file *file);
 
 /* ------------ FILE_HANDLE --------------------------------------------------*/
 
@@ -94,14 +94,14 @@ void			print_scene_details(void);
 void			read_rt(char *filename, t_file *file);
 
 /* PARSING_UTILS_LL_LISTS.C */
-t_parse			*new_parse_node(char *line);
+t_parse			*new_parse_node(char *line, t_file *file);
 void			add_node(t_parse **parsed, t_parse *new_node);
 void			free_nodes(t_parse *list);
 
 /* PARSING_UTILS.C */
 void			set_type(t_type *type, char *identifier);
 char			**set_type_and_clean(char **tmp, t_type *type);
-void			check_arr_extr(char **arr);
+void			check_arr_extr(char **arr, t_file *file);
 
 /* ------------ INITIALIZATION -----------------------------------------------*/
 
@@ -183,7 +183,7 @@ void			err_quit(char *msg);
 void			err_handler(t_err code);
 
 /* utils.c */
-t_parse			*new_parse_node(char *line);
+t_parse			*new_parse_node(char *line, t_file *file);
 void			add_node(t_parse **parsed, t_parse *new_node);
 void			free_nodes(t_parse *list);
 void			print_nodes(t_parse **head);

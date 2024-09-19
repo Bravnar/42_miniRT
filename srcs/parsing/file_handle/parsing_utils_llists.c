@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_llists.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:46:23 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:46:24 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 13:49:08 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 13:49:13 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_parse	*new_parse_node(char *line)
+t_parse	*new_parse_node(char *line, t_file *file)
 {
 	t_parse	*node;
 	char	**tmp;
@@ -27,7 +27,7 @@ t_parse	*new_parse_node(char *line)
 		node->line_split = set_type_and_clean(tmp, &node->type);
 		node->id = ft_strdup(tmp[0]);
 		node->count = ft_arr_len(node->line_split);
-		check_arr_extr(node->line_split);
+		check_arr_extr(node->line_split, file);
 		ft_free_arr(tmp);
 	}
 	node->next = NULL;

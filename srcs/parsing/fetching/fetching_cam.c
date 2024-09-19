@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fetching_cam.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:45:02 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 12:09:31 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 13:41:44 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 13:41:44 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_view_cam(t_cam *cam, t_rwin res)
 	cam->view = view;
 }
 
-t_cam	fetch_cam(t_parse **head, t_rwin res)
+t_cam	fetch_cam(t_parse **head, t_rwin res, t_file *file)
 {
 	t_parse	*tmp;
 	t_cam	cam;
@@ -36,11 +36,11 @@ t_cam	fetch_cam(t_parse **head, t_rwin res)
 	{
 		if (tmp->type == CAMERA)
 		{
-			cam.point = str_to_point(tmp->line_split[0]);
-			cam.vector = str_to_vector(tmp->line_split[1]);
+			cam.point = str_to_point(tmp->line_split[0], file);
+			cam.vector = str_to_vector(tmp->line_split[1], file);
 			cam.fov = ft_strtod(tmp->line_split[2]);
 			if (cam.fov < 0.0 || cam.fov > 180.0)
-				err_template(M_C_FOV_RANGE, tmp->line, NULL);
+				err_template(M_C_FOV_RANGE, tmp->line, file);
 			set_view_cam(&cam, res);
 			break ;
 		}

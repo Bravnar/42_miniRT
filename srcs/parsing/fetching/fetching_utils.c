@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   fetching_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:42:20 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 12:15:08 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 13:46:42 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 13:46:42 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_tup	str_to_vector(char *str)
+t_tup	str_to_vector(char *str, t_file *file)
 {
 	char	**str_split;
 	t_tup	ret;
 
 	str_split = ft_split(str, ',');
-	ret = vector(range_double(str_split[0], -1.0, 1.0),
-			range_double(str_split[1], -1.0, 1.0),
-			range_double(str_split[2], -1.0, 1.0));
+	ret = vector(range_double(str_split[0], -1.0, 1.0, file),
+			range_double(str_split[1], -1.0, 1.0, file),
+			range_double(str_split[2], -1.0, 1.0, file));
 	ft_free_arr(str_split);
 	return (ret);
 }
 
-t_tup	str_to_point(char *str)
+t_tup	str_to_point(char *str, t_file *file)
 {
 	char	**str_split;
 	t_tup	ret;
 
+	(void) file;
 	str_split = ft_split(str, ',');
 	ret = point(ft_strtod(str_split[0]),
 			ft_strtod(str_split[1]),
@@ -47,15 +48,15 @@ t_color	color_split(char *color_str)
 	int		b;
 
 	color_split = ft_split(color_str, ',');
-	r = range_double(color_split[0], 0.0, 255.0);
-	g = range_double(color_split[1], 0.0, 255.0);
-	b = range_double(color_split[2], 0.0, 255.0);
+	r = range_double(color_split[0], 0.0, 255.0, 0);
+	g = range_double(color_split[1], 0.0, 255.0, 0);
+	b = range_double(color_split[2], 0.0, 255.0, 0);
 	ret = color(r, g, b);
 	ft_free_arr(color_split);
 	return (ret);
 }
 
-double	range_double(char *line, double lower, double upper)
+double	range_double(char *line, double lower, double upper, t_file *file)
 {
 	double	number;
 
@@ -66,7 +67,7 @@ double	range_double(char *line, double lower, double upper)
 		ft_fprintf(2, BOLD_RED"RangeError\n\n"RESET);
 		ft_fprintf(2, "%s , is out of range\n", line);
 		printf("lower limit: %.2f, upper limit: %.2f\n", lower, upper);
-		err_template("Parameter out of specified range", line, NULL);
+		err_template("Parameter out of specified range", line, file);
 	}
 	return (number);
 }
