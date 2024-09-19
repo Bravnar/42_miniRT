@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:27:29 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 11:27:29 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 11:53:08 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 11:53:14 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	free_map(t_map *map)
 {
+	if (!map)
+		return ;
 	if (map->light)
 		free_light_nodes(map->light);
 	if (map->obj_list)

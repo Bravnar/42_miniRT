@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errorquit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:38:10 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:38:12 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 11:52:25 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 11:52:33 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ char	*simple_replace(char *str, char what, char with)
 void	err_template(char *msg, char *line)
 {
 	char	*e_line;
-<<<<<<< HEAD
 	char	*e_line_trim;
-=======
->>>>>>> 738653dab346508aa39caeb447b0eb7a796cd412
 
 	e_line = NULL;
 	if (line)

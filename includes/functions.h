@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 11:05:23 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 11:49:50 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 11:49:56 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void			check_obj_params(t_parse *tmp);
 void			check_params(t_file *file);
 void			check_params_bonus(t_file *file);
 void			check_obj_params_bonus(t_parse *tmp);
+void			free_obj_nodes(t_obj *obj);
 
 /* PARSING_PRINTS.C */
 void			print_nodes(t_parse **head);
