@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 14:31:04 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 14:31:07 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:43:32 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:43:57 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void			add_node(t_parse **parsed, t_parse *new_node);
 void			free_nodes(t_parse *list);
 
 /* PARSING_UTILS.C */
-void			set_type(t_type *type, char *identifier);
-char			**set_type_and_clean(char **tmp, t_type *type);
+void			set_type(t_type *type, char *identifier, t_parse *node, char **tmp, t_file *file);
+char			**set_type_and_clean(char **tmp, t_type *type, t_parse *node, t_file *file);
 void			check_arr_extr(char **arr, t_file *file, char **tmp, t_parse *node);
 
 /* ------------ INITIALIZATION -----------------------------------------------*/
@@ -141,7 +141,7 @@ t_obj			**get_scene_objs(void);
 /* read_rt_file.c */
 void			populate_scene_struct(char *file_name, t_map *scene);
 // void			check_identifier(t_parse **head);
-void			check_identifier(char *identifier);
+void			check_identifier(char *identifier, t_parse *node, char **tmp, t_file *file);
 void			read_file(char *file_name, t_map *data);
 void			print_scene_details(void);
 

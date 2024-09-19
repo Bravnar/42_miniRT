@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 15:11:38 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:11:53 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:45:11 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:45:11 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@
 # define M_C_VECTOR_RANGE	"C: vector out of range (-1.0 / 1.0)"
 # define M_C_FOV_RANGE		"C: FOV out of range (0 / 180)"
 # define M_L_BRIGHT_RANGE	"L: Brightness out of range (0.0 / 1.0)"
-# define M_UKNOWN_ID		"Unknown identifier in file" //big still reachable
+# define M_UKNOWN_ID		"Unknown identifier in file"
 # define M_R_OVER_PARAM		"Invalid argument count in R"
 # define M_A_OVER_PARAM		"Invalid argument count in A"
 # define M_C_OVER_PARAM		"Invalid argument count in C"

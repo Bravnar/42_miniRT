@@ -5,15 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 14:46:31 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 14:47:22 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:42:48 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:44:32 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	set_type(t_type *type, char *identifier)
+void	set_type(t_type *type, char *identifier, t_parse *node,
+	char **tmp, t_file *file)
 {
+	check_identifier(identifier, node, tmp, file);
 	if (!ft_strcmp(identifier, "R"))
 		*type = WINDOW;
 	else if (!ft_strcmp(identifier, "A"))
@@ -26,7 +28,8 @@ void	set_type(t_type *type, char *identifier)
 		*type = OBJECTS;
 }
 
-char	**set_type_and_clean(char **tmp, t_type *type)
+char	**set_type_and_clean(char **tmp, t_type *type,
+	t_parse *node, t_file *file)
 {
 	char	**ret;
 	int		len;
@@ -36,7 +39,7 @@ char	**set_type_and_clean(char **tmp, t_type *type)
 	i = 1;
 	j = 0;
 	len = ft_arr_len(tmp);
-	set_type(type, tmp[0]);
+	set_type(type, tmp[0], node, tmp, file);
 	ret = malloc(sizeof(char *) * len);
 	if (!ret)
 		return (NULL);
