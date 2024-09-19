@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fetching_objs.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:45:30 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:45:31 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	add_obj_node(t_obj **head, t_obj *new_node)
@@ -34,13 +46,13 @@ t_obj	*fetch_objs(t_parse **head)
 {
 	t_obj	*obj_list;
 	t_obj	*(*create_shape)(char **, int);
-	t_parse *tmp;
+	t_parse	*tmp;
 	int		i;
 
 	i = 0;
 	obj_list = NULL;
 	tmp = *head;
-	while(tmp)
+	while (tmp)
 	{
 		create_shape = NULL;
 		if (!ft_strcmp(tmp->id, "sp"))

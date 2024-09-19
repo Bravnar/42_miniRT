@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fetching_lights.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:45:13 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:45:14 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_light	*new_light_node(t_tup point, double bright, t_color rgb, t_color i)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cylinder_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 18/09/2024 09:26:44 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 09:45:27 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
@@ -18,10 +30,11 @@ void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
 	else
 	{
 		sec = color_split(cyl_split[6]);
-		pat = pattern(prim, sec, range_int(cyl_split[3], 0, 3),
-			matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
+		pat = pattern(prim, sec, range_int(cyl_split[5], 0, 3),
+				matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
 		cyl->shape.material = material(pat, 0.9, 0.9, 200);
-		cyl->shape.material.refractive_index = range_double(cyl_split[8], 0.0, 5.0);
+		cyl->shape.material.refractive_index = range_double(
+				cyl_split[8], 0.0, 5.0);
 		cyl->shape.material.reflective = range_double(cyl_split[7], 0.0, 1.0);
 		cyl->shape.material.transparency = range_double(cyl_split[9], 0.0, 1.0);
 		cyl->shape.material.pattern.scale = range_double(cyl_split[10], 0, 20);
@@ -34,34 +47,27 @@ void	transform_cy(t_obj *shape, t_matrix transformation)
 	shape->inverse_transformation = inverse(shape->transformation, 4);
 }
 
-t_tup world_to_object(t_obj *obj, t_tup world_point)
+t_tup	local_normal_at_cy(t_obj *cyl, t_tup world_point)
 {
-    return matrix_mult_tup(obj->inverse_transformation, world_point);
-}
+	t_tup	local_point;
+	t_tup	local_normal;
+	t_cyl	*cyll;
+	double	dist;
+	t_tup	world_normal;
 
-t_tup object_to_world(t_obj *obj, t_tup object_point)
-{
-    return matrix_mult_tup(obj->transformation, object_point);
-}
-
-t_tup local_normal_at_cy(t_obj *cyl, t_tup world_point) {
-    t_tup local_point = matrix_mult_tup(cyl->inverse_transformation, world_point);
-    t_tup local_normal;
-    t_cyl *cyll = (t_cyl *)cyl;
-    double dist = pow(local_point.x, 2) + pow(local_point.z, 2);
-
-    if (dist < 1 && local_point.y >= cyll->max - EPSILON) {
-        local_normal = vector(0, 1, 0);
-    } else if (dist < 1 && local_point.y <= cyll->min + EPSILON) {
-        local_normal = vector(0, -1, 0);
-    } else {
-        local_normal = vector(local_point.x, 0, local_point.z);
-    }
-
-    // Transform normal back to world space
-    t_tup world_normal = matrix_mult_tup(transpose(cyl->inverse_transformation), local_normal);
-    world_normal.w = 0; // Ensure it's a vector, not a point
-    return vector_norm(world_normal);
+	local_point = matrix_mult_tup(cyl->inverse_transformation, world_point);
+	cyll = (t_cyl *)cyl;
+	dist = pow(local_point.x, 2) + pow(local_point.z, 2);
+	if (dist < 1 && local_point.y >= cyll->max - EPSILON)
+		local_normal = vector(0, 1, 0);
+	else if (dist < 1 && local_point.y <= cyll->min + EPSILON)
+		local_normal = vector(0, -1, 0);
+	else
+		local_normal = vector(local_point.x, 0, local_point.z);
+	world_normal = matrix_mult_tup(transpose(
+				cyl->inverse_transformation), local_normal);
+	world_normal.w = 0;
+	return (vector_norm(world_normal));
 }
 
 t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
@@ -91,7 +97,7 @@ t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 	return (ret);
 }
 
-t_cyl	*cylinder(int i)
+/* t_cyl	*cylinder(int i)
 {
 	t_cyl	*cyl;
 
@@ -107,4 +113,4 @@ t_cyl	*cylinder(int i)
 	cyl->max = DBL_MAX;
 	cyl->min = DBL_MIN;
 	return (cyl);
-}
+} */

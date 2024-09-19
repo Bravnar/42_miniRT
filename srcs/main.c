@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:34:32 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:37:31 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 int	main(int ac, char **av)
@@ -5,7 +17,7 @@ int	main(int ac, char **av)
 	t_mrt	*mrt;
 
 	if (ac < 2)
-		err_handler(NO_ARGS);
+		err_template(M_NO_ARGS, av[0]);
 	if (ac == 2)
 	{
 		if (!check_file_name(av[1]))

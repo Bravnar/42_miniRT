@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   multiple_lights.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:43:24 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:43:25 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_tup	light_vector_curr(t_tup point, t_light *curr)
@@ -5,13 +17,14 @@ t_tup	light_vector_curr(t_tup point, t_light *curr)
 	return (vector_norm(tuple_sub(curr->point, point)));
 }
 
-double	calculate_shadow_intensity_multi(t_world world, t_tup point, t_light *light)
+double	calculate_shadow_intensity_multi(t_world world,
+	t_tup point, t_light *light)
 {
 	t_ray	shadow_ray;
 	t_inter	*shadow_intersections;
 	double	shadow_intensity;
-	double 	distance_to_light;
-	t_inter *current;
+	double	distance_to_light;
+	t_inter	*current;
 
 	shadow_ray = ray_new(point, light_vector_curr(point, light));
 	shadow_intersections = intersect_world(world, shadow_ray);
@@ -47,7 +60,8 @@ t_color	accumulate_lights(t_world w, t_comps comps)
 	curr_light = w.light;
 	while (curr_light)
 	{
-		shadow_intensity = calculate_shadow_intensity_multi(w, comps.over_point, curr_light);
+		shadow_intensity = calculate_shadow_intensity_multi(w,
+				comps.over_point, curr_light);
 		surface = lighting(comps.obj, comps.point, views, shadow_intensity);
 		total_surface = color_add(total_surface, surface);
 		curr_light = curr_light->next;

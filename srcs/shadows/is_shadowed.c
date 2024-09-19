@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_shadowed.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 10:03:26 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_ray	shadow_ray(t_comps comps, t_tup direction)
@@ -14,8 +26,8 @@ double	calculate_shadow_intensity(t_world world, t_tup point)
 	t_ray	shadow_ray;
 	t_inter	*shadow_intersections;
 	double	shadow_intensity;
-	double distance_to_light;
-	t_inter *current;
+	double	distance_to_light;
+	t_inter	*current;
 
 	shadow_ray = ray_new(point, light_vector(point));
 	shadow_intersections = intersect_world(world, shadow_ray);
@@ -44,7 +56,6 @@ bool	is_shadowed(t_world w, t_comps comps)
 	t_ray			shadow_r;
 	t_inter			*inter;
 	t_intersection	h;
-
 
 	v = tuple_sub(w.light->point, comps.over_point);
 	direction = vector_norm(v);

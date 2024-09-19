@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 09:56:12 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_inter	*local_intersect_s(t_ray r, t_obj *sphere)
@@ -34,7 +46,7 @@ t_sphere	*sphere(int i)
 	return (s);
 }
 
-t_sphere	*glass_sphere(int i)
+/* t_sphere	*glass_sphere(int i)
 {
 	t_sphere	*s;
 
@@ -51,6 +63,14 @@ t_sphere	*glass_sphere(int i)
 	s->shape.transform((t_obj *) s,
 		scaling_matrix(s->diameter / 2, s->diameter / 2, s->diameter / 2));
 	return (s);
+} */
+
+void	transform_s(t_obj *sphere, t_matrix transformation)
+{
+	sphere->transformation = matrix_mult(sphere->transformation,
+			transformation);
+	sphere->inverse_transformation = matrix_mult(sphere->inverse_transformation,
+			inverse(transformation, 4));
 }
 
 void	sphere_set_up(t_sphere *sphere, int i)

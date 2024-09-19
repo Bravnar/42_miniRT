@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fetching_amb.c                                     :+:      :+:    :+:   */
+/*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:44:57 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:44:58 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 10:35:47 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:35:49 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_amb	fetch_amb(t_parse **head)
+void	init_rwin(t_rwin *win)
 {
-	t_parse	*tmp;
-	t_amb	amb;
+	ft_bzero(win, sizeof(t_rwin));
+}
 
-	tmp = *head;
-	amb.ratio = 0;
-	while (tmp)
-	{
-		if (tmp->type == AMBIENT)
-		{
-			amb.ratio = ft_strtod(tmp->line_split[0]);
-			if (amb.ratio < 0.0 || amb.ratio > 1.0)
-				err_template("AMB ratio out of range", tmp->line);
-			amb.rgb = color_split(tmp->line_split[1]);
-			break ;
-		}
-		tmp = tmp->next;
-	}
-	return (amb);
+void	init_amb(t_amb *amb)
+{
+	ft_bzero(amb, sizeof(t_amb));
+}
+
+void	init_cam(t_cam *cam)
+{
+	ft_bzero(cam, sizeof(t_cam));
+}
+
+void	init_light(t_light *light)
+{
+	ft_bzero(light, sizeof(t_light));
 }

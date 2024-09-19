@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   plane_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 09:50:53 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
@@ -25,6 +37,7 @@ t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
 	t_tup	normal;
+
 	normal = vector_norm(
 			matrix_mult_tup(plane->transformation, plane->dir_vector));
 	if (plane->material.pattern.scale)
@@ -54,4 +67,16 @@ t_plane	*plane(int i)
 	p->shape.inverse_transformation = identity();
 	p->shape.next = NULL;
 	return (p);
+}
+
+void	transform_pl(t_obj *shape, t_matrix transformation)
+{
+	t_plane	*plane;
+
+	plane = (t_plane *) shape;
+	plane->shape.transformation = matrix_mult(plane->shape.transformation,
+			transformation);
+	plane->shape.transformation = matrix_mult(
+			plane->shape.inverse_transformation,
+			inverse(transformation, 4));
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 13:09:31 by hmorand           #+#    #+#             */
-/*   Updated: 2024/08/28 13:09:31 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/18 11:04:03 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/18 11:04:09 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "object.h"
 
-typedef struct	s_cube
+typedef struct s_cube
 {
 	t_obj		shape;
 	double		length;

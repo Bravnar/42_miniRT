@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect_linked.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/18 10:01:34 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/18 10:01:39 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_inter	*new_inter_node(t_intersection i)
@@ -12,9 +24,9 @@ t_inter	*new_inter_node(t_intersection i)
 	return (node);
 }
 
-void add_inter_nodes(t_inter **head, t_inter **new_nodes)
+void	add_inter_nodes(t_inter **head, t_inter **new_nodes)
 {
-	t_inter *tmp;
+	t_inter	*tmp;
 
 	if (new_nodes == NULL)
 		return ;

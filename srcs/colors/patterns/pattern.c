@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pattern.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 18/09/2024 10:36:05 by hmorand          ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 static void	transform(t_pattern *pat, t_matrix transformation)
@@ -42,5 +54,3 @@ t_pattern	pattern(t_color a, t_color b, t_patt_type type, t_matrix trans)
 		pat.color_at = gradient_pattern;
 	return (pat);
 }
-
-

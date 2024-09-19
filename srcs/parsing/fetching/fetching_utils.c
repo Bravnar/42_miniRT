@@ -1,23 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fetching_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:42:20 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:42:23 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_tup	str_to_vector(char *str)
 {
 	char	**str_split;
 	t_tup	ret;
-	bool	check_x;
-	bool	check_y;
-	bool	check_z;
 
 	str_split = ft_split(str, ',');
 	ret = vector(range_double(str_split[0], -1.0, 1.0),
 			range_double(str_split[1], -1.0, 1.0),
 			range_double(str_split[2], -1.0, 1.0));
-	check_x = ret.x >= -1.0 && ret.x <= 1.0;
-	check_y = ret.y >= -1.0 && ret.y <= 1.0;
-	check_z = ret.z >= -1.0 && ret.z <= 1.0;
 	ft_free_arr(str_split);
-	if (!check_x || !check_y || !check_z)
-		err_template("Vector out of range", str);
 	return (ret);
 }
 
@@ -37,10 +41,10 @@ t_tup	str_to_point(char *str)
 t_color	color_split(char *color_str)
 {
 	t_color	ret;
-	char **color_split;
-	int	r;
-	int	g;
-	int	b;
+	char	**color_split;
+	int		r;
+	int		g;
+	int		b;
 
 	color_split = ft_split(color_str, ',');
 	r = range_double(color_split[0], 0.0, 255.0);

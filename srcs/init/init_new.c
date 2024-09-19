@@ -1,24 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_new.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:35:36 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:35:38 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
-
-void	init_rwin(t_rwin *win)
-{
-	ft_bzero(win, sizeof(t_rwin));
-}
-
-void	init_amb(t_amb *amb)
-{
-	ft_bzero(amb, sizeof(t_amb));
-}
-
-void	init_cam(t_cam *cam)
-{
-	ft_bzero(cam, sizeof(t_cam));
-}
-
-void	init_light(t_light *light)
-{
-	ft_bzero(light, sizeof(t_light));
-}
 
 void	init_map(t_map *data)
 {
@@ -28,7 +20,7 @@ void	init_map(t_map *data)
 	init_rwin(&data->win);
 	init_amb(&data->amb);
 	init_cam(&data->cam);
-	init_light(data->light); //if bonus needs to be linked list!
+	init_light(data->light);
 	data->obj_list = NULL;
 }
 
@@ -82,6 +74,7 @@ t_main	*init_all(char *file_name)
 	if (!main)
 		return (NULL);
 	main->data = create_scene(file_name);
-	//setup_world(&main->world);
 	return (main);
 }
+
+//setup_world(&main->world);

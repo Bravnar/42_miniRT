@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_params.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:46:10 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:46:11 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	check_obj_params(t_parse *tmp)
@@ -12,7 +24,7 @@ void	check_obj_params(t_parse *tmp)
 
 void	check_params(t_file *file)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 
 	tmp = file->parse;
 	while (tmp)
@@ -43,7 +55,7 @@ void	check_obj_params_bonus(t_parse *tmp)
 
 void	check_params_bonus(t_file *file)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 
 	tmp = file->parse;
 	while (tmp)

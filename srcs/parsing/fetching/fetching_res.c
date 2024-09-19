@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fetching_res.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:45:34 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:45:35 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	check_res_limits(t_rwin res, char *line)
@@ -10,7 +22,7 @@ void	check_res_limits(t_rwin res, char *line)
 
 t_rwin	fetch_res(t_parse **head)
 {
-	t_parse *tmp;
+	t_parse	*tmp;
 	t_rwin	res;
 
 	tmp = *head;

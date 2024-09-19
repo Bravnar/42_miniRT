@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 10:49:29 by smuravye          #+#    #+#             */
+/*   Updated: 2024/09/19 10:49:30 by smuravye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define EPSILON	(0.00001)
+# define EPSILON	0.00001
 
 # ifndef RT_BONUS
 #  define RT_BONUS 0
@@ -16,10 +28,11 @@
 #  define DOWN 125
 #  define Q_KEY 12
 #  define P_KEY 35
+#  define U_KEY 32
 #  define WIN_X_MAX 3840
 #  define WIN_Y_MAX 2160
-# define WIN_X_DEFAULT 500
-# define WIN_Y_DEFAULT 500
+#  define WIN_X_DEFAULT 500
+#  define WIN_Y_DEFAULT 500
 
 # else
 
@@ -30,6 +43,7 @@
 #  define DOWN	65364
 #  define Q_KEY	113
 #  define P_KEY 112
+#  define U_KEY 117
 
 #  define WIN_X_MAX 3840
 #  define WIN_Y_MAX 2160
@@ -39,7 +53,7 @@
 
 # endif
 
-# define PI			(3.1416)
+# define PI			3.1416
 # define WHITESPACE " \t\n\r\f\v"
 
 /* Error messages */
@@ -47,7 +61,7 @@
 # define GOOD_ID			"RACL.pl.sp.cy.cu"
 # define GOOD_ID_SINGLE		"RACL"
 
-#define ERRLINE "-------------------------------------------------------------"
+# define ERRLINE "-------------------------------------------------------------"
 
 # define M_NO_ARGS			"No arguments provided, give path to .rt!"
 # define M_INVALID_ENTRY	"Invalid number entry, only INT or FLOAT"
