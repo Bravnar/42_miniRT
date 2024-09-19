@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:56:03 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 16:45:15 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:38:36 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ t_cam	fetch_cam(t_parse **head, t_rwin res, t_file *file)
 	{
 		if (tmp->type == CAMERA)
 		{
-			cam.point = str_to_point(tmp->line_split[0]);
-			cam.vector = str_to_vector(tmp->line_split[1]);
-			cam.fov = range_double(tmp->line_split[2], 0, 180);
+			cam.point = str_to_point(tmp->line_split[0], NULL);
+			cam.vector = str_to_vector(tmp->line_split[1], NULL);
+			cam.fov = range_double(tmp->line_split[2], 0, 180, NULL);
 			set_view_cam(&cam, res);
 			break ;
 		}

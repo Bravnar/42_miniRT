@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_maker.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:57:46 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:57:46 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 18:00:44 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_map	*create_map(char *filename)
 	map->amb = fetch_amb(&map->file.parse);
 	map->cam = fetch_cam(&map->file.parse, map->win, &map->file);
 	map->light = fetch_light(&map->file.parse);
+	map->obj_list = NULL;
 	map->obj_list = fetch_objs(&map->file.parse);
 	return (map);
 }

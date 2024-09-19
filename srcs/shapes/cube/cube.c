@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:56:12 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:56:12 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 18:11:20 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ t_cube	*cube_create(char **cube_line, int i)
 	c = malloc(sizeof(t_cube));
 	if (!c)
 		return (NULL);
-	c->length = ft_strtod(cube_line[2]);
-	c->width = ft_strtod(cube_line[3]);
-	c->height = ft_strtod(cube_line[4]);
+	c->length = ft_strtod(cube_line[2], cube_line);
+	c->width = ft_strtod(cube_line[3], cube_line);
+	c->height = ft_strtod(cube_line[4], cube_line);
 	c->shape.get_name = get_name_cu;
 	c->shape.volume = volume_cu;
 	c->shape.destroy = cube_destroy;
 	c->shape.transform = transform_cu;
 	c->shape.local_intersect = local_intersect_cu;
-	pat = pattern(color_split(cube_line[5]), white(), PLAIN, identity());
+	pat = pattern(color_split(cube_line[5], (void *) c), white(), PLAIN, identity());
 	c->shape.material = material(pat, 0.9, 0.9, 200);
-	c->shape.point = str_to_point(cube_line[0]);
-	c->shape.dir_vector = str_to_vector(cube_line[1]);
+	c->shape.point = str_to_point(cube_line[0], (void *) c);
+	c->shape.dir_vector = str_to_vector(cube_line[1], (void *) c);
 	c->shape.transformation = identity();
 	c->shape.inverse_transformation = identity();
 	c->shape.next = NULL;

@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:39:53 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:53:39 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 18:24:41 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
+void	pat_mat_cy(char **c_split, t_cyl *c)
 {
 	t_pattern	pat;
 	t_color		prim;
 	t_color		sec;
 
-	prim = color_split(cyl_split[4]);
+	prim = color_split(c_split[4], (void *) c);
 	if (!RT_BONUS)
 	{
 		pat = pat_default(prim);
-		cyl->shape.material = material(pat, 0.9, 0.9, 200);
-		cyl->shape.material.refractive_index = 0;
-		cyl->shape.material.reflective = 0;
-		cyl->shape.material.transparency = 0;
+		c->shape.material = material(pat, 0.9, 0.9, 200);
+		c->shape.material.refractive_index = 0;
+		c->shape.material.reflective = 0;
+		c->shape.material.transparency = 0;
 	}
 	else
 	{
-		sec = color_split(cyl_split[6]);
-		pat = pattern(prim, sec, range_int(cyl_split[5], 0, 3),
+		sec = color_split(c_split[6], (void *) c);
+		pat = pattern(prim, sec, range_int(c_split[5], 0, 3),
 				matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
-		cyl->shape.material = material(pat, 0.9, 0.9, 200);
-		cyl->shape.material.refractive_index = range_double(
-				cyl_split[8], 0.0, 5.0);
-		cyl->shape.material.reflective = range_double(cyl_split[7], 0.0, 1.0);
-		cyl->shape.material.transparency = range_double(cyl_split[9], 0.0, 1.0);
-		cyl->shape.material.pattern.scale = range_double(cyl_split[10], 0, 20);
+		c->shape.material = material(pat, 0.9, 0.9, 200);
+		c->shape.material.refractive_index = range_double(
+				c_split[8], 0.0, 5.0, 0);
+		c->shape.material.reflective = range_double(c_split[7], 0.0, 1.0, 0);
+		c->shape.material.transparency = range_double(c_split[9], 0.0, 1.0, 0);
+		c->shape.material.pattern.scale = range_double(c_split[10], 0, 20, 0);
 	}
 }
 

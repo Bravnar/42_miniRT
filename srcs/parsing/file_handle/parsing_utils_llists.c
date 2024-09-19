@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   parsing_utils_llists.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:51:55 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:51:55 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 17:41:37 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	free_nodes(t_parse *list)
 		list = list->next;
 		if (tmp->line)
 			free(tmp->line);
-		if (tmp->line_split)
+		if (tmp->line_split != NULL)
 			ft_free_arr(tmp->line_split);
 		if (tmp->id)
 			free(tmp->id);

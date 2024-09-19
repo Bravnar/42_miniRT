@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:44:42 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 12:09:05 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:39:08 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,20 @@ static int	check_num(char *str, int *sign)
 	return (1);
 }
 
-double	ft_strtod(char *str)
+double	ft_strtod(char *str, char **arr)
 {
 	t_conv	stod;
 	char	*endptr;
+	char	*copy;
 
 	ft_bzero(&stod, sizeof(stod));
 	stod.sign = 1;
 	if (!check_num(str, &stod.sign))
-		err_template(M_INVALID_ENTRY, str, NULL);
+	{
+		copy = ft_strdup(str);
+		ft_free_arr(arr);
+		err_template(M_INVALID_ENTRY, copy, NULL);
+	}
 	if (!ft_strchr(str, '.'))
 		return ((double)ft_strtoi(str, &endptr));
 	stod.split = ft_split(str, '.');

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:56:19 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:56:19 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 17:54:33 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ t_cyl	*cyl_create(char **cyl_line, int i)
 	if (!cyl)
 		return (NULL);
 	cyl_set_up(cyl, i);
-	cyl->diameter = ft_strtod(cyl_line[2]);
-	cyl->height = ft_strtod(cyl_line[3]);
+	cyl->diameter = ft_strtod(cyl_line[2], cyl_line);
+	cyl->height = ft_strtod(cyl_line[3], cyl_line);
 	cyl->max = cyl->height / 2;
 	cyl->min = -cyl->height / 2;
-	cyl->shape.point = str_to_point(cyl_line[0]);
-	cyl->shape.dir_vector = str_to_vector(cyl_line[1]);
+	cyl->shape.point = str_to_point(cyl_line[0], (void *) cyl);
+	cyl->shape.dir_vector = str_to_vector(cyl_line[1], (void *) cyl);
 	cyl_transform = apply_transformation_cy(cyl);
 	pat_mat_cy(cyl_line, cyl);
 	cyl->shape.transform((t_obj *) cyl, cyl_transform);

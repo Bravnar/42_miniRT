@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:44:57 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 16:30:18 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:19:58 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_amb	fetch_amb(t_parse **head)
 	{
 		if (tmp->type == AMBIENT)
 		{
-			amb.ratio = range_double(tmp->line_split[0], 0.0, 1.0);
-			amb.rgb = color_split(tmp->line_split[1]);
+			amb.ratio = range_double(tmp->line_split[0], 0.0, 1.0, NULL);
+			amb.rgb = color_split(tmp->line_split[1], NULL);
 			break ;
 		}
 		tmp = tmp->next;

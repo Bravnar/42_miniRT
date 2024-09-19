@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:44:39 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 12:08:47 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:43:19 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_num(const char *str)
 	return (1);
 }
 
-int	ft_rt_atoi(const char *nptr)
+int	ft_rt_atoi(const char *nptr, char **arr)
 {
 	int	result;
 	int	sign;
@@ -65,7 +65,10 @@ int	ft_rt_atoi(const char *nptr)
 		nptr++;
 	sign = check_sign(&nptr);
 	if (!check_num(nptr))
-		err_template(M_INVALID_ENTRY, (char *)nptr, NULL);
+	{
+		(void) arr;
+		err_template(M_INVALID_ENTRY, ft_strdup((char *)nptr), NULL);
+	}
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		result = result * 10 + (*nptr - '0');

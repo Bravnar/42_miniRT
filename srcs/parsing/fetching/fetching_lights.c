@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fetching_lights.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:57:22 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:57:22 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 18:20:12 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ t_light	*fetch_light(t_parse **head)
 	{
 		if (tmp->type == LIGHTS)
 		{
-			bright = range_double(tmp->line_split[1], 0, 1);
+			bright = range_double(tmp->line_split[1], 0, 1, NULL);
 			if (RT_BONUS)
-				rgb = color_split(tmp->line_split[2]);
+				rgb = color_split(tmp->line_split[2], NULL);
 			else
 				rgb = white();
-			node = new_light_node(str_to_point(tmp->line_split[0]),
+			node = new_light_node(str_to_point(tmp->line_split[0], NULL),
 					bright, rgb,
 					color_scalarmult(bright, rgb));
 			add_light_node(&l_head, node);

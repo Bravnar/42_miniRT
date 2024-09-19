@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:58:48 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:58:48 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 17:41:24 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_map(t_map *map)
 		free_light_nodes(map->light);
 	if (map->obj_list)
 		free_obj_nodes(map->obj_list);
-	if (map->file.parse)
+	if (map->file.parse != NULL)
 		free_nodes(map->file.parse);
 	free(map);
 }

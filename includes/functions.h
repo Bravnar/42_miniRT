@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:57:32 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:57:32 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 18:19:50 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void			check_count_bonus(t_file *file);
 /* ------------ CONVERTERS ---------------------------------------------------*/
 
 /* FT_RT_ATOI.C */
-int				ft_rt_atoi(const char *nptr);
+int				ft_rt_atoi(const char *nptr, char **arr);
 
 /* FT_STRTOD.C */
-double			ft_strtod(char *str);
+double			ft_strtod(char *str, char **arr);
 
 /* FT_STRTOI.C */
 int				ft_strtoi(const char *nptr, char **endptr);
@@ -58,11 +58,11 @@ void			check_res_limits(t_rwin res, char *line);
 t_rwin			fetch_res(t_parse **head);
 
 /* FETCHING_UTILS.C */
-t_tup			str_to_vector(char *str);
-t_tup			str_to_point(char *str);
-t_color			color_split(char *color_str);
+t_tup			str_to_vector(char *str, void *tmp);
+t_tup			str_to_point(char *str, void *tmp);
+t_color			color_split(char *color_str, void *obj);
 int				range_int(char *line, int lower, int upper);
-double			range_double(char *line, double lower, double upper);
+double			range_double(char *line, double lower, double upper, char **arr);
 
 /* ------------ FILE_HANDLE --------------------------------------------------*/
 
@@ -194,7 +194,7 @@ void			print_nodes(t_parse **head);
 void			count_identifier(t_parse **head, t_file *file);
 
 /* ft_stdtod.c */
-double			ft_strtod(char *str);
+double			ft_strtod(char *str, char **arr);
 int				ft_strtoi(const char *nptr, char **endptr);
 
 t_world			create_world(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:56:24 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:56:24 by hmorand          ###   ########.ch       */
+/*   Updated: 2024/09/19 18:22:54 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	pat_mat_pl(char **p_split, t_plane *pl)
 	t_color		prim;
 	t_color		sec;
 
-	prim = color_split(p_split[2]);
+	prim = color_split(p_split[2], (void *) pl);
 	if (!RT_BONUS)
 	{
 		pat = pat_default(prim);
@@ -49,15 +49,15 @@ void	pat_mat_pl(char **p_split, t_plane *pl)
 	}
 	else
 	{
-		sec = color_split(p_split[4]);
+		sec = color_split(p_split[4], (void *) pl);
 		pat = pattern(prim, sec, range_int(p_split[3], 0, 3),
 				matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
 		pl->shape.material = material (pat, 0.9, 0.9, 200);
 		pl->shape.material.refractive_index = range_double(
-				p_split[6], 0.0, 5.0);
-		pl->shape.material.reflective = range_double(p_split[5], 0.0, 1.0);
-		pl->shape.material.transparency = range_double(p_split[7], 0.0, 1.0);
-		pl->shape.material.pattern.scale = range_double(p_split[8], 0, 20);
+				p_split[6], 0.0, 5.0, 0);
+		pl->shape.material.reflective = range_double(p_split[5], 0.0, 1.0, 0);
+		pl->shape.material.transparency = range_double(p_split[7], 0.0, 1.0, 0);
+		pl->shape.material.pattern.scale = range_double(p_split[8], 0, 20, 0);
 	}
 }
 
@@ -70,8 +70,8 @@ t_plane	*plane_create(char **plane_line, int i)
 		return (NULL);
 	plane_set_up(p, i);
 	pat_mat_pl(plane_line, p);
-	p->shape.point = str_to_point(plane_line[0]);
-	p->shape.dir_vector = vector_norm(str_to_vector(plane_line[1]));
+	p->shape.point = str_to_point(plane_line[0], (void *) p);
+	p->shape.dir_vector = vector_norm(str_to_vector(plane_line[1], (void *) p));
 	p->shape.transform((t_obj *) p, translation_matrix(
 			p->shape.point.x, p->shape.point.y, p->shape.point.z));
 	return (p);
