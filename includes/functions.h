@@ -70,6 +70,7 @@ void	check_obj_params(t_parse *tmp);
 void	check_params(t_file *file);
 void	check_params_bonus(t_file *file);
 void	check_obj_params_bonus(t_parse *tmp);
+void	free_obj_nodes(t_obj *obj);
 
 /* PARSING_PRINTS.C */
 void	print_nodes(t_parse **head);
@@ -211,8 +212,8 @@ void			handle_events(t_mrt *mrt);
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 12:23:43 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/14 12:23:55 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 11:10:18 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 11:10:24 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -482,6 +483,11 @@ void			print_intersection(t_intersection i);
 /*                                                                            */
 /* ************************************************************************** */
 
+/* MEMORY */
+
+void			free_rt(t_mrt *mrt);
+void			free_map(t_map *map);
+
 /* EQUALS */
 
 bool			equal_color(t_color a, t_color b);
@@ -496,10 +502,6 @@ void			ray_test_battery(void);
 void			hit_test_battery(void);
 void			pattern_test_battery(void);
 void			tests(void);
-
-
-
-
 
 /* NEW PARSING */
 

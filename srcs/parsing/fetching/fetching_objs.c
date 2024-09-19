@@ -15,6 +15,21 @@ void	add_obj_node(t_obj **head, t_obj *new_node)
 	}
 }
 
+void	free_obj_nodes(t_obj *obj)
+{
+	t_obj	*tmp;
+
+	if (!obj)
+		return ;
+	while (obj)
+	{
+		tmp = obj;
+		obj = tmp->next;
+		tmp->destroy(tmp);
+	}
+	tmp = NULL;
+}
+
 t_obj	*fetch_objs(t_parse **head)
 {
 	t_obj	*obj_list;

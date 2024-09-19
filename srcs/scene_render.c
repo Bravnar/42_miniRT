@@ -28,6 +28,7 @@ void	gameplay_loop(t_view_cam view, t_world w, t_mrt *mrt)
 	render(view, w, mrt);
 	handle_events(mrt);
 	mlx_loop(mrt->mlx.mlx_ptr);
+	
 }
 
 void	setup_loop(t_mrt *mrt)

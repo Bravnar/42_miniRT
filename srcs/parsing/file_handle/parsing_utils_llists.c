@@ -47,9 +47,12 @@ void	free_nodes(t_parse *list)
 	{
 		tmp = list;
 		list = list->next;
-		free(tmp->line);
-		ft_free_arr(tmp->line_split);
-		free(tmp->id);
+		if (tmp->line)
+			free(tmp->line);
+		if (tmp->line_split)
+			ft_free_arr(tmp->line_split);
+		if (tmp->id)
+			free(tmp->id);
 		free(tmp);
 	}
 	tmp = NULL;

@@ -24,9 +24,7 @@ int	close_win(void *param)
 	rt = (t_mrt *)param;
 	if (rt->mlx.win_ptr)
 	{
-		mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
-		mlx_destroy_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr);
-		free(rt);
+		free_rt(rt);
 		exit(0);
 	}
 	return (0);
@@ -43,9 +41,7 @@ int	keyboard(int keycode, t_mrt *rt)
 	{
 		if (rt->mlx.win_ptr)
 		{
-			mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
-			mlx_destroy_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr);
-			free(rt);
+			free_rt(rt);
 			exit(0);
 		}
 	}

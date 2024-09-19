@@ -58,6 +58,7 @@ SRCS= 	srcs/main.c \
 		srcs/shapes/plane/plane_utils.c \
 		srcs/utils/display.c \
 		srcs/utils/display_2.c \
+		srcs/utils/memory.c \
 		srcs/error/ft_errorquit.c \
 		srcs/init/scene_getters.c \
 		srcs/world/world.c \

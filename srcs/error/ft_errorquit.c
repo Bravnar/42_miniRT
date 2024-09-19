@@ -3,8 +3,8 @@
 /* NEW */
 char	*simple_replace(char *str, char what, char with)
 {
-	char *copy;
-	int	i;
+	char	*copy;
+	int		i;
 
 	i = 0;
 	copy = ft_strdup(str);
@@ -19,30 +19,31 @@ char	*simple_replace(char *str, char what, char with)
 
 /* NEW */
 
-
 void	err_template(char *msg, char *line)
 {
-	char *e_line;
+	char	*e_line;
+	char	*e_line_trim;
 
 	e_line = NULL;
 	if (line)
 	{
 		e_line = simple_replace(line, '\t', ' ');
-		e_line = ft_strtrim(e_line, "\n");
+		e_line_trim = ft_strtrim(e_line, "\n");
+		free(e_line);
 	}
-	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
-	ft_fprintf(2, BOLD_RED"ParseError\n\n"RESET);
-	if (e_line)
+	ft_fprintf(2, BOLD_RED"%s\nParseError\n\n"RESET, ERRLINE);
+	if (e_line_trim)
 	{
-		if (ft_strlen(e_line) > 12)
+		if (ft_strlen(e_line_trim) > 12)
 			ft_fprintf(2, BOLD_WHITE"In line:\t"RESET);
 		else
 			ft_fprintf(2, BOLD_WHITE"Error Location:\t"RESET);
-		ft_fprintf(2, "%s\n", e_line);
-		free(e_line);
+		ft_fprintf(2, "%s\n", e_line_trim);
+		free(e_line_trim);
 	}
 	ft_fprintf(2, BOLD_ORANGE"\n%s\n"RESET, msg);
 	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
+	free_map(get_map());
 	exit(1);
 }
 
