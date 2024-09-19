@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 14:31:20 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 14:31:35 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:58:48 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:58:48 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	free_rt(t_mrt *mrt)
 	mrt = NULL;
 }
 
-void free_str(char *str)
+void	free_str(char *str)
 {
 	if (str)
 	{

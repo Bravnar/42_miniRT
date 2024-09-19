@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:41:44 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:41:44 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:56:03 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:56:03 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_cam	fetch_cam(t_parse **head, t_rwin res, t_file *file)
 	{
 		if (tmp->type == CAMERA)
 		{
-			cam.point = str_to_point(tmp->line_split[0], file);
-			cam.vector = str_to_vector(tmp->line_split[1], file);
+			cam.point = str_to_point(tmp->line_split[0]);
+			cam.vector = str_to_vector(tmp->line_split[1]);
 			cam.fov = ft_strtod(tmp->line_split[2]);
 			if (cam.fov < 0.0 || cam.fov > 180.0)
 				err_template(M_C_FOV_RANGE, tmp->line, file);

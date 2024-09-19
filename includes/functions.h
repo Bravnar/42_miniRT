@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 15:43:32 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:43:57 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:57:32 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:57:32 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_light			*new_light_node(t_tup point, double bright,
 					t_color rgb, t_color i);
 void			add_light_node(t_light **head, t_light *new_node);
 void			free_light_nodes(t_light *light);
-t_light			*fetch_light(t_parse **head, t_file *file);
+t_light			*fetch_light(t_parse **head);
 
 /* FETCHING_OBJS.C */
 void			add_obj_node(t_obj **head, t_obj *new_node);
@@ -58,11 +58,11 @@ void			check_res_limits(t_rwin res, char *line);
 t_rwin			fetch_res(t_parse **head);
 
 /* FETCHING_UTILS.C */
-t_tup			str_to_vector(char *str, t_file *file);
-t_tup			str_to_point(char *str, t_file *file);
+t_tup			str_to_vector(char *str);
+t_tup			str_to_point(char *str);
 t_color			color_split(char *color_str);
 int				range_int(char *line, int lower, int upper);
-double			range_double(char *line, double lower, double upper, t_file *file);
+double			range_double(char *line, double lower, double upper);
 
 /* ------------ FILE_HANDLE --------------------------------------------------*/
 
@@ -99,8 +99,8 @@ void			add_node(t_parse **parsed, t_parse *new_node);
 void			free_nodes(t_parse *list);
 
 /* PARSING_UTILS.C */
-void			set_type(t_type *type, char *identifier, t_parse *node, char **tmp, t_file *file);
-char			**set_type_and_clean(char **tmp, t_type *type, t_parse *node, t_file *file);
+void			set_type(char *identifier, t_parse *node, char **tmp, t_file *file);
+char			**set_type_and_clean(char **tmp, t_parse *node, t_file *file);
 void			check_arr_extr(char **arr, t_file *file, char **tmp, t_parse *node);
 
 /* ------------ INITIALIZATION -----------------------------------------------*/

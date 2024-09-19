@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:35:01 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:35:03 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 15:59:04 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:59:08 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	gameplay_loop(t_view_cam view, t_world w, t_mrt *mrt)
 	render(view, w, mrt);
 	handle_events(mrt);
 	mlx_loop(mrt->mlx.mlx_ptr);
-	
 }
 
 void	setup_loop(t_mrt *mrt)

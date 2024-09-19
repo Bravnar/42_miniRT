@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:45:54 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:45:54 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:57:08 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:57:08 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	pat_mat_sp(char **sp_split, t_sphere *sp)
 				matrix_mult(rotation_z(0), scaling_matrix(1, 1, 1)));
 		sp->shape.material = material (pat, 0.9, 0.9, 200);
 		sp->shape.material.refractive_index = range_double(
-				sp_split[6], 0.0, 5.0, 0);
-		sp->shape.material.reflective = range_double(sp_split[5], 0.0, 1.0, 0);
-		sp->shape.material.transparency = range_double(sp_split[7], 0.0, 1.0, 0);
-		sp->shape.material.pattern.scale = range_double(sp_split[8], 0, 20, 0);
+				sp_split[6], 0.0, 5.0);
+		sp->shape.material.reflective = range_double(sp_split[5], 0.0, 1.0);
+		sp->shape.material.transparency = range_double(sp_split[7], 0.0, 1.0);
+		sp->shape.material.pattern.scale = range_double(sp_split[8], 0, 20);
 	}
 }
 
@@ -66,7 +66,7 @@ t_sphere	*sphere_create(char **sphere_split, int i)
 		return (NULL);
 	sphere_set_up(sphere, i);
 	sphere->diameter = ft_strtod(sphere_split[1]);
-	sphere->shape.point = str_to_point(sphere_split[0], NULL);
+	sphere->shape.point = str_to_point(sphere_split[0]);
 	sphere->shape.dir_vector = vector(0, 0, 0);
 	pat_mat_sp(sphere_split, sphere);
 	sphere->shape.transform((t_obj *) sphere,

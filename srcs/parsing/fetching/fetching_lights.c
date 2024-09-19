@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:44:09 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:44:16 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:57:22 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:57:22 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	free_light_nodes(t_light *light)
 	tmp = NULL;
 }
 
-t_light	*fetch_light(t_parse **head, t_file *file)
+t_light	*fetch_light(t_parse **head)
 {
 	t_light	*l_head;
 	t_parse	*tmp;
@@ -71,12 +71,12 @@ t_light	*fetch_light(t_parse **head, t_file *file)
 	{
 		if (tmp->type == LIGHTS)
 		{
-			bright = range_double(tmp->line_split[1], 0, 1, 0);
+			bright = range_double(tmp->line_split[1], 0, 1);
 			if (RT_BONUS)
 				rgb = color_split(tmp->line_split[2]);
 			else
 				rgb = white();
-			node = new_light_node(str_to_point(tmp->line_split[0], file),
+			node = new_light_node(str_to_point(tmp->line_split[0]),
 					bright, rgb,
 					color_scalarmult(bright, rgb));
 			add_light_node(&l_head, node);

@@ -5,14 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 15:43:04 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:43:17 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:48:19 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:48:28 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	check_identifier(char *identifier, t_parse *node, char **tmp, t_file *file)
+void	check_identifier(char *identifier, t_parse *node,
+	char **tmp, t_file *file)
 {
 	char	*copy;
 
@@ -20,7 +21,7 @@ void	check_identifier(char *identifier, t_parse *node, char **tmp, t_file *file)
 	{
 		if (!ft_strstr(GOOD_ID, identifier))
 		{
-			copy =ft_strdup(identifier);
+			copy = ft_strdup(identifier);
 			printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
 			free_nodes(node);
 			ft_free_arr(tmp);

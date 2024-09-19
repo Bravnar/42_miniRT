@@ -5,31 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 15:42:48 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:44:32 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:58:11 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:58:11 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	set_type(t_type *type, char *identifier, t_parse *node,
-	char **tmp, t_file *file)
+void	set_type(char *identifier, t_parse *node, char **tmp, t_file *file)
 {
 	check_identifier(identifier, node, tmp, file);
 	if (!ft_strcmp(identifier, "R"))
-		*type = WINDOW;
+		node->type = WINDOW;
 	else if (!ft_strcmp(identifier, "A"))
-		*type = AMBIENT;
+		node->type = AMBIENT;
 	else if (!ft_strcmp(identifier, "C"))
-		*type = CAMERA;
+		node->type = CAMERA;
 	else if (!ft_strcmp(identifier, "L"))
-		*type = LIGHTS;
+		node->type = LIGHTS;
 	else if (ft_strstr(GOOD_ID, identifier))
-		*type = OBJECTS;
+		node->type = OBJECTS;
 }
 
-char	**set_type_and_clean(char **tmp, t_type *type,
-	t_parse *node, t_file *file)
+char	**set_type_and_clean(char **tmp, t_parse *node, t_file *file)
 {
 	char	**ret;
 	int		len;
@@ -39,7 +37,7 @@ char	**set_type_and_clean(char **tmp, t_type *type,
 	i = 1;
 	j = 0;
 	len = ft_arr_len(tmp);
-	set_type(type, tmp[0], node, tmp, file);
+	set_type(tmp[0], node, tmp, file);
 	ret = malloc(sizeof(char *) * len);
 	if (!ret)
 		return (NULL);
@@ -52,7 +50,7 @@ char	**set_type_and_clean(char **tmp, t_type *type,
 	return (ret);
 }
 
-void	check_arr_extr(char **arr, t_file *file, char **tmp , t_parse *node)
+void	check_arr_extr(char **arr, t_file *file, char **tmp, t_parse *node)
 {
 	int		i;
 	int		len;

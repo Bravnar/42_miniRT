@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils_llists.c                             :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 15:39:30 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 15:42:35 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:51:55 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:51:55 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_parse	*new_parse_node(char *line, t_file *file)
 	{
 		tmp = ft_megasplit(node->line, WHITESPACE);
 		node->next = NULL;
-		node->line_split = set_type_and_clean(tmp, &node->type, node, file);
+		node->line_split = set_type_and_clean(tmp, node, file);
 		node->id = ft_strdup(tmp[0]);
 		node->count = ft_arr_len(node->line_split);
 		check_arr_extr(node->line_split, file, tmp, node);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:42:18 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:42:18 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:56:12 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:56:12 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_cube	*cube_create(char **cube_line, int i)
 	c->shape.local_intersect = local_intersect_cu;
 	pat = pattern(color_split(cube_line[5]), white(), PLAIN, identity());
 	c->shape.material = material(pat, 0.9, 0.9, 200);
-	c->shape.point = str_to_point(cube_line[0], NULL);
-	c->shape.dir_vector = str_to_vector(cube_line[1], NULL);
+	c->shape.point = str_to_point(cube_line[0]);
+	c->shape.dir_vector = str_to_vector(cube_line[1]);
 	c->shape.transformation = identity();
 	c->shape.inverse_transformation = identity();
 	c->shape.next = NULL;

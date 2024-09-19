@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:46:21 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 13:46:26 by hmorand          ###   ########.ch       */
+/*   Created: 2024/09/19 15:57:46 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:57:46 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_map	*create_map(char *filename)
 	map->win = fetch_res(&map->file.parse);
 	map->amb = fetch_amb(&map->file.parse);
 	map->cam = fetch_cam(&map->file.parse, map->win, &map->file);
-	map->light = fetch_light(&map->file.parse, &map->file);
+	map->light = fetch_light(&map->file.parse);
 	map->obj_list = fetch_objs(&map->file.parse);
 	return (map);
 }

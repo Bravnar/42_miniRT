@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:46:39 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 12:23:08 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/19 15:58:22 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/19 15:58:38 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_mrt	*initialize(char *filename)
 {
 	static t_mrt	*mrt;
-	
+
 	if (mrt)
 		return (mrt);
 	if (!filename)
@@ -31,7 +31,7 @@ t_mrt	*initialize(char *filename)
 t_mrt	*get_mrt(void)
 {
 	static t_mrt	*mrt;
-	
+
 	if (!mrt)
 		mrt = initialize(NULL);
 	return (mrt);
