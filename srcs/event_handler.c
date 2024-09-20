@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:31:28 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:31:30 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:41:15 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ int	keyboard(int keycode, t_mrt *rt)
 	{
 		if (rt->mlx.win_ptr)
 		{
-			mlx_destroy_image(rt->mlx.mlx_ptr, rt->mlx.img_ptr);
-			mlx_destroy_window(rt->mlx.mlx_ptr, rt->mlx.win_ptr);
-			free(rt);
-			exit(0);
+			free_rt(rt);
 		}
 	}
 	do_keys(keycode, rt, w);

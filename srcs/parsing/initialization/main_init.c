@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:46:39 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/20 09:17:06 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:46:06 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_mrt	*initialize(char *filename)
 	{
 		printf("pre-fetch errors ----------------:\n");
 		print_errors();
-		exit(1);
+		clean_post_fetch(mrt);
 	}
 	fill_map();
 	err = *get_errors();
@@ -34,7 +34,7 @@ t_mrt	*initialize(char *filename)
 	{
 		printf("post-fetch errors ----------------:\n");
 		print_errors();
-		exit(1);
+		clean_post_fetch(mrt);
 	}
 	init_mlx(&mrt->mlx);
 	return (mrt);
