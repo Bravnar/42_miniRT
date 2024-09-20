@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:45:30 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:45:31 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:32:04 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ void	add_obj_node(t_obj **head, t_obj *new_node)
 			tmp = tmp->next;
 		tmp->next = new_node;
 	}
+}
+
+void	free_obj_nodes(t_obj *obj)
+{
+	t_obj	*tmp;
+
+	if (!obj)
+		return ;
+	while (obj)
+	{
+		tmp = obj;
+		obj = obj->next;
+		tmp->destroy(tmp);
+	}
+	tmp = NULL;
 }
 
 t_obj	*fetch_objs(t_parse **head)

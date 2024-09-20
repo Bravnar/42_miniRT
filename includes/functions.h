@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/20 08:59:02 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:32:32 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -521,6 +521,7 @@ void		add_error(char *location, char *message);
 void		free_errors(void);
 void		print_errors(void);
 void		fill_map(void);
+void		free_obj_nodes(t_obj *obj);
 
 
 #endif
