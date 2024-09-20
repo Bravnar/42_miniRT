@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:46:26 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:46:27 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 08:41:31 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	check_arr_extr(char **arr)
 		len = ft_strlen(arr[i]) - 1;
 		if ((!ft_isalnum(arr[i][0]) && arr[i][0] != '-') \
 			|| !ft_isalnum(arr[i][len]))
-			err_template(M_INVALID_SEP, arr[i]);
+			add_error(arr[i], M_INVALID_SEP);
 		i++;
 	}
 }

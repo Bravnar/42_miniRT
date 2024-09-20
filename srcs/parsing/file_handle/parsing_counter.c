@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:45:59 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:46:00 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 08:43:29 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ void	check_count(t_file *file)
 	if (file->count.a < 1 || \
 		file->count.c < 1 || \
 		file->count.l < 1)
-		err_template(M_ACL_MISSING, NULL);
+		add_error(NULL, M_ACL_MISSING);
 	if (file->count.a > 1)
-		err_template(M_TOO_MANY_A, NULL);
+		add_error(NULL, M_TOO_MANY_A);
 	if (file->count.c > 1)
-		err_template(M_TOO_MANY_C, NULL);
+		add_error(NULL, M_TOO_MANY_C);
 	if (file->count.r > 1)
-		err_template(M_TOO_MANY_R, NULL);
+		add_error(NULL, M_TOO_MANY_R);
 	if (file->count.l > 1)
-		err_template(M_TOO_MANY_L, NULL);
+		add_error(NULL, M_TOO_MANY_L);
 }

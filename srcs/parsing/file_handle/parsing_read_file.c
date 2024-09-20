@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:46:18 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:46:19 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 08:42:31 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,10 @@ void	check_identifier(char *identifier)
 	if (ft_strisalpha(identifier))
 	{
 		if (!ft_strstr(GOOD_ID, identifier))
-		{
-			printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
-			err_template(M_UKNOWN_ID, identifier);
-		}
+			add_error(identifier, M_UKNOWN_ID);
 	}
 	else
-	{
-		printf(BOLD_WHITE"\t---> %s\n"RESET, identifier);
-		err_template(M_UKNOWN_ID, identifier);
-	}
+		add_error(identifier, M_UKNOWN_ID);
 }
 
 void	read_rt(char *filename, t_file *file)
@@ -36,7 +30,7 @@ void	read_rt(char *filename, t_file *file)
 
 	file->fd = open(filename, O_RDONLY);
 	if (file->fd == -1)
-		err_template(M_OPEN_FAILED, filename);
+		add_error(filename, M_OPEN_FAILED);
 	line = ft_strdup("");
 	while (line)
 	{

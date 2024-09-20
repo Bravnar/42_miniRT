@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 11:05:23 by hmorand          ###   ########.ch       */
+/*   Created: 2017/09/20 20:10:02 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/20 08:59:02 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -514,5 +514,13 @@ void			tests(void);
 t_map			*create_scene(char *file_name);
 void			err_template(char *msg, char *line);
 void			init_view(t_cam *cam);
+
+/* NEW ERROR HANDLING */
+t_errors	**get_errors(void);
+void		add_error(char *location, char *message);
+void		free_errors(void);
+void		print_errors(void);
+void		fill_map(void);
+
 
 #endif

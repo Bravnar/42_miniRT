@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:44:39 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:44:40 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:02:55 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ int	ft_rt_atoi(const char *nptr)
 		nptr++;
 	sign = check_sign(&nptr);
 	if (!check_num(nptr))
-		err_template(M_INVALID_ENTRY, (char *)nptr);
+	{
+		add_error((char *)nptr, M_INVALID_ENTRY);
+		return (1);
+	}
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		result = result * 10 + (*nptr - '0');

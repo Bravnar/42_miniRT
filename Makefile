@@ -95,6 +95,7 @@ SRCS= 	srcs/main.c \
 		srcs/parsing/initialization/main_init.c \
 		srcs/parsing/bonus/parsing_counter_bonus.c \
 		srcs/world/multiple_lights.c \
+		srcs/parsing/errors/get_error_list.c \
 
 CC= cc
 

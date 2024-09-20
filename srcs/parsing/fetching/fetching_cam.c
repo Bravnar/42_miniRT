@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:45:02 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:45:03 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:08:37 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_cam	fetch_cam(t_parse **head, t_rwin res)
 			cam.vector = str_to_vector(tmp->line_split[1]);
 			cam.fov = ft_strtod(tmp->line_split[2]);
 			if (cam.fov < 0.0 || cam.fov > 180.0)
-				err_template(M_C_FOV_RANGE, tmp->line);
+				add_error(tmp->line, M_C_FOV_RANGE);
 			set_view_cam(&cam, res);
 			break ;
 		}

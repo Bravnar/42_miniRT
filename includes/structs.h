@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:55:29 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:55:33 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/20 08:59:29 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,5 +246,13 @@ typedef struct s_mrt
 	t_map	*map;
 	int		is_unlocked;
 }	t_mrt;
+
+
+typedef struct s_errors
+{
+	char			*err_msg;
+	char			*location;
+	struct s_errors	*next;
+}	t_errors;
 
 #endif
