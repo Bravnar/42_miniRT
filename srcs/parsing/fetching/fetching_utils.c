@@ -6,11 +6,38 @@
 /*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:55:29 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/19 18:44:13 by smuravye         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:47:02 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+typedef struct s_voidobj
+{
+	t_obj	shape;
+}	t_voidobj;
+
+void	void_destroy(t_obj *shape)
+{
+	t_voidobj	*obj;
+
+	obj = (t_voidobj *)shape;
+	free(obj);
+}
+
+t_voidobj	*void_create()
+{
+	t_voidobj *dummy;
+
+	dummy = malloc(sizeof(t_voidobj));
+	if (!dummy)
+		return (dummy);
+	dummy->shape.id = 1337;
+	dummy->shape.destroy = void_destroy;
+	dummy->shape.next = NULL;
+	return (dummy);
+}
+
 
 t_tup	str_to_vector(char *str, void *tmp)
 {
@@ -18,7 +45,10 @@ t_tup	str_to_vector(char *str, void *tmp)
 	t_tup	ret;
 
 	if (tmp != NULL)
-		add_obj_node(&get_map()->obj_list, (t_obj *) tmp);
+	{
+		(void) tmp;
+		add_obj_node(&get_map()->obj_list, (t_obj *) void_create());
+	}
 	str_split = ft_split(str, ',');
 	ret = vector(range_double(str_split[0], -1.0, 1.0, str_split),
 			range_double(str_split[1], -1.0, 1.0, str_split),
@@ -33,7 +63,10 @@ t_tup	str_to_point(char *str, void *tmp)
 	t_tup	ret;
 
 	if (tmp != NULL)
-		add_obj_node(&get_map()->obj_list, (t_obj *) tmp); 
+	{
+		(void) tmp;
+		add_obj_node(&get_map()->obj_list, (t_obj *) void_create());
+	}
 	str_split = ft_split(str, ',');
 	ret = point(ft_strtod(str_split[0], str_split),
 			ft_strtod(str_split[1], str_split),
@@ -51,7 +84,10 @@ t_color	color_split(char *color_str, void *obj)
 	int		b;
 
 	if (obj != NULL)
-		add_obj_node(&get_map()->obj_list, (t_obj *) obj);
+	{
+		(void) obj;
+		add_obj_node(&get_map()->obj_list, (t_obj *) void_create());
+	}
 	color_split = ft_split(color_str, ',');
 	r = range_double(color_split[0], 0.0, 255.0, color_split);
 	g = range_double(color_split[1], 0.0, 255.0, color_split);
