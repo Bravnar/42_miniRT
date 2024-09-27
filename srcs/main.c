@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:34:32 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/20 09:39:49 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/20 10:32:54 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/20 10:32:54 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		err_template(M_NO_ARGS, av[0]);
-	if (ac == 2)
+	else if (ac == 2)
 	{
 		mrt = initialize(av[1]);
 		if (!mrt)

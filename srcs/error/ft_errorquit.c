@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errorquit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:38:10 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:38:12 by smuravye         ###   ########.fr       */
+/*   Created: 2024/09/20 10:33:30 by hmorand           #+#    #+#             */
+/*   Updated: 2024/09/20 10:33:44 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,29 @@ char	*simple_replace(char *str, char what, char with)
 void	err_template(char *msg, char *line)
 {
 	char	*e_line;
+	char	*e_line_trim;
 
 	e_line = NULL;
+	e_line_trim = NULL;
 	if (line)
 	{
 		e_line = simple_replace(line, '\t', ' ');
-		e_line = ft_strtrim(e_line, "\n");
+		e_line_trim = ft_strtrim(e_line, "\n");
+		free(e_line);
 	}
 	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
 	ft_fprintf(2, BOLD_RED"ParseError\n\n"RESET);
-	if (e_line)
+	if (e_line_trim)
 	{
-		if (ft_strlen(e_line) > 12)
+		if (ft_strlen(e_line_trim) > 12)
 			ft_fprintf(2, BOLD_WHITE"In line:\t"RESET);
 		else
 			ft_fprintf(2, BOLD_WHITE"Error Location:\t"RESET);
-		ft_fprintf(2, "%s\n", e_line);
-		free(e_line);
+		ft_fprintf(2, "%s\n", e_line_trim);
+		free(e_line_trim);
 	}
 	ft_fprintf(2, BOLD_ORANGE"\n%s\n"RESET, msg);
 	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
-	exit(1);
 }
 
 /* OLD */
