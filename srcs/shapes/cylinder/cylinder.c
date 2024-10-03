@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:45:46 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:46:40 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:46:53 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ double	volume_cy(t_obj *shape)
 	return ((PI * pow(radius, 2)) * cyl->height);
 }
 
+/**
+ * @brief Sets up the cylinder properties.
+ *
+ * This function initializes or modifies the properties of a cylinder object.
+ *
+ * @param cyl A pointer to the cylinder object to be set up.
+ * @param i An integer used as the ID of the objects.
+ */
 void	cyl_set_up(t_cyl *cyl, int i)
 {
 	cyl->shape.get_name = get_name_cy;

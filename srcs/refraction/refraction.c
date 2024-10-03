@@ -5,13 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:02:53 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 16:33:56 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 16:34:56 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Sets the refractive index n1 for the given components.
+ *
+ * This function calculates and sets the refractive index n1 for the given
+ * components based on the provided intersections and containers.
+ *
+ * @param comps Pointer to the components structure where n1 will be set.
+ * @param tmp_xs Pointer to the temporary intersections.
+ * @param h The current intersection.
+ * @param containers Pointer to the container intersections.
+ */
 void	set_n1(t_comps *comps, t_inter *tmp_xs,
 	t_intersection h, t_inter *containers)
 {
@@ -29,6 +40,19 @@ void	set_n1(t_comps *comps, t_inter *tmp_xs,
 		append_inter_node(&containers, tmp_xs);
 }
 
+/**
+ * @brief Sets the refractive indices n1 and n2 for the given intersection.
+ *
+ * This function calculates and sets the refractive indices n1 and n2 in the
+ * provided t_comps structure based on the given intersection and the list of
+ * intersections.
+ *
+ * @param comps Pointer to the t_comps structure where the refractive indices
+ *              will be set.
+ * @param h     The current intersection for which the refractive indices are
+ *              being calculated.
+ * @param xs    Pointer to the list of intersections.
+ */
 void	set_n1_n2(t_comps *comps, t_intersection h, t_inter **xs)
 {
 	t_inter	*containers;
@@ -51,6 +75,15 @@ void	set_n1_n2(t_comps *comps, t_intersection h, t_inter **xs)
 	}
 }
 
+/**
+ * @brief Computes the refracted ray based on the given parameters.
+ *
+ * @param comps The precomputed values for the intersection.
+ * @param n_ratio The ratio of the indices of refraction.
+ * @param cos_i The cosine of the angle of incidence.
+ * @param sin2_t The square of the sine of the angle of refraction.
+ * @return The refracted ray.
+ */
 t_ray	refract_ray(t_comps comps, double n_ratio,
 	double cos_i, double sin2_t)
 {
@@ -64,6 +97,14 @@ t_ray	refract_ray(t_comps comps, double n_ratio,
 	return (ray_new(comps.under_point, vector_norm(direction)));
 }
 
+/**
+ * Computes the refracted color of a given point in the world.
+ *
+ * @param world The world containing all objects and light sources.
+ * @param comps The precomputed intersection computations.
+ * @param remaining The number of remaining recursive calls allowed.
+ * @return The color resulting from the refraction at the given point.
+ */
 t_color	refracted_color(t_world world, t_comps comps, int remaining)
 {
 	double	cos_i;
@@ -92,6 +133,16 @@ t_color	refracted_color(t_world world, t_comps comps, int remaining)
 	return (color);
 }
 
+/**
+ * @brief Computes the Schlick approximation for reflectance.
+ *
+ * This function calculates the reflectance using the Schlick approximation
+ * based on the provided intersection computations.
+ *
+ * @param comps The intersection computations containing necessary data
+ *              for the Schlick approximation.
+ * @return The reflectance value as a double.
+ */
 double	schlick(t_comps comps)
 {
 	double	cos;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 27/07/2024 10:48:56 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:06:42 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 09:00:42 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 09:00:42 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ t_tup	vector_norm(t_tup a)
 	return (vector(a.x / mag, a.y / mag, a.z / mag));
 }
 
+/**
+ * @brief Computes the cross product of two vectors.
+ *
+ * This function takes two vectors `a` and `b` as input
+ * and returns their cross product.
+ *
+ * @param a The first vector.
+ * @param b The second vector.
+ * @return The cross product of vectors `a` and `b`.
+ */
 t_tup	vector_cross(t_tup a, t_tup b)
 {
 	return (vector(a.y * b.z - a.z * b.y,

@@ -5,13 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:02:23 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 16:33:43 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 16:33:43 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Computes the color reflected from a surface in the world.
+ *
+ * This function calculates the color that is reflected from a surface
+ * based on the given world and the computed intersection components.
+ * The remaining parameter indicates how many more reflections are allowed.
+ *
+ * @param world The world containing all objects and light sources.
+ * @param comps The precomputed intersection components.
+ * @param remaining The number of remaining reflections allowed.
+ * @return The color resulting from the reflection.
+ */
 t_color	reflected_color(t_world world, t_comps comps, int remaining)
 {
 	t_ray	reflect_ray;

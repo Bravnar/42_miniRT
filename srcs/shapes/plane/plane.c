@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:53:39 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:50:36 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:51:14 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ void	plane_set_up(t_plane *plane, int i)
 	plane->shape.id = i;
 }
 
+/**
+ * pat_mat_pl - Parses material properties for a plane object.
+ * @p_split: An array of strings containing the material properties.
+ * @pl: A pointer to the plane object to which the material
+ * properties will be applied.
+ *
+ * This function takes an array of strings representing the material properties
+ * and applies them to the specified plane object. The properties are expected
+ * to be in a specific format within the array.
+ *
+ * Note: If RT_BONUS is equal to 1, the setup takes into account more complex
+ * patterns as well as reflectiveness and refraction.
+ */
 void	pat_mat_pl(char **p_split, t_plane *pl)
 {
 	t_pattern	pat;
@@ -61,6 +74,18 @@ void	pat_mat_pl(char **p_split, t_plane *pl)
 	}
 }
 
+/**
+ * @brief Creates a new plane object from the given input line.
+ *
+ * This function parses the input line to extract the necessary parameters
+ * and initializes a new plane object. The input line is expected to be
+ * formatted in a specific way to ensure correct parsing.
+ *
+ * @param plane_line A double pointer to a character array
+ * 					 containing the input line.
+ * @param i An integer used as the ID of the objects.
+ * @return A pointer to the newly created plane object.
+ */
 t_plane	*plane_create(char **plane_line, int i)
 {
 	t_plane		*p;

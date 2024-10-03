@@ -5,13 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 18/09/2024 09:26:44 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:45:27 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:51:53 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:51:53 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Parses and assigns material properties to a cylinder object.
+ *
+ * This function takes an array of strings representing the cylinder's properties
+ * and assigns the appropriate material properties to the given cylinder object.
+ *
+ * @param cyl_split An array of strings containing the cylinder's properties.
+ * @param cyl A pointer to the cylinder object to which
+ * 			  the properties will be assigned.
+ *
+ * * Note: If RT_BONUS is equal to 1, the setup takes into account more complex
+ * patterns as well as reflectiveness and refraction.
+ */
 void	pat_mat_cy(char **cyl_split, t_cyl *cyl)
 {
 	t_pattern	pat;
@@ -47,6 +60,14 @@ void	transform_cy(t_obj *shape, t_matrix transformation)
 	shape->inverse_transformation = inverse(shape->transformation, 4);
 }
 
+/**
+ * Computes the local normal at a given point on the surface of a cylinder.
+ *
+ * @param cyl A pointer to the cylinder object.
+ * @param world_point The point in world coordinates where
+ * 					  the normal is to be computed.
+ * @return The normal vector at the given point on the cylinder's surface.
+ */
 t_tup	local_normal_at_cy(t_obj *cyl, t_tup world_point)
 {
 	t_tup	local_point;
@@ -70,6 +91,18 @@ t_tup	local_normal_at_cy(t_obj *cyl, t_tup world_point)
 	return (vector_norm(world_normal));
 }
 
+/**
+ * @brief Computes the intersection of a ray with a cylinder.
+ *
+ * This function calculates the intersection points (if any) between a given ray
+ * and a cylinder object. It returns a pointer to a structure containing the
+ * intersection details.
+ *
+ * @param r The ray to test for intersection with the cylinder.
+ * @param cyl A pointer to the cylinder object to test for intersection.
+ * @return A pointer to a structure containing the intersection details, or NULL
+ *         if there is no intersection.
+ */
 t_inter	*local_intersect_cy(t_ray r, t_obj *cyl)
 {
 	double	ab[2];

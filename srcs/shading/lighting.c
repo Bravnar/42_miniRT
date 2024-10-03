@@ -5,13 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 10:05:09 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/18 10:05:09 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 16:38:44 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 16:38:52 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
+/**
+ * @brief Computes the effective color of a given shape at a specific point.
+ *
+ * This function calculates the effective color of a shape by considering
+ * various factors such as lighting, material properties, and the point of
+ * intersection.
+ *
+ * @param shape A pointer to the object (shape) for which the color
+ * is being computed.
+ * @param p The point of intersection where the color needs to be computed.
+ * @return The computed effective color as a t_color structure.
+ */
 t_color	compute_eff_color(t_obj *shape, t_tup p)
 {
 	t_color	eff_color;
@@ -29,6 +40,22 @@ t_tup	light_vector(t_tup point)
 	return (vector_norm(tuple_sub(get_map()->light->point, point)));
 }
 
+/**
+ * @brief Computes the lighting for a given object at a specific point.
+ *
+ * This function calculates the color of an object at a given point based on
+ * the lighting conditions, view directions, and shadow intensity.
+ *
+ * @param shape A pointer to the object for which the lighting
+ * is being calculated.
+ * @param p The point on the object where the lighting is being computed.
+ * @param views An array of 2 t_tup vectors:
+ *          - v[0]: The view direction vector.
+ *          - v[1]: The normal vector at the point of intersection.
+ * @param shadow_intensity The intensity of the shadow at the given point.
+ * @return The color of the object at the given point after applying
+ * lighting calculations.
+ */
 t_color	lighting(t_obj *shape, t_tup p, t_tup views[2], double shadow_intensity)
 {
 	t_color	eff_color;

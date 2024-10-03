@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 10:11:39 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/20 10:11:39 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:43:34 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:45:11 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@
 	return (point(theta_x, theta_y, theta_z));
 } */
 
+/**
+ * @brief Generates a rotation matrix for a given axis and angle.
+ *
+ * This function computes a rotation matrix that can be used to rotate a point
+ * or vector around a specified axis by a given angle. The axis is represented
+ * by a tuple (t_tup) and the angle is given in radians.
+ *
+ * @param axis The axis of rotation represented as a tuple (t_tup).
+ * @param angle The angle of rotation in radians.
+ * @return A rotation matrix (t_matrix) that represents
+ * 		   the rotation around the given axis by the specified angle.
+ */
 t_matrix	rotation_axis_angle(t_tup axis, double angle)
 {
 	double		cos_theta;
@@ -48,6 +60,18 @@ t_matrix	rotation_axis_angle(t_tup axis, double angle)
 	return (rotation);
 }
 
+/**
+ * @brief Applies a transformation matrix to a cylinder.
+ *
+ * This function takes a cylinder object and applies a transformation matrix
+ * to it. The transformation matrix is used to modify the cylinder's position,
+ * orientation, or scale in the 3D space.
+ *
+ * @param cyl A pointer to the cylinder object to which the transformation
+ * matrix will be applied.
+ *
+ * @return The resulting transformation matrix after applying it to the cylinder.
+ */
 t_matrix	apply_transformation_cy(t_cyl *cyl)
 {
 	t_matrix	scaling;
@@ -73,6 +97,14 @@ t_matrix	apply_transformation_cy(t_cyl *cyl)
 	return (matrix_mult(matrix_mult(translation, rotation), scaling));
 }
 
+/**
+ * Calculates the discriminant for a cylinder object.
+ *
+ * @param cyl A pointer to the cylinder object.
+ * @param a A pointer to a double where the 'a' coefficient will be stored.
+ * @param b A pointer to a double where the 'b' coefficient will be stored.
+ * @return The discriminant value for the cylinder.
+ */
 double	discriminant_cyl(t_obj *cyl, double *a, double *b)
 {
 	double	c;
@@ -89,6 +121,17 @@ double	discriminant_cyl(t_obj *cyl, double *a, double *b)
 	return (disc);
 }
 
+/**
+ * @brief Checks if a ray intersects with the cap of a cylinder.
+ *
+ * This function determines whether a given ray intersects with
+ * the cap of a cylinder at a specific parameter t.
+ *
+ * @param r The ray to check for intersection.
+ * @param t The parameter t at which to check for intersection.
+ * @return true if the ray intersects with the cap of
+ * the cylinder, false otherwise.
+ */
 bool	check_cap(t_ray r, double t)
 {
 	double	x;
@@ -101,6 +144,15 @@ bool	check_cap(t_ray r, double t)
 	return (result < 1 || equal(result, 1));
 }
 
+/**
+ * @brief Calculates the intersection points between a ray and
+ * the caps of a cylinder.
+ *
+ * @param obj Pointer to the cylinder object.
+ * @param r The ray to test for intersection.
+ * @param inter Pointer to the intersection structure to store
+ * the intersection points.
+ */
 void	intersect_caps(t_obj *obj, t_ray r, t_inter **inter)
 {
 	t_cyl	*cyl;

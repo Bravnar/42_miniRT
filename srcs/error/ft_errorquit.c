@@ -5,14 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 10:33:30 by hmorand           #+#    #+#             */
-/*   Updated: 2024/09/20 10:33:44 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 15:58:43 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 15:58:59 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-/* NEW */
+/**
+ * @brief Replaces all occurrences of a specified
+ * character in a string with another character.
+ *
+ * This function iterates through the given string and replaces each occurrence
+ * of the character 'what' with the character 'with'.
+ *
+ * @param str The string in which the replacement will occur.
+ * @param what The character to be replaced.
+ * @param with The character to replace with.
+ * @return The modified string with the replacements made.
+ */
 char	*simple_replace(char *str, char what, char with)
 {
 	char	*copy;
@@ -29,8 +40,15 @@ char	*simple_replace(char *str, char what, char with)
 	return (copy);
 }
 
-/* NEW */
-
+/**
+ * @brief Template function to handle errors.
+ *
+ * This function is used to handle errors by displaying a
+ * message and the line where the error occurred.
+ *
+ * @param msg The error message to be displayed.
+ * @param line The line where the error occurred.
+ */
 void	err_template(char *msg, char *line)
 {
 	char	*e_line;
@@ -59,7 +77,15 @@ void	err_template(char *msg, char *line)
 	ft_fprintf(2, BOLD_RED"%s\n"RESET, ERRLINE);
 }
 
-/* OLD */
+/**
+ * @brief Contains the error handling function for
+ * quitting the program with a message.
+ *
+ * This file provides the implementation of the err_quit function,
+ * which is used to display an error message and terminate the program.
+ *
+ * @param msg The error message to be displayed before quitting.
+ */
 void	err_quit(char *msg)
 {
 	ft_fprintf(2, BOLD_RED"Error:\t"RESET);

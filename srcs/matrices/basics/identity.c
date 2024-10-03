@@ -5,13 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 20/08/2024 08:15:18 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:58:33 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 16:05:07 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 16:05:18 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Creates an identity matrix.
+ *
+ * This function generates a 4x4 identity matrix.
+ *
+ * @return A 4x4 identity matrix.
+ */
 t_matrix	identity(void)
 {
 	int			r;
