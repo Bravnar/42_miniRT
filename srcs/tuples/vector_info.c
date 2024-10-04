@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 25/07/2024 09:40:36 by hmorand           #+#    #+#             */
-/*   Updated: 25/07/2024 09:40:36 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:58:40 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:58:40 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ bool	is_unit_vector(t_tup a)
 	return (equal(vector_mag(a), 1.0));
 }
 
+/**
+ * @brief Computes the dot product of two vectors.
+ *
+ * This function takes two vectors (t_tup a and t_tup b)
+ * and calculates their dot product.
+ *
+ * @param a The first vector.
+ * @param b The second vector.
+ * @return The dot product of the two vectors.
+ */
 double	vector_dot(t_tup a, t_tup b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);

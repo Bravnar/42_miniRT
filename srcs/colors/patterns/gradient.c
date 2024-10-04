@@ -5,13 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:35:31 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 14:55:11 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 14:55:17 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Generates a gradient pattern color based on the given
+ * shape, point, and pattern.
+ *
+ * @param shape A pointer to the object shape.
+ * @param point The point at which the pattern is evaluated.
+ * @param pat The pattern structure containing the gradient information.
+ * @return The color resulting from the gradient pattern at the specified point.
+ */
 t_color	gradient_pattern(t_obj *shape, t_tup point, t_pattern pat)
 {
 	t_color	distance;

@@ -5,21 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 30/08/2024 13:47:24 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:23:37 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 15:56:08 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 15:56:08 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-/* ****************************************************************/
-/*                                                                */
-/*ADDING COLORS                                                   */
-/*Can be used to:                                                 */
-/*	- A ray of colored light is applied on a colored surface      */
-/*                                                                */
-/* ****************************************************************/
-
+/**
+ * @brief Adds two colors together.
+ *
+ * This function takes two colors as input and returns their sum.
+ * Each component (red, green, blue) of the resulting color is the sum
+ * of the corresponding components of the input colors.
+ *
+ * @param c1 The first color to add.
+ * @param c2 The second color to add.
+ * @return The resulting color after addition.
+ */
 t_color	color_add(t_color c1, t_color c2)
 {
 	t_color	new;
@@ -30,14 +33,13 @@ t_color	color_add(t_color c1, t_color c2)
 	return (new);
 }
 
-/* ****************************************************************/
-/*                                                                */
-/*SUBTRACTING COLORS                                              */
-/*Can be used to:                                                 */
-/*	- ?                                                           */
-/*                                                                */
-/* ****************************************************************/
-
+/**
+ * Subtracts the color components of two t_color structures.
+ *
+ * @param c1 The first color structure.
+ * @param c2 The second color structure.
+ * @return A t_color structure containing the result of the subtraction.
+ */
 t_color	color_sub(t_color c1, t_color c2)
 {
 	t_color	new;
@@ -49,14 +51,13 @@ t_color	color_sub(t_color c1, t_color c2)
 	return (new);
 }
 
-/* ****************************************************************/
-/*                                                                */
-/*SCALAR MULTIPLICATION COLOR                                     */
-/*Can be used to:                                                 */
-/*	- ?                                                           */
-/*                                                                */
-/* ****************************************************************/
-
+/**
+ * Multiplies a color by a scalar value.
+ *
+ * @param scalar The scalar value to multiply the color by.
+ * @param c2 The color to be multiplied.
+ * @return The resulting color after multiplication.
+ */
 t_color	color_scalarmult(double scalar, t_color c2)
 {
 	t_color	new;
@@ -68,14 +69,18 @@ t_color	color_scalarmult(double scalar, t_color c2)
 	return (new);
 }
 
-/* ****************************************************************/
-/*                                                                */
-/*MULTIPICATING COLORS (HADAMARD PRODUCT)                         */
-/*Can be used to:                                                 */
-/*	- ?                                                           */
-/*                                                                */
-/* ****************************************************************/
-
+/**
+ * @brief Computes the product of two colors.
+ *
+ * This function takes two colors as input and returns their product.
+ * The product is computed component-wise, meaning each color component
+ * (red, green, blue) of the resulting color is the product of the corresponding
+ * components of the input colors.
+ *
+ * @param c1 The first color.
+ * @param c2 The second color.
+ * @return The product of the two colors.
+ */
 t_color	color_product(t_color c1, t_color c2)
 {
 	t_color	new;
@@ -87,16 +92,13 @@ t_color	color_product(t_color c1, t_color c2)
 	return (new);
 }
 
-/* ****************************************************************/
-/*                                                                */
-/*COLOR BLENDING (OPTIONAL - NOT SURE HOW TO USE IT YET)          */
-/*Can be used to:                                                 */
-/*	- superpose shapes with different levels of transparency      */
-/*                                                                */
-/*CAVEAT:                                                         */
-/*	- This only works with flat shapes                            */
-/* ****************************************************************/
-
+/**
+ * Blends two colors together.
+ *
+ * @param c1 The first color.
+ * @param c2 The second color.
+ * @return The blended color.
+ */
 t_color	color_blend(t_color c1, t_color c2)
 {
 	t_color	new;

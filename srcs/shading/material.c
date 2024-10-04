@@ -5,13 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 07/09/2024 09:59:36 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:04:56 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:35:52 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:37:27 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Creates a material with the specified properties.
+ *
+ * @param p The pattern of the material.
+ * @param d The diffuse reflection coefficient.
+ * @param s The specular reflection coefficient.
+ * @param sh The shininess coefficient.
+ * @return A t_material structure initialized with the given properties.
+ */
 t_material	material(t_pattern p, double d, double s, double sh)
 {
 	t_material	new_mat;
@@ -27,6 +36,15 @@ t_material	material(t_pattern p, double d, double s, double sh)
 	return (new_mat);
 }
 
+/**
+ * @brief Creates and returns a default material.
+ *
+ * This function initializes a material structure with default values.
+ * The default material can be used as a base for further customization
+ * or as a placeholder in rendering calculations.
+ *
+ * @return A t_material structure initialized with default values.
+ */
 t_material	mat_default(void)
 {
 	t_material	new_mat;

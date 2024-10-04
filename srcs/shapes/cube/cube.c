@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:56:54 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:47:10 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:47:14 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ double	volume_cu(t_obj *shape)
 	return (cube->length * cube->width * cube->height);
 }
 
+/**
+ * @brief Creates a new cube object from the given line of parameters.
+ *
+ * This function takes a line of parameters describing a cube and an ID,
+ * and returns a pointer to a newly created cube object.
+ *
+ * @param cube_line A line of parameters describing the cube.
+ * @param i An integer used as the ID of the objects.s.
+ * @return A pointer to the newly created cube object.
+ */
 t_cube	*cube_create(char **cube_line, int i)
 {
 	t_cube		*c;

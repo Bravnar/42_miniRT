@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 10:43:32 by smuravye          #+#    #+#             */
-/*   Updated: 2024/09/19 10:43:33 by smuravye         ###   ########.fr       */
+/*   Created: 2024/10/03 09:01:13 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 09:02:30 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * Computes the color with reflections and refractions.
+ *
+ * @param comps The precomputed values for intersections.
+ * @param s The surface color.
+ * @param refl The reflection color.
+ * @param refr The refraction color.
+ * @return The resulting color after applying reflections and refractions.
+ */
 t_color	with_reflect(t_comps comps, t_color s, t_color refl, t_color refr)
 {
 	double	reflectance;
@@ -35,6 +44,21 @@ t_color	with_reflect(t_comps comps, t_color s, t_color refl, t_color refr)
 	}
 }
 
+/**
+ * @brief Computes the color at the point of intersection
+ * using iterative shading.
+ *
+ * This function calculates the color at the point of
+ * intersection by iteratively shading the hit point. It takes
+ * into account the world, the computed intersection components,
+ * and the remaining recursion depth for reflective and refractive rays.
+ *
+ * @param w The world containing all objects and light sources.
+ * @param comps The precomputed intersection components.
+ * @param remaining The remaining recursion depth for reflective
+ * and refractive rays.
+ * @return The color at the point of intersection.
+ */
 t_color	iterative_shade_hit(t_world w, t_comps comps, int remaining)
 {
 	t_tup	views[2];
@@ -52,6 +76,19 @@ t_color	iterative_shade_hit(t_world w, t_comps comps, int remaining)
 	return (with_reflect(comps, surface, reflected, refracted));
 }
 
+/**
+ * @brief Computes the color at a given point in the world by tracing the ray.
+ *
+ * This function iteratively calculates the color at the intersection point
+ * of the ray with objects in the world. It takes into account the remaining
+ * number of reflections or refractions to be processed.
+ *
+ * @param w The world containing the objects and lights.
+ * @param r The ray being traced.
+ * @param remaining The number of remaining reflections or
+ * refractions to be processed.
+ * @return The color at the intersection point of the ray with the world.
+ */
 t_color	iterative_color_at(t_world w, t_ray r, int remaining)
 {
 	t_inter			*inters;
@@ -76,6 +113,17 @@ t_color	iterative_color_at(t_world w, t_ray r, int remaining)
 	else
 		color = iterative_shade_hit_multi(w, comps, remaining); */
 
+/**
+ * @brief Intersects a ray with the objects in the world.
+ *
+ * This function takes a world and a ray as input and returns the intersections
+ * of the ray with the objects in the world.
+ *
+ * @param w The world containing the objects to intersect with.
+ * @param r The ray to intersect with the objects in the world.
+ * @return A pointer to the intersections of
+ * the ray with the objects in the world.
+ */
 t_inter	*intersect_world(t_world w, t_ray r)
 {
 	t_obj	*tmp;
@@ -101,6 +149,17 @@ t_inter	*intersect_world(t_world w, t_ray r)
 	return (xs);
 }
 
+/**
+ * @brief Prepares the computation of intersection details.
+ *
+ * This function takes an intersection, a ray, and a list of intersections,
+ * and prepares the necessary computations for shading and other operations.
+ *
+ * @param h The intersection to be processed.
+ * @param r The ray that caused the intersection.
+ * @param xs The list of all intersections.
+ * @return A structure containing the computed details of the intersection.
+ */
 t_comps	prepare_comp(t_intersection h, t_ray r, t_inter *xs)
 {
 	t_comps	new;
@@ -120,9 +179,9 @@ t_comps	prepare_comp(t_intersection h, t_ray r, t_inter *xs)
 	else
 		new.is_inside = false;
 	new.over_point = tuple_add(new.point,
-			vector_scalar_mult(new.normalv, FLT_EPSILON));
+			vector_scalar_mult(new.normalv, EPSILON));
 	new.under_point = tuple_sub(new.point,
-			vector_scalar_mult(new.normalv, FLT_EPSILON));
+			vector_scalar_mult(new.normalv, EPSILON));
 	set_n1_n2(&new, h, &xs);
 	return (new);
 }

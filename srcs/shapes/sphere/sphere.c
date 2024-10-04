@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:56:33 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:56:09 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:56:23 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ double	volume_s(t_obj *sphere)
 	return ((4.0 / 3.0) * PI * pow(radius, 3));
 }
 
+/**
+ * @brief Parses material properties for a sphere from a split string array.
+ *
+ * This function takes a split string array containing sphere properties and
+ * assigns the appropriate material properties to the given sphere structure.
+ *
+ * @param sp_split A double pointer to a character array containing the split
+ *                 sphere properties.
+ * @param sp       A pointer to the sphere structure to which the material
+ *                 properties will be assigned.
+ *
+ * * Note: If RT_BONUS is equal to 1, the setup takes into account more complex
+ * patterns as well as reflectiveness and refraction.
+ */
 void	pat_mat_sp(char **sp_split, t_sphere *sp)
 {
 	t_pattern	pat;
@@ -57,6 +71,16 @@ void	pat_mat_sp(char **sp_split, t_sphere *sp)
 	}
 }
 
+/**
+ * @brief Creates a new sphere object from the given parameters.
+ *
+ * This function takes an array of strings representing the sphere's properties
+ * and an index, and returns a pointer to a newly created sphere object.
+ *
+ * @param sphere_split An array of strings containing the sphere's properties.
+ * @param i The index of the sphere in the array.
+ * @return A pointer to the newly created sphere object.
+ */
 t_sphere	*sphere_create(char **sphere_split, int i)
 {
 	t_sphere	*sphere;

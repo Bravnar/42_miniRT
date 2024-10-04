@@ -5,13 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:03:26 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:39:12 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:40:22 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * Generates a shadow ray based on the given intersection computations
+ * and direction. Adds an offset to the intersection
+ * point to cancel shadow noise.
+ *
+ * @param comps The precomputed intersection computations.
+ * @param direction The direction vector for the shadow ray.
+ * @return A shadow ray originating from the
+ * intersection point in the specified direction.
+ */
 t_ray	shadow_ray(t_comps comps, t_tup direction)
 {
 	t_tup	offset_point;
@@ -21,6 +31,20 @@ t_ray	shadow_ray(t_comps comps, t_tup direction)
 	return (ray_new(offset_point, direction));
 }
 
+/**
+ * @brief Calculates the shadow intensity at a given point in the world.
+ *
+ * This function determines how much shadow is present at a specific point
+ * in the world by considering the light sources and objects that may block
+ * the light. The shadow intensity is used to adjust the lighting and shading
+ * of the point in the rendering process.
+ *
+ * @param world The world containing all objects and light sources.
+ * @param point The point in the world where the
+ * shadow intensity is to be calculated.
+ * @return The shadow intensity at the given point,
+ * typically a value between 0 and 1.
+ */
 double	calculate_shadow_intensity(t_world world, t_tup point)
 {
 	t_ray	shadow_ray;
@@ -49,6 +73,16 @@ double	calculate_shadow_intensity(t_world world, t_tup point)
 	return (shadow_intensity);
 }
 
+/**
+ * @brief Determines if a point in the world is in shadow.
+ *
+ * This function checks if the point described by the intersection
+ * computations (comps) is in shadow within the given world (w).
+ *
+ * @param w The world containing all objects and light sources.
+ * @param comps The precomputed intersection data for a point.
+ * @return true if the point is in shadow, false otherwise.
+ */
 bool	is_shadowed(t_world w, t_comps comps)
 {
 	t_tup			v;

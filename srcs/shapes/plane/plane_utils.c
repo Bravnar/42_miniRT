@@ -5,13 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:50:53 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/03 08:47:34 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/03 08:48:59 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Computes the intersection of a ray with a plane.
+ *
+ * This function calculates the intersection points (if any) between a given ray
+ * and a plane object. It returns a pointer to a structure
+ * containing the intersection details.
+ *
+ * @param r The ray to intersect with the plane.
+ * @param plane The plane object to intersect with the ray.
+ * @return A pointer to a t_inter structure containing the intersection details,
+ *         or NULL if there is no intersection.
+ */
 t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 {
 	t_tup	to_orig;
@@ -34,6 +46,13 @@ t_inter	*local_intersect_pl(t_ray r, t_obj *plane)
 	return (inter);
 }
 
+/**
+ * Computes the local normal vector at a given point on a plane.
+ *
+ * @param plane A pointer to the plane object.
+ * @param point The point at which to compute the normal vector.
+ * @return The normal vector at the given point on the plane.
+ */
 t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 {
 	t_tup	normal;
@@ -46,6 +65,16 @@ t_tup	local_normal_at_pl(t_obj *plane, t_tup point)
 	return (normal);
 }
 
+/**
+ * @brief Creates and initializes a new plane object.
+ *
+ * This function allocates memory for a new plane object and initializes it
+ * with the ID of the object. The integer parameter can be used to set
+ * specific properties or attributes of the plane.
+ *
+ * @param i An integer used as the ID of the objects..
+ * @return A pointer to the newly created plane object.
+ */
 t_plane	*plane(int i)
 {
 	t_plane	*p;

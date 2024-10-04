@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 07/09/2024 09:59:36 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:04:41 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 16:37:40 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 16:37:40 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ t_color	diffuse(double ldn, t_material m, t_color eff_color)
 	return (color_scalarmult(m.diffuse * ldn, eff_color));
 }
 
+/**
+ * Computes the specular component of the lighting model.
+ *
+ * @param ldn The dot product of the light direction and the normal vector.
+ * @param m The material properties of the surface.
+ * @param v An array of three t_tup vectors:
+ *          - v[0]: The light direction vector.
+ *          - v[1]: The view direction vector.
+ *          - v[2]: The normal vector at the point of intersection.
+ * @return The color resulting from the specular reflection.
+ */
 t_color	specular(double ldn, t_material m, t_tup v[3])
 {
 	t_tup	reflect_v;

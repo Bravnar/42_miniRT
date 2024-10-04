@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 17/09/2024 20:10:02 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 10:36:25 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 14:51:57 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 14:54:51 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-// Simple hash function
+// Hash function to generate a pseudo-random number from an integer
 unsigned int	hash(unsigned int x)
 {
 	x = ((x >> 16) ^ x) * 0x45d9f3b;
@@ -21,7 +21,19 @@ unsigned int	hash(unsigned int x)
 	return (x);
 }
 
-// Simple noise function
+/**
+ * @brief Generates a simple noise value based on a 3D point.
+ *
+ * This function computes a noise value for a given 3D point using a combination
+ * of hashing and interpolation. The noise value is calculated
+ * by first determining the integer coordinates of the point,
+ * then computing the fractional part, and finally interpolating
+ * between hashed values of the surrounding points.
+ *
+ * @param p A 3D point represented as a t_tup structure.
+ * @return A double representing the noise value at the given point.
+ */
+
 double	simple_noise(t_tup p)
 {
 	int		i[3];
@@ -50,6 +62,16 @@ double	simple_noise(t_tup p)
 		+ n[6] * u.x * u.y * (1 - u.z) + n[7] * u.x * u.y * u.z);
 }
 
+/**
+ * @brief Perturbs the normal vector at a given point on
+ * an object using a specified pattern.
+ *
+ * @param obj Pointer to the object whose normal vector is to be perturbed.
+ * @param p The point on the object where the normal vector is to be perturbed.
+ * @param normal The original normal vector at the point.
+ * @param pat The pattern used to perturb the normal vector.
+ * @return The perturbed normal vector.
+ */
 t_tup	perturb_normal(t_obj *obj, t_tup p, t_tup normal, t_pattern pat)
 {
 	t_tup	offset;

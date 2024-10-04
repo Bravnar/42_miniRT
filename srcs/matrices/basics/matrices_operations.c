@@ -5,13 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmorand <hmorand@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 20/08/2024 08:15:18 by hmorand           #+#    #+#             */
-/*   Updated: 18/09/2024 09:59:24 by hmorand          ###   ########.ch       */
+/*   Created: 2024/10/02 16:07:10 by hmorand           #+#    #+#             */
+/*   Updated: 2024/10/02 16:07:48 by hmorand          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+/**
+ * @brief Compares two matrices for equality.
+ *
+ * This function takes two matrices, A and B, and compares
+ * them element by element to determine if they are equal.
+ *
+ * @param A The first matrix to compare.
+ * @param B The second matrix to compare.
+ * @return true if the matrices are equal, false otherwise.
+ */
 bool	matrix_compare(t_matrix A, t_matrix B)
 {
 	int	r;
@@ -30,6 +40,13 @@ bool	matrix_compare(t_matrix A, t_matrix B)
 	return (true);
 }
 
+/**
+ * Multiplies two matrices A and B.
+ *
+ * @param A The first matrix.
+ * @param B The second matrix.
+ * @return The resulting matrix after multiplication.
+ */
 t_matrix	matrix_mult(t_matrix A, t_matrix B)
 {
 	t_matrix	result;
@@ -52,6 +69,13 @@ t_matrix	matrix_mult(t_matrix A, t_matrix B)
 	return (result);
 }
 
+/**
+ * Multiplies a matrix by a column vector.
+ *
+ * @param A The matrix to be multiplied.
+ * @param b The column vector to be multiplied.
+ * @return The resulting column vector after multiplication.
+ */
 t_column	matrix_mult_col(t_matrix A, t_column b)
 {
 	t_column	result;
@@ -69,6 +93,13 @@ t_column	matrix_mult_col(t_matrix A, t_column b)
 	return (result);
 }
 
+/**
+ * Multiplies a matrix by a tuple.
+ *
+ * @param A The matrix to be multiplied.
+ * @param b The tuple to be multiplied.
+ * @return The resulting tuple after multiplication.
+ */
 t_tup	matrix_mult_tup(t_matrix A, t_tup b)
 {
 	t_column	temp;
